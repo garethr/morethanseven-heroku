@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Simple deployment with SVN and Phing</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='' name='keywords' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Simple deployment with SVN and Phing
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Jan 30, 2008</li>
+            <li>&middot;</li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>Another approach to deploying web apps is to use <a href="http://phing.info/">Phing</a>. Phing is at heart a <span class="caps">PHP</span> clone of Ant,  another common build and deployment tool. The main advantage of using Phing, at least if you&#8217;re already using <span class="caps">PHP</span>, is close integration with other <span class="caps">PHP</span> specific tools (PHPDocumentor, PHPLint and PHPUnit to name a few) and ease of install.</p>
+          <p>Speaking to installation Phing has it&#8217;s own <span class="caps">PEAR</span> channel. I still think <span class="caps">PEAR</span> is great in so many different ways &#8211; it always makes me frown when I see people cussing at <span class="caps">PEAR</span> (especiallly the installer). You can install Phing as follows.</p>
+          <pre><code>pear channel-discover pear.phing.info&#x000A;pear install phing/phing</code></pre>
+          <p>The <a href="http://phing.info/docs/guide/current/">Phing documentation</a> is nothing if not comprehensive. Unfortunately, unless you are pretty familiar with Ant or you&#8217;re trying to do something complex (and willing to invest the time) the chances are you&#8217;ll be a little lost. More and simpler examples for common problems would be useful for those beginners.</p>
+          <p>I might publish a few little recipes down the line or even a full commented production recipe but for the moment lets start simple. The following build script is designed to be run on your remote web server and relies on a subversion repository (hopefully you&#8217;re using source control, if not that&#8217;s another post I&#8217;m afraid). It simply exports the specified repository to the specified export directory on the server. Note that you need to set your own <span class="caps">SVN</span> details and replace the capitalised properly values. The following should be saved as <em>build.xml</em> on your web server, outside the web root.</p>
+          <pre><code>&lt;?xml version="1.0"?&gt;&#x000A;&lt;project name="build" default="main"&gt;&#x000A;  &#x000A;  &lt;property name="exportdir"  value="WEB_ROOT" /&gt;&#x000A;  &lt;property name="svnpath" value="YOUR_SVNPATH" /&gt;&#x000A;  &lt;property name="username" value="YOUR_SVN_USERNAME" /&gt;&#x000A;  &lt;property name="password" value="YOUR_SVN_PASSWORD" /&gt;&#x000A;  &lt;property name="repo" value="YOUR_SVN_REPO" /&gt;&#x000A;        &#x000A;  &lt;target name="main" depends="svnexport"/&gt;&#x000A;  &#x000A;  &lt;target name="svnexport"&gt;&#x000A;    &lt;svnexport&#x000A;       svnpath="${svnpath}"&#x000A;       username="${username}"&#x000A;       password="${password}"&#x000A;       nocache="true"&#x000A;       repositoryurl="${repo}"&#x000A;       todir="${exportdir}"/&gt;&#x000A;  &lt;/target&gt;&#x000A;&lt;/project&gt;</code></pre>
+          <p>Let&#8217;s break some of that down. Property definitions allow you to specify variables for use in your build script. In this example we only have one task specified so maybe we don&#8217;t need the extra abstraction but the moment we start reusing scripts or adding more tasks it&#8217;s a good idea.</p>
+          <pre><code>&lt;property name="exportdir"  value="./web" /&gt;</code></pre>
+          <p>The other major point of interest is the task itself. Here we make use of the properties we have already specified to run a subversion export. The <em>svnexport</em> task is build in to Phing.</p>
+          <pre><code>&lt;target name="svnexport"&gt;&#x000A;  &lt;svnexport&#x000A;     svnpath="${svnpath}"&#x000A;     username="${username}"&#x000A;     password="${password}"&#x000A;     nocache="true"&#x000A;     repositoryurl="${repo}"&#x000A;     todir="${exportdir}"/&gt;&#x000A;&lt;/target&gt;</code></pre>
+          <p>Also of note is the setting of a default task, <em>main</em>, as a property of the project element and specifying that the main task depends on another task, <em>svnexport</em>. Again, we could avoid that at this stage but the moment we add another few tasks then we&#8217;ll want more control over execution order.</p>
+          <p>Phing should be run from the directory containing the build script. You can run the command without any arguments, in which case the default task will be run (in our case <em>main</em>) or you can pass an argument to specify a specific task. For our simple build script  the two following commands do the same thing:</p>
+          <pre><code>phing</code></pre>
+          
+          <pre><code>phing svnexport</code></pre>
+          <p>Given the above build script simple runs a subversion export command you might be wondering what use it is. The answer is not much at this stage. You <em>do</em> get a simple build script which can be stored in your source control system and used by the whole team. The real advantage is where you might go from here. If everyone in your team deploys in the same way (ie. using the build script) then anyone can add extra tasks and everyone gets the benefit. Simple example might be generating code documentation, running Unit tests (and not running the export if the tests fail) and creating a zip file of the deployed source for backup purposes.</p>
+          <p>Build scripts can get complicated quickly, but if you start out small and add tasks as you need and understand them, you should be able to raise the quality of your application and avoid easy to make mistakes.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2008/01/27/questions_pointers_and_reality.html' title=''>
+                  &laquo; Questions, Pointers and Reality
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/01/22/who_loses_out_to_x_ua_compatible.html' title=''>
+                  &laquo; Who loses out to X-UA-Compatible?
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/01/19/a_few_interesting_upcoming_events.html' title=''>
+                  &laquo; A few interesting upcoming events
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2008/02/04/continuous_integration_for_front_end_developers.html' title=''>
+                  Continuous Integration for Front End Developers &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/02/13/example_of_the_yahoo_live_api.html' title=''>
+                  Example of the Yahoo Live Api &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/02/19/invited_to_join_wasp.html' title=''>
+                  Invited to Join WaSP &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

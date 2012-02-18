@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Why Developers Should Care About System Packages</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='packaging, github, rant, devops' name='keywords' />
+    <meta content='etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8' name='google-site-verification' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+    <link href='http://www.myopenid.com/server' rel='openid.server' />
+    <link href='http://garethr.myopenid.com/' rel='openid.delegate' />
+    <link href='/articles.atom' rel='alternate' title='Morethanseven Atom Feed' type='application/atom+xml' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='carbonads-container'>
+          <div class='carbonad'>
+            <div id='carbon'></div>
+            <script type='text/javascript'>
+              //<![CDATA[
+                var z = document.createElement("script");
+                z.type = "text/javascript";
+                z.async = true;
+                z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(z, s);
+              //]]>
+            </script>
+          </div>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/articles.atom'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Why Developers Should Care About System Packages
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Jan 16, 2011</li>
+            <li>
+              &middot;
+            </li>
+            <li>
+              <a href='/2011/01/16/Why-developers-should-care-about-system-packages.html#disqus_thread'></a>
+            </li>
+            <li>&middot;</li>
+            <li>
+              <a class='tag' href='/tags/devops/'>
+                devops
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/github/'>
+                github
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/packaging/'>
+                packaging
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/rant/'>
+                rant
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>First a bit of background. I&#8217;m a software developer (lately in Ruby and a tiny bit of Java, previously in Python, C# and <span class="caps">PHP</span>; yes I got around a bit), but have spent enough time looking after production hardware (mainly debian, solaris and recently a bit of <span class="caps">RHEL</span>) to have a feel for sysadmin work. I even have friends who are systems administrators. I mainly use a shiny apple laptop for my development work, but I actually execute all the code on Linux virtual machines. The aim of this post is to bridge a divide, not start a flame war about specific tools.</p>
+          <p>I&#8217;m writing this partly to address <a href="http://twitter.com/CoffeeScript/status/18867889742282752">a tweet I made</a> that in hindsight needed more than 140 characters. Actually a number of my recent tweets have been on the same theme so I should be more helpful. What I&#8217;m seeing recently is an increase in the ways I&#8217;m being asked to install software and for me at least that&#8217;s annoying.</p>
+          <ol>
+          	<li>Several projects will ask you to do something like <em>curl http://bit.ly/installsh | sh</em> which downloads a shell script and executes it.</li>
+          	<li>Some will insist I have git installed</li>
+          	<li>A new framework might come with it&#8217;s own package manager</li>
+          </ol>
+          <p>I&#8217;m a polyglot programmer (so I shouldn&#8217;t care about #3) that uses git for everything (scratch #2) and who writes little bash scripts to make my life easier (exactly like #1). So I understand exactly how and why these solutions appear fine. And for certain circumstances they are, in particular for local development on a machine owned and maintained by one person. But on a production machine and even on my clean and tidy virtual machines none of these cut it for me in most cases.</p>
+          <p>Most developers I know have only a passing awareness of packaging so I&#8217;m going to have an aside to introduce some cool tricks. I think this is one place where sysadmins go wrong, they assume developers understand their job and that they know the various tools intimately.</p>
+          <h2>System Package Tips</h2>
+          <p>I&#8217;m going to show examples using the debian tools so these apply to debian and ubuntu distros. <span class="caps">RPM</span> and the Yum tool have similar commands too, I just happen to know debs better.</p>
+          <h3>List all installed packages</h3>
+          <p>This one is a bit obvious, it&#8217;s probably going to be available in anyones home grown package management system. But if you&#8217;re installing software via hand using git or a shell script then you can&#8217;t even ask the machine what is installed.</p>
+          <pre>dpkg -l</pre>
+          <h3>List files from package</h3>
+          <p>I love this one. Have you ever installed a package and wondered where the config files are? You can soft of guess based on your understanding of the OS file system layout but this command is handy.</p>
+          <pre>dpkg -L lynx&#x000A;/.&#x000A;/usr&#x000A;/usr/share&#x000A;/usr/share/doc&#x000A;/usr/share/doc/lynx&#x000A;/usr/share/doc/lynx/copyright&#x000A;/usr/share/doc/lynx/changelog.gz&#x000A;/usr/share/doc/lynx/changelog.Debian.gz</pre>
+          <h3>Where did that file come from?</h3>
+          <p>Have a file on disk that you&#8217;re not sure where it came from? Ask the system package manager. The more everything is installed from packages the more useful this becomes.</p>
+          <pre>dpkg -S /bin/netstat</pre>
+          <h3>Unmet dependencies</h3>
+          <p>At the heart of a good package system is the ability to map dependencies and to have unmet dependencies installed as needed. Having tools to query that tree is useful in various places.</p>
+          <pre>apt-cache unmet</pre>
+          <p>Will give you output a little like the followning:</p>
+          <pre>Package libdataobjects-sqlite3-ruby1.9.1 version 0.10.1.1-1 has an unmet dep:&#x000A; Depends: libdataobjects-ruby1.9</pre>
+          <h3>What needs upgrading?</h3>
+          <p>The apticron tool can alert you to packages that are now out of date. It&#8217;s easy to set it up to email you each day for each host and tell you about packages that need upgrading. Remember that the reason one of these might have an update could be a documented security bug and it becomes even more important to know about it quickly.</p>
+          <pre>apticron report [Fri, 19 Jan 2007 18:42:01 -0800]&#x000A;========================================================================&#x000A;&#x000A;apticron has detected that some packages need upgrading on: &#x000A;&#x000A;	faustus.example.com&#x000A;	[ 1.2.3.4 ]&#x000A;&#x000A;The following packages are currently pending an upgrade:&#x000A;&#x000A;	xfree86-common 4.3.0.dfsg.1-14sarge3&#x000A;	libice6 4.3.0.dfsg.1-14sarge3&#x000A;	libsm6 4.3.0.dfsg.1-14sarge3&#x000A;	xlibs-data 4.3.0.dfsg.1-14sarge3&#x000A;	libx11-6 4.3.0.dfsg.1-14sarge3&#x000A;	libxext6 4.3.0.dfsg.1-14sarge3&#x000A;	libxpm4 4.3.0.dfsg.1-14sarge3</pre>
+          <p>I&#8217;m really not an expert on using debs but even I find these tools useful, and you don&#8217;t get the same capabilities when you use anything else.</p>
+          <h2>Good and bad examples</h2>
+          <p>Still here? Good. I&#8217;m going to pick on a few pieces of software to give examples of what I mean. All of this software I actively use and think is brilliant earth shattering stuff, I&#8217;m not dissing the software so if any fanboys reading can kindly not attack me please, I&#8217;m one of you.</p>
+          <h3>RabbitMQ (Erlang)</h3>
+          <p>The nice folk building the <a href="http://www.rabbitmq.com/">RabbitMQ</a> message queue provide downloads of the <a href="http://www.rabbitmq.com/server.html">source code as well as various system packages</a>. Knowing that some people will want to use the latest and greatest version of the application they also host the latest deboan packages in their <a href="http://www.rabbitmq.com/debian.html">own package repo with details on their site</a>.</p>
+          <h3>Chef (Ruby)</h3>
+          <p>The <a href="http://wiki.opscode.com/display/chef/Home">Chef configuration management system</a> also provides multiple methods to install their software. For people already using, happy and familiar with it they provide everything as a ruby gem. If you prefer <a href="http://wiki.opscode.com/display/chef/Installation">system packages they have those too</a>. They also provide their <a href="http://wiki.opscode.com/display/chef/Package+Installation+on+Debian+and+Ubuntu">own deb repo</a> for people to grab the latest software.</p>
+          <h3>Cloudera Hadoop (Java)</h3>
+          <p>Before I found the Cloudera Hadoop packages I remember having great fun <a href="http://morethanseven.net/2009/10/18/problems-installing-hadoop-and-dumbo-ubuntu.html">manually applying patches</a> to get everything working. Cloudera do exactly the same as the above two developers, namely <a href="https://docs.cloudera.com/display/DOC/Hadoop+Installation+%28CDH3%29">host their owns debs</a>.</p>
+          <h3><span class="caps">RVM</span></h3>
+          <p><a href="http://rvm.beginrescueend.com/"><span class="caps">RVM</span></a> is a fantastic way of managing multiple ruby versions and multiple isolated sets of gems. But it&#8217;s also probably the first place I saw the install from remote shell script approach.</p>
+          <pre>bash &lt; &lt;( curl http://rvm.beginrescueend.com/releases/rvm-install-head )</pre>
+          <p>I like to do the same things on my development machine as I do in production, and the main problem I have with <span class="caps">RVM</span> is that it&#8217;s so useful I want it everywhere. I&#8217;d prefer if the system wide install had some sort of option to install the rubies from packages rather than compile everything on the machine (meaning you need a full set of compile tools installed everywhere), or that we can automate the creation of the packages using rvm.</p>
+          <h3>Solr</h3>
+          <p>You&#8217;ll probably find packages for the <a href="http://lucene.apache.org/solr/">Solr search server</a> in recent distros. It&#8217;s hugely popular predominantly because it&#8217;s a fantasic piece of software. But everytime I have a look at the system packages I can&#8217;t quite get them to work, or they are out of date. I now know my way around Solr setup relatively well and just end up creating my own packages and I&#8217;ve spoken to other folk who have done the same. The <a href="http://lucene.apache.org/solr/tutorial.html">Solr documentation</a> recommends downloading a zip file to get started and I can&#8217;t see any mention of the packages. My guess is the packages aren&#8217;t maintained as part of the core development which is a quick way to get them out of sync with current progress.</p>
+          <h2>Enough beating up on my fellow developers</h2>
+          <p>System packages aren&#8217;t blameless, I think the culture often seen in debian of splitting the developer from the package maintainer is part of the problem. This manifests in various ways, all negative:</p>
+          <ul>
+          	<li>Out of date packages. The biggest complaint from developers about system packages is nearly always that they are out of date. Maintainers should more readily release packaging scripts (ideally back to the project) so people can easily roll their own.</li>
+          	<li>The documentation around packaging is either fantastic or terrible, depending on what you want to do and who you are. It turns out making your own packages (using something like <a href="http://checkinstall.izto.org/">checkinstall</a>) is actually quite easy.</li>
+          	<li>The official debian docs I think focus on the role of package maintainer, rather than trying to push that downstream to the developers. That doesn&#8217;t make them bad, it just means we need documentation aimed at a developer just getting started with packaging their software.</li>
+          	<li>Developers hosting their own package repository and asking people to point at that is also quite easy. The projects I praised above all do it nicely. But simple attractive documentation is hard to come by.</li>
+          </ul>
+          <h2>What to do</h2>
+          <p>First up lets talk more about the distribution and installation of software. And lets do that in the spirit of making things better for everyone involved. The ongoing spat between Ruby and Debian people is just counterproductive. <a href="http://ryanbigg.com/2010/12/ubuntu-ruby-rvm-rails-and-you/">This</a> would be a good article if it didn&#8217;t lead with:</p>
+          <blockquote>
+          <p>This system (apt-get) is out-dated and leads to major headaches. Avoid it for Ruby-related packages. We do Ruby, we know what’s best. Trust us.</p>
+          </blockquote>
+          <p>We need better documentation aimed at developers. I&#8217;m going to try and write some brief tutorials soon (otherwise I&#8217;d feel like this rant was just me complaining) but I&#8217;m not an expert. I&#8217;ll hapily help <a href="http://devopsweekly.com">promote</a> or collate good material as well. Maybe it already exists and I just can&#8217;t find it?</p>
+          <p>I&#8217;m a git user and a big <a href="http://github.com">GitHub</a> fan, but one of the features of Launchpad I really like is the <a href="https://help.launchpad.net/Packaging/PPA">Personal Package Archive</a>. This lets you upload source code and have it automatically built into a package. This is specific to Ubuntu but that&#8217;s understandable given Launchpad is also operated by Canonical. What I&#8217;d like is the same feature in GitHub but that allowed building debs and RPMs for different architectures. Alternatively a webhook based third party that could do the same would be awesome (anyone fancy building one? I might pitch in). The only real advantage of it being GitHub would be it would make packages immediately cool, which hopefully you all now realise that they are.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2011/01/10/My-default-recipes-for-vagrant-virtual-machines.html' title=''>
+                  &laquo; My Default Recipes For Vagrant Virtual Machines
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2011/01/01/Solr-libraries-and-good-api-design.html' title=''>
+                  &laquo; Solr Libraries and Good API Design
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2010/12/29/Heroku-for....html' title=''>
+                  &laquo; Heroku For...
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2011/01/29/Using-checkinstall-with-virtualenv-for-python-deployments.html' title=''>
+                  Using Checkinstall With Virtualenv For Python Deployments &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2011/02/08/Configuration-management-for-development-environments.html' title=''>
+                  Configuration Management For Development Environments &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2011/03/02/Devops-more-than-marketing-talk-by-james-turnbull.html' title=''>
+                  Devops - More Than Marketing - Talk By James Turnbull &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='comments'>
+        <div id='disqus_thread'></div>
+        <script src='http://disqus.com/forums/morethanseven/embed.js' type='text/javascript'></script>
+        <noscript>
+          <a href='http://disqus.com/forums/morethanseven/?url=ref'>
+            View the discussion thread
+          </a>
+        </noscript>
+      </div>
+      <!-- / disqus adds too much visual crap -->
+      <style type='text/css'>
+        .dsq-dc-logo {
+          display: none !important; }
+      </style>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        (function() {
+          var links = document.getElementsByTagName('a');
+          var query = '?';
+          for(var i = 0; i < links.length; i++) {
+            if(links[i].href.indexOf('#disqus_thread') >= 0) {
+              query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+            }
+          }
+          document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/morethanseven/get_num_replies.js' + query + '"></' + 'script>');
+        })();
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+          pageTracker._trackPageLoadTime();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

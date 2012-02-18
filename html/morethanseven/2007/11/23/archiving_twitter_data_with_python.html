@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Archiving Twitter data with Python</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='' name='keywords' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Archiving Twitter data with Python
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Nov 23, 2007</li>
+            <li>&middot;</li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p><a href="http://www.al3x.net/">Alex</a> from <a href="http://twitter.com">Twitter</a> just got round to adding the ability to export your entire archive of tweets via the <a href="http://groups.google.com/group/twitter-development-talk/web/api-documentation"><span class="caps">API</span></a>. A few people on the mailing list had been asking for this for a while so good to see it get released.</p>
+          <p>I couldn&#8217;t resist knocking together a very quick and simple Python script to go off and get all your tweets, presented here for anyone else to play around with. Note that simple, fast and works on my machine were watchwords here. Don&#8217;t expect fancy parameters, much error handling or artificial intelligence.</p>
+          <pre><code>import urllib2&#x000A;username = '&lt;YOUR USERNAME&gt;'&#x000A;password = '&lt;YOUR PASSWORD&gt;'&#x000A;format = 'json' # json or xml&#x000A;filename = 'archive.json' # filename of the archive&#x000A;tweets = 164 # number of tweets&#x000A;pages = (int(float(tweets)/float(80)))+1&#x000A;auth = urllib2.HTTPPasswordMgrWithDefaultRealm()&#x000A;auth.add_password(None, 'http://twitter.com/account/', username, password)&#x000A;authHandler = urllib2.HTTPBasicAuthHandler(auth)&#x000A;opener = urllib2.build_opener(authHandler)&#x000A;urllib2.install_opener(opener) &#x000A;i = 1&#x000A;response = ''&#x000A;print 'Downloading tweets. Note that this may take some time'&#x000A;while i &lt;= pages:&#x000A;    request = urllib2.Request('http://twitter.com/account/archive.' \&#x000A;    + format + '?page=' + str(i))&#x000A;    response = response + urllib2.urlopen(request).read()&#x000A;    i = i + 1&#x000A;handle = open(filename,"w")&#x000A;handle.write(response)&#x000A;handle.close()&#x000A;print 'Archived ' + str(tweets) + ' of ' + username + \&#x000A;'\'s tweets to ' + filename</code></pre>
+          <p>The main thing to note here though is the ideal of <a href="http://www.dataportability.org/">data portability</a>. Let&#8217;s just say I wanted to move to Jaiku or Pownce instead of Twitter, but didn&#8217;t want to lose all that data. If I can knock up an export script in half an hour then all you need are import data <span class="caps">API</span> calls and a little more scripting.</p>
+          <p>As it is, I&#8217;m more interesting in seeing what I can do with my data now I can get at it. <a href="http://suda.co.uk">Brian</a> just suggested a <a href="http://simile.mit.edu/timeline/">quick visualisation tool</a> (which already eats <span class="caps">JSON</span>) and I&#8217;d already been thinking about <a href="http://morethanseven.net/posts/pygunfog/">language analysis</a> and maybe having a look at <a href="http://www.apml.org/"><span class="caps">APML</span></a> some more. Open data is simply more fun.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2007/11/21/should_we_just_learn_java.html' title=''>
+                  &laquo; Should we just learn Java?
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2007/11/17/joost_developer_day.html' title=''>
+                  &laquo; Joost Developer Day
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2007/11/12/activity.html' title=''>
+                  &laquo; Activity
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2007/11/30/10_thinks_you_probably_dont_do.html' title=''>
+                  10 Thinks you probably don&#39;t do &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2007/12/03/debug_web_pages_with_jquery_and_jash.html' title=''>
+                  Debug web pages with Jquery and Jash &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2007/12/08/insert_dojo_and_yui_bookmarklets.html' title=''>
+                  Insert Dojo and YUI bookmarklets &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

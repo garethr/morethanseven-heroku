@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Testing WSGI Application with Urltest</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='python, wsgi, testing, github' name='keywords' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Testing WSGI Application with Urltest
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Jun 04, 2009</li>
+            <li>&middot;</li>
+            <li>
+              <a class='tag' href='/tags/github/'>
+                github
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/python/'>
+                python
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/testing/'>
+                testing
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/wsgi/'>
+                wsgi
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>I found myself wanted something to make writing high level, functional tests for <span class="caps">WSGI</span> application easier and quicker. If I liked the term I&#8217;d call it a domain specific language for testing URLs. Basically I found myself writing a lot of tests like:</p>
+          <pre>def test_404_handler(self):  &#x000A;    response = self.app.get('/does-not-exist', expect_errors=True)        &#x000A;    self.assertEquals("404 Not Found", response.status)</pre>
+          <p>Testing more than a view URLs like this got boring quickly. What I wanted was a short hand syntax for defining this sort of simple test and then running them all individually. So was born <a href="http://github.com/garethr/urltest/tree/master">Urltest</a>. It uses the rather nifty <a href="http://pypi.python.org/pypi/WebTest/0.9">Webtest</a> module and hooks into unittest from the standard library. You&#8217;re test script then looks a little like:</p>
+          <pre>#!/usr/bin/env python&#x000A;from example_app import application&#x000A;from urltest import verify_urls&#x000A;if __name__ == "__main__":&#x000A;    urls = (&#x000A;        {'url':"/", 'code':200},&#x000A;        {'url':"/bob", 'code':200},&#x000A;        {'url':"/jim", 'code':404},&#x000A;        {'url':"/jim", 'method': "POST", 'code':405},&#x000A;    )    &#x000A;    verify_urls(urls, application)</pre>
+          <p>Let me know if you use it as at the moment this is <em>works for me</em> ware, although it&#8217;s reasonably well tested and commented.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2009/05/28/another_glue_python_framework_mnml.html' title=''>
+                  &laquo; Another Glue Python Framework - MNML
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/05/25/beyond_basic_web_development.html' title=''>
+                  &laquo; Beyond Basic Web Development
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/05/21/universal_ie6_css_and_different_types_of_sites.html' title=''>
+                  &laquo; Universal Internet Explorer 6 CSS and different types of sites
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2009/06/05/cambridge_geek_night.html' title=''>
+                  Cambridge Geek Night &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/06/08/garethrushgrovecom_update.html' title=''>
+                  garethrushgrove.com update &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/06/10/how_decide_your_next_programming_language.html' title=''>
+                  How to Decide on Your Next Programming Language &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

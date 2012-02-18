@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Example of using XMPP on App Engine (via IMified)</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='appengine, python, xmpp, imified' name='keywords' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Example of using XMPP on App Engine (via IMified)
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Feb 21, 2009</li>
+            <li>&middot;</li>
+            <li>
+              <a class='tag' href='/tags/appengine/'>
+                appengine
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/imified/'>
+                imified
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/python/'>
+                python
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/xmpp/'>
+                xmpp
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>As I <a href="http://morethanseven.net/2009/02/07/xmpp-and-offline-processing-coming-google-app-engi/">mentioned before</a>, App Engine is getting an <span class="caps">XMPP</span> <span class="caps">API</span> at some point soon. But if you just can&#8217;t wait to start adding IM interfaces to your applications then you <em>can</em> do it now, by using a nifty third party in <a href="http://imified.com/">IMified</a>.</p>
+          <p>IMified provide an incredibly simple <span class="caps">HTTP</span> <span class="caps">API</span> for interacting with your own IM bot. If we want to be buzz word compliant we might even call it a <a href="http://webhooks.pbwiki.com">webhook</a>. It&#8217;s also currently a free service while they work through the beta. The <a href="http://new.imified.com/developers/api">documentation</a> is short and to the point but only contains examples in <span class="caps">PHP</span>. It supports multiple step <em>conversations</em> as well as authentication.</p>
+          <p>So, armed with a little time on the train over the last few days I got to work knocking together a quick demo application as a proof of concept. You can find the site on <a href="http://imified-demo.appspot.com/">imified-demo.appspot.com</a> and if you want to chat with the bot you can add <em>appengineimified@bot.im</em> to your contacts. The bot uses the Jabber protocol so is available over Jabber or GTalk. IMified make it easy to use <span class="caps">MSN</span> or Yahoo IM accounts as well, which is something the App Engine <span class="caps">API</span> might very well not do I would imagine.</p>
+          <p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRjRDww" alt="Screengrab of the IMified App Engine site"/></p>
+          <p>As always you can find the code on <a href="http://github.com/garethr/appengine-imified/tree/master">GitHub</a>. Most of the code is actually just the site itself or settings to make local development easier. The following is a slightly edited version of the live code (logging and caching removed to make it easier to follow). All we need to do is accept a <span class="caps">HTTP</span> Post request with a list of arguments and return a plain text response. All being well the response is sent as a IM message to the sender.</p>
+          <pre>class IMified(webapp.RequestHandler):&#x000A;    "This is the endpoint for the message from IMified"&#x000A;    def post(self):&#x000A;        "We recieve post data from IMified"&#x000A;        userkey = self.request.get('userkey')&#x000A;        network = self.request.get('network')&#x000A;        msg = self.request.get('msg')&#x000A;        step = self.request.get('step')&#x000A;        try:&#x000A;            # we try and create the message&#x000A;            message = Message(&#x000A;                userkey = userkey,&#x000A;                network = network,&#x000A;                msg = msg,&#x000A;                step = int(step)&#x000A;            )   &#x000A;            message.put()&#x000A;            # the response is send as an IM message to the sender&#x000A;            self.response.out.write('Message saved')&#x000A;        except:&#x000A;            self.response.out.write('An error ocured, message not saved')</pre>
+          <p>IMified can obviously be used outside App Engine as well, and in fact it&#8217;s not just about working around limitations in existing systems. Running the long running processes required for bots, and potentially even running your own <span class="caps">XMPP</span> server, is fiddly at times and requires at least some setup, monitoring and configuration to get working. Not having that as a barrier for entry for simple experiments or applications is a good thing.</p>
+          <p><a href="http://aralbalkan.com/">Aral</a> spoke at the last <a href="http://groups.google.com/group/django-london"><span class="caps">DJUGL</span></a> about App Engine and mentioned a wide range of third party services that you can use to get around current limitations. IMified definitely fits into this group of support services very nicely indeed. I&#8217;d love to see them do really well as it really makes it much easier to get started with <span class="caps">XMPP</span> applications, even if what you can do is limited to a few simple APIs. I&#8217;d love to hear about other services that people are using in this way to build these distributed applications.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2009/02/18/python_rest_client.html' title=''>
+                  &laquo; Python REST Client
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/02/15/looking_new_job_june.html' title=''>
+                  &laquo; Looking for a New Job in June
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/02/15/let_you_sys_admin_override_your_django_settings.html' title=''>
+                  &laquo; Let you Sys Admin Override your Django Settings
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2009/02/23/epydoc_ant_task.html' title=''>
+                  Epydoc Ant task &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/02/24/github_changelog.html' title=''>
+                  GitHub Changelog &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/02/28/http_debugging_server_django.html' title=''>
+                  HTTP Debugging Server in Django &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

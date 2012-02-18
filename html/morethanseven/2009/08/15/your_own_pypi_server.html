@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Your Own PyPi server</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='pypi, python, django' name='keywords' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Your Own PyPi server
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Aug 15, 2009</li>
+            <li>&middot;</li>
+            <li>
+              <a class='tag' href='/tags/django/'>
+                django
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/pypi/'>
+                pypi
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/python/'>
+                python
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>So one of the problems with using pip or easy_install as part of an automated deployment process is they rely on an internet connection. More than that, they rely on PyPi being up as it&#8217;s a centralised system, unlike all the apt package mirrors.</p>
+          <p>The best solution seems to be to host your own PyPi compliant server. Not only can you load all the third party modules you use onto it, but you could also upload any internal applications or libraries that you like. By running this on your local network you ensure your not dependent on pypi or an internet connection.</p>
+          <p>At the moment I&#8217;m playing with <a href="http://github.com/ask/chishop/tree/master">Chishop</a> which is a django application for maintaining a PyPi compatible server. Another alternative if that doesn&#8217;t work out is <a href="http://pypi.python.org/pypi/EggBasket/">EggBasket</a></p>
+          <p>To install from your own PyPi server you can specify the location of your Chishop instance with the -i flag.</p>
+          <pre>easy_install -i http://localhost:8000/ PACKAGE_NAME</pre>
+          <p>This will fall back to the PyPi server if it doesn&#8217;t find the relevant package. If you want to stop that behaviour and make sure you have a local package then you can limit the hosts with the -H flag like so.</p>
+          <pre>easy_install -H localhost:8000 -i http::/localhost:8000/ PACKAGE_NAME</pre>
+          <p>I&#8217;m not yet sure how to do this with pip, if someone wants to enlighten me in the comments then I&#8217;d be most grateful.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2009/07/27/fabric_django_git_apache_mod_wsgi_virtualenv_and_p.html' title=''>
+                  &laquo; Fabric, Django, Git, Apache, mod_wsgi, virtualenv and pip deployment
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/07/23/whats_new_django_11.html' title=''>
+                  &laquo; What's new in Django 1.1
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/07/15/simple_app_running_scripts_and_recording_results.html' title=''>
+                  &laquo; Asteroid - simple app for running scripts and recording the results
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2009/08/21/django_wsgi_deployment_solaris.html' title=''>
+                  Django and WSGI deployment on Solaris &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/08/31/another_chance_djugl.html' title=''>
+                  Another chance to DJUGL &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/09/06/automating_web_site_deployment_barcamp_brighton.html' title=''>
+                  Automating web site deployment at Barcamp Brighton &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

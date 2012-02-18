@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>A Really Simple Capistrano Recipe</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='' name='keywords' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          A Really Simple Capistrano Recipe
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Apr 26, 2008</li>
+            <li>&middot;</li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>Build scripts. I think I&#8217;ve probably mentioned before; everyone knows they should but not many actually do. I&#8217;m not talking about your large in-house development teams or your sexy web startups; both probably have a good-enough build process for different reasons. But smaller teams, web design agencies or freelancers often rely on <span class="caps">FTP</span> and a prayer. One of the problems is definitely finding <em>suitable</em> documentation. It&#8217;s not that their isn&#8217;t a lot of good quality documentation &#8211; it&#8217;s the suitability of it for those with only a passing interest and a limited systems administration experience.</p>
+          <p><a href="http://capify.org/">Capistrano</a> is a tool for automating tasks on remote servers. It can be used for all sorts of useful things but we&#8217;ll concentrate on it&#8217;s utility for web site deployment. It&#8217;s been popular with the <a href="http://rubyonrails.com/">Rails</a> crowd for a while and is written in Ruby, but it can be used for deploying sites in Python, <span class="caps">PHP</span>, Django, whatever you happen to be using at the time.</p>
+          <p>You&#8217;ll first need to install Ruby and Capistrano. The Capistrano site has <a href="http://capify.org/install">installation instructions</a> which should get you up and running. You&#8217;ll need to be able to use a console on your machine and have a passing acquaintance with your webserver. I&#8217;ve also assumed that you&#8217;re using source control, mainly because if you&#8217;re not you should start their. Automation becomes much more useful and practical on the back of a good source control system.</p>
+          <p>Right, lets get started. Create a file called <em>capfile</em> somewhere on your local machine. The following two code snippets should go in that file.</p>
+          <pre><code>set :username, "&lt;username&gt;"&#x000A;set :host, "&lt;host&gt;"&#x000A;set :path, "&lt;path&gt;"&#x000A;set :restart, "/etc/init.d/apache2 restart"&#x000A;set :checkout, "svn export --force"&#x000A;set :repo, "&lt;repository address&gt;"</code></pre>
+          <p>Just replace the variables (marked with angle brackets) with your own values. The path is the full path on the remote server where you want to deploy your files to. Note that I&#8217;ve abstracted out the webserver restart command and the source control checkout command. The above example values assume you&#8217;re using apache and subversion (and want to do a subversion export). It should be easy enough to change these for your preferred combination of source control system and webserver.</p>
+          <pre><code>desc "Remote checkout and restart of webserver"&#x000A;task :deploy, :hosts =&gt; "#{username}@#{host}" do&#x000A;  run "#{checkout} #{repo} #{path}; #{restart}"&#x000A;end</code></pre>
+          <p>If your platform of choice doesn&#8217;t require a server restart (say <span class="caps">PHP</span>) you can always remove the <em>; #{restart}</em> portion of the command.</p>
+          <p>Now we&#8217;re all set up just bring up a console in the folder containing the <em>capfile</em> and run the following command:</p>
+          <pre><code>cap deploy</code></pre>
+          <p>After prompting for a password to access the remote machine this should display the output from the commands being run. Depending on the size of the repository you&#8217;re checking out</p>
+          <p>Of course for most projects you would want to expand this basic recipe. Maybe you have database updates to run or need to deploy to multiple machines at once? You&#8217;ll might have machine specific configuration files which aren&#8217;t in the source control system. You will also probably want to be able to revert back if something goes wrong and you might want to only change files that have been altered. Capistrano has lots of powerful features built in that will let you do just that, and once you get started with this sort of build scripting you&#8217;ll find lots of areas to improve. And you&#8217;ll find lots of good tutorials online that will take you further.</p>
+          <p>The difficult part with project automation and build scripts is often the <em>getting started</em> in the first place; especially if you&#8217;re not the server admin type. Unfortunately the documentation and articles written on the subject tend to be somewhat arcane and aimed at the more hardcore developer. Hopefully this simple, usable, example convinces someone else to give it a try.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2008/04/18/resourceful_vs_hackable_search_urls.html' title=''>
+                  &laquo; Resourceful Vs Hackable Search URLs
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/04/11/dsls_for_html_and_css_the_future_or_just_plain_wro.html' title=''>
+                  &laquo; DSLs for HTML and CSS - The Future, or Just Plain Wrong?
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/04/06/git_ditz_and_microformats.html' title=''>
+                  &laquo; Git, Ditz and Microformats
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2008/04/29/moving_to_london_working_for_gcap.html' title=''>
+                  Moving to London, Working For GCAP &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/05/09/design_strategies_for_a_distributed_web.html' title=''>
+                  Design Strategies for a Distributed Web &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/05/20/newcastle_web_week.html' title=''>
+                  Newcastle Web Week &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Web.php</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='' name='keywords' />
+    <meta content='etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8' name='google-site-verification' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+    <link href='http://www.myopenid.com/server' rel='openid.server' />
+    <link href='http://garethr.myopenid.com/' rel='openid.delegate' />
+    <link href='/articles.atom' rel='alternate' title='Morethanseven Atom Feed' type='application/atom+xml' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='carbonads-container'>
+          <div class='carbonad'>
+            <div id='carbon'></div>
+            <script type='text/javascript'>
+              //<![CDATA[
+                var z = document.createElement("script");
+                z.type = "text/javascript";
+                z.async = true;
+                z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(z, s);
+              //]]>
+            </script>
+          </div>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/articles.atom'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Web.php
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Jan 03, 2007</li>
+            <li>
+              &middot;
+            </li>
+            <li>
+              <a href='/2007/01/03/webphp.html#disqus_thread'></a>
+            </li>
+            <li>&middot;</li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p><a href="http://webpy.org">Web.py</a> is a really nice lightweight web framework written in Python. It&#8217;s not trying to be Rails or Django, it&#8217;s trying to be as simple as possible. Web.php is my homage to Web.py. I&#8217;ve unashamedly copied the ideas and build a very simple web framework in <span class="caps">PHP</span>. It&#8217;s not a complete port, nor does it do everything in the same way.</p>
+          <p>The code example from the project home page was what originally piqued my interest:</p>
+          
+          <pre><code>import web&#x000A;urls = (&#x000A;   '/(.*)', 'hello'&#x000A;)&#x000A;class hello:        &#x000A;   def GET(self, name):&#x000A;       i = web.input(times=1)&#x000A;       if not name: name = 'world'&#x000A;       for c in xrange(int(i.times)): print 'Hello,', name+'!'&#x000A;if __name__ == "__main__": web.run(urls, globals())</code></pre>
+          <p>My <span class="caps">PHP</span> versions goes something like this, I&#8217;m sure you can see the similarities:</p>
+          
+          <pre><code>&amp;lt;?php&#x000A;require('webphp/web.php');&#x000A;$urls = array(&#x000A;   '/' =&amp;gt; 'hello',&#x000A;);&#x000A;class hello {&#x000A;   function GET($path) {&#x000A;      echo 'hello world';&#x000A;   }&#x000A;}&#x000A;web::run($urls);&#x000A;?&amp;gt;</code></pre>
+          <p>I&#8217;ve used it so far on a couple of projects, but it&#8217;s never been properly tested as such nor do I have lots of time to develop it. It&#8217;s purposely feature and code light (the core file is only 80 odd lines of code, includig comments).</p>
+          <p><a href="/_assets/downloads/web-php/web-php.zip">Download Zip</a></p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2007/01/03/txp2radiant.html' title=''>
+                  &laquo; TXP2Radiant
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2007/01/03/pygunfog.html' title=''>
+                  &laquo; PyGunFog
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2006/12/25/backgarden.html' title=''>
+                  &laquo; Backgarden
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2007/01/07/fluidflash.html' title=''>
+                  Fluidflash &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2007/01/07/new-year-new-site.html' title=''>
+                  New year New site &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2007/01/10/some-ponderings-on-css3.html' title=''>
+                  Some ponderings on CSS3 &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='comments'>
+        <div id='disqus_thread'></div>
+        <script src='http://disqus.com/forums/morethanseven/embed.js' type='text/javascript'></script>
+        <noscript>
+          <a href='http://disqus.com/forums/morethanseven/?url=ref'>
+            View the discussion thread
+          </a>
+        </noscript>
+      </div>
+      <!-- / disqus adds too much visual crap -->
+      <style type='text/css'>
+        .dsq-dc-logo {
+          display: none !important; }
+      </style>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        (function() {
+          var links = document.getElementsByTagName('a');
+          var query = '?';
+          for(var i = 0; i < links.length; i++) {
+            if(links[i].href.indexOf('#disqus_thread') >= 0) {
+              query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+            }
+          }
+          document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/morethanseven/get_num_replies.js' + query + '"></' + 'script>');
+        })();
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+          pageTracker._trackPageLoadTime();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

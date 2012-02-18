@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Unobtrusive Javascript Example - Printing</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='' name='keywords' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Unobtrusive Javascript Example - Printing
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>May 29, 2007</li>
+            <li>&middot;</li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>In lieu of some real posts here&#8217;s a quick code sample to keep things ticking along.</p>
+          <p>I&#8217;m sure you&#8217;ve had the need to place a nice print button on a web page from time to time. If you haven&#8217;t you&#8217;re probably alone. A quick google will throw up lots of results for print javascript &#8211; the problem is that most of them are horribly obtrusive.</p>
+          <p>OK, so it&#8217;s easy to write something like:</p>
+          <pre><code>&lt;a href="#" onclick="window.print();"&gt;print&lt;/a&gt;</code></pre>
+          <p>But the problem is <em>What if you turn off javascript?</em> The following unobtrusive script automagically adds a print link to the page &#8211; in this case as part of a list item which is added to the unordered list with the id of <em>iNav</em> and a class of <em>has-print</em>.</p>
+          <pre><code>var Print = {&#x000A;   init: new domFunction(function() {&#x000A;      if (list = document.getElementById("iNav")) {&#x000A;         if (list.nodeName.toLowerCase() === 'ul') {&#x000A;            if (Print.hasClass(list,'has-print')) {&#x000A;               var item = document.createElement("li");&#x000A;               item.className = "print";&#x000A;               var link = document.createElement("a");&#x000A;               link.href = "#";&#x000A;               link.onclick = Print.printpage;&#x000A;               var txt = document.createTextNode("Print");&#x000A;               link.appendChild(txt);&#x000A;               item.appendChild(link);&#x000A;               list.appendChild(item);&#x000A;            }&#x000A;         }&#x000A;      }&#x000A;   }),&#x000A;&#x000A;   hasClass: function(element,cName) { &#x000A;      return new RegExp('\\b'&amp;#43;cName&amp;#43;'\\b').test(element.className);&#x000A;   },&#x000A;&#x000A;   printpage: function() {&#x000A;      window.print();&#x000A;      return false;&#x000A;   }&#x000A;}</code></pre>
+          <p>With something like this you want it to load as soon as the dom is ready, rather than on page load. <a href="http://www.brothercake.com">Brothercake&#8217;s</a> <a href="http://www.brothercake.com/site/resources/scripts/domready/">domFunction</a> comes to the rescue here. The namespacing is based on <a href="http://www.kryogenix.org">Stuarts</a> technique which should make it more capable of just being dropped in to any site.</p>
+          <p>The only problem with this is that it&#8217;s just a little longer than the original. I think this is down to one often missed fact, at least until recently &#8211; Javascript is a programming language and should be treated as such.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2007/05/18/some_good_news.html' title=''>
+                  &laquo; Some good news
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2007/05/07/cssxx.html' title=''>
+                  &laquo; CSSx.x
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2007/04/28/if_computer_scientists_managed_birth_certificates.html' title=''>
+                  &laquo; If computer scientists managed birth certificates
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2007/06/02/json_configuration_example_printing.html' title=''>
+                  JSON configuration example - Printing &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2007/06/11/introducing_hedgehog_lab.html' title=''>
+                  Introducing hedgehog lab &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2007/06/22/encoded_characters_in_css3_generated_content.html' title=''>
+                  Encoded Characters in CSS3 Generated Content &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

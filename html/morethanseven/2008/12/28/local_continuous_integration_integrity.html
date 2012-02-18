@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Local Continuous Integration with Integrity</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='integrity, ruby, python, git' name='keywords' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Local Continuous Integration with Integrity
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Dec 28, 2008</li>
+            <li>&middot;</li>
+            <li>
+              <a class='tag' href='/tags/git/'>
+                git
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/integrity/'>
+                integrity
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/python/'>
+                python
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/ruby/'>
+                ruby
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p><a href="http://integrityapp.com/">Integrity</a> is ace. I&#8217;m a huge fan of working under the ever watchful eye of a <a href="http://en.wikipedia.org/wiki/Continuous_integration">Continuous Integration</a> server. I&#8217;m also becoming more and more of a fan of Git, and <a href="http://github.com">GitHub</a>, for my <a href="http://github.com/garethr">personal projects</a>. At work we run <a href="http://cruisecontrol.sourceforge.net/">CruiseControl</a> and it does it&#8217;s job well, but locally I only use it for larger projects. It comes with a little overhead and if I&#8217;m just hacking on the train I rarely check on it&#8217;s status.</p>
+          <p>Integrity is an unashamedly lightweight and straightforward continuous integration server written in Ruby. It comes with Git integration as well as a nifty notifications framework. There are already notification plugins available for jabber, <span class="caps">IRC</span> and email. If I get time and inclination I&#8217;d love to hack together a webhooks plugin too. It&#8217;s a simple app to get up and running with and you can always <a href="http://github.com/foca/integrity/tree/master">browse the code</a> if something isn&#8217;t clear. All in all it&#8217;s perfect for my type of smaller project.</p>
+          <p>So, with a local <em>CI</em> server up and running you&#8217;re left with one problem; having to click the _Manual Build&quot; button whenever you want a build. Now Integrity comes with a mechanism to allow pushes to GitHub to trigger a build. But this only works when you have an internet connection and are using GitHub and are pushing frequently. Personally I often make lots of local commits and then push at a later date. Also not all of my projects are on GitHub for various reasons.</p>
+          <p>Well it turns out that all the build button does is sent an empty HTTPpost request to a <span class="caps">URL</span> of the following format:</p>
+          <pre>http://{integrity-url}:8910/{project-name}/builds</pre>
+          <p>That means with a little bit of Git magic we can have our integration server run a new build whenever we commit our code. All we need to do is write a very simple post-commit git hook script. I&#8217;ve written the script in Python but you could write it in anything. This script is from a real project so adjust the server address and path as needed.</p>
+          <pre>#! /usr/bin/env python&#x000A;import httplib&#x000A;conn = httplib.HTTPConnection("localhost:8910")&#x000A;conn.request("POST", "/appengine-books/builds")</pre>
+          <p>All you need to do is drop this script in your .git/hooks folder as <em>post-commit</em>. Make sure you set the executable bit with <em>chmod +x</em> as well, otherwise you&#8217;ll be wondering why it&#8217;s not working and probably blaming me.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2008/12/21/web_developers_and_tools_programmers.html' title=''>
+                  &laquo; Web developers and Tools Programmers
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/12/13/search_genres_spotify.html' title=''>
+                  &laquo; Search for Genres on Spotify
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/12/06/gmemsess.html' title=''>
+                  &laquo; Gmemsess
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2009/01/02/apis_2009_xmpp_and_webhooks.html' title=''>
+                  APIs in 2009 - XMPP and WebHooks &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/01/11/speaking_bamboo_juice.html' title=''>
+                  Speaking at Bamboo Juice &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/01/14/localbuilder_github.html' title=''>
+                  Localbuilder on GitHub &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

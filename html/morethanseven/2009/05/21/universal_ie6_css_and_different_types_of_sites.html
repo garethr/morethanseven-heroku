@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Universal Internet Explorer 6 CSS and different types of sites</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='ie6, universal, css, malarkey' name='keywords' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Universal Internet Explorer 6 CSS and different types of sites
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>May 21, 2009</li>
+            <li>&middot;</li>
+            <li>
+              <a class='tag' href='/tags/css/'>
+                css
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/ie6/'>
+                ie6
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/malarkey/'>
+                malarkey
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/universal/'>
+                universal
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>Andy Clarke, as only he can, has started something of a slagging match with his proposals for a <a href="http://forabeautifulweb.com/blog/about/universal_internet_explorer_6_css/">single, central IE6 stylesheet</a>. My first impression was that this is basically a much better version of the browser defaults.</p>
+          <p>Between backslapping and shouts of heresy there are a few good comments floating on the post so far (I&#8217;d expect more). But most of them seem to assume only two types of website exist:</p>
+          <ol>
+          	<li>Websites for <em>clients</em>. You know, business to business or business to consumer sorts of things. Online stores, radio station websites, newspapers, company brochures, etc.</li>
+          	<li>Personal blogs</li>
+          </ol>
+          <p>Obviously that covers only a fraction of web pages, but it covers a much larger proportion of web sites. What do I mean by that?</p>
+          <ol>
+          	<li>Admin interfaces. Available all over the place and often used by a very small number of people.</li>
+          	<li>Intranets. If your company default browser isn&#8217;t IE6 then don&#8217;t spend more time that you have to supporting it.</li>
+          	<li>Internal application interfaces. Everything from holiday to payroll to IT helpdesk requests are often built as well apps. Again if the audience using them isn&#8217;t using IE6 then don&#8217;t waste you&#8217;re time.</li>
+          </ol>
+          <p>Most people (ok so this might be my opinion) seem to work within small to medium sized agency style places. Smallish companies need to rely more on employees as part of their marketing effort, younger people tend to be more militant and people working for smaller organisations (like Andy) tend to benefit more from a little celebrity. But that ignores an army of people who work in house or in other types of company that just happen to build top notch web sites or applications. I&#8217;ve now worked in everything from small agencies, via medium sized agencies to freelance and inhouse. They are all different and all place different types of time pressure on the people involved.</p>
+          <p>Another argument to be had here is summed up by Sion (<a href="http://twitter.com/sionnnn/status/1872141409">http://twitter.com/sionnnn/status/1872141409</a>)</p>
+          <blockquote>
+          <p>if u write code with all browsers in mind from the offset it doesn&#8217;t take any longer though? hows that commercially unsound?</p>
+          </blockquote>
+          <p>And this is pretty much how I used to work. But this means ignoring whole swathes of the unsupported parts of CSS2 and in particular CSS3. CSS3 doesn&#8217;t really allow you to make designs that you couldn&#8217;t make before (ok, that&#8217;s a little unfair, maybe) but it does allow you to do what you did before <em>much more efficiently</em>. Multi-column layout stuff, multiple background, rounded corners, opacity, RGBa. Smaller stylesheets are easier and quicker to write, test and maintain. And sometimes the time saved is worth more than the additional overhead of writing and maintaining <span class="caps">CSS</span> for IE6. Maybe not for a decent sized consumer project with a reasonable team and a few hundred thousand budget. Maybe not for a local council or government site. But for a surprisingly large range of other types of projects this might be a worthwhile approach.</p>
+          <p>Something else I think that comes through in many of the comments is that it&#8217;s often seen as the web designers job to fight for things. So we fight to ensure time is spend on making something accessible. We fight to make sure we use valid code wherever possible. We fight for sensible fallbacks when javascript isn&#8217;t available. But we also get accused of not being able to see both sides and at times being unrealistic. Worth considering with regards peoples initial reactions to this, mine included.</p>
+          <p>The only thing I would say to anyone looking to use this is don&#8217;t create your own version. Use the <a href="http://code.google.com/p/universal-ie6-css/">one from google code</a>. As Andy suggests, do suggest improvements, ideally by making the changes yourself presumably along with a solid test case. The time saving benefits basically disappear if we all have to maintain our own versions, before that means we have to test our own versions.</p>
+          <p>I&#8217;m not saying <em>ignore IE6</em>, and neither is Andy (I don&#8217;t think). I&#8217;m saying pick your battles. I&#8217;ve build websites to support everything under the sun. Sometimes it&#8217;s been absolutely the right thing to do, sometimes in hindsight it&#8217;s probably been a little bit of wasted time. I&#8217;m sure you can think of similar times from the sites you&#8217;ve been involved in.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2009/05/14/back_toon_thinking_digital.html' title=''>
+                  &laquo; Back in Toon - Thinking Digital
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/04/27/keeping_zeldmans_self_education_web_professionals.html' title=''>
+                  &laquo; Keeping Up With The Zeldmans - (Self) Education for Web Professionals
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/04/12/simple_issue_tracking.html' title=''>
+                  &laquo; Simple issue tracking
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2009/05/25/beyond_basic_web_development.html' title=''>
+                  Beyond Basic Web Development &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/05/28/another_glue_python_framework_mnml.html' title=''>
+                  Another Glue Python Framework - MNML &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/06/04/testing_wsgi_application_urltest.html' title=''>
+                  Testing WSGI Application with Urltest &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

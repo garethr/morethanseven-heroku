@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Append slashes to URLs in Django</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='django' name='keywords' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Append slashes to URLs in Django
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Feb 10, 2009</li>
+            <li>&middot;</li>
+            <li>
+              <a class='tag' href='/tags/django/'>
+                django
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>Quick Django pop quiz. Can anyone spot the deliberate mistake in the following url definition? We&#8217;re trying to define a view called log_viewer and instructing a specific url pattern to render it.</p>
+          <pre>urlpatterns = patterns('',&#x000A;    (r'^log/?$', log_viewer),&#x000A;)</pre>
+          <p>In this case our regex matches /log or /log/ using the /? optional pattern. This is because even if we only link to one format we know people will probably visit both, either by entering the <span class="caps">URL</span> manually or by linking from an external source.</p>
+          <p>As far as <span class="caps">HTTP</span> is concerned though /log and /log/ are separate URLs, even if they display the same content. The main reason this matters for public facing websites is that our friendly search engine spiders are likely to index both separately, leading to splitting the page rank as well as accusations of duplicate content which might see further erosion of rankings.</p>
+          <p>The solution is generally to issue a 301 redirect from one format to the other. This tells search engines and people alike that the canonical location for the requested content is elsewhere. You could specify the redirect manually, but this is going to get irritating quickly once you have a few more definitions.</p>
+          <pre>urlpatterns = patterns('',&#x000A;    (r'^log$', redirect_to, {'url': '/log/'}),&#x000A;    (r'^log/$', log_viewer),&#x000A;)</pre>
+          <p>Handily Django provides a mechanism to do exactly what we want to do by setting <a href="http://docs.djangoproject.com/en/dev/ref/settings/#append-slash">APPEND_SLASH</a> to True in your settings file. Even better it&#8217;s switched on by default. So if you don&#8217;t know much about the intricacies of <span class="caps">HTTP</span> you still get the correct behavior. That is unless you specify your <span class="caps">URL</span> patterns in the format above.</p>
+          <p>You see APPEND_SLASH only works if the <span class="caps">URL</span> doesn&#8217;t match a specified pattern. If no pattern match is found it appends a trailing slash and checks for a match again. Because the above pattern matches the pattern without the trailing slash (/log) the desired behavior is never triggered, and the view is rendered at both URLs. So although we want to catch /log and /log/ on the front end, our urls.py definition should actually be:</p>
+          <pre>urlpatterns = patterns('',&#x000A;    (r'^log/$', log_viewer),&#x000A;)</pre>
+          <p>Django has lots of useful bits of magic for doing the right thing, but unless you know what they <em>actually</em> do you either end up recreating functionality yourself, or find features don&#8217;t work in quite the way you thought. It&#8217;s a good argument for keeping frameworks small whenever possible, and for developers to at least know their way around the code of their respective framework.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2009/02/07/xmpp_and_offline_processing_coming_google_app_engi.html' title=''>
+                  &laquo; XMPP and offline processing coming to Google App Engine
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/02/07/pdb_and_appengine.html' title=''>
+                  &laquo; PDB and AppEngine
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/02/07/new_version_radiant_cms_out_today.html' title=''>
+                  &laquo; New Version of Radiant CMS Out Today
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2009/02/11/django_settings_tip_setting_relative_paths.html' title=''>
+                  Django Settings Tip - Setting Relative Paths  &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/02/15/let_you_sys_admin_override_your_django_settings.html' title=''>
+                  Let you Sys Admin Override your Django Settings &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/02/15/looking_new_job_june.html' title=''>
+                  Looking for a New Job in June &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

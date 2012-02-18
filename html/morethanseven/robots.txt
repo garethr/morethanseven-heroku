@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Disallow: /assets/
+
+Sitemap: http://morethanseven.net/sitemap.xml

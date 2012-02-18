@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Testing Websites with Twill</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='' name='keywords' />
+    <meta content='etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8' name='google-site-verification' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+    <link href='http://www.myopenid.com/server' rel='openid.server' />
+    <link href='http://garethr.myopenid.com/' rel='openid.delegate' />
+    <link href='/articles.atom' rel='alternate' title='Morethanseven Atom Feed' type='application/atom+xml' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='carbonads-container'>
+          <div class='carbonad'>
+            <div id='carbon'></div>
+            <script type='text/javascript'>
+              //<![CDATA[
+                var z = document.createElement("script");
+                z.type = "text/javascript";
+                z.async = true;
+                z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(z, s);
+              //]]>
+            </script>
+          </div>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/articles.atom'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Testing Websites with Twill
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Mar 22, 2008</li>
+            <li>
+              &middot;
+            </li>
+            <li>
+              <a href='/2008/03/22/testing-websites-with-twill.html#disqus_thread'></a>
+            </li>
+            <li>&middot;</li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>I&#8217;ve been playing with <a href="http://twill.idyll.org/">Twill</a> a little recently. It&#8217;s a Python based <span class="caps">DSL</span> used for functional testing of websites. From the official website:</p>
+          <blockquote>
+          <p>Twill is a simple language that allows users to browse the Web from a command-line interface. With twill, you can navigate through Web sites that use forms, cookies, and most standard Web features.</p>
+          </blockquote>
+          <p>A simple example might make things clearer. You&#8217;ll need to install twill first &#8211; the instructions are available on <a href="http://twill.idyll.org/">the site</a>. We can write tests directly into the shell so we&#8217;ll start their. For our first test we&#8217;ll write one that will hopefully fail &#8211; a test to check whether this website is down.</p>
+          <pre><code>twill-sh&#x000A;&gt;&gt; go http://morethanseven.net&#x000A;&gt;&gt; code 404</code></pre>
+          <p>First we fire up the twill shell then enter two simple commands. The first command, <em>go</em>, sends the browser to the specified <span class="caps">URL</span>. The second command is an assertion, in this case a check on the <span class="caps">HTTP</span> status code. If this website is available then it should return the <span class="caps">HTTP</span> code 200, if it&#8217;s unavailable then it will probably return a 404 Not Found. This test will hopefully fail, indicating that this website is up and running. In reality you&#8217;re more likely to test for the 200 status code and fail on anything else but for this example it&#8217;s useful to see what a failing test looks like.</p>
+          <p>Although pretty powerful the twill scripting language is nice and small. I&#8217;ve listed most of the commands below just to give you an idea of the sort of things that you can get up to. You can type <em>help</em> at the twill shell to get more information on the available commands and the individual commands themselves.</p>
+          <ul>
+          	<li>twill-sh</li>
+          	<li>twill-sh {filename}</li>
+          	<li>twill-sh {filename1} {filename2}</li>
+          	<li>twill-sh -u {url} {filename}</li>
+          	<li>twill-sh -n {filename}</li>
+          	<li>go {url}</li>
+          	<li>show</li>
+          	<li>save_html {file-name}</li>
+          	<li>showlinks</li>
+          	<li>showforms</li>
+          	<li>follow {url|url-name}</li>
+          	<li>back</li>
+          	<li>reload</li>
+          	<li>showhistory</li>
+          	<li>echo {variable}</li>
+          	<li>formvalue {form} {input} {value}</li>
+          	<li>submit {input}</li>
+          	<li>show_cookies</li>
+          	<li>save_cookies {file-name}</li>
+          	<li>load_cookies {file-name}</li>
+          	<li>clear_cookies</li>
+          	<li>code {code}</li>
+          	<li>url {text}</li>
+          	<li>title {text}</li>
+          	<li>find {text}</li>
+          	<li>setglobal {name} {value}</li>
+          	<li>setlocal {name} {value}</li>
+          	<li>debug http 1</li>
+          	<li>redirect_output {file}</li>
+          	<li>redirect_error {file}</li>
+          	<li>agent {ie5|ie55|ie6|opera7|konq32|saf11|aol9}</li>
+          	<li>add_auth {realm} {url} {user} {password}</li>
+          	<li>runfile {file-name}</li>
+          	<li>extend_with check_links</li>
+          	<li>check_links</li>
+          	<li>check_links {regex}</li>
+          	<li>twill-fork -n {number} -p {processes} {script}</li>
+          </ul>
+          <p>You can also store tests in individual files as well as run a batch of tests at once. I have a couple of tests that I can run against any <span class="caps">URL</span> which might be a useful starting point for anyone else starting to look at testing their sites or applications. You can <a href="http://morethanseven.net/_assets/downloads/twill/twill.zip">download these tests here</a>.</p>
+          <p>If you unpack the zip archive and then open the folder in a terminal or console. You can then run all of the tests like so, note we&#8217;re passing the starting <span class="caps">URL</span> into the scripts which makes using the same scripts for multiple sites easier.</p>
+          <pre><code>twill-sh * -u http://morethanseven.net</code></pre>
+          <p>The tests included do a few things; from checking for the presence of several required markup elements and checking for an <span class="caps">XHTML</span> doctype to checking that all the links on the page are working.</p>
+          <p>All these examples are pretty simple and non-site-specific. For more complex form based applications you can write application browsers which fill out forms, create user sessions and do everything a user might do. Twill is also particularly useful when it comes to testing RESTful webservices with all the URLs and <span class="caps">HTTP</span> status codes floating about.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2008/03/19/own-your-endpoints.html' title=''>
+                  &laquo; Own your endpoints
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/03/14/accepted-for-xtech.html' title=''>
+                  &laquo; Accepted for Xtech
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/03/02/generating-charts-using-google-charts-api.html' title=''>
+                  &laquo; Generating Charts using Google Charts API
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2008/03/25/barcamp-northeast.html' title=''>
+                  BarCamp NorthEast &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/03/29/why-the-webstandards-world-appears-to-be-choosing-.html' title=''>
+                  Why the webstandards world appears to be choosing Django &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/04/01/barcamp-northeast-tickets-available.html' title=''>
+                  Barcamp NorthEast tickets available &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='comments'>
+        <div id='disqus_thread'></div>
+        <script src='http://disqus.com/forums/morethanseven/embed.js' type='text/javascript'></script>
+        <noscript>
+          <a href='http://disqus.com/forums/morethanseven/?url=ref'>
+            View the discussion thread
+          </a>
+        </noscript>
+      </div>
+      <!-- / disqus adds too much visual crap -->
+      <style type='text/css'>
+        .dsq-dc-logo {
+          display: none !important; }
+      </style>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        (function() {
+          var links = document.getElementsByTagName('a');
+          var query = '?';
+          for(var i = 0; i < links.length; i++) {
+            if(links[i].href.indexOf('#disqus_thread') >= 0) {
+              query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+            }
+          }
+          document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/morethanseven/get_num_replies.js' + query + '"></' + 'script>');
+        })();
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+          pageTracker._trackPageLoadTime();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

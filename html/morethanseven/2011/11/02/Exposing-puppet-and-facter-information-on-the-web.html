@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Exposing Puppet And Facter Information On The Web</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='puppet facter' name='keywords' />
+    <meta content='etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8' name='google-site-verification' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+    <link href='http://www.myopenid.com/server' rel='openid.server' />
+    <link href='http://garethr.myopenid.com/' rel='openid.delegate' />
+    <link href='/articles.atom' rel='alternate' title='Morethanseven Atom Feed' type='application/atom+xml' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='carbonads-container'>
+          <div class='carbonad'>
+            <div id='carbon'></div>
+            <script type='text/javascript'>
+              //<![CDATA[
+                var z = document.createElement("script");
+                z.type = "text/javascript";
+                z.async = true;
+                z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(z, s);
+              //]]>
+            </script>
+          </div>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/articles.atom'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Exposing Puppet And Facter Information On The Web
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Nov 02, 2011</li>
+            <li>
+              &middot;
+            </li>
+            <li>
+              <a href='/2011/11/02/Exposing-puppet-and-facter-information-on-the-web.html#disqus_thread'></a>
+            </li>
+            <li>&middot;</li>
+            <li>
+              <a class='tag' href='/tags/puppet facter/'>
+                puppet facter
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>I don&#8217;t appear to have been in a writing mood recently but I&#8217;ve been getting back into hacking on a couple of pet projects. The first fruits of this coding (mainly backwards and forwards on the train) I&#8217;ve just made available to anyone interested.</p>
+          <p><a href="https://github.com/garethr/web-puppet">Web Facter</a> is a gem which takes the output from <a href="https://github.com/puppetlabs/facter">Facter</a> and exposes this as <span class="caps">JSON</span> over <span class="caps">HTTP</span>. In theory you could run this on a configurable port on each of your machines and have a <span class="caps">URL</span> you can hit to get information on uptime, networking setup, hostnames or anything else exposed by Facter. It comes with a simple built-in web server and optional http basic authentication if you&#8217;re not going to do this via a proxy. The <span class="caps">JSON</span> display should be both human and machine readable, and I have a few ideas for projects which needed this information.</p>
+          <p>The other project is very similar, and even has a similar name, <a href="https://github.com/garethr/web-facter">Web Puppet</a>. You can run this on your puppet master and it exposes the node information (currently including the facts and tags) again as <span class="caps">JSON</span> over <span class="caps">HTTP</span>. I&#8217;m still working on this to make it a little more usable. At the moment it just shows you all nodes and all information, if you&#8217;re working with a larger cluster this isn&#8217;t really sensible. Recent versions of Puppet do have an <a href="http://docs.puppetlabs.com/guides/rest_api.html"><span class="caps">HTTP</span> based <span class="caps">API</span></a> but it requires some hoops to be jumped through and I&#8217;m not quite sure from the docs it lets me do what I want (I have a specific usecase, of which more soon all being well).</p>
+          <p>Both projects have had me reading the source code of Puppet and Facter, which for the most part has been enjoyable and informative. Puppet in particular has some great comments lying around :) Both of the above projects are available as gems for anyone else to play around with and build on, but my main aim is a little more high level. All being well I&#8217;ll have a couple of projects built atop these APIs shortly.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2011/10/10/Javascript-in-your-ruby-mongoid-map-reduce.html' title=''>
+                  &laquo; Javascript In Your Ruby: Mongoid Map Reduce
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2011/09/11/Rundeck-and-nagios-nrpe-checks.html' title=''>
+                  &laquo; Rundeck And Nagios Nrpe Checks
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2011/08/19/On-her-majestys-digital-service.html' title=''>
+                  &laquo; On Her Majesty's Digital Service
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2011/11/16/Jenkins-parameterized-builds.html' title=''>
+                  Jenkins Parameterized Builds &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2011/12/13/Setting-puppet-class-using-environment-variables.html' title=''>
+                  Setting Puppet Class Using Environment Variables &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2011/12/26/First-experience-building-something-with-clojure.html' title=''>
+                  First Experience Building Something With Clojure &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='comments'>
+        <div id='disqus_thread'></div>
+        <script src='http://disqus.com/forums/morethanseven/embed.js' type='text/javascript'></script>
+        <noscript>
+          <a href='http://disqus.com/forums/morethanseven/?url=ref'>
+            View the discussion thread
+          </a>
+        </noscript>
+      </div>
+      <!-- / disqus adds too much visual crap -->
+      <style type='text/css'>
+        .dsq-dc-logo {
+          display: none !important; }
+      </style>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        (function() {
+          var links = document.getElementsByTagName('a');
+          var query = '?';
+          for(var i = 0; i < links.length; i++) {
+            if(links[i].href.indexOf('#disqus_thread') >= 0) {
+              query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+            }
+          }
+          document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/morethanseven/get_num_replies.js' + query + '"></' + 'script>');
+        })();
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+          pageTracker._trackPageLoadTime();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

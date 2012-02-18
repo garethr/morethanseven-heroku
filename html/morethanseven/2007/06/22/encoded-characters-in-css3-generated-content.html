@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Encoded Characters in CSS3 Generated Content</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='' name='keywords' />
+    <meta content='etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8' name='google-site-verification' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+    <link href='http://www.myopenid.com/server' rel='openid.server' />
+    <link href='http://garethr.myopenid.com/' rel='openid.delegate' />
+    <link href='/articles.atom' rel='alternate' title='Morethanseven Atom Feed' type='application/atom+xml' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='carbonads-container'>
+          <div class='carbonad'>
+            <div id='carbon'></div>
+            <script type='text/javascript'>
+              //<![CDATA[
+                var z = document.createElement("script");
+                z.type = "text/javascript";
+                z.async = true;
+                z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(z, s);
+              //]]>
+            </script>
+          </div>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/articles.atom'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Encoded Characters in CSS3 Generated Content
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Jun 22, 2007</li>
+            <li>
+              &middot;
+            </li>
+            <li>
+              <a href='/2007/06/22/encoded-characters-in-css3-generated-content.html#disqus_thread'></a>
+            </li>
+            <li>&middot;</li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>A quick, but hopefully informative post on something that took me a little time to work out and I thought might trip a few others up too.</p>
+          <p>I&#8217;m playing with quite a bit of CSS3 at the moment for our <a href="http://hedgehoglab.com">new company</a> site. It seemed like a good excuse to put into practice lots of progressive enhancement and the like and so far is going nicely if I do say so my self.</p>
+          <p>The <a href="http://www.w3.org/TR/css3-content/">CSS3 Generated Content Module</a> has some nice little bits in and I decided to use it to put some icons after external link ala wikipedia (but with nicer icons). Actually what I wanted was simply an arrow and I didn&#8217;t really need an image for that did I?</p>
+          <p>Well my first try went a little something like this:</p>
+          <pre><code>p a[href^="http:"]:after {&#x000A;    content: "#8594;";&#x000A;}</code></pre>
+          <p>Nope, no luck. By the time it hits the browser it&#8217;s not what I was looking for. I didn&#8217;t think old style named entities would work but what the heck?</p>
+          <pre><code>p a[href^="http:"]:after {&#x000A;    content: "&amp;rarr;";&#x000A;}</code></pre>
+          <p>Nope. As I thought. No luck their either. I also tried the character itself (but forgot to put that in the first post &#8211; thanks <a href="http://joeclarke.org/weblogs/">Joe</a>) but again to no avail.</p>
+          <pre><code>p a[href^="http:"]:after {&#x000A;    content: "â†’";&#x000A;}</code></pre>
+          <p>Some digging around and I managed to infer the correct syntax from some hidden away examples about something else.</p>
+          <pre><code>p a[href^="http:"]:after {&#x000A;    content: "\2192";&#x000A;}</code></pre>
+          <p>You need to use the Unicode encoding. Doh. Job done.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2007/06/11/introducing-hedgehog-lab.html' title=''>
+                  &laquo; Introducing hedgehog lab
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2007/06/02/json-configuration-example-printing.html' title=''>
+                  &laquo; JSON configuration example - Printing
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2007/05/29/unobtrusive-javascript-example-printing.html' title=''>
+                  &laquo; Unobtrusive Javascript Example - Printing
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2007/06/24/targeting-on-css3.html' title=''>
+                  Target(ing) on CSS3 &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2007/07/11/a-round-up.html' title=''>
+                  A round-up &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2007/07/15/ruby-on-rails-on-nokia-n800.html' title=''>
+                  Ruby on Rails on Nokia N800 &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='comments'>
+        <div id='disqus_thread'></div>
+        <script src='http://disqus.com/forums/morethanseven/embed.js' type='text/javascript'></script>
+        <noscript>
+          <a href='http://disqus.com/forums/morethanseven/?url=ref'>
+            View the discussion thread
+          </a>
+        </noscript>
+      </div>
+      <!-- / disqus adds too much visual crap -->
+      <style type='text/css'>
+        .dsq-dc-logo {
+          display: none !important; }
+      </style>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        (function() {
+          var links = document.getElementsByTagName('a');
+          var query = '?';
+          for(var i = 0; i < links.length; i++) {
+            if(links[i].href.indexOf('#disqus_thread') >= 0) {
+              query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+            }
+          }
+          document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/morethanseven/get_num_replies.js' + query + '"></' + 'script>');
+        })();
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+          pageTracker._trackPageLoadTime();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

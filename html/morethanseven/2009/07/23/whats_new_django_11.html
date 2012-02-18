@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>What's new in Django 1.1</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='django' name='keywords' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          What's new in Django 1.1
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Jul 23, 2009</li>
+            <li>&middot;</li>
+            <li>
+              <a class='tag' href='/tags/django/'>
+                django
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>With the <a href="http://www.djangoproject.com/weblog/2009/jul/21/rc/">release candidate for Django 1.1</a> out the door I decided to have a quick look at what&#8217;s new. This isn&#8217;t a complete list, rather the bits I found most interesting.</p>
+          <h2><a href="http://docs.djangoproject.com/en/dev/topics/conditional-view-processing/">Conditional Views</a></h2>
+          <blockquote>
+          <p>Django now has much better support for conditional view processing using the standard ETag and Last-Modified <span class="caps">HTTP</span> headers. This means you can now easily short-circuit view processing by testing less-expensive conditions. For many views this can lead to a serious improvement in speed and reduction in bandwidth.</p>
+          </blockquote>
+          <p>A nice set of decorators for dealing with ETags and Last-Modified headers. Again very simple to use and set up, and a simple way of squeezing a little more performance out of you application.</p>
+          <h2><a href="http://docs.djangoproject.com/en/dev/ref/contrib/admin/actions/#ref-contrib-admin-actions">Admin Actions</a></h2>
+          <blockquote>
+          <p>The basic workflow of Django’s admin is, in a nutshell, “select an object, then change it.” This works well for a majority of use cases. However, if you need to make the same change to many objects at once, this workflow can be quite tedious. In these cases, Django’s admin lets you write and register “actions” – simple functions that get called with a list of objects selected on the change list page.</p>
+          </blockquote>
+          <p>Anything that makes the admin a little more powerful and a little more flexible is a good idea in my book. Admin actions allow you to run code over multiple objects at once, simple select them with a checkbox then select an action to run. This is worth it for the delete action alone, but you can write your own actions simply enough as well (for instance for approving a batch of comments, or archiving a set or articles.)</p>
+          <h2><a href="http://docs.djangoproject.com/en/dev/ref/contrib/admin/#admin-list-editable">Editable Admin List Items</a></h2>
+          <blockquote>
+          <p>You can now make fields editable on the admin list views via the new list_editable admin option. These fields will show up as form widgets on the list pages, and can be edited and saved in bulk.</p>
+          </blockquote>
+          <p>Another time saving admin addition, this time for making some fields editable from the change list rather than the object view. For quick changes, especially to boolean fields, I think this again is a nice addition.</p>
+          <h2><a href="http://docs.djangoproject.com/en/dev/ref/models/options/#django.db.models.Options.managed">Unmanaged Models</a></h2>
+          <blockquote>
+          <p>You can now control whether or not Django creates database tables for a model using the managed model option. This defaults to True, meaning that Django will create the appropriate database tables in syncdb and remove them as part of reset command. That is, Django manages the database table’s lifecycle. If you set this to False, however, no database table creating or deletion will be automatically performed for this model. This is useful if the model represents an existing table or a database view that has been created by some other means.</p>
+          </blockquote>
+          <p>I particularly like this addition. One of the issues I had with Django was some of the built in assumptions, in particular that you&#8217;d be using a <span class="caps">SQL</span> database backend. Using unmanaged models looks like a great approach to using an alternative database like couchdb, tokyotyrant or mongodb or representing a webservice interface in your application.</p>
+          <p>I&#8217;m sure I&#8217;ll have missed a few other interesting changes or additions. Anyone else have a favourite?</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2009/07/15/simple_app_running_scripts_and_recording_results.html' title=''>
+                  &laquo; Asteroid - simple app for running scripts and recording the results
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/07/13/its_data_we_want.html' title=''>
+                  &laquo; It's the Data we Want
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/07/08/thoughts_whole_xhtml_and_html5_affair.html' title=''>
+                  &laquo; Thoughts on the whole XHTML/HTML5 affair
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2009/07/27/fabric_django_git_apache_mod_wsgi_virtualenv_and_p.html' title=''>
+                  Fabric, Django, Git, Apache, mod_wsgi, virtualenv and pip deployment &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/08/15/your_own_pypi_server.html' title=''>
+                  Your Own PyPi server &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/08/21/django_wsgi_deployment_solaris.html' title=''>
+                  Django and WSGI deployment on Solaris &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

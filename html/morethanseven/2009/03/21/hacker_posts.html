@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Hacker Posts</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='appengine, hackernews' name='keywords' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Hacker Posts
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Mar 21, 2009</li>
+            <li>&middot;</li>
+            <li>
+              <a class='tag' href='/tags/appengine/'>
+                appengine
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/hackernews/'>
+                hackernews
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>I&#8217;ve been playing again with App Engine, and going back to an on/off pet project that I&#8217;ve build variations of for a while.</p>
+          <p><a href="http://hackerposts.appspot.com"><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRihHww" alt="Hacker Posts"/></a></p>
+          <p>It&#8217;s basically a pretty straightforward aggregation platform, taking content from a number of feeds and creating relationships between the items. It&#8217;s mainly an experiment in creating a decent size site on App Engine &#8211; it can be surprising how many urls you can get out of a good corpus of data:</p>
+          <ul>
+          	<li>400 items, each with a unique url</li>
+          	<li>each item has a variable number of tags generated, at the moment that amounts to about 1000 unique urls</li>
+          	<li>each month and year of content gets a url so that&#8217;s another 4 or so</li>
+          	<li>each day for which we have items we also get a url, so that&#8217;s another 90 or so</li>
+          </ul>
+          <p>So starting off with 1500 or so pages isn&#8217;t bad. The site also grows over time as new items are posted or I add more feeds. Everything else I&#8217;ve done with App Engine has been more <a href="http://imified-demo.appspot.com/">application</a> <a href="http://image-host.appspot.com/">focused</a> so seeing how a content site performs is interesting in and of itself.</p>
+          <p>The data in question I used for this first experiment was the feeds I could find from the <a href="http://news.ycombinator.com/leaders">top posters on Hacker News</a>. Hence the name <a href="http://hackerposts.appspot.com">Hacker Posts</a>. That left me with 35 feeds:</p>
+          <ul>
+          	<li>http://www.matasano.com/log/feed/</li>
+          	<li>http://feeds2.feedburner.com/ThinkGene</li>
+          	<li>http://www.mechanicalrobotfish.com/rss.xml</li>
+          	<li>http://feeds.feedburner.com/Cloudknow</li>
+          	<li>http://mark.nirv.net/rss</li>
+          	<li>http://feeds.feedburner.com/seldomlogical</li>
+          	<li>http://feeds.feedburner.com/mattmaroon/AAcm</li>
+          	<li>http://www.swombat.com/rss.xml</li>
+          	<li>http://feeds.feedburner.com/woobius</li>
+          	<li>http://feeds2.feedburner.com/danieltenner</li>
+          	<li>http://www.nilkanth.com/feed/</li>
+          	<li>http://feeds.feedburner.com/NewCartographer</li>
+          	<li>http://inthebox.webmin.com/feed</li>
+          	<li>http://www.maximise.dk/blog/xml/rss.xml</li>
+          	<li>http://www.pchristensen.com/blog/feed/</li>
+          	<li>http://280north.com/blog/feed/</li>
+          	<li>http://tlrobinson.net/blog/feed/</li>
+          	<li>http://www.WhatToFix.com/atom.xml</li>
+          	<li>http://alexkrupp.typepad.com/sensemaking/atom.xml</li>
+          	<li>http://feeds.feedburner.com/yegg</li>
+          	<li>http://scotchi.net/feed/atom/</li>
+          	<li>http://paulbuchheit.blogspot.com/feeds/posts/default</li>
+          	<li>http://www.owenbyrne.com/feed/</li>
+          	<li>http://blog.jrock.us/feeds/articles/atom</li>
+          	<li>http://www.kalzumeus.com/feed/</li>
+          	<li>http://feeds.feedburner.com/gojomo</li>
+          	<li>http://davidpiccione.com/blog/feed/</li>
+          	<li>http://blog.blinker.net/feed/</li>
+          	<li>http://dambalah.com/feed/</li>
+          	<li>http://dustincurtis.com/rss.xml</li>
+          	<li>http://blog.jodoro.com/feeds/posts/default</li>
+          	<li>http://arantaday.com/blog/feed/</li>
+          	<li>http://www.allanjosephbatac.com/blog/feed</li>
+          	<li>http://feeds.feedburner.com/offbytwo</li>
+          	<li>http://feeds.feedburner.com/FoundersBlog-Cluttermecom</li>
+          </ul>
+          <p>I have a couple of other communities or events that I&#8217;d like to do the same thing around, as well as a few features I want to add to the underlying software. The nice thing with App Engine is rolling new instances out is as simple as running a command.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2009/03/19/webapp_custom_filters.html' title=''>
+                  &laquo; Webapp custom filters
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/03/18/simple_wsgi_middleware_app_engine.html' title=''>
+                  &laquo; Simple WSGI Middleware (for App Engine)
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/03/14/xmpp_and_queues_app_engine_jaiku_not_quite_yet.html' title=''>
+                  &laquo; XMPP and Queues in App Engine via Jaiku? Not quite yet
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2009/03/22/github_links_lines_code.html' title=''>
+                  Github Links to Lines of Code &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/03/24/google_search_new_features_timeline_search_and_won.html' title=''>
+                  Google Search New Features? Timeline Search and Wonder Wheel &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/04/04/mixing_it_programming_language_choice.html' title=''>
+                  Mixing it Up - Programming Language Choice &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

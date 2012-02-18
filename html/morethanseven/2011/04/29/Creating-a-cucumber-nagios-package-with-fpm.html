@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Creating A Cucumber Nagios Package With Fpm</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='cucumber-nagios, fpm, packaging' name='keywords' />
+    <meta content='etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8' name='google-site-verification' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+    <link href='http://www.myopenid.com/server' rel='openid.server' />
+    <link href='http://garethr.myopenid.com/' rel='openid.delegate' />
+    <link href='/articles.atom' rel='alternate' title='Morethanseven Atom Feed' type='application/atom+xml' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='carbonads-container'>
+          <div class='carbonad'>
+            <div id='carbon'></div>
+            <script type='text/javascript'>
+              //<![CDATA[
+                var z = document.createElement("script");
+                z.type = "text/javascript";
+                z.async = true;
+                z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(z, s);
+              //]]>
+            </script>
+          </div>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/articles.atom'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Creating A Cucumber Nagios Package With Fpm
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Apr 29, 2011</li>
+            <li>
+              &middot;
+            </li>
+            <li>
+              <a href='/2011/04/29/Creating-a-cucumber-nagios-package-with-fpm.html#disqus_thread'></a>
+            </li>
+            <li>&middot;</li>
+            <li>
+              <a class='tag' href='/tags/cucumber-nagios/'>
+                cucumber-nagios
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/fpm/'>
+                fpm
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/packaging/'>
+                packaging
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>I&#8217;ve written <a href="http://morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages.html">before</a> about why I like System Packages, but even I&#8217;ll admit that the barriers to creating them mean I don&#8217;t use them for everything. <a href="https://github.com/jordansissel/fpm"><span class="caps">FPM</span></a> however is making it much easier, to the point where I&#8217;m starting to create a few packages I can reuse on projects. I thought a write up of how I&#8217;m doing that for <a href="http://cucumber-nagios.org/">Cucumber-Nagios</a> might be useful.</p>
+          <p>For those that haven&#8217;t seen it yet, <span class="caps">FPM</span> (or Effing Package Management) is a tool that helps you build packages, like RPMs and DEBs, quickly. It can take in gems, python packages, node.js npm files or just plain directories and make files and from that create you one or more system packages. Lets have a look at a full example with a Ruby gem.I really like using cucumber-nagios, whatever platform or language I happen to be using at the time. I have a number of Django projects for instance with cucumber-nagios checks, so being able to not worry about most of the Ruby install is useful.</p>
+          <p>In order to use <span class="caps">FPM</span> you&#8217;ll need to install it. It&#8217;s available as a Ruby gem so lets start there. I&#8217;m not going to delve into setting up a Ruby Gems environment as it&#8217;s annoying and covered for most platforms elsehere on the internet.</p>
+          <pre><code>gem install fpm</code></pre>
+          <p>First off lets install the cucumber-nagios gem, along with all it&#8217;s dependencies, into a local folder on my build machine. This might be a virtual machine or a separate machine in your cluster. It should be running the same OS as the intended production machines however. The following examples are from Ubuntu, but it&#8217;s much the same for <span class="caps">RPM</span> based distros.</p>
+          <pre><code>gem install --no-ri --no-rdoc --install-dir ~/tmp/gems cucumber-nagios</code></pre>
+          <p>Cucumber-nagios has a large number of dependencies, so we&#8217;re going to need to create packages for all of those too. <span class="caps">FPM</span> will cleverly deal with maintaining the specified dependencies thought. We&#8217;ll use find to do this quickly, and then instruct <span class="caps">FPM</span> to convert from a gem to a deb. You could obviously do this line by line if you prefer.</p>
+          <pre><code>find ~/tmp/gems/cache -name '*.gem' | xargs -rn1 fpm -s gem -t deb -a all</code></pre>
+          <p>That should leave us with lots of new .deb files that we can have a closer look at:</p>
+          <pre><code>dpkg --info rubygem-cucumber-nagios_0.9.0_i686.deb&#x000A;dpkg -c rubygem-cucumber-nagios_0.9.0_i686.deb</code></pre>
+          <p>If you already have a private apt repository set up then just upload these packages and away you go. I&#8217;d like to use apt for installing them so I can leave it to manage all the dependencies easily. If not then I&#8217;ll show you briefly how to create a local file system repo, it&#8217;s not much more work to create a shared repo available over <span class="caps">HTTP</span>.</p>
+          <p>First create a directory to store our packages and move our newly created .deb files into it. You&#8217;ll need to be able to execute some of these commands as root but given the topic I&#8217;m assuming you&#8217;ll be able to deal with that.</p>
+          <pre><code>mkdir /usr/local/repo&#x000A;cp *.all.deb /usr/local/repo</code></pre>
+          <p>For the next part you&#8217;ll need to install the dpkg development tools, and then create a file that can be read by apt when it&#8217;s looking for packages it can install.</p>
+          <pre><code>apt-get install dpkg-dev&#x000A;dpkg-scanpackages /usr/local/repo /dev/null | gzip -9c &gt; /usr/local/repo/Packages.gz</code></pre>
+          <p>Now add your new package repo to your apt sources and update your package cache.</p>
+          <pre><code>/etc/apt/sources.list&#x000A;deb file:/usr/local/repo ./&#x000A;apt-get update</code></pre>
+          <p>At this point everything should be up and running. Let&#8217;s do a search in our repo:</p>
+          <pre><code>apt-cache search rubygem-&#x000A;rubygem-amqp - AMQP client implementation in Ruby/EventMachine&#x000A;rubygem-builder - Builders for MarkUp.&#x000A;rubygem-bundler - The best way to manage your application's dependencies&#x000A;rubygem-cucumber - cucumber-0.10.2&#x000A;rubygem-cucumber-nagios - Systems testing plugin for Nagios using Cucumber.&#x000A;rubygem-diff-lcs - Provides a list of changes that represent the difference between two sequenced collections.&#x000A;rubygem-eventmachine - Ruby/EventMachine library&#x000A;rubygem-extlib - Support library for DataMapper and Merb&#x000A;rubygem-gherkin - gherkin-2.3.6&#x000A;rubygem-highline - HighLine is a high-level command-line IO library.&#x000A;rubygem-json - JSON Implementation for Ruby&#x000A;rubygem-mechanize - The Mechanize library is used for automating interaction with websites&#x000A;rubygem-net-ssh - Net::SSH: a pure-Ruby implementation of the SSH2 client protocol.&#x000A;rubygem-nokogiri - Nokogiri (鋸) is an HTML, XML, SAX, and Reader parser&#x000A;rubygem-rack - a modular Ruby webserver interface&#x000A;rubygem-rack-test - Simple testing API built on Rack&#x000A;rubygem-rspec - rspec-2.5.0&#x000A;rubygem-rspec-core - rspec-core-2.5.1&#x000A;rubygem-rspec-expectations - rspec-expectations-2.5.0&#x000A;rubygem-rspec-mocks - rspec-mocks-2.5.0&#x000A;rubygem-templater - Templater has the ability to both copy files from A to B and also to render templates using ERB&#x000A;rubygem-term-ansicolor - Ruby library that colors strings using ANSI escape sequences&#x000A;rubygem-webrat - Ruby Acceptance Testing for Web applications</code></pre>
+          <p>And finally lets install cucumber-nagios from our shiny new package.</p>
+          <pre><code>apt-get install rubygem-cucumber-nagios</code></pre>
+          <p>If everything has worked out you should be able to run the cucumber-nagios-gen command to create a new project. Note that the path may be different, and in the case of debian based distros the gem bin path is not on the Path.</p>
+          <pre><code>/usr/lib/ruby/gems/1.8/bin/cucumber-nagios-gen project test&#x000A;Generating with project generator:&#x000A;     [ADDED]  .gitignore&#x000A;     [ADDED]  .bzrignore&#x000A;     [ADDED]  Gemfile&#x000A;     [ADDED]  README&#x000A;     [ADDED]  features/steps&#x000A;     [ADDED]  features/support</code></pre>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2011/04/17/Devops-weekly-archive.html' title=''>
+                  &laquo; Devops Weekly Archive
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2011/04/02/Vagrant-at-the-guardian.html' title=''>
+                  &laquo; Vagrant At The Guardian
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2011/04/02/Collecting-metrics-with-ganglia-and-friends.html' title=''>
+                  &laquo; Collecting Metrics With Ganglia And Friends
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2011/05/07/Version-control-and-deployment-of-cron-jobs.html' title=''>
+                  Version Control And Deployment Of Cron Jobs &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2011/05/08/Vagrant-plugin-for-interacting-with-vagrantboxes.html' title=''>
+                  Vagrant Plugin For Interacting With Vagrantbox.es &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2011/05/15/Python-on-cloudfoundry.html' title=''>
+                  Python On Cloudfoundry &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='comments'>
+        <div id='disqus_thread'></div>
+        <script src='http://disqus.com/forums/morethanseven/embed.js' type='text/javascript'></script>
+        <noscript>
+          <a href='http://disqus.com/forums/morethanseven/?url=ref'>
+            View the discussion thread
+          </a>
+        </noscript>
+      </div>
+      <!-- / disqus adds too much visual crap -->
+      <style type='text/css'>
+        .dsq-dc-logo {
+          display: none !important; }
+      </style>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        (function() {
+          var links = document.getElementsByTagName('a');
+          var query = '?';
+          for(var i = 0; i < links.length; i++) {
+            if(links[i].href.indexOf('#disqus_thread') >= 0) {
+              query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+            }
+          }
+          document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/morethanseven/get_num_replies.js' + query + '"></' + 'script>');
+        })();
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+          pageTracker._trackPageLoadTime();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

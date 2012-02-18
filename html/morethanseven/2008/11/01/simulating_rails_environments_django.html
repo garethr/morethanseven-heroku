@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Simulating Rails like Environments in Django</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='django, python, rails, environments' name='keywords' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Simulating Rails like Environments in Django
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Nov 01, 2008</li>
+            <li>&middot;</li>
+            <li>
+              <a class='tag' href='/tags/django/'>
+                django
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/environments/'>
+                environments
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/python/'>
+                python
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/rails/'>
+                rails
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>I was always a fan of <a href="http://wiki.rubyonrails.org/rails/pages/Environments">Rail environments</a> and as part of some work upgrading this site to the latest version of Django I decided to clean up my whole deployment process. Part of that involved replacing everything in settings.py with the following snippet of code:</p>
+          <pre>ENV = "development"&#x000A;try:&#x000A;    exec "from environments." + ENV + " import *"&#x000A;except ImportError:&#x000A;    print "You must specify a valid environment"&#x000A;    exit()</pre>
+          <p>I now have two settings files stored in an environments module containing all the usual django settings; one for my development environment and one suitable for live. The settings.py above is for my local development environment, with only one small change for live (this file doesn&#8217;t get deployed along with the source code for the site, so doesn&#8217;t get overwritten).</p>
+          <pre>ENV = 'live'</pre>
+          <p>This isn&#8217;t quite the same as the Rails implementation obviously. I run completely different server setups so I&#8217;m not too bothered about a flag on the runserver command like the -e flag for mongel. I could also probably do something to autodetect the environment but this works fine for me.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2008/10/13/unit_testing_css_looking_solution.html' title=''>
+                  &laquo; Unit Testing CSS - Looking for a Solution
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/10/11/google_app_engine_pyunit_test_runner.html' title=''>
+                  &laquo; Google App Engine PyUnit Test Runner
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/10/05/jabber_erlang_debugging_things_im_playing_with_at_.html' title=''>
+                  &laquo; Jabber, Erlang, Debugging. Things I'm playing with at the moment
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2008/11/09/django_performance_tip_profile_your_filters.html' title=''>
+                  Django Performance Tip - Profile Your Filters &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/11/11/cssdoc.html' title=''>
+                  CSSDoc &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/11/16/i_hearts_github_two.html' title=''>
+                  I Love GitHub Two &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

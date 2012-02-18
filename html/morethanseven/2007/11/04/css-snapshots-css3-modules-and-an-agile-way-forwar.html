@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>CSS Snapshots, CSS3 Modules and an Agile Way Forward</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='' name='keywords' />
+    <meta content='etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8' name='google-site-verification' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+    <link href='http://www.myopenid.com/server' rel='openid.server' />
+    <link href='http://garethr.myopenid.com/' rel='openid.delegate' />
+    <link href='/articles.atom' rel='alternate' title='Morethanseven Atom Feed' type='application/atom+xml' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='carbonads-container'>
+          <div class='carbonad'>
+            <div id='carbon'></div>
+            <script type='text/javascript'>
+              //<![CDATA[
+                var z = document.createElement("script");
+                z.type = "text/javascript";
+                z.async = true;
+                z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(z, s);
+              //]]>
+            </script>
+          </div>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/articles.atom'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          CSS Snapshots, CSS3 Modules and an Agile Way Forward
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Nov 04, 2007</li>
+            <li>
+              &middot;
+            </li>
+            <li>
+              <a href='/2007/11/04/css-snapshots-css3-modules-and-an-agile-way-forwar.html#disqus_thread'></a>
+            </li>
+            <li>&middot;</li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>The state of <span class="caps">CSS</span> has been a common topic of conversation this year. Ever since <a href="http://www.andybudd.com">Andy Budd</a> stirred things up at <a href="http://thehighlandfling.com">The Highland Fling</a> about <a href="http://thehighlandfling.com/sessions/the-future-of-css/">The Future of <span class="caps">CSS</span></a> and followed up with a <a href="http://www.andybudd.com/archives/2007/05/css22/">call for <span class="caps">CSS</span> 2.2</a> we&#8217;ve been wanting more.</p>
+          <p>Well, in response to all this the CSS3 working group have released <a href="http://www.w3.org/TR/css-beijing/"><span class="caps">CSS</span> Snapshot 2007</a> as a working draft. CSS3, in theory, has a modular structure. The idea behind this was that individual pieces could be worked up, specified and released without having to work on the whole thing at once. Sounds a lot like iterative development to me. The problem is we haven&#8217;t, until now, had a stable <em>release one</em> of CSS3.</p>
+          <blockquote>
+          <p>At the time this specification enters Candidate Recommendation, Cascading Style Sheets (<span class="caps">CSS</span>) is defined by the following specifications:<br />
+          * <span class="caps">CSS</span> Level 2 Revision 1 (including errata)<br />
+          * Selectors Level 3<br />
+          * <span class="caps">CSS</span> Namespaces<br />
+          * <span class="caps">CSS</span> Color Level 3</p>
+          </blockquote>
+          <p>So (at least when this document reaches Candidate Recommendation at some unknown point in the future), we can get on and use all those selectors we keep eyeing up. Colors and Namespaces are not particularly interesting, at least to me, but useful non-the-less. CSS2.1 is important as a baseline going forward, especially for the browser makers, rather than being particular interesting for the jobbing web designer.</p>
+          <p>The problems come when we look at some of the features we want, and the modules they are part of. Andy specifically references <a href="http://andybudd.com/archives/2007/10/snapshot_2007_i/">text-shadow</a> as something that&#8217;s already got more than two sample implementations but is part of the <a href="http://www.w3.org/TR/css3-text/">Text module</a> which we won&#8217;t see for a while due to it&#8217;s complexity. (As a side note text-shadow was formerly part of CSS2.1 but got dropped due to lack of implementations at the time.) <a href="http://my.opera.com/dstorey/blog/">Dave Storey</a> summed this problem up nicely over on <a href="http://www.css3.info/css-snapshot-2007-released-as-a-working-draft/#comment-59776">CSS3.info</a></p>
+          <blockquote>
+          <p>I guess this is due to not wanting to put partial parts of a module in this snapshot. Iâ€™d like to see another snapshot draft in around six months that includes full or partial modules that have progressed since the time this snapshot was published.</p>
+          </blockquote>
+          <p>From a quick look at the <a href="http://www.w3.org/Style/CSS/current-work">current work</a> of the <span class="caps">CSS</span> working group I count six modules at candidate recommendations, six at last call, twenty three at working draft and six not yet started. If modules really are discrete blocks then this to me looks like a recipe for disaster. If modules aren&#8217;t discrete blocks then why are they divided into modules? Rather than focus on shipping modules it appears that the effort of the working group has been spread out across nearly the whole spectrum of CSS3. This pretty much invalidates the idea of a modular approach.</p>
+          <p>CSS3 is a big project. And specification, like software, is hard. In well organised and managed agile software teams it&#8217;s common to split things down into features, or groups of features (modules). The <span class="caps">CSS</span> working group did this. In a well managed agile team shipping something early is hugely important. Everyone focuses on that goal, rather than on their favorite part of the project that might not be needed until later on. The <span class="caps">CSS</span> working group definitely didn&#8217;t do that. But it&#8217;s what I think is needed now.</p>
+          <p>The working group are now <a href="http://xhtml.com/en/css/conversation-with-css-3-team/">starting to talk</a> more openly about what they are up to. And the <a href="http://csseleven.com/"><span class="caps">CSS</span> Eleven</a> are looking to add some support from a web design industry point of view. I&#8217;m interested to see what they come up with as suggestions and support. The problem I see is that, unless the working group back down on the strict nature of the modules and define sub-modules or simply go to specifying features then we could hit an impasse. The best course of action (from a complete outsider anyhow) would be to get all the people from the working group and from the <span class="caps">CSS</span> Eleven working on one module at a time. Only once a little momentum has been built up maybe they could work on more than one at once, just not thirty five this time. All of that would take some hefty project management and some setting aside personal and organisational politics to get done. Fingers crossed.</p>
+          <p>I actually think things are looking up, but time is certainly a factor here. Lets assume IE.next is released late next year or the start of 2009 (wild speculation). If the <a href="http://blogs.msdn.com/ie/">Internet Explorer team</a> implement to the current specs at that time &#8211; that could easily not include <span class="caps">CSS</span> Snapshot 2008, which would be reaching candidate recommendation around about the same time as they ship. Which could in theory mean it&#8217;s four years or more before we see text-shadow well supported. Never mind elements of CSS3 which currently have no reference implementations at all! Anyone else with any bright idea? Or insider info that you want to share?</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2007/10/29/bbc-innovation-labs-2008.html' title=''>
+                  &laquo; BBC Innovation Labs 2008
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2007/10/28/php-asset-packager.html' title=''>
+                  &laquo; PHP Asset Packager
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2007/10/23/my-trac-ticket-setup.html' title=''>
+                  &laquo; My Trac Ticket setup
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2007/11/07/some-useful-mobile-web-design-links.html' title=''>
+                  Some useful mobile web design links &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2007/11/12/activity.html' title=''>
+                  Activity &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2007/11/17/joost-developer-day.html' title=''>
+                  Joost Developer Day &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='comments'>
+        <div id='disqus_thread'></div>
+        <script src='http://disqus.com/forums/morethanseven/embed.js' type='text/javascript'></script>
+        <noscript>
+          <a href='http://disqus.com/forums/morethanseven/?url=ref'>
+            View the discussion thread
+          </a>
+        </noscript>
+      </div>
+      <!-- / disqus adds too much visual crap -->
+      <style type='text/css'>
+        .dsq-dc-logo {
+          display: none !important; }
+      </style>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        (function() {
+          var links = document.getElementsByTagName('a');
+          var query = '?';
+          for(var i = 0; i < links.length; i++) {
+            if(links[i].href.indexOf('#disqus_thread') >= 0) {
+              query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+            }
+          }
+          document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/morethanseven/get_num_replies.js' + query + '"></' + 'script>');
+        })();
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+          pageTracker._trackPageLoadTime();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

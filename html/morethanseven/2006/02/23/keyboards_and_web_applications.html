@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>keyboards and web applications</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='' name='keywords' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          keyboards and web applications
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Feb 23, 2006</li>
+            <li>&middot;</li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>Web applications are still evolving. This we know. One thing any power user tends to pick up on pretty quickly in desktop applications is the keyboard shortcuts. We just cant get enought of them. Why dont we see them more in web applications? Well a couple of reasons as it happens:</p>
+          <ul>
+           <li>Potential clashes with browser or OS shortcuts</li>
+            <li>Many web applications are still evolving from more promotional websites. The learning curve for a website <em>needs</em> to be instantaneous, otherwise your potential customer just left. But what about a web application? The users may <em>have</em> to use it, as well as having documentation and maybe even training.</li>
+            <li>Because we dont see them in web applications? The circular argument.</li>
+          </ul>
+           <p>Personally I think in some cases keyboard shortcuts would be nice, I have a little plan for something in mind as well so started experimenting. The clash issue I&#8217;m going to leave for another post as it will take a bit of brute force experimenting but I did start playing with a simple way of assigning functions to keys.</p>
+           <p>The following code creates an object to store the lookup/hash/two dimensional array (pick one you like). This is a simple associate between a key, and a function to run when it&#8217;s pressed. A function is then assigned to the onkeyup and onkeydown events which monitors them, checks for one of the keys in the lookup to be pressed (in this case along with the ctrl key) and runs the assigned function.</p>
+          <div>
+          <p><code>&#x000A;&lt;pre&gt;&#x000A;&amp;lt;txp:php&amp;gt;&#x000A;include('/www/htdocs/morethanseven/scripts/sample/keyPress.js');&#x000A;&amp;lt;/txp:php&amp;gt;&#x000A;&lt;/pre&gt;</code></p>
+          </div>
+           <p>A simple library function is used to add the event to the document onload. My library obviously includes other helper functions but we dont need any of those for this example.</p>
+          <div>
+          <p><code>&#x000A;&lt;pre&gt;&#x000A;&amp;lt;txp:php&amp;gt;&#x000A;include('/www/htdocs/morethanseven/scripts/sample/lib.js'); &#x000A;&amp;lt;/txp:php&amp;gt;&#x000A;&lt;/pre&gt;</code></p>
+          </div>
+           <p>Some improvements I can spot from here which I&#8217;ll implement as I actually take this out of the lab and into something production like.</p>
+          <ul>
+           <li><span class="caps">JSON</span> (or <span class="caps">YAML</span>) data storage. Either one makes configuration simpler and scores geek points. It&#8217;s a win win.</li>
+            <li>Abstract the use of the ctrl key from the function and allow other modifiers to be set when used.</li>
+          </ul>
+           <p>I&#8217;ll try get round to the look at keyboard shortcut clashes, or link to someone who already has, as I get round to it. In the mean time, what do people think about the use of keyboard shortcuts in web applications? Any good or bad examples welcome.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2006/02/19/last_week_with_ajax.html' title=''>
+                  &laquo; Last Week with Ajax
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2006/02/14/easy_for_whom_a_minor_rant_about_help_from_framewo.html' title=''>
+                  &laquo; Easy for whom? - a minor rant about help from frameworks
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2006/02/09/one_conference_down.html' title=''>
+                  &laquo; One Conference Down
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2006/03/08/apples_and_pears.html' title=''>
+                  Apples and PEARs &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2006/03/14/reading_up_on_a_speedy_industry.html' title=''>
+                  Reading up on a speedy industry &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2006/03/20/the_wisdom_of_clouds.html' title=''>
+                  The Wisdom of Clouds &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

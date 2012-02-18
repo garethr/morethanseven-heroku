@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>A Proliferation of Feed Standards</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='' name='keywords' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          A Proliferation of Feed Standards
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Apr 23, 2006</li>
+            <li>&middot;</li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>Google just announced <a href="http://code.google.com/apis/gdata/overview.html">GData</a>, which is apparently a:</p>
+          <blockquote>
+            <p>&#8230;simple standard protocol for reading and writing data on the web.</p>
+          </blockquote>
+           <p>It is basically an amalgamation of Atom, <span class="caps">RSS</span> and bits and pieces of Goodle juice. It piqued my interest for a couple of reasons:</p>
+          <ul>
+           <li>What was termed <em>Optimistic Concurrency</em></li>
+            <li>A promise of <em>Authentication</em></li>
+            <li><em><span class="caps">REST</span></em> based</li>
+          </ul>
+           <p>The former relates to a simple solution to the problem of concurrent updates. Say I grab a file and make a change, but in between another individual grabs the same file, and after I submit my changes, they also try top submit changes all my changes could be lost. GData specifies a solution to this by introducing version numbers, only if the version you are modifying has the latest version number will it be accepted. The version number is simply provided in the edit <span class="caps">URI</span> in the feed. Nice.</p>
+           <p>I wont ramble too much about <a href="http://www.xfront.com/REST-Web-Services.html"><span class="caps">REST</span>,</a> safe to say if you like URLs then it makes perfect sense and you can just get on with it. Lots of other posts about <a href="http://billburnham.blogs.com/burnhamsbeat/2004/12/rest_vs_soap_wh.html">why</a> if you missed the (ongoing) debate. It&#8217;s a bit like <a href="http://microformats.org">Microformats</a> and the Semantic Web. The bariers to entry for microformats are the the same as those for building web pages.</p>
+           <p>I say the promise of Authentication above because it turns out that part of the system is not in place yet. The other part of that I&#8217;m sceptical about is, from my reading, a complete reliance on Google to provide the <a href="http://code.google.com/apis/gdata/protocol.html#Authentication">authentication</a>. For some applications that&#8217;s fine, for others you probably dont want Google in charge of the keys.</p>
+           <p>It also has simple proscribed methods of dealing with categories and search queries, including <a href="http://opensearch.a9.com/">Opensearch</a> integration.</p>
+           <p>I was thinking about playing with a <span class="caps">PHP</span> based client/server for GData, or at least having a look, but I think I&#8217;ll wait until I know more about the authentication side.</p>
+           <p>I have a feeling Microsoft will do something like this as well, take existing open standards and republish them with a few bells and whistles. And again the developers, ie. us, are left supporting multiple slight variations on a theme. Maybe I&#8217;m just suspicious. Time will tell.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2006/04/20/media_and_google_calendar.html' title=''>
+                  &laquo; @media and Google Calendar
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2006/04/16/along_comes_a_reboot.html' title=''>
+                  &laquo; Along comes a reboot
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2006/04/14/where_to_put_all_that_data_s3_resources.html' title=''>
+                  &laquo; Where to put all that data? S3 resources
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2006/04/26/web_designer_are_like_footballers.html' title=''>
+                  Web Designer are like Footballers &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2006/04/30/webdesign_bookshelf.html' title=''>
+                  Webdesign Bookshelf &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2006/05/08/mission_impossible.html' title=''>
+                  Mission Impossible? &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

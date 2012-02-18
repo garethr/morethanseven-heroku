@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Google App Engine PyUnit Test Runner</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='appengine, gae, python, pyunit, google' name='keywords' />
+    <meta content='etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8' name='google-site-verification' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+    <link href='http://www.myopenid.com/server' rel='openid.server' />
+    <link href='http://garethr.myopenid.com/' rel='openid.delegate' />
+    <link href='/articles.atom' rel='alternate' title='Morethanseven Atom Feed' type='application/atom+xml' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='carbonads-container'>
+          <div class='carbonad'>
+            <div id='carbon'></div>
+            <script type='text/javascript'>
+              //<![CDATA[
+                var z = document.createElement("script");
+                z.type = "text/javascript";
+                z.async = true;
+                z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(z, s);
+              //]]>
+            </script>
+          </div>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/articles.atom'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Google App Engine PyUnit Test Runner
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Oct 11, 2008</li>
+            <li>
+              &middot;
+            </li>
+            <li>
+              <a href='/2008/10/11/google-app-engine-pyunit-test-runner.html#disqus_thread'></a>
+            </li>
+            <li>&middot;</li>
+            <li>
+              <a class='tag' href='/tags/appengine/'>
+                appengine
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/gae/'>
+                gae
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/google/'>
+                google
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/python/'>
+                python
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/pyunit/'>
+                pyunit
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>I&#8217;m starting to play around with using <a href="http://code.google.com/appengine/">App Engine</a> again for small projects. It&#8217;s great for simple, somewhat throwaway apps as long as you don&#8217;t need anything too fancy. Actually all I want really is long running processes but I digress.</p>
+          <p>I&#8217;m increasingly writing test suites as well for even small projects and was missing the convenience of the Django test runner for running them against App Engine code. So I&#8217;ve spent a little time writing a simple test running script to use for non-Django Python projects. I&#8217;ve posted it over on the <a href="http://appengine-cookbook.appspot.com/recipe/app-engine-test-runner/">App Engine Cookbook</a> for anyone else who might want to do the same.</p>
+          <p>I ended up writing something myself as I couldn&#8217;t find anything else which quite met my needs, so it&#8217;s the typical programmers itch code and as such is provided as <em>works for me</em> software. The other approaches out their didn&#8217;t quite meet my needs but might be useful to know about if you want to start testing your apps.</p>
+          <ul>
+          	<li><a href="http://code.google.com/p/nose-gae/">Nose <span class="caps">GAE</span></a> uses the nose testing framework which I&#8217;m less familiar with.</li>
+          	<li><a href="http://code.google.com/p/gaeunit/"><span class="caps">GAE</span> Unit</a> uses PyUnit but presents it&#8217;s results in a browser rather than on the command line.</li>
+          </ul>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2008/10/05/jabber-erlang-debugging-things-im-playing-with-at-.html' title=''>
+                  &laquo; Jabber, Erlang, Debugging. Things I'm playing with at the moment
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/09/30/google-testing.html' title=''>
+                  &laquo; Google on Testing
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/09/27/headless-vmware-fusion.html' title=''>
+                  &laquo; Headless VMWare Fusion
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2008/10/13/unit-testing-css-looking-solution.html' title=''>
+                  Unit Testing CSS - Looking for a Solution &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/11/01/simulating-rails-environments-django.html' title=''>
+                  Simulating Rails like Environments in Django &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/11/09/django-performance-tip-profile-your-filters.html' title=''>
+                  Django Performance Tip - Profile Your Filters &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='comments'>
+        <div id='disqus_thread'></div>
+        <script src='http://disqus.com/forums/morethanseven/embed.js' type='text/javascript'></script>
+        <noscript>
+          <a href='http://disqus.com/forums/morethanseven/?url=ref'>
+            View the discussion thread
+          </a>
+        </noscript>
+      </div>
+      <!-- / disqus adds too much visual crap -->
+      <style type='text/css'>
+        .dsq-dc-logo {
+          display: none !important; }
+      </style>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        (function() {
+          var links = document.getElementsByTagName('a');
+          var query = '?';
+          for(var i = 0; i < links.length; i++) {
+            if(links[i].href.indexOf('#disqus_thread') >= 0) {
+              query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+            }
+          }
+          document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/morethanseven/get_num_replies.js' + query + '"></' + 'script>');
+        })();
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+          pageTracker._trackPageLoadTime();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

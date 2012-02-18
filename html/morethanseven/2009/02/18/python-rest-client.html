@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Python REST Client</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='python, rest' name='keywords' />
+    <meta content='etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8' name='google-site-verification' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+    <link href='http://www.myopenid.com/server' rel='openid.server' />
+    <link href='http://garethr.myopenid.com/' rel='openid.delegate' />
+    <link href='/articles.atom' rel='alternate' title='Morethanseven Atom Feed' type='application/atom+xml' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='carbonads-container'>
+          <div class='carbonad'>
+            <div id='carbon'></div>
+            <script type='text/javascript'>
+              //<![CDATA[
+                var z = document.createElement("script");
+                z.type = "text/javascript";
+                z.async = true;
+                z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(z, s);
+              //]]>
+            </script>
+          </div>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/articles.atom'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Python REST Client
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Feb 18, 2009</li>
+            <li>
+              &middot;
+            </li>
+            <li>
+              <a href='/2009/02/18/python-rest-client.html#disqus_thread'></a>
+            </li>
+            <li>&middot;</li>
+            <li>
+              <a class='tag' href='/tags/python/'>
+                python
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/rest/'>
+                rest
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>I&#8217;m working on a small project involving using RESTful APIs and wanted a simple <span class="caps">HTTP</span> client, something that sat a little higher in the stack than <a href="http://code.google.com/p/httplib2/">httplib2</a> or similar. I turned initially to the <a href="http://www.djangoproject.com/documentation/models/test_client/">Django Test Client</a> which now <a href="http://code.google.com/p/python-rest-client/">supports all the required methods</a> but it turned out that I&#8217;d have to unpick it from django a little.</p>
+          <p>With a little bit of looking around I found the <a href="http://code.google.com/p/python-rest-client/">python-rest-client</a> which certainly sounded like it would do what I wanted. It lets you make <span class="caps">HTTP</span> requests in as straight forward a manner as possible and fitted the bill perfectly.</p>
+          <pre>from restful_lib import Connection&#x000A;conn = Connection("http://morethanseven.net")&#x000A;response = conn.request_get("/")</pre>
+          <p>It supports authentication, nice helper methods and gives you the response in a nice format.</p>
+          <pre>conn = Connection("http://example.org", username="XXX", password="XXX")&#x000A;conn.request_delete('/items/11232344')</pre>
+          <p>As an added benefit it also comes with a Google App Engine compatible version.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2009/02/15/looking-new-job-june.html' title=''>
+                  &laquo; Looking for a New Job in June
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/02/15/let-you-sys-admin-override-your-django-settings.html' title=''>
+                  &laquo; Let you Sys Admin Override your Django Settings
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/02/11/django-settings-tip-setting-relative-paths.html' title=''>
+                  &laquo; Django Settings Tip - Setting Relative Paths
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2009/02/21/example-using-xmpp-app-engine-imified.html' title=''>
+                  Example of using XMPP on App Engine (via IMified) &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/02/23/epydoc-ant-task.html' title=''>
+                  Epydoc Ant task &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/02/24/github-changelog.html' title=''>
+                  GitHub Changelog &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='comments'>
+        <div id='disqus_thread'></div>
+        <script src='http://disqus.com/forums/morethanseven/embed.js' type='text/javascript'></script>
+        <noscript>
+          <a href='http://disqus.com/forums/morethanseven/?url=ref'>
+            View the discussion thread
+          </a>
+        </noscript>
+      </div>
+      <!-- / disqus adds too much visual crap -->
+      <style type='text/css'>
+        .dsq-dc-logo {
+          display: none !important; }
+      </style>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        (function() {
+          var links = document.getElementsByTagName('a');
+          var query = '?';
+          for(var i = 0; i < links.length; i++) {
+            if(links[i].href.indexOf('#disqus_thread') >= 0) {
+              query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+            }
+          }
+          document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/morethanseven/get_num_replies.js' + query + '"></' + 'script>');
+        })();
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+          pageTracker._trackPageLoadTime();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

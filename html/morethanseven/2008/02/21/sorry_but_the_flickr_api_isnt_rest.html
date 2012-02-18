@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Sorry, but the Flickr API isn&#39;t REST</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='' name='keywords' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Sorry, but the Flickr API isn&#39;t REST
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Feb 21, 2008</li>
+            <li>&middot;</li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>After <a href="http://semanticcamp.tommorris.org">SemanticCamp</a> me and <a href="http://icepop.org/">Rey</a> popped in to see <a href="http://blog.whatfettle.com/">Paul</a> and everyone at <a href="http://www.osmosoft.com/">Osmosoft</a> towers. A good few interesting conversations ensued, including one about the difference between <a href="http://blog.whatfettle.com/2008/02/19/mashup-or-integration/">mashups and integration</a>. All good fun basically. <a href="http://simonmcmanus.com/">Simon</a> also had an <a href="http://simonmcmanus.com/2008/02/21/off-the-shelf-integration-in-enterprises/">interesting take on the topic</a> as well.</p>
+          <p>What has all this to do with the topic of this post? Well, Simon says:</p>
+          <blockquote>
+          <p>When compared to small RESTful APIs like flickr and twitter&#8230;</p>
+          </blockquote>
+          <p>Now I&#8217;m not really picking on Simon here, more that I&#8217;ve been meaning to write something on this topic for a while and this proved a good catalyst for a little rant.</p>
+          <p>The <a href="http://flickr.com">flickr</a> <a href="http://www.flickr.com/services/api/"><span class="caps">API</span></a> is pretty darn cool. But it&#8217;s not RESTful in pretty much any way you want to shake a stick at it. It&#8217;s a well designed <span class="caps">RPC</span> (remote procedure call) <span class="caps">API</span>. Now even flickr get this wrong. They even have <a href="http://www.flickr.com/services/api/response.rest.html">a page</a> which confuses the issue and makes <span class="caps">REST</span> out to be a response format based on <span class="caps">XML</span>. Bad flickr.</p>
+          <p><a href="http://www.flickr.com/services/api/request.rest.html">flickr states</a> that:</p>
+          <blockquote>
+          <p>The <span class="caps">REST</span> Endpoint <span class="caps">URL</span> is http://api.flickr.com/services/rest/</p>
+          </blockquote>
+          <p>This turns out to be completely against the whole RESTful principles. Lets try and explain. You can define most of what you want to do with an <span class="caps">API</span> with the use of nouns, verbs and content types. <span class="caps">REST</span> is based around limiting the set of verbs to those available in <span class="caps">HTTP</span>; for instance <span class="caps">GET</span>, <span class="caps">POST</span>, <span class="caps">PUT</span> and <span class="caps">DELETE</span>. For any given application or <span class="caps">API</span> you&#8217;ll also specify a set of content types (representations); for instance <span class="caps">HTML</span>, <span class="caps">JSON</span> or <span class="caps">XML</span>. All you get to play around with are the nouns, in the case of the web these are our URLs.</p>
+          <p>In a typical <span class="caps">RPC</span> style <span class="caps">API</span> you have one <span class="caps">URL</span> (like flickr does) which acts as the end point to which all calls are made. You then probably define a few functions which you can call. Lets look at a simple book example.</p>
+          <pre><code>getBook()&#x000A;deleteBook()&#x000A;createBook()&#x000A;editBook()</code></pre>
+          <p>The RESTful way of designing this might look a little bit more like this:</p>
+          <pre><code>GET     /books/{book-id}&#x000A;DELETE  /books/{book-id}&#x000A;POST    /books&#x000A;PUT     /books/{book-id}</code></pre>
+          <p>We mentioned content types or representations earlier. Lets say instead of the default response format we might want to get a <span class="caps">JSON</span> representation of a given book we might do something like the following.</p>
+          <pre><code>GET /books/{book-id}.json</code></pre>
+          <p>The advantages of using URLs as the <span class="caps">API</span> nouns in this way include more than just sane URLs for the site or application in question. The web is based around many of these architectural principles and that seemed to scale pretty well. The idea is that fell envisaged RESTful applications have an advantage here too. For me one of the real benefits of RESTful APIs are in the simplicity they bring to documentation. I already know the available verbs, all I need to know are the set of resource URLs and I can probably use <span class="caps">CURL</span> to work out the <span class="caps">REST</span> (sorry, bad pun).</p>
+          <p>This misunderstanding is pretty common. Even <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">WikiPedia</a> appreciates their is a problem:</p>
+          <blockquote>
+          <p>The difference between the uses of the term â€œRESTâ€ causes some confusion in technical discussions.</p>
+          </blockquote>
+          <p>This isn&#8217;t just pedantry on my part, well not quite. I&#8217;d recommend anyone involved in designing and architecting web sites read <a href="http://www.amazon.co.uk/RESTful-Web-Services-Leonard-Richardson/dp/0596529260">RESTful Web Services</a> as well as <a href="http://www.ics.uci.edu/~fielding/">Roy Fielding&#8217;s</a> <a href="http://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">Architectural Styles and the Design of Network-based Software Architectures</a>. But if you just want to <em>get</em> the general principles and don&#8217;t fancy wading through technical documents then you have to read <a href="http://tomayko.com/articles/2004/12/12/rest-to-my-wife">How I Explained <span class="caps">REST</span> to My Wife</a> hilariously written by <a href="http://tomayko.com/">Ryan Tomayko</a>.</p>
+          <p>And remember, just because an <span class="caps">API</span> makes use of <span class="caps">HTTP</span> doesn&#8217;t make it RESTful. I&#8217;m looking at you <a href="http://twitter.com">twitter</a>.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2008/02/19/invited_to_join_wasp.html' title=''>
+                  &laquo; Invited to Join WaSP
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/02/13/example_of_the_yahoo_live_api.html' title=''>
+                  &laquo; Example of the Yahoo Live Api
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/02/04/continuous_integration_for_front_end_developers.html' title=''>
+                  &laquo; Continuous Integration for Front End Developers
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2008/02/24/thinking_digital.html' title=''>
+                  Thinking Digital &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/03/02/generating_charts_using_google_charts_api.html' title=''>
+                  Generating Charts using Google Charts API &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/03/14/accepted_for_xtech.html' title=''>
+                  Accepted for Xtech &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

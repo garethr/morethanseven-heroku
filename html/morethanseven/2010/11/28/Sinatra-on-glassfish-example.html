@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Sinatra On Glassfish Example</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='java, jruby, glassfish, sinatra' name='keywords' />
+    <meta content='etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8' name='google-site-verification' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+    <link href='http://www.myopenid.com/server' rel='openid.server' />
+    <link href='http://garethr.myopenid.com/' rel='openid.delegate' />
+    <link href='/articles.atom' rel='alternate' title='Morethanseven Atom Feed' type='application/atom+xml' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='carbonads-container'>
+          <div class='carbonad'>
+            <div id='carbon'></div>
+            <script type='text/javascript'>
+              //<![CDATA[
+                var z = document.createElement("script");
+                z.type = "text/javascript";
+                z.async = true;
+                z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(z, s);
+              //]]>
+            </script>
+          </div>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/articles.atom'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Sinatra On Glassfish Example
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Nov 28, 2010</li>
+            <li>
+              &middot;
+            </li>
+            <li>
+              <a href='/2010/11/28/Sinatra-on-glassfish-example.html#disqus_thread'></a>
+            </li>
+            <li>&middot;</li>
+            <li>
+              <a class='tag' href='/tags/glassfish/'>
+                glassfish
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/java/'>
+                java
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/jruby/'>
+                jruby
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/sinatra/'>
+                sinatra
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>I magically turned into a Java developer last week for a bit when I had to do some integration with a <span class="caps">SOAP</span> based <span class="caps">API</span> that really really wanted me to write Java on client as well. That led me down the route of having a good look at Jruby (which I&#8217;ve used before, mainly for testing using celerity) and in particular how easy it was to use native Java classes in Jruby (very, very easy as it turns out).</p>
+          <p>All that meant I&#8217;ll probably end up writing a nice Jruby application in the not too distant future, and not knowing too much about running such a thing in a production environment I thought I&#8217;d take a quick look. I went with Glassfish as the application server for no other reason that it took my fancy. I&#8217;d definately be interested in hearing about any positive or negative experiences people may have with it or other similar servers. My quick look turned into running a tiny Sinatra application.</p>
+          <p>First install the required gems for our little experiment. You&#8217;ll obviously need jruby which is sort of the point, I&#8217;d recommend using <span class="caps">RVM</span> for that.</p>
+          <pre><code>gem install sinatra warbler</pre><p></code></p>
+          <p>Now create a sinatra app. OK, it could be any Ruby rack based application but I like Sinatra. First we need a rackup file.</p>
+          <pre><code># config.ru&#x000A;require 'init'&#x000A;&#x000A;set :run, false&#x000A;set :environment, :production&#x000A;&#x000A;run Sinatra::Application</pre><p></code></p>
+          <p>Now for our application itself.</p>
+          <pre><code># init.rb&#x000A;require 'rubygems'&#x000A;require 'sinatra'&#x000A;get '/' do&#x000A;  "Hello World!"&#x000A;end</pre><p></code></p>
+          <p>Warble is the gem we&#8217;re going to use to create a <span class="caps">WAR</span> file, which is basically an all in one bundle of our application and it&#8217;s dependencies which we can deploy to a java application server.</p>
+          <pre><code># config/warble.rb&#x000A;Warbler::Config.new do |config|&#x000A;  config.dirs = %w(config)&#x000A;  config.includes = FileList["init.rb"]&#x000A;  config.gems += ["sinatra"]&#x000A;  config.gems -= ["rails"]&#x000A;  config.gem_dependencies = true&#x000A;end</pre><p></code></p>
+          <p>Now we&#8217;re ready to generate our <span class="caps">WAR</span> file.</p>
+          <pre><code>warble</pre><p></code></p>
+          <p>This should create a file called sample.war or similar. Then just deploy that to your application server and away you go. I got this working very easily with Glassfish which seemed to be the recommended tool for such things. Installing Glassfish was time consuming but <a href="http://www.nabisoft.com/tutorials/glassfish/installing-glassfish-301-on-ubuntu">well documented here</a>. Uploading to Glassfish was done via the web interface for the moment. I just selected a Ruby project from the deployment drop down and uploaded the war file.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2010/11/21/Devops-weekly.html' title=''>
+                  &laquo; Devops Weekly
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2010/11/07/Books-for-people-interested-in-devops.html' title=''>
+                  &laquo; Books For People Interested In Devops
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2010/11/04/Why-you-should-be-using-virtualisation.html' title=''>
+                  &laquo; Why You Should Be Using Virtualisation
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2010/12/20/Smoke-testing-with-cucumber-on-sysadvent.html' title=''>
+                  Smoke Testing With Cucumber On Sysadvent &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2010/12/29/Heroku-for....html' title=''>
+                  Heroku For... &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2011/01/01/Solr-libraries-and-good-api-design.html' title=''>
+                  Solr Libraries and Good API Design &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='comments'>
+        <div id='disqus_thread'></div>
+        <script src='http://disqus.com/forums/morethanseven/embed.js' type='text/javascript'></script>
+        <noscript>
+          <a href='http://disqus.com/forums/morethanseven/?url=ref'>
+            View the discussion thread
+          </a>
+        </noscript>
+      </div>
+      <!-- / disqus adds too much visual crap -->
+      <style type='text/css'>
+        .dsq-dc-logo {
+          display: none !important; }
+      </style>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        (function() {
+          var links = document.getElementsByTagName('a');
+          var query = '?';
+          for(var i = 0; i < links.length; i++) {
+            if(links[i].href.indexOf('#disqus_thread') >= 0) {
+              query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+            }
+          }
+          document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/morethanseven/get_num_replies.js' + query + '"></' + 'script>');
+        })();
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+          pageTracker._trackPageLoadTime();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>RabbitMQ support for Cucumber-nagios</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='cucumber, nagios, rabbitmq, amqp' name='keywords' />
+    <meta content='etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8' name='google-site-verification' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+    <link href='http://www.myopenid.com/server' rel='openid.server' />
+    <link href='http://garethr.myopenid.com/' rel='openid.delegate' />
+    <link href='/articles.atom' rel='alternate' title='Morethanseven Atom Feed' type='application/atom+xml' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='carbonads-container'>
+          <div class='carbonad'>
+            <div id='carbon'></div>
+            <script type='text/javascript'>
+              //<![CDATA[
+                var z = document.createElement("script");
+                z.type = "text/javascript";
+                z.async = true;
+                z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(z, s);
+              //]]>
+            </script>
+          </div>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/articles.atom'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          RabbitMQ support for Cucumber-nagios
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Jan 30, 2010</li>
+            <li>
+              &middot;
+            </li>
+            <li>
+              <a href='/2010/01/30/rabbitmq-support-cucumber-nagios.html#disqus_thread'></a>
+            </li>
+            <li>&middot;</li>
+            <li>
+              <a class='tag' href='/tags/amqp/'>
+                amqp
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/cucumber/'>
+                cucumber
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/nagios/'>
+                nagios
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/rabbitmq/'>
+                rabbitmq
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>I&#8217;ve been doing more operations related work of late and am starting to use <a href="http://auxesis.github.com/cucumber-nagios/">Cucumber-nagios</a> for various monitoring tasks. <a href="http://www.nagios.org/">Nagios</a> might not be the most attractive of web interfaces but it&#8217;s so simple to get clients up and running and extend to do what you need. Cucumber however has a lovely, text based, user interface. And although I&#8217;m mainly working with Python at the moment cucumber-nagios (written in Ruby) really is the easiest way I&#8217;ve found of writing simple functional tests.</p>
+          <p>Cucumber-nagios is the creation of <a href="http://holmwood.id.au/~lindsay/">Lindsay Holmwood</a> and after several brief conversations over Twitter I set about adding a feature I wanted for my own monitoring setup. Namely support for keeping an eye on RabbitMQ.</p>
+          <p>At the moment the code is in a <a href="http://github.com/garethr/cucumber-nagios">fork on GitHub</a> but I&#8217;m hoping that once any rough edges have been ironed out and a few people have kicked the tyres then it will make it&#8217;s way into trunk. If you want to use this with an existing project straight away you can always drop the contents of <a href="http://github.com/garethr/cucumber-nagios/blob/master/lib/generators/project/features/steps/amqp_steps.rb">amqp_steps.rb</a> into your feature steps file after installing the <a href="http://gems.rubyforge.org/gems/amqp">amqp gem</a>.</p>
+          <p>I&#8217;ve included a little documentation in the fork as well with a quick example:</p>
+          <pre>Feature: github.com&#x000A;  To make sure the rest of the system is in order&#x000A;  All our message queues must not be backed up&#x000A;  Scenario: test queue&#x000A;    Given I have a AMQP server on rabbit.github.com&#x000A;    And I want to check on the fork queue&#x000A;    Then it should have less than 400 messages&#x000A;    Then it should have at least 5 consumers&#x000A;    Then it should have less than 50 messages per consumer</pre>
+          <p>My main usecase was to keep an eye on a known queue size and number of consumers. I&#8217;m sure I&#8217;m missing some features at the moment so any feedback much appreciated.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2010/01/26/processing-large-files-sed-and-awk.html' title=''>
+                  &laquo; Processing large files with sed and awk
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2010/01/07/speaking-dibi.html' title=''>
+                  &laquo; Speaking at DIBI
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/11/28/dreque.html' title=''>
+                  &laquo; Dreque
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2010/02/01/rise-house-team.html' title=''>
+                  The rise of the in-house team? &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2010/02/11/djugl-february.html' title=''>
+                  DJUGL February &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2010/02/15/blogging-platforms.html' title=''>
+                  On blogging platforms &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='comments'>
+        <div id='disqus_thread'></div>
+        <script src='http://disqus.com/forums/morethanseven/embed.js' type='text/javascript'></script>
+        <noscript>
+          <a href='http://disqus.com/forums/morethanseven/?url=ref'>
+            View the discussion thread
+          </a>
+        </noscript>
+      </div>
+      <!-- / disqus adds too much visual crap -->
+      <style type='text/css'>
+        .dsq-dc-logo {
+          display: none !important; }
+      </style>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        (function() {
+          var links = document.getElementsByTagName('a');
+          var query = '?';
+          for(var i = 0; i < links.length; i++) {
+            if(links[i].href.indexOf('#disqus_thread') >= 0) {
+              query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+            }
+          }
+          document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/morethanseven/get_num_replies.js' + query + '"></' + 'script>');
+        })();
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+          pageTracker._trackPageLoadTime();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

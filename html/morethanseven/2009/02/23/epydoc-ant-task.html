@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Epydoc Ant task</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='ant, epydoc' name='keywords' />
+    <meta content='etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8' name='google-site-verification' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+    <link href='http://www.myopenid.com/server' rel='openid.server' />
+    <link href='http://garethr.myopenid.com/' rel='openid.delegate' />
+    <link href='/articles.atom' rel='alternate' title='Morethanseven Atom Feed' type='application/atom+xml' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='carbonads-container'>
+          <div class='carbonad'>
+            <div id='carbon'></div>
+            <script type='text/javascript'>
+              //<![CDATA[
+                var z = document.createElement("script");
+                z.type = "text/javascript";
+                z.async = true;
+                z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(z, s);
+              //]]>
+            </script>
+          </div>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/articles.atom'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Epydoc Ant task
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Feb 23, 2009</li>
+            <li>
+              &middot;
+            </li>
+            <li>
+              <a href='/2009/02/23/epydoc-ant-task.html#disqus_thread'></a>
+            </li>
+            <li>&middot;</li>
+            <li>
+              <a class='tag' href='/tags/ant/'>
+                ant
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/epydoc/'>
+                epydoc
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>I quite like <a href="http://epydoc.sourceforge.net/">Epydoc</a> for generating Python <span class="caps">API</span> documentation, even if the interface looks a little dated and could do with a lick of paint.</p>
+          <p>For most project I use an Ant build script to generate documentation when needed. You could wrap the basic commands in a make file or a bash script if you prefer that sort of thing though. The only trick is to make sure you have everything you need on your Python Path. In Django projects, or App Engine projects, you&#8217;ll probably find the default runner script plays with the path somewhat. The following example adds the current directory to the path along with an ext directory where I stash external modules, which should see it run cleanly without any import errors.</p>
+          <pre>&lt;project name="secretproject" default="create-api"&gt;&#x000A;    &lt;property name="name" value="secretproject"/&gt;&#x000A;    &lt;property name="parent" value="/www/projects"/&gt;&#x000A;    &lt;property name="api" value="/www/project/secretproject/api"/&gt;&#x000A;    &lt;target name="create-api" description="Generate API documentation with epydoc"&gt;&#x000A;         &lt;exec executable="/bin/sh"&gt;&#x000A;             &lt;env key="PYTHONPATH" value="${parent}:${parent}/${name}/ext:$PYTHONPATH"/&gt;&#x000A;             &lt;env key="DJANGO_SETTINGS_MODULE" value="${name}.settings"/&gt;&#x000A;             &lt;arg line="-c 'epydoc --html -o ${api} --name ${name} --graph all ${name}'"/&gt;&#x000A;         &lt;/exec&gt;&#x000A;    &lt;/target&gt;&#x000A;&lt;/project&gt;</pre>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2009/02/21/example-using-xmpp-app-engine-imified.html' title=''>
+                  &laquo; Example of using XMPP on App Engine (via IMified)
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/02/18/python-rest-client.html' title=''>
+                  &laquo; Python REST Client
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/02/15/looking-new-job-june.html' title=''>
+                  &laquo; Looking for a New Job in June
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2009/02/24/github-changelog.html' title=''>
+                  GitHub Changelog &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/02/28/http-debugging-server-django.html' title=''>
+                  HTTP Debugging Server in Django &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2009/02/28/startup-hubs-uk-where-put-one.html' title=''>
+                  Startup Hubs in the UK - Where To Put One? &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='comments'>
+        <div id='disqus_thread'></div>
+        <script src='http://disqus.com/forums/morethanseven/embed.js' type='text/javascript'></script>
+        <noscript>
+          <a href='http://disqus.com/forums/morethanseven/?url=ref'>
+            View the discussion thread
+          </a>
+        </noscript>
+      </div>
+      <!-- / disqus adds too much visual crap -->
+      <style type='text/css'>
+        .dsq-dc-logo {
+          display: none !important; }
+      </style>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        (function() {
+          var links = document.getElementsByTagName('a');
+          var query = '?';
+          for(var i = 0; i < links.length; i++) {
+            if(links[i].href.indexOf('#disqus_thread') >= 0) {
+              query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+            }
+          }
+          document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/morethanseven/get_num_replies.js' + query + '"></' + 'script>');
+        })();
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+          pageTracker._trackPageLoadTime();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

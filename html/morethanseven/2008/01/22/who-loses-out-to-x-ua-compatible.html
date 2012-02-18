@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Who loses out to X-UA-Compatible?</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='' name='keywords' />
+    <meta content='etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8' name='google-site-verification' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
+    <link href='http://www.myopenid.com/server' rel='openid.server' />
+    <link href='http://garethr.myopenid.com/' rel='openid.delegate' />
+    <link href='/articles.atom' rel='alternate' title='Morethanseven Atom Feed' type='application/atom+xml' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; morethanseven</a>
+        </div>
+        <div id='carbonads-container'>
+          <div class='carbonad'>
+            <div id='carbon'></div>
+            <script type='text/javascript'>
+              //<![CDATA[
+                var z = document.createElement("script");
+                z.type = "text/javascript";
+                z.async = true;
+                z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(z, s);
+              //]]>
+            </script>
+          </div>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/articles.atom'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+        <h1>
+          Who loses out to X-UA-Compatible?
+        </h1>
+        <div class='meta'>
+          <ul class='tags'>
+            <li>Jan 22, 2008</li>
+            <li>
+              &middot;
+            </li>
+            <li>
+              <a href='/2008/01/22/who-loses-out-to-x-ua-compatible.html#disqus_thread'></a>
+            </li>
+            <li>&middot;</li>
+          </ul>
+        </div>
+        <div class='body'>
+          <p>If you work on the web you&#8217;ll probably have already seen or noted the existence of the <a href="http://alistapart.com/issues/251">latest issue of A List Apart</a>:</p>
+          <ul>
+          	<li><a href="http://alistapart.com/articles/beyonddoctype">Beyond <span class="caps">DOCTYPE</span>: Web Standards, Forward Compatibility, and IE8</a></li>
+          	<li><a href="http://alistapart.com/articles/fromswitchestotargets">From Switches to Targets: A Standardista&#8217;s Journey</a></li>
+          </ul>
+          <p>My twitter feed positively exploded with negative feedback on this issue but I&#8217;ve only just got round to reading (and re-reading) the various interesting articles and (some half through through) comments. I though I&#8217;d have a think through who this affects.</p>
+          <p>What we&#8217;re disucssing is either adding a meta element to your documents or alternatively sending the relevant <span class="caps">HTTP</span> header. The code for that looks like:</p>
+          <pre><code>&lt;meta http-equiv="X-UA-Compatible" content="IE=8" /&gt;</code></pre>
+          <h3>IE Users</h3>
+          <p>Users of Internet Explorer get a bum deal here I think. Their browser is going to get bigger &#8211; potentially a lot bigger. With all those rendering engines rolled into one it&#8217;s also likely to need lots of memory. How this affects the mobile version of IE is anyones guess. Memory and file size are even more important here.</p>
+          <h3>Other Browser Vendors</h3>
+          <p>I have a feeling they will all go <em>Meh</em> and move along as if nothing happened. Certainly my experience of upgrades to Firefox, Safari and Opera (including recent bleeding edge versions) doesn&#8217;t break any of my bits of the web or the bits I frequent.</p>
+          <h3>Web Standards Savvy Designers and Developers</h3>
+          <p>A really cool feature for us designers and developers has gone unmentioned I feel. We&#8217;ve been asking Microsoft for one application in which we can test all their browsers in. IE8 will be that browser. Think about it. By changing the contents of the meta element (or the header) we can trigger the rendering engine to use IE6, IE7 or IE8.</p>
+          <p>I&#8217;m a big fan of the whole progressive enhancement approach, using new browser features that not everyone supports (generated content, CSS3 selectors, etc.) in a way that they don&#8217;t affect older browsers. If I were to use a feature not yet supported by IE7 but expected in IE8 for instance in this way I would expect it work in IE8. If I include an IE7 <em>X-UA-Compatible</em> declaration this won&#8217;t happen. Which is why I probably won&#8217;t include one. The problem is if I don&#8217;t include it at all I still have the same problem. I&#8217;ll come back to the solution (and the problem with the solution) in a moment.</p>
+          <h3>Other Web Designers and Developers</h3>
+          <p>Not everyone is using Web Standards, and even less get progressive enhancement. Most of the web is broken and we <em>are not going to fix this</em>. Virtually no one thinks XHTML2 is a good idea because it starts with this fact and says <em>&#8220;Let&#8217;s start again, but get it right this time&#8221;</em>. The fact that all those websites (and more importantly for Microsoft the users of those websites) standardise on IE7 is fine by me. IE7 isn&#8217;t that bad remember.</p>
+          <p>So, all in all I don&#8217;t see a major problem for me, or other savvy web designers and developers. I have one issue; namely the strong language around the use of <em>edge</em>.</p>
+          <blockquote>
+          <p>This option, though strongly discouraged, will cause a site to target the latest IE browser versions as they release.</p>
+          </blockquote>
+          <p>What this is describing is how things work now. It&#8217;s also how I want to work &#8211; using progressive enhancement to make my websites better when people have browsers that support them. I&#8217;ll be adding the relevant <em>edge</em> headers to my sites by default as I get a moment to tinker.</p>
+          <p>In my view this should allow the web to move forward faster with newer features hitting IE sooner, leaving a ghetto populated by IE users who don&#8217;t upgrade quickly and designers and developers who don&#8217;t want to be professional about their craft (or tools that aim for the lowest common denominator). Yes, I&#8217;ll need to add a header to all of my sites in the future but in return I get the latest version of IE that lets me test all previous versions of IE.</p>
+        </div>
+      </div>
+      <div id='other-articles'>
+        <div class='older'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2008/01/19/a-few-interesting-upcoming-events.html' title=''>
+                  &laquo; A few interesting upcoming events
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/01/13/on-process-and-design.html' title=''>
+                  &laquo; On Process and Design
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/01/07/how-to-deploy-php-sites-with-the-pake-build-tool.html' title=''>
+                  &laquo; How to deploy PHP sites with the Pake build tool
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <div class='newer'>
+          <ul>
+            <li>
+              <h3>
+                <a href='/2008/01/27/questions-pointers-and-reality.html' title=''>
+                  Questions, Pointers and Reality &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/01/30/simple-deployment-with-svn-and-phing.html' title=''>
+                  Simple deployment with SVN and Phing &raquo;
+                </a>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <a href='/2008/02/04/continuous-integration-for-front-end-developers.html' title=''>
+                  Continuous Integration for Front End Developers &raquo;
+                </a>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='comments'>
+        <div id='disqus_thread'></div>
+        <script src='http://disqus.com/forums/morethanseven/embed.js' type='text/javascript'></script>
+        <noscript>
+          <a href='http://disqus.com/forums/morethanseven/?url=ref'>
+            View the discussion thread
+          </a>
+        </noscript>
+      </div>
+      <!-- / disqus adds too much visual crap -->
+      <style type='text/css'>
+        .dsq-dc-logo {
+          display: none !important; }
+      </style>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        (function() {
+          var links = document.getElementsByTagName('a');
+          var query = '?';
+          for(var i = 0; i < links.length; i++) {
+            if(links[i].href.indexOf('#disqus_thread') >= 0) {
+              query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+            }
+          }
+          document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/morethanseven/get_num_replies.js' + query + '"></' + 'script>');
+        })();
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        try {
+          var pageTracker = _gat._getTracker("UA-435455-1");
+          pageTracker._setDomainName(".morethanseven.net");
+          pageTracker._setAllowHash(false);
+          pageTracker._trackPageview();
+          pageTracker._trackPageLoadTime();
+        } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>
