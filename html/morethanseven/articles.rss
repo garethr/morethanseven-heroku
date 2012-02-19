@@ -2,13 +2,23 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://morethanseven.net/</id>
   <title>Morethanseven Articles</title>
-  <updated>2012-01-06T00:00:00Z</updated>
+  <updated>2012-02-19T00:00:00Z</updated>
   <link rel="alternate" href="http://morethanseven.net/"/>
   <link rel="self" href="http://morethanseven.net/articles.rss"/>
   <author>
     <name>Gareth Rushgrove</name>
     <uri>http://morethanseven.net</uri>
   </author>
+  <entry>
+    <id>tag:morethanseven.net,2012-02-19:/2012/02/19/Dashboards-at-govuk.html</id>
+    <title type="html">Dashboards At Gov.Uk</title>
+    <published>2012-02-19T00:00:00Z</published>
+    <updated>2012-02-19T11:00:43Z</updated>
+    <link rel="alternate" href="http://morethanseven.net/2012/02/19/Dashboards-at-govuk.html"/>
+    <content type="html">&lt;p&gt;This is a bit of a cheat blog post really. I&amp;#8217;ve been crazy busy all month with little time for anything except work (specifically shipping the first release of &lt;a href="https://www.gov.uk/"&gt;www.gov.uk&lt;/a&gt;). I have had a little time to blog over on the Cabinet Office blog though, about work we&amp;#8217;ve done with dashboards.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://digital.cabinetoffice.gov.uk/2012/02/08/radiating-information/"&gt;http://digital.cabinetoffice.gov.uk/2012/02/08/radiating-information/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If you&amp;#8217;re ever looking for good little hack projects dashboards are perfect, and often hugely useful once up and running. Convincing people of this before you have a few in the office might be hard &amp;#8211; so just build something simple in a lunch break and find a screen to put it on. We&amp;#8217;ve had great feedback from ours, both from people wandering through the office and from our colleagues who have a better idea of what&amp;#8217;s going on.&lt;/p&gt;</content>
+  </entry>
   <entry>
     <id>tag:morethanseven.net,2012-01-06:/2012/01/06/Talking-to-jenkins-from-campfire-with-hubot.html</id>
     <title type="html">Talking To Jenkins From Campfire With Hubot</title>
@@ -358,28 +368,5 @@ Transfer rate:          161.82 [Kbytes/sec] received&lt;/pre&gt;
 &lt;p&gt;If you&amp;#8217;re working on a larger project hopefully you&amp;#8217;ll have the time to investigate other approaches too. I&amp;#8217;m quite a fan of using production logs to replay requests for instance, and of using &lt;a href="http://funkload.nuxeo.org/"&gt;Funkload&lt;/a&gt; for running scenarios under load. I&amp;#8217;ll hopefully write more about those later. I&amp;#8217;ve heard good things about &lt;a href="http://tsung.erlang-projects.org/"&gt;Tsung&lt;/a&gt; as well, &lt;a href="http://www.hpl.hp.com/research/linux/httperf/"&gt;HTTPerf&lt;/a&gt; is excellent and &lt;a href="http://jakarta.apache.org/jmeter/"&gt;JMeter&lt;/a&gt; has many fans. I&amp;#8217;m using ab for examples because it&amp;#8217;s point and shoot and you probably already have it installed without knowing.&lt;/p&gt;
 
 &lt;p&gt;Hopefully that&amp;#8217;s a useful list of tools to get a baseline of where you&amp;#8217;re at with performance. The rest of the articles in this series will show approaches to improve performance, and come back to one or more of these tools to confirm we&amp;#8217;re heading in the right direction.&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <id>tag:morethanseven.net,2011-06-26:/2011/06/26/New-ganglia-web-interface-improvements.html</id>
-    <title type="html">New Ganglia Web Interface Improvements</title>
-    <published>2011-06-25T23:00:00Z</published>
-    <updated>2011-06-26T22:32:34Z</updated>
-    <link rel="alternate" href="http://morethanseven.net/2011/06/26/New-ganglia-web-interface-improvements.html"/>
-    <content type="html">&lt;p&gt;So I&amp;#8217;m a huge &lt;a href="http://ganglia.sourceforge.net/"&gt;Ganglia&lt;/a&gt; fan. It&amp;#8217;s my go-to tool for standard low level metrics and for more ad-hoc higher level stuff as well. So I&amp;#8217;m very happy to see the &lt;a href="http://ganglia.info/?p=393"&gt;newly released&lt;/a&gt; version of the Ganglia Web interface.&lt;/p&gt;
-&lt;p&gt;Here&amp;#8217;s the old look and feel:&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRiZ8gEM" alt="Old Ganglia UI"/&gt;&lt;/p&gt;
-&lt;p&gt;And here&amp;#8217;s the new version:&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRix6gEM" alt="New Ganglia UI"/&gt;&lt;/p&gt;
-&lt;p&gt;The first thing that stands out to me is the wide range of new options. We have a navigation bar with items like search, views, agregate graphs, events and mobile. And we have dynamic date ranges, and filtering and sorting options for metrics.&lt;/p&gt;
-&lt;ul&gt;
-	&lt;li&gt;Search is what you&amp;#8217;d expect. A search as you type facility for hosts and metrics, great if you have a large cluster and want to find something quickly.&lt;/li&gt;
-	&lt;li&gt;Views are interesting. Basically a way of putting together a specific set of metrics on one screen and linking to them, rather than always having to go via the node or grid overview.&lt;/li&gt;
-	&lt;li&gt;You could always create agregate graphs in Ganglia, but you had to delve into writing some &lt;span class="caps"&gt;PHP&lt;/span&gt; to get what you wanted. Not you can do certain types of graph on the fly, simply by specifying what you want.&lt;/li&gt;
-	&lt;li&gt;I&amp;#8217;m cheating slightly here and using the very latest code rather than the 2.0.0 release. But it&amp;#8217;s worth it for the Events feature. Events gives you the ability to record events like a deploy or a daily backup onto your graphs, immediately making some types of diagnosis easier. More about how I&amp;#8217;m using this when I finish automating it.&lt;/li&gt;
-	&lt;li&gt;Gnaglia always worked OK on a mobile device mainly because all you really wanted was the graphs. The new mobile UI however just makes navigating much easier. It&amp;#8217;s not yet doing device detection and automatically redirecting my iphone to that view which would be nice but it&amp;#8217;s definately a good addition.&lt;/li&gt;
-	&lt;li&gt;Combined with views, automatic rotation shows a series of graphs, one every 30 seconds. Particularly useful for big screen dashboards, in fact I&amp;#8217;ve built this exact feature before more than once before.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I&amp;#8217;ve concentrated here on the new visual features, but the new UI also contains &lt;span class="caps"&gt;CSV&lt;/span&gt; and &lt;span class="caps"&gt;JSON&lt;/span&gt; output for all metrics as well as a much easier &lt;span class="caps"&gt;JSON&lt;/span&gt; based approach to defining custom metrics. The amount of stuff in this release is huge. Massive thanks to the folks behind all the new features, in particular &lt;a href="http://vuksan.com/"&gt;Vladimir Vuksan&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Ganglia is such a staple that I&amp;#8217;m used to just using whatever is in the latest distro provided packages. When it comes to the web UI however I&amp;#8217;m going to make an exception from now on. Not only can you run the new UI in parallel with the old, deployment is simply copying a directory into place (It&amp;#8217;s easy to forget just how simple &lt;span class="caps"&gt;PHP&lt;/span&gt; deployment is sometimes). If you&amp;#8217;re already using Ganglia spend a few minutes installing the new UI. If you&amp;#8217;ve rejected Ganglia previously because it didn&amp;#8217;t have one feature or another then now is the time to look again.&lt;/p&gt;</content>
   </entry>
 </feed>
