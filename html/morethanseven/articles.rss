@@ -2,13 +2,28 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://morethanseven.net/</id>
   <title>Morethanseven Articles</title>
-  <updated>2012-02-19T00:00:00Z</updated>
+  <updated>2012-03-30T23:00:00Z</updated>
   <link rel="alternate" href="http://morethanseven.net/"/>
   <link rel="self" href="http://morethanseven.net/articles.rss"/>
   <author>
     <name>Gareth Rushgrove</name>
     <uri>http://morethanseven.net</uri>
   </author>
+  <entry>
+    <id>tag:morethanseven.net,2012-03-31:/2012/03/31/Recent-projects-and-talks.html</id>
+    <title type="html">Recent Projects And Talks</title>
+    <published>2012-03-30T23:00:00Z</published>
+    <updated>2012-03-31T12:10:33Z</updated>
+    <link rel="alternate" href="http://morethanseven.net/2012/03/31/Recent-projects-and-talks.html"/>
+    <content type="html">&lt;p&gt;I&amp;#8217;ve been pretty busy with all things &lt;a href="https://www.gov.uk"&gt;&lt;span class="caps"&gt;GOV&lt;/span&gt;.UK&lt;/a&gt; recently but I&amp;#8217;ve managed to get a few bits of unrelated code up and a few talks in. I&amp;#8217;m &lt;em&gt;still&lt;/em&gt; pretty busy so here&amp;#8217;s a list of some of them rather than a proper blog post.&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href="http://www.slideshare.net/garethr/mining-puppet"&gt;Puppet Data Mining&lt;/a&gt; talk from last weeks PuppetCamp in Edinburgh.&lt;/li&gt;
+	&lt;li&gt;&lt;a href="http://www.slideshare.net/garethr/web-operations"&gt;Introducting Web Operations&lt;/a&gt; talk I gave at work to give my mainly non-development colleagues an idea about what it&amp;#8217;s all about.&lt;/li&gt;
+	&lt;li&gt;&lt;a href="http://www.slideshare.net/garethr/learnings-from-govuk"&gt;Learning from building &lt;span class="caps"&gt;GOV&lt;/span&gt;.UK&lt;/a&gt; talk I gave a month back or so to Cambridge Geek Night. We did an excellent full project retrospective after the beta launch and this lists some of the things we learnt.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;After someone bugged me on Twitter I realised the small bit of code we&amp;#8217;ve been using for our Nagios dashboard wasn&amp;#8217;t out in the wild. So introducing &lt;a href="https://github.com/garethr/nash"&gt;Nash&lt;/a&gt;, a very simple high level check dashboard which screenscrapes nagiosand runs happily on Heroku.&lt;/p&gt;
+&lt;p&gt;Although I&amp;#8217;ve not been writing too much on here I&amp;#8217;ve been keeping &lt;a href="http://devopsweekly.com/"&gt;Devops Weekly&lt;/a&gt; going each week for over a year now. I&amp;#8217;ve just crossed 3000 subscribers which is pretty neat for a pet project.&lt;/p&gt;</content>
+  </entry>
   <entry>
     <id>tag:morethanseven.net,2012-02-19:/2012/02/19/Dashboards-at-govuk.html</id>
     <title type="html">Dashboards At Gov.Uk</title>
@@ -290,83 +305,5 @@ end
     <content type="html">&lt;p&gt;I did a quick lightning talk at the Refresh Cambridge meetup last night, a very quick introduction to &lt;a href="https://www.varnish-cache.org/"&gt;Varnish&lt;/a&gt;. Given 10 minutes all I really wanted to do was get people to go away and take a look at it. Lots of folks in the room hadn&amp;#8217;t come across it before so I think the talk was hopefully well pitched.&lt;/p&gt;
 &lt;p&gt;&lt;iframe src="http://www.slideshare.net/slideshow/embed_code/8531073?rel=0" width="510" height="426" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"&gt;&lt;/iframe&gt;&lt;/p&gt;
 &lt;p&gt;Several people asked about slighly dynamic pages and I only got chance to mention support for &lt;a href="https://www.varnish-cache.org/trac/wiki/ESIfeatures"&gt;&lt;span class="caps"&gt;ESI&lt;/span&gt;&lt;/a&gt; (Edge Side Includes) at the end. Conversation afterwards turned to various parts of the modern web stack and I had a pretty good time being opinionated. Hopefully more of the same next month.&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <id>tag:morethanseven.net,2011-06-30:/2011/06/30/Django-performance-1-measuring-performance.html</id>
-    <title type="html">Django Performance Patterns 1: Measuring Performance</title>
-    <published>2011-06-29T23:00:00Z</published>
-    <updated>2011-06-30T21:31:06Z</updated>
-    <link rel="alternate" href="http://morethanseven.net/2011/06/30/Django-performance-1-measuring-performance.html"/>
-    <content type="html">&lt;h2&gt;Preface&lt;/h2&gt;
-&lt;p&gt;As Django has matured it&amp;#8217;s being used for bigger and bigger projects. At the same time it&amp;#8217;s also being used by more and more people building relatively simple applications quickly. Everyone&amp;#8217;s application is different, but I&amp;#8217;d wager the vast majority of these have a range of common performance problems. Performance is often something only larger teams get to spend time really getting to grips with. This is sometimes because smaller projects can&amp;#8217;t afford the time, or more often probably that things are thought to be &lt;em&gt;fast enough&lt;/em&gt; anyway.&lt;/p&gt;
-&lt;p&gt;One advantage of using a framework is the sharing of common solutions to common problems that happens as a community forms. In what is hopefully going to be a bit of a series I&amp;#8217;m going to cover some simple things everyone can do to improve application performance. The patterns are generally applicable, but I&amp;#8217;m going to focus on Django examples.&lt;/p&gt;
-&lt;p&gt;I&amp;#8217;m going to be pretty opinionated about the stack I&amp;#8217;m using when necessary. I&amp;#8217;m not looking to compare different web servers or databases or python versions. And I&amp;#8217;d rather give concrete examples than generalise. If you&amp;#8217;re using a different stack that&amp;#8217;s fine, somethings will just work and others will need you to know how to configure the software you&amp;#8217;ve already chosen. I&amp;#8217;m also going to focus on a very small and simple to understand application. Most of these techniques scale up just fine, but I feel people don&amp;#8217;t often use them on smaller projects because they thing you can &lt;em&gt;only&lt;/em&gt; use them on larger ones. Or that you won&amp;#8217;t see much impact on a smaller project. Both of these don&amp;#8217;t ring true in my opinion and I&amp;#8217;ll hopefully show why.&lt;/p&gt;
-&lt;h2&gt;Measuring Performance&lt;/h2&gt;
-&lt;p&gt;In this first part of the series lets take a quick detour to frame everything else. Lets talk about ways we can measure performance so we can see if the changes we&amp;#8217;re making have the desired impact. If you&amp;#8217;re not measuring performance already then start here.&lt;/p&gt;
-&lt;p&gt;We&amp;#8217;ll start out looking at a few tools which are useful when taking a view by view approach to analysing performance. These generally ignore the impact of load on the system but because of this are generally easier to understand and read.&lt;/p&gt;
-&lt;h2&gt;Django Debug Toolbar&lt;/h2&gt;
-&lt;p&gt;Most Django developers will hopefully already be using the excellent &lt;a href=""&gt;Debug Toolbar&lt;/a&gt;. It has a number of features relevant to our current quest but the most interesting is the query count. Less queries is nearly always better. That&amp;#8217;s a whopping generalisation, but looking for unnecessary queries or duplicated queries or particularly slow running queries is a great way of making your application faster. The &lt;span class="caps"&gt;ORM&lt;/span&gt; makes it pretty easy to end up with a querysplosion if you&amp;#8217;re not paying attention.&lt;/p&gt;
-&lt;p&gt;It&amp;#8217;s very simple to install:&lt;/p&gt;
-&lt;pre&gt;pip install django-debug-toolbar&lt;/pre&gt;
-&lt;p&gt;The query section shows you the number of queries, the individual queries themselves and the time taken. It&amp;#8217;s designed to be run in debug mode, so the actual query times will likely be lower in production, but the query that&amp;#8217;s taking ages in development will probably still be slow when you go live.&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRiB-gEM" alt="Django debug toolbar"/&gt;&lt;/p&gt;
-&lt;h2&gt;YSlow&lt;/h2&gt;
-&lt;p&gt;&lt;a href="http://developer.yahoo.com/yslow/"&gt;YSlow&lt;/a&gt; is a browser extension for Firefox and Chrome that gives information and recommendations about a number of mainly &lt;span class="caps"&gt;HTTP&lt;/span&gt;, &lt;span class="caps"&gt;CSS&lt;/span&gt; or javascript issues individual pages might have. It will give you a score as well as suggestions for improvement:&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRiC-gEM" alt="YSlow showing a score of 96"/&gt;&lt;/p&gt;
-&lt;p&gt;Also useful is the break down of the number of &lt;span class="caps"&gt;HTTP&lt;/span&gt; requests, and the affect of a primed cache on page loading.&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjpgQIM" alt="YSlow showing http request breakdown"&gt;&lt;/p&gt;
-&lt;h2&gt;Profiling Middleware&lt;/h2&gt;
-&lt;p&gt;Sometimes you want to know the very low level calls that go into making a page render. For this you&amp;#8217;ll want to look at profiling tools. The Django wiki has a &lt;a href="https://code.djangoproject.com/wiki/ProfilingDjango"&gt;useful page on profiling&lt;/a&gt; which is good if dispiriting reading.&lt;/p&gt;
-&lt;p&gt;Django Snippets has several profiling middleware, one of which is packaged up in the excellent &lt;a href="http://pypi.python.org/pypi/django-snippetscream"&gt;Django Snippetscream&lt;/a&gt;. We can install that like so:&lt;/p&gt;
-&lt;pre&gt;pip install django-snippetscream&lt;/pre&gt;
-&lt;p&gt;Just include the middleware in your debug environment:&lt;/p&gt;
-&lt;pre&gt;MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + ('snippetscream.ProfileMiddleware',)&lt;/pre&gt;
-&lt;p&gt;You can then append ?prof to any of your URLs and instead of seeing the view you&amp;#8217;ll see something like the following:&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjRiQIM" alt="Profiling view"/&gt;&lt;/p&gt;
-&lt;p&gt;Look at where your code spends it&amp;#8217;s time and whether you have repeated calls to the same methods and functions. Sometimes getting down to this level of detail is the easiest way of finding the bottleneck in your application.&lt;/p&gt;
-&lt;h2&gt;Nginx Logging&lt;/h2&gt;
-&lt;p&gt;Here&amp;#8217;s the first time I&amp;#8217;m being opinionated about the stack, by choosing Nginx as my frontend server. I&amp;#8217;ll talk a little about why this is a good idea later, but for the moment lets concentrate on why this is useful for measuring performance.&lt;/p&gt;
-&lt;p&gt;Log files are wonderful things, and Nginx has quite a powerful syntax for &lt;a href="http://wiki.nginx.org/HttpLogModule"&gt;adding extra information to log files&lt;/a&gt;. Note the last line in the definition below.&lt;/p&gt;
-&lt;pre&gt;log_format timed_combined '$remote_addr - $remote_user [$time_local]  '
-      '"$request" $status $body_bytes_sent '
-      '"$http_referer" "$http_user_agent" '
-      '$request_time $upstream_response_time $gzip_ratio';&lt;/pre&gt;
-&lt;p&gt;We are adding the entire request time, the time taken by the upstream server (in my case gunicorn) to respond and also the gzip ratio. This is really handy if you&amp;#8217;re optimising an application already in production. By collecting this data here it&amp;#8217;s easy to then analyse the logs and pull out things like slow urls or assets not being gzipped effectively.&lt;/p&gt;
-&lt;h2&gt;Django Timelog&lt;/h2&gt;
-&lt;p&gt;Very similar to the above nginx logging, but implemented as a django 1.3 application (so it can be used in development as well) is one of my projects, &lt;a href="https://github.com/garethr/django-timelog"&gt;django-timelog&lt;/a&gt;. As well as logging the time taken for each request, django-timelog provides a management command to analyse the resulting log file. It produces output which can show in aggregate the average response time of either views or individual URLs.&lt;/p&gt;
-&lt;pre&gt;
-+--------------------------+--------+--------+-------+---------+---------+-------+-------+
-| view                     | method | status | count | minimum | maximum | mean  | stdev |
-+--------------------------+--------+--------+-------+---------+---------+-------+-------+
-| boxes.viewsBoxDetailView | GET    | 200    | 9430  | 0.14    | 0.28    | 0.21  | 0.070 |
-+--------------------------+--------+--------+-------+---------+---------+-------+-------+
-| boxes.viewsBoxListView   | GET    | 200    | 66010 | 0.17    | 0.28    | 0.232 | 0.045 |
-+--------------------------+--------+--------+-------+---------+---------+-------+-------+
-| django.views.staticserve | GET    | 200    | 61295 | 0.00    | 0.02    | 0.007 | 0.006 |
-+--------------------------+--------+--------+-------+---------+---------+-------+-------+
-&lt;/pre&gt;
-&lt;p&gt;It&amp;#8217;s packaged so installation should be straightforward.&lt;/p&gt;
-&lt;pre&gt;pip install django-timelog&lt;/pre&gt;
-&lt;p&gt;Again this can be used in a production environment, or it can be used locally while developing. You can also use load testing tools as described in a moment to generate traffic which is then logged.&lt;/p&gt;
-&lt;h2&gt;Load Testing&lt;/h2&gt;
-&lt;p&gt;I&amp;#8217;m mainly looking for a tool here which can easily generate &lt;span class="caps"&gt;HTTP&lt;/span&gt; traffic in volume, sending a decent number of concurrent requests against your application and returning some useful results. I mainly turn to ab (&lt;a href="http://httpd.apache.org/docs/2.0/programs/ab.html"&gt;Apache bench&lt;/a&gt;) because it&amp;#8217;s available everywhere and it&amp;#8217;s very simple to use.&lt;/p&gt;
-&lt;p&gt;For example lets hit a site with 100 requests, with requests being sent in batches of 5.&lt;/p&gt;
-&lt;pre&gt;ab -c 5 -n 100 http://www.vagrantbox.es/12/&lt;/pre&gt;
-&lt;p&gt;This will print something like the following. For our purposes we&amp;#8217;re mainly interested in the requests per second value and the mean request time.&lt;/p&gt;
-&lt;pre&gt;Concurrency Level:      5
-Time taken for tests:   1.981 seconds
-Complete requests:      100
-Failed requests:        0
-Write errors:           0
-Total transferred:      328300 bytes
-HTML transferred:       297400 bytes
-Requests per second:    50.47 [#/sec] (mean)
-Time per request:       99.064 [ms] (mean)
-Time per request:       19.813 [ms] (mean, across all concurrent requests)
-Transfer rate:          161.82 [Kbytes/sec] received&lt;/pre&gt;
-&lt;p&gt;Load testing is a pretty large topic. For instance even with the above simple example how do we know if 100 requests is enough? (it&amp;#8217;s not.) Or whether a concurrency of 5 is useful? Often what you&amp;#8217;re interested in is where your application starts to saturate or where it starts to error. But even without getting bogged down in the details a simple test like this can show changes have had a positive or negative effect. I&amp;#8217;ll show examples of this as we investigate optimisation techniques.&lt;/p&gt;
-&lt;p&gt;If you&amp;#8217;re working on a larger project hopefully you&amp;#8217;ll have the time to investigate other approaches too. I&amp;#8217;m quite a fan of using production logs to replay requests for instance, and of using &lt;a href="http://funkload.nuxeo.org/"&gt;Funkload&lt;/a&gt; for running scenarios under load. I&amp;#8217;ll hopefully write more about those later. I&amp;#8217;ve heard good things about &lt;a href="http://tsung.erlang-projects.org/"&gt;Tsung&lt;/a&gt; as well, &lt;a href="http://www.hpl.hp.com/research/linux/httperf/"&gt;HTTPerf&lt;/a&gt; is excellent and &lt;a href="http://jakarta.apache.org/jmeter/"&gt;JMeter&lt;/a&gt; has many fans. I&amp;#8217;m using ab for examples because it&amp;#8217;s point and shoot and you probably already have it installed without knowing.&lt;/p&gt;
-
-&lt;p&gt;Hopefully that&amp;#8217;s a useful list of tools to get a baseline of where you&amp;#8217;re at with performance. The rest of the articles in this series will show approaches to improve performance, and come back to one or more of these tools to confirm we&amp;#8217;re heading in the right direction.&lt;/p&gt;</content>
   </entry>
 </feed>
