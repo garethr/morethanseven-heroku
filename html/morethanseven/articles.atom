@@ -13,15 +13,13 @@
     <id>tag:morethanseven.net,2012-06-05:/2012/06/05/Static-sites-with-nginx-on-heroku.html</id>
     <title type="html">Static Sites With Nginx On Heroku</title>
     <published>2012-06-04T23:00:00Z</published>
-    <updated>2012-06-05T13:59:58Z</updated>
+    <updated>2012-06-05T14:05:23Z</updated>
     <link rel="alternate" href="http://morethanseven.net/2012/06/05/Static-sites-with-nginx-on-heroku.html"/>
     <content type="html">&lt;p&gt;I have a few static sites on Heroku but in one case in particular I already had quite an involved nginx configuration &amp;#8211; mainly 410s for some previous content and a series of redirects from older versions of the site. The common way of having static sites on Heroku appears to be to use a simple Rack middleware, but that would have meant reimplementing lots of boring redirect logic.&lt;/p&gt;
 &lt;p&gt;Heroku &lt;a href="https://devcenter.heroku.com/articles/buildpacks"&gt;buildpacks&lt;/a&gt; are great. The newer cedar stack is no longer tied to a particular language or framework, instead all of the discovery and knowledge about particular software is put into a buildpack. As well as the Heroku provided list it&amp;#8217;s possible to write you&amp;#8217;re own. Or in this case use one someone has &lt;a href="https://github.com/essh/heroku-buildpack-nginx"&gt;created earlier&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I&amp;#8217;ve just moved &lt;a href="http://www.vagrantbox.es/"&gt;Vagrantbox.es&lt;/a&gt; over to Heroku due to the closure of a previous service. In doing that, instead of the simple database backed app, I&amp;#8217;ve simply thrown all the content onto &lt;a href="https://github.com/garethr/vagrantboxes-heroku"&gt;GitHub&lt;/a&gt;. This means anyone can fork the content and send pull requests. Hopefully this should mean I pay a bit more attention to suggestions and new boxes.&lt;/p&gt;
 &lt;p&gt;The repository is a nice simple example of using the mentioned Heroku Nginx buildpack too. You just run the following command to create a new Heroku application.&lt;/p&gt;
-&lt;pre&gt;
-heroku create --stack cedar --buildpack http://github.com/essh/heroku-buildpack-nginx.git
-&lt;/pre&gt;
+&lt;pre&gt;heroku create --stack cedar --buildpack http://github.com/essh/heroku-buildpack-nginx.git&lt;/pre&gt;
 &lt;p&gt;And then in typical Heroku fashion use a git remote to deploy changes and updates. The repository is split into a &lt;em&gt;www&lt;/em&gt; folder with the site content and a &lt;em&gt;conf&lt;/em&gt; folder with the nginx configuration. The only clever parts involve the use of an &lt;span class="caps"&gt;ERB&lt;/span&gt; template for the nginx configuration file so we can pickup the correct port. We also use 1 worker process and don&amp;#8217;t automatically daemonize the process &amp;#8211; Heroku deals with this itself.&lt;/p&gt;</content>
   </entry>
   <entry>
