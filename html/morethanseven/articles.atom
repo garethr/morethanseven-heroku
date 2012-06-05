@@ -2,13 +2,28 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://morethanseven.net/</id>
   <title>Morethanseven Articles</title>
-  <updated>2012-04-05T23:00:00Z</updated>
+  <updated>2012-06-04T23:00:00Z</updated>
   <link rel="alternate" href="http://morethanseven.net/"/>
   <link rel="self" href="http://morethanseven.net/articles.atom"/>
   <author>
     <name>Gareth Rushgrove</name>
     <uri>http://morethanseven.net</uri>
   </author>
+  <entry>
+    <id>tag:morethanseven.net,2012-06-05:/2012/06/05/Static-sites-with-nginx-on-heroku.html</id>
+    <title type="html">Static Sites With Nginx On Heroku</title>
+    <published>2012-06-04T23:00:00Z</published>
+    <updated>2012-06-05T13:59:58Z</updated>
+    <link rel="alternate" href="http://morethanseven.net/2012/06/05/Static-sites-with-nginx-on-heroku.html"/>
+    <content type="html">&lt;p&gt;I have a few static sites on Heroku but in one case in particular I already had quite an involved nginx configuration &amp;#8211; mainly 410s for some previous content and a series of redirects from older versions of the site. The common way of having static sites on Heroku appears to be to use a simple Rack middleware, but that would have meant reimplementing lots of boring redirect logic.&lt;/p&gt;
+&lt;p&gt;Heroku &lt;a href="https://devcenter.heroku.com/articles/buildpacks"&gt;buildpacks&lt;/a&gt; are great. The newer cedar stack is no longer tied to a particular language or framework, instead all of the discovery and knowledge about particular software is put into a buildpack. As well as the Heroku provided list it&amp;#8217;s possible to write you&amp;#8217;re own. Or in this case use one someone has &lt;a href="https://github.com/essh/heroku-buildpack-nginx"&gt;created earlier&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;ve just moved &lt;a href="http://www.vagrantbox.es/"&gt;Vagrantbox.es&lt;/a&gt; over to Heroku due to the closure of a previous service. In doing that, instead of the simple database backed app, I&amp;#8217;ve simply thrown all the content onto &lt;a href="https://github.com/garethr/vagrantboxes-heroku"&gt;GitHub&lt;/a&gt;. This means anyone can fork the content and send pull requests. Hopefully this should mean I pay a bit more attention to suggestions and new boxes.&lt;/p&gt;
+&lt;p&gt;The repository is a nice simple example of using the mentioned Heroku Nginx buildpack too. You just run the following command to create a new Heroku application.&lt;/p&gt;
+&lt;pre&gt;
+heroku create --stack cedar --buildpack http://github.com/essh/heroku-buildpack-nginx.git
+&lt;/pre&gt;
+&lt;p&gt;And then in typical Heroku fashion use a git remote to deploy changes and updates. The repository is split into a &lt;em&gt;www&lt;/em&gt; folder with the site content and a &lt;em&gt;conf&lt;/em&gt; folder with the nginx configuration. The only clever parts involve the use of an &lt;span class="caps"&gt;ERB&lt;/span&gt; template for the nginx configuration file so we can pickup the correct port. We also use 1 worker process and don&amp;#8217;t automatically daemonize the process &amp;#8211; Heroku deals with this itself.&lt;/p&gt;</content>
+  </entry>
   <entry>
     <id>tag:morethanseven.net,2012-04-06:/2012/04/06/Self-contained-jruby-web-applications.html</id>
     <title type="html">Self Contained Jruby Web Applications</title>
@@ -372,26 +387,5 @@ end
 &lt;p&gt;As it turns out this failed the first time I ran it because I had an rvm installed Ruby on my path. I reset this to the system version and everything compiled fine.&lt;/p&gt;
 &lt;pre&gt;rvm use system&lt;/pre&gt;
 &lt;p&gt;Note also that it&amp;#8217;s really quite simple to use a different revision or different flags when compiling. Just download that file, modify it, serve it locally (say with a python one line web server) and point brew install at it. Next step, running off head for all the latest and greatest Vim features.&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <id>tag:morethanseven.net,2011-07-24:/2011/07/24/Jenkins-build-pipeline-example.html</id>
-    <title type="html">Jenkins Build Pipeline Example</title>
-    <published>2011-07-23T23:00:00Z</published>
-    <updated>2011-07-24T18:22:39Z</updated>
-    <link rel="alternate" href="http://morethanseven.net/2011/07/24/Jenkins-build-pipeline-example.html"/>
-    <content type="html">&lt;p&gt;The idea of a build pipeline for web application deployment appears to have picked up lots of interest from the excellent &lt;a href="http://continuousdelivery.com/"&gt;Continuous Delivery&lt;/a&gt; book. Inspired by that, some nice folks have build an excellent plugin for Jenkins unsurprisingly called the &lt;a href="https://wiki.jenkins-ci.org/display/JENKINS/Build+Pipeline+Plugin"&gt;Build Pipeline Plugin&lt;/a&gt;. Here&amp;#8217;s a quick example of how I&amp;#8217;m using it for one of my projects*.&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRihmQIM" alt="Build pipeline example in Jenkins"/&gt;&lt;/p&gt;
-&lt;p&gt;The pipeline is really just a visualisation of up and downstream builds in Jenkins given a starting point, plus the ability to setup manual steps rather than just the default build after ones. That means the steps are completely up to you and your project. In this case I&amp;#8217;m using:&lt;/p&gt;
-&lt;ol&gt;
-	&lt;li&gt;Build &amp;#8211; downloads the latest code and any dependencies. You could also create a system package here if you like. If successful triggers&amp;#8230;&lt;/li&gt;
-	&lt;li&gt;Staging deploy &amp;#8211; In this case I&amp;#8217;m using capistrano, but it could easily have been rsync, fabric or triggering a chef or puppet run. If successful triggers&amp;#8230;&lt;/li&gt;
-	&lt;li&gt;Staging test &amp;#8211; This is a simple automated test suite that checks that the site on staging is correct. The tests are bundled with the code, so are pulled down as part of the build step. If the tests pass&amp;#8230;&lt;/li&gt;
-	&lt;li&gt;Staging approval &amp;#8211; This is one of the clever parts of the plugin. This jenkins job actually does nothing except log it&amp;#8217;s successful activation. It&amp;#8217;s only run when I press the Trigger button on the pipeline view. This acts as a nice manual gate for a once over check on staging.&lt;/li&gt;
-	&lt;li&gt;Production deploy &amp;#8211; using the same artifact as deployed to staging this job triggers the deploy to the production site again via capistrano&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;I&amp;#8217;m triggering builds on each commit too via a webhook. But I can also kick off a build by clicking the button the pipeline view if I need to.&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRi5kQIM" alt="Pipeline example showing build in progress"/&gt;&lt;/p&gt;
-&lt;p&gt;Note that I&amp;#8217;m only allowing the last build to be deployed given only that one can be checked on staging. Again this is configuration specific to my usage, the plugins lets you operate a number of different ways. There are a number of tweaks I want to make to this, mainly around experimenting with parameterized builds to pass useful information downstream and even allow parrallel execution. For the moment I have the &lt;em&gt;Block build when upstream project is building&lt;/em&gt; flag checked on the deploy.&lt;/p&gt;
-&amp;nbsp;* Yes, this is a one page site. With a 5 step build process in Jenkins including a small suite of functional tests and a staging environment. This is what we call overengineering.</content>
   </entry>
 </feed>

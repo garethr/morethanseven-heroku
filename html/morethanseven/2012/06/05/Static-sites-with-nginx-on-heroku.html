@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
   <head>
-    <title>Dashboards At Gov.Uk</title>
+    <title>Static Sites With Nginx On Heroku</title>
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
-    <meta content='govuk' name='keywords' />
+    <meta content='heroku, nginx' name='keywords' />
     <meta content='etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8' name='google-site-verification' />
     <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
     <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
@@ -47,29 +47,37 @@
       <div class='clear'></div>
       <div class='article'>
         <h1>
-          Dashboards At Gov.Uk
+          Static Sites With Nginx On Heroku
         </h1>
         <div class='meta'>
           <ul class='tags'>
-            <li>Feb 19, 2012</li>
+            <li>Jun 05, 2012</li>
             <li>
               &middot;
             </li>
             <li>
-              <a href='/2012/02/19/Dashboards-at-govuk.html#disqus_thread'></a>
+              <a href='/2012/06/05/Static-sites-with-nginx-on-heroku.html#disqus_thread'></a>
             </li>
             <li>&middot;</li>
             <li>
-              <a class='tag' href='/tags/govuk/'>
-                govuk
+              <a class='tag' href='/tags/heroku/'>
+                heroku
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/nginx/'>
+                nginx
               </a>
             </li>
           </ul>
         </div>
         <div class='body'>
-          <p>This is a bit of a cheat blog post really. I&#8217;ve been crazy busy all month with little time for anything except work (specifically shipping the first release of <a href="https://www.gov.uk/">www.gov.uk</a>). I have had a little time to blog over on the Cabinet Office blog though, about work we&#8217;ve done with dashboards.</p>
-          <p><a href="http://digital.cabinetoffice.gov.uk/2012/02/08/radiating-information/">http://digital.cabinetoffice.gov.uk/2012/02/08/radiating-information/</a></p>
-          <p>If you&#8217;re ever looking for good little hack projects dashboards are perfect, and often hugely useful once up and running. Convincing people of this before you have a few in the office might be hard &#8211; so just build something simple in a lunch break and find a screen to put it on. We&#8217;ve had great feedback from ours, both from people wandering through the office and from our colleagues who have a better idea of what&#8217;s going on.</p>
+          <p>I have a few static sites on Heroku but in one case in particular I already had quite an involved nginx configuration &#8211; mainly 410s for some previous content and a series of redirects from older versions of the site. The common way of having static sites on Heroku appears to be to use a simple Rack middleware, but that would have meant reimplementing lots of boring redirect logic.</p>
+          <p>Heroku <a href="https://devcenter.heroku.com/articles/buildpacks">buildpacks</a> are great. The newer cedar stack is no longer tied to a particular language or framework, instead all of the discovery and knowledge about particular software is put into a buildpack. As well as the Heroku provided list it&#8217;s possible to write you&#8217;re own. Or in this case use one someone has <a href="https://github.com/essh/heroku-buildpack-nginx">created earlier</a>.</p>
+          <p>I&#8217;ve just moved <a href="http://www.vagrantbox.es/">Vagrantbox.es</a> over to Heroku due to the closure of a previous service. In doing that, instead of the simple database backed app, I&#8217;ve simply thrown all the content onto <a href="https://github.com/garethr/vagrantboxes-heroku">GitHub</a>. This means anyone can fork the content and send pull requests. Hopefully this should mean I pay a bit more attention to suggestions and new boxes.</p>
+          <p>The repository is a nice simple example of using the mentioned Heroku Nginx buildpack too. You just run the following command to create a new Heroku application.</p>
+          <pre>&#x000A;heroku create --stack cedar --buildpack http://github.com/essh/heroku-buildpack-nginx.git</pre>
+          <p>And then in typical Heroku fashion use a git remote to deploy changes and updates. The repository is split into a <em>www</em> folder with the site content and a <em>conf</em> folder with the nginx configuration. The only clever parts involve the use of an <span class="caps">ERB</span> template for the nginx configuration file so we can pickup the correct port. We also use 1 worker process and don&#8217;t automatically daemonize the process &#8211; Heroku deals with this itself.</p>
         </div>
       </div>
       <div id='other-articles'>
@@ -77,22 +85,22 @@
           <ul>
             <li>
               <h3>
-                <a href='/2012/01/06/Talking-to-jenkins-from-campfire-with-hubot.html' title=''>
-                  &laquo; Talking To Jenkins From Campfire With Hubot
+                <a href='/2012/04/06/Self-contained-jruby-web-applications.html' title=''>
+                  &laquo; Self Contained Jruby Web Applications
                 </a>
               </h3>
             </li>
             <li>
               <h3>
-                <a href='/2011/12/31/Ec2-tasks-for-fabric.html' title=''>
-                  &laquo; EC2 Tasks For Fabric
+                <a href='/2012/03/31/Recent-projects-and-talks.html' title=''>
+                  &laquo; Recent Projects And Talks
                 </a>
               </h3>
             </li>
             <li>
               <h3>
-                <a href='/2011/12/26/First-experience-building-something-with-clojure.html' title=''>
-                  &laquo; First Experience Building Something With Clojure
+                <a href='/2012/02/19/Dashboards-at-govuk.html' title=''>
+                  &laquo; Dashboards At Gov.Uk
                 </a>
               </h3>
             </li>
@@ -100,27 +108,6 @@
         </div>
         <div class='newer'>
           <ul>
-            <li>
-              <h3>
-                <a href='/2012/03/31/Recent-projects-and-talks.html' title=''>
-                  Recent Projects And Talks &raquo;
-                </a>
-              </h3>
-            </li>
-            <li>
-              <h3>
-                <a href='/2012/04/06/Self-contained-jruby-web-applications.html' title=''>
-                  Self Contained Jruby Web Applications &raquo;
-                </a>
-              </h3>
-            </li>
-            <li>
-              <h3>
-                <a href='/2012/06/05/Static-sites-with-nginx-on-heroku.html' title=''>
-                  Static Sites With Nginx On Heroku &raquo;
-                </a>
-              </h3>
-            </li>
           </ul>
         </div>
       </div>
