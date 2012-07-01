@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
   <head>
-    <title>Recent Projects And Talks</title>
+    <title>The Vagrantbox.es Story</title>
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
-    <meta content='presentations' name='keywords' />
+    <meta content='vagrant, github, heroku' name='keywords' />
     <meta content='etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8' name='google-site-verification' />
     <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
     <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
@@ -47,34 +47,41 @@
       <div class='clear'></div>
       <div class='article'>
         <h1>
-          Recent Projects And Talks
+          The Vagrantbox.es Story
         </h1>
         <div class='meta'>
           <ul class='tags'>
-            <li>Mar 31, 2012</li>
+            <li>Jul 01, 2012</li>
             <li>
               &middot;
             </li>
             <li>
-              <a href='/2012/03/31/Recent-projects-and-talks.html#disqus_thread'></a>
+              <a href='/2012/07/01/The-vagrantbox.es-story.html#disqus_thread'></a>
             </li>
             <li>&middot;</li>
             <li>
-              <a class='tag' href='/tags/presentations/'>
-                presentations
+              <a class='tag' href='/tags/github/'>
+                github
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/heroku/'>
+                heroku
+              </a>
+            </li>
+            <li>
+              <a class='tag' href='/tags/vagrant/'>
+                vagrant
               </a>
             </li>
           </ul>
         </div>
         <div class='body'>
-          <p>I&#8217;ve been pretty busy with all things <a href="https://www.gov.uk"><span class="caps">GOV</span>.UK</a> recently but I&#8217;ve managed to get a few bits of unrelated code up and a few talks in. I&#8217;m <em>still</em> pretty busy so here&#8217;s a list of some of them rather than a proper blog post.</p>
-          <ul>
-          	<li><a href="http://www.slideshare.net/garethr/mining-puppet">Puppet Data Mining</a> talk from last weeks PuppetCamp in Edinburgh.</li>
-          	<li><a href="http://www.slideshare.net/garethr/web-operations">Introducting Web Operations</a> talk I gave at work to give my mainly non-development colleagues an idea about what it&#8217;s all about.</li>
-          	<li><a href="http://www.slideshare.net/garethr/learnings-from-govuk">Learning from building <span class="caps">GOV</span>.UK</a> talk I gave a month back or so to Cambridge Geek Night. We did an excellent full project retrospective after the beta launch and this lists some of the things we learnt.</li>
-          </ul>
-          <p>After someone bugged me on Twitter I realised the small bit of code we&#8217;ve been using for our Nagios dashboard wasn&#8217;t out in the wild. So introducing <a href="https://github.com/garethr/nash">Nash</a>, a very simple high level check dashboard which screenscrapes nagiosand runs happily on Heroku.</p>
-          <p>Although I&#8217;ve not been writing too much on here I&#8217;ve been keeping <a href="http://devopsweekly.com/">Devops Weekly</a> going each week for over a year now. I&#8217;ve just crossed 3000 subscribers which is pretty neat for a pet project.</p>
+          <p>A few weeks ago now <a href="http://www.vagrantbox.es/">Vagrantbox.es</a> (a website I maintain for third party hosted <a href="http://vagrantup.com/">Vagrant</a> base boxes) dissapeared from the internet for a few days. This was completely my fault, the (lovely) hosting people <a href="https://www.ep.io/">ep.io</a> had unfortunately closed down the service they had in beta and I&#8217;d been so busy that I hadn&#8217;t had chance to move it elsewhere.</p>
+          <p>The original version of the site (I had the code and good backups of the data) was a pretty simple Django application, but I&#8217;d used it to experiment (read over-engineer) with various bits of tech including Varnish, Solr, some <span class="caps">ORM</span> caching and lots more. This had been great, but it made it less portable. I had everything described in Puppet, but with virtually no spare time I decided to go a different route.</p>
+          <p>I threw a flat version of the site up on <a href="https://github.com/garethr/vagrantboxes-heroku">GitHub</a>, served it using Nginx on <a href="http://www.heroku.com/">Heroku</a> and added a quick <em>Fork me on GitHub</em> badge to the top. Suggest a box moved from being a web form to a pull request. It&#8217;s fair to say I did this pretty quickly and made a good few typos on the way. But within a couple of weeks I&#8217;ve had 8 pull requests either fixing my bugs, removing dead boxes and adding new ones.</p>
+          <p>What I&#8217;m going to take from this is, if you&#8217;re building a community project that&#8217;s aimed at developers, then throw the content on GitHub. In my case I have the entire site on there too but I think that&#8217;s secondary. Pull requests are much better than any content management system or workflow you&#8217;re likely to build, and even more importantly the time to implement something drops hugely.</p>
+          <p>With all the spare time I don&#8217;t have I&#8217;ll be thinking about a content management model using GitHub for content, pull requests for workflow and post commit hooks for loading that content into a site or service somewhere.</p>
         </div>
       </div>
       <div id='other-articles'>
@@ -82,22 +89,22 @@
           <ul>
             <li>
               <h3>
-                <a href='/2012/02/19/Dashboards-at-govuk.html' title=''>
-                  &laquo; Dashboards At Gov.Uk
+                <a href='/2012/06/05/Static-sites-with-nginx-on-heroku.html' title=''>
+                  &laquo; Static Sites With Nginx On Heroku
                 </a>
               </h3>
             </li>
             <li>
               <h3>
-                <a href='/2012/01/06/Talking-to-jenkins-from-campfire-with-hubot.html' title=''>
-                  &laquo; Talking To Jenkins From Campfire With Hubot
+                <a href='/2012/04/06/Self-contained-jruby-web-applications.html' title=''>
+                  &laquo; Self Contained Jruby Web Applications
                 </a>
               </h3>
             </li>
             <li>
               <h3>
-                <a href='/2011/12/31/Ec2-tasks-for-fabric.html' title=''>
-                  &laquo; EC2 Tasks For Fabric
+                <a href='/2012/03/31/Recent-projects-and-talks.html' title=''>
+                  &laquo; Recent Projects And Talks
                 </a>
               </h3>
             </li>
@@ -105,27 +112,6 @@
         </div>
         <div class='newer'>
           <ul>
-            <li>
-              <h3>
-                <a href='/2012/04/06/Self-contained-jruby-web-applications.html' title=''>
-                  Self Contained Jruby Web Applications &raquo;
-                </a>
-              </h3>
-            </li>
-            <li>
-              <h3>
-                <a href='/2012/06/05/Static-sites-with-nginx-on-heroku.html' title=''>
-                  Static Sites With Nginx On Heroku &raquo;
-                </a>
-              </h3>
-            </li>
-            <li>
-              <h3>
-                <a href='/2012/07/01/The-vagrantbox.es-story.html' title=''>
-                  The Vagrantbox.es Story &raquo;
-                </a>
-              </h3>
-            </li>
           </ul>
         </div>
       </div>

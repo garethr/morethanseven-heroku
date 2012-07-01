@@ -2,13 +2,25 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://morethanseven.net/</id>
   <title>Morethanseven Articles</title>
-  <updated>2012-06-04T23:00:00Z</updated>
+  <updated>2012-06-30T23:00:00Z</updated>
   <link rel="alternate" href="http://morethanseven.net/"/>
   <link rel="self" href="http://morethanseven.net/articles.atom"/>
   <author>
     <name>Gareth Rushgrove</name>
     <uri>http://morethanseven.net</uri>
   </author>
+  <entry>
+    <id>tag:morethanseven.net,2012-07-01:/2012/07/01/The-vagrantbox.es-story.html</id>
+    <title type="html">The Vagrantbox.es Story</title>
+    <published>2012-06-30T23:00:00Z</published>
+    <updated>2012-07-01T13:05:54Z</updated>
+    <link rel="alternate" href="http://morethanseven.net/2012/07/01/The-vagrantbox.es-story.html"/>
+    <content type="html">&lt;p&gt;A few weeks ago now &lt;a href="http://www.vagrantbox.es/"&gt;Vagrantbox.es&lt;/a&gt; (a website I maintain for third party hosted &lt;a href="http://vagrantup.com/"&gt;Vagrant&lt;/a&gt; base boxes) dissapeared from the internet for a few days. This was completely my fault, the (lovely) hosting people &lt;a href="https://www.ep.io/"&gt;ep.io&lt;/a&gt; had unfortunately closed down the service they had in beta and I&amp;#8217;d been so busy that I hadn&amp;#8217;t had chance to move it elsewhere.&lt;/p&gt;
+&lt;p&gt;The original version of the site (I had the code and good backups of the data) was a pretty simple Django application, but I&amp;#8217;d used it to experiment (read over-engineer) with various bits of tech including Varnish, Solr, some &lt;span class="caps"&gt;ORM&lt;/span&gt; caching and lots more. This had been great, but it made it less portable. I had everything described in Puppet, but with virtually no spare time I decided to go a different route.&lt;/p&gt;
+&lt;p&gt;I threw a flat version of the site up on &lt;a href="https://github.com/garethr/vagrantboxes-heroku"&gt;GitHub&lt;/a&gt;, served it using Nginx on &lt;a href="http://www.heroku.com/"&gt;Heroku&lt;/a&gt; and added a quick &lt;em&gt;Fork me on GitHub&lt;/em&gt; badge to the top. Suggest a box moved from being a web form to a pull request. It&amp;#8217;s fair to say I did this pretty quickly and made a good few typos on the way. But within a couple of weeks I&amp;#8217;ve had 8 pull requests either fixing my bugs, removing dead boxes and adding new ones.&lt;/p&gt;
+&lt;p&gt;What I&amp;#8217;m going to take from this is, if you&amp;#8217;re building a community project that&amp;#8217;s aimed at developers, then throw the content on GitHub. In my case I have the entire site on there too but I think that&amp;#8217;s secondary. Pull requests are much better than any content management system or workflow you&amp;#8217;re likely to build, and even more importantly the time to implement something drops hugely.&lt;/p&gt;
+&lt;p&gt;With all the spare time I don&amp;#8217;t have I&amp;#8217;ll be thinking about a content management model using GitHub for content, pull requests for workflow and post commit hooks for loading that content into a site or service somewhere.&lt;/p&gt;</content>
+  </entry>
   <entry>
     <id>tag:morethanseven.net,2012-06-05:/2012/06/05/Static-sites-with-nginx-on-heroku.html</id>
     <title type="html">Static Sites With Nginx On Heroku</title>
@@ -372,18 +384,5 @@ end
     <content type="html">&lt;p&gt;I stepped in at the last minute to do a talk at the last London Ruby User Group. From the feedback afterwards folks seemed to enyoy it and I certainly had fun. Thanks to everyone who came along.&lt;/p&gt;
 &lt;p&gt;&lt;object id="__sse8828889" width="595" height="497"&gt; &lt;param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=configmanagamentfordevelopmentenvironmentsii-110811103611-phpapp02&amp;rel=0&amp;stripped_title=config-managament-for-development-environments-ii&amp;userName=garethr" /&gt; &lt;param name="allowFullScreen" value="true"/&gt; &lt;param name="allowScriptAccess" value="always"/&gt; &lt;embed name="__sse8828889" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=configmanagamentfordevelopmentenvironmentsii-110811103611-phpapp02&amp;rel=0&amp;stripped_title=config-managament-for-development-environments-ii&amp;userName=garethr" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="595" height="497"&gt;&lt;/embed&gt; &lt;/object&gt;&lt;/p&gt;
 &lt;p&gt;As well as the slides the nice Skills Matter folks have already uploaded the &lt;a href="http://skillsmatter.com/podcast/home/chef-vagrant"&gt;videos from the night&lt;/a&gt;.&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <id>tag:morethanseven.net,2011-07-31:/2011/07/31/Vim-with-ruby-support-using-homebrew.html</id>
-    <title type="html">Vim With Ruby Support Using Homebrew</title>
-    <published>2011-07-30T23:00:00Z</published>
-    <updated>2011-07-31T18:24:11Z</updated>
-    <link rel="alternate" href="http://morethanseven.net/2011/07/31/Vim-with-ruby-support-using-homebrew.html"/>
-    <content type="html">&lt;p&gt;I&amp;#8217;ve spend a bit of time this weekend cleaning, tidying and upgrading software on my mac. While doing that I got round to compiling my own Vim. I&amp;#8217;d been meaning to do this for a while, I prefer using Vim in a terminal to using MacVim, and I like having access to things like &lt;a href="http://www.vim.org/scripts/script.php?script_id=3025"&gt;Command-T&lt;/a&gt; which requires Ruby support which the inbuild version lacks.&lt;/p&gt;
-&lt;p&gt;Vim isn&amp;#8217;t in Homebrew, because Homebrew&amp;#8217;s policy is to not provide duplicates of already installed software. Enter &lt;a href="https://github.com/adamv/homebrew-alt"&gt;Homebrew Alt&lt;/a&gt; which provides formulas for anything not allowed by the homebrew policy. As luck would have it a &lt;a href="https://github.com/adamv/homebrew-alt/blob/master/duplicates/vim.rb"&gt;Vim Formula&lt;/a&gt; already exists. And installing from it couldn&amp;#8217;t be easier.&lt;/p&gt;
-&lt;pre&gt;brew install https://raw.github.com/adamv/homebrew-alt/master/duplicates/vim.rb&lt;/pre&gt;
-&lt;p&gt;As it turns out this failed the first time I ran it because I had an rvm installed Ruby on my path. I reset this to the system version and everything compiled fine.&lt;/p&gt;
-&lt;pre&gt;rvm use system&lt;/pre&gt;
-&lt;p&gt;Note also that it&amp;#8217;s really quite simple to use a different revision or different flags when compiling. Just download that file, modify it, serve it locally (say with a python one line web server) and point brew install at it. Next step, running off head for all the latest and greatest Vim features.&lt;/p&gt;</content>
   </entry>
 </feed>
