@@ -13,12 +13,12 @@
     <id>tag:morethanseven.net,2012-08-11:/2012/08/11/Riemann-puppet-module.html</id>
     <title type="html">Riemann Puppet Module</title>
     <published>2012-08-10T23:00:00Z</published>
-    <updated>2012-08-11T15:35:03Z</updated>
+    <updated>2012-08-11T15:38:15Z</updated>
     <link rel="alternate" href="http://morethanseven.net/2012/08/11/Riemann-puppet-module.html"/>
     <content type="html">&lt;p&gt;Thanks to an &lt;a href="https://twitter.com/bitprophet/status/233626675307479040"&gt;errant tweet&lt;/a&gt; I started playing with &lt;a href="http://aphyr.github.com/riemann/"&gt;Riemann&lt;/a&gt; again. It ticks lots of boxes for me, from the clojure to configuration as code and the overloadable dashboard application. What started as using Puppet and Vagrant to investigate Riemann turned into a full blown tool and module writing exercise, resulting in two related projects on GitHub.&lt;/p&gt;
 &lt;ul&gt;
-	&lt;li&gt;https://github.com/garethr/garethr-riemann/ is a Puppet module for installing and configuring Riemann. It allows for easily specifying your own server configuration and dashboard views.&lt;/li&gt;
-	&lt;li&gt;https://github.com/garethr/riemann-vagrant is a Vagrantfile and other code which uses above puppet module to setup a local testing environment.&lt;/li&gt;
+	&lt;li&gt;&lt;a href="https://github.com/garethr/garethr-riemann/"&gt;garethr-riemann&lt;/a&gt; is a Puppet module for installing and configuring Riemann. It allows for easily specifying your own server configuration and dashboard views.&lt;/li&gt;
+	&lt;li&gt;&lt;a href="https://github.com/garethr/riemann-vagrant"&gt;riemann-vagrant&lt;/a&gt; is a Vagrantfile and other code which uses above puppet module to setup a local testing environment.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I like this combination, a separate Puppet module along with a vagrant powered test bed. I&amp;#8217;ve written a reasonable rspec based test suite to check the module but it&amp;#8217;s always easier to be able to run &lt;em&gt;vagrant provision&lt;/em&gt; as well to check everything is working. This also turned out to be the perfect opportunity to use &lt;a href="https://github.com/rodjek/librarian-puppet"&gt;Librarian-Puppet&lt;/a&gt; to manage the dependencies and eventually to ship the module to the &lt;a href="https://forge.puppetlabs.com/garethr/riemann"&gt;Puppet Forge&lt;/a&gt;.&lt;/p&gt;</content>
   </entry>
