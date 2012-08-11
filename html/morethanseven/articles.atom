@@ -2,13 +2,26 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://morethanseven.net/</id>
   <title>Morethanseven Articles</title>
-  <updated>2012-06-30T23:00:00Z</updated>
+  <updated>2012-08-10T23:00:00Z</updated>
   <link rel="alternate" href="http://morethanseven.net/"/>
   <link rel="self" href="http://morethanseven.net/articles.atom"/>
   <author>
     <name>Gareth Rushgrove</name>
     <uri>http://morethanseven.net</uri>
   </author>
+  <entry>
+    <id>tag:morethanseven.net,2012-08-11:/2012/08/11/Riemann-puppet-module.html</id>
+    <title type="html">Riemann Puppet Module</title>
+    <published>2012-08-10T23:00:00Z</published>
+    <updated>2012-08-11T15:35:03Z</updated>
+    <link rel="alternate" href="http://morethanseven.net/2012/08/11/Riemann-puppet-module.html"/>
+    <content type="html">&lt;p&gt;Thanks to an &lt;a href="https://twitter.com/bitprophet/status/233626675307479040"&gt;errant tweet&lt;/a&gt; I started playing with &lt;a href="http://aphyr.github.com/riemann/"&gt;Riemann&lt;/a&gt; again. It ticks lots of boxes for me, from the clojure to configuration as code and the overloadable dashboard application. What started as using Puppet and Vagrant to investigate Riemann turned into a full blown tool and module writing exercise, resulting in two related projects on GitHub.&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;https://github.com/garethr/garethr-riemann/ is a Puppet module for installing and configuring Riemann. It allows for easily specifying your own server configuration and dashboard views.&lt;/li&gt;
+	&lt;li&gt;https://github.com/garethr/riemann-vagrant is a Vagrantfile and other code which uses above puppet module to setup a local testing environment.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I like this combination, a separate Puppet module along with a vagrant powered test bed. I&amp;#8217;ve written a reasonable rspec based test suite to check the module but it&amp;#8217;s always easier to be able to run &lt;em&gt;vagrant provision&lt;/em&gt; as well to check everything is working. This also turned out to be the perfect opportunity to use &lt;a href="https://github.com/rodjek/librarian-puppet"&gt;Librarian-Puppet&lt;/a&gt; to manage the dependencies and eventually to ship the module to the &lt;a href="https://forge.puppetlabs.com/garethr/riemann"&gt;Puppet Forge&lt;/a&gt;.&lt;/p&gt;</content>
+  </entry>
   <entry>
     <id>tag:morethanseven.net,2012-07-01:/2012/07/01/The-vagrantbox.es-story.html</id>
     <title type="html">The Vagrantbox.es Story</title>
@@ -374,15 +387,5 @@ end
     <content type="html">&lt;p&gt;This blog post is mainly an excuse to use the pun in the title. It&amp;#8217;s also an opportunity to tell folks that don&amp;#8217;t already know I&amp;#8217;ll be starting a new job on Monday working for the UK Government. I&amp;#8217;m going to be work for the &lt;a href="http://digital.cabinetoffice.gov.uk/"&gt;Government Digital Service&lt;/a&gt;, a new department tasked with a pretty wide range of sorting the Government out online.&lt;/p&gt;
 &lt;p&gt;The opportunity is huge. And when it came around I couldn&amp;#8217;t turn it down. I&amp;#8217;m going to be working with a bunch of people I&amp;#8217;ve &lt;a href="http://memespring.co.uk/"&gt;known&lt;/a&gt; &lt;a href="http://nicepaul.com/"&gt;and&lt;/a&gt; &lt;a href="http://fberriman.com/"&gt;respected&lt;/a&gt; for a while, as well as other equally smart people. That means I&amp;#8217;m going to be back in London again as well.&lt;/p&gt;
 &lt;p&gt;Hopefully I&amp;#8217;ll be able to talk lots about what we&amp;#8217;re up to. The groundwork for that has already been laid by the &lt;a href="http://alpha.gov.uk"&gt;alpha.gov&lt;/a&gt; team who have been blogging furiously about topics of interest.&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <id>tag:morethanseven.net,2011-08-11:/2011/08/11/Talking-configuration-management-vagrant-and-chef-at-lrug.html</id>
-    <title type="html">Talking Configuration Management, Vagrant And Chef At Lrug</title>
-    <published>2011-08-10T23:00:00Z</published>
-    <updated>2011-08-11T15:46:34Z</updated>
-    <link rel="alternate" href="http://morethanseven.net/2011/08/11/Talking-configuration-management-vagrant-and-chef-at-lrug.html"/>
-    <content type="html">&lt;p&gt;I stepped in at the last minute to do a talk at the last London Ruby User Group. From the feedback afterwards folks seemed to enyoy it and I certainly had fun. Thanks to everyone who came along.&lt;/p&gt;
-&lt;p&gt;&lt;object id="__sse8828889" width="595" height="497"&gt; &lt;param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=configmanagamentfordevelopmentenvironmentsii-110811103611-phpapp02&amp;rel=0&amp;stripped_title=config-managament-for-development-environments-ii&amp;userName=garethr" /&gt; &lt;param name="allowFullScreen" value="true"/&gt; &lt;param name="allowScriptAccess" value="always"/&gt; &lt;embed name="__sse8828889" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=configmanagamentfordevelopmentenvironmentsii-110811103611-phpapp02&amp;rel=0&amp;stripped_title=config-managament-for-development-environments-ii&amp;userName=garethr" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="595" height="497"&gt;&lt;/embed&gt; &lt;/object&gt;&lt;/p&gt;
-&lt;p&gt;As well as the slides the nice Skills Matter folks have already uploaded the &lt;a href="http://skillsmatter.com/podcast/home/chef-vagrant"&gt;videos from the night&lt;/a&gt;.&lt;/p&gt;</content>
   </entry>
 </feed>

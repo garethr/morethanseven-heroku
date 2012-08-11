@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
   <head>
-    <title>The Vagrantbox.es Story</title>
+    <title>Riemann Puppet Module</title>
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
-    <meta content='vagrant, github, heroku' name='keywords' />
+    <meta content='riemann, puppet' name='keywords' />
     <meta content='etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8' name='google-site-verification' />
     <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
     <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
@@ -47,46 +47,49 @@
       <div class='clear'></div>
       <div class='article'>
         <h1>
-          The Vagrantbox.es Story
+          Riemann Puppet Module
         </h1>
         <div class='meta'>
           <ul class='tags'>
-            <li>Jul 01, 2012</li>
+            <li>Aug 11, 2012</li>
             <li>
               &middot;
             </li>
             <li>
-              <a href='/2012/07/01/The-vagrantbox.es-story.html#disqus_thread'></a>
+              <a href='/2012/08/11/Riemann-puppet-module.html#disqus_thread'></a>
             </li>
             <li>&middot;</li>
             <li>
-              <a class='tag' href='/tags/github/'>
-                github
+              <a class='tag' href='/tags/puppet/'>
+                puppet
               </a>
             </li>
             <li>
-              <a class='tag' href='/tags/heroku/'>
-                heroku
-              </a>
-            </li>
-            <li>
-              <a class='tag' href='/tags/vagrant/'>
-                vagrant
+              <a class='tag' href='/tags/riemann/'>
+                riemann
               </a>
             </li>
           </ul>
         </div>
         <div class='body'>
-          <p>A few weeks ago now <a href="http://www.vagrantbox.es/">Vagrantbox.es</a> (a website I maintain for third party hosted <a href="http://vagrantup.com/">Vagrant</a> base boxes) dissapeared from the internet for a few days. This was completely my fault, the (lovely) hosting people <a href="https://www.ep.io/">ep.io</a> had unfortunately closed down the service they had in beta and I&#8217;d been so busy that I hadn&#8217;t had chance to move it elsewhere.</p>
-          <p>The original version of the site (I had the code and good backups of the data) was a pretty simple Django application, but I&#8217;d used it to experiment (read over-engineer) with various bits of tech including Varnish, Solr, some <span class="caps">ORM</span> caching and lots more. This had been great, but it made it less portable. I had everything described in Puppet, but with virtually no spare time I decided to go a different route.</p>
-          <p>I threw a flat version of the site up on <a href="https://github.com/garethr/vagrantboxes-heroku">GitHub</a>, served it using Nginx on <a href="http://www.heroku.com/">Heroku</a> and added a quick <em>Fork me on GitHub</em> badge to the top. Suggest a box moved from being a web form to a pull request. It&#8217;s fair to say I did this pretty quickly and made a good few typos on the way. But within a couple of weeks I&#8217;ve had 8 pull requests either fixing my bugs, removing dead boxes and adding new ones.</p>
-          <p>What I&#8217;m going to take from this is, if you&#8217;re building a community project that&#8217;s aimed at developers, then throw the content on GitHub. In my case I have the entire site on there too but I think that&#8217;s secondary. Pull requests are much better than any content management system or workflow you&#8217;re likely to build, and even more importantly the time to implement something drops hugely.</p>
-          <p>With all the spare time I don&#8217;t have I&#8217;ll be thinking about a content management model using GitHub for content, pull requests for workflow and post commit hooks for loading that content into a site or service somewhere.</p>
+          <p>Thanks to an <a href="https://twitter.com/bitprophet/status/233626675307479040">errant tweet</a> I started playing with <a href="http://aphyr.github.com/riemann/">Riemann</a> again. It ticks lots of boxes for me, from the clojure to configuration as code and the overloadable dashboard application. What started as using Puppet and Vagrant to investigate Riemann turned into a full blown tool and module writing exercise, resulting in two related projects on GitHub.</p>
+          <ul>
+          	<li>https://github.com/garethr/garethr-riemann/ is a Puppet module for installing and configuring Riemann. It allows for easily specifying your own server configuration and dashboard views.</li>
+          	<li>https://github.com/garethr/riemann-vagrant is a Vagrantfile and other code which uses above puppet module to setup a local testing environment.</li>
+          </ul>
+          <p>I like this combination, a separate Puppet module along with a vagrant powered test bed. I&#8217;ve written a reasonable rspec based test suite to check the module but it&#8217;s always easier to be able to run <em>vagrant provision</em> as well to check everything is working. This also turned out to be the perfect opportunity to use <a href="https://github.com/rodjek/librarian-puppet">Librarian-Puppet</a> to manage the dependencies and eventually to ship the module to the <a href="https://forge.puppetlabs.com/garethr/riemann">Puppet Forge</a>.</p>
         </div>
       </div>
       <div id='other-articles'>
         <div class='older'>
           <ul>
+            <li>
+              <h3>
+                <a href='/2012/07/01/The-vagrantbox.es-story.html' title=''>
+                  &laquo; The Vagrantbox.es Story
+                </a>
+              </h3>
+            </li>
             <li>
               <h3>
                 <a href='/2012/06/05/Static-sites-with-nginx-on-heroku.html' title=''>
@@ -101,24 +104,10 @@
                 </a>
               </h3>
             </li>
-            <li>
-              <h3>
-                <a href='/2012/03/31/Recent-projects-and-talks.html' title=''>
-                  &laquo; Recent Projects And Talks
-                </a>
-              </h3>
-            </li>
           </ul>
         </div>
         <div class='newer'>
           <ul>
-            <li>
-              <h3>
-                <a href='/2012/08/11/Riemann-puppet-module.html' title=''>
-                  Riemann Puppet Module &raquo;
-                </a>
-              </h3>
-            </li>
           </ul>
         </div>
       </div>
