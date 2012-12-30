@@ -310,16 +310,19 @@ http {
       root html/morethanseven;
     }
 
-    location ~* ^/[0-9]+/.*/$ {
-      rewrite  ^(.*)/$ $1.html permanent;
+    if ($uri !~ /index\.html$) {
+      rewrite ^/(\d\d\d\d)/(\d\d)/(\d\d)/(.+)\.html$ /$1/$2/$3/$4/ permanent;
     }
+
+    if ($request_uri ~ /index\.html($|\?)) {
+      rewrite ^(.*)/index\.html$ $1/ permanent;
+    }
+
+    rewrite ^/articles.atom$ /atom.xml;
 
     location / {
       if (-f html/morethanseven/maintenance.html) {
         return 503;
-      }
-      if (-f $request_filename.html) {
-        rewrite (.*) $1.html permanent;
       }
       expires 180s;
       add_header Vary Accept-Encoding;
