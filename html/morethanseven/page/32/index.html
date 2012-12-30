@@ -1,0 +1,679 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="Web applications are still evolving. This we know. One thing any power user tends to pick up on pretty quickly in desktop applications is the &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/page/32">
+  <link href="/favicon.ico" rel="icon">
+  
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<meta content="etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8" name="google-site-verification">
+<link href="http://www.myopenid.com/server" rel="openid.server">
+<link href="http://garethr.myopenid.com/" rel="openid.delegate">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="no-sidebar"  >
+  <header>
+<hgroup>
+<h1><a href="/">Morethanseven</a></h1>
+<p>The blog of Gareth Rushgrove</p>
+
+<div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+</hgroup>
+</header>
+
+
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/02/23/keyboards-and-web-applications/">Keyboards and Web Applications</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-02-23T00:00:00+00:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2006</time>
+        
+         | <a href="/2006/02/23/keyboards-and-web-applications/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Web applications are still evolving. This we know. One thing any power user tends to pick up on pretty quickly in desktop applications is the keyboard shortcuts. We just cant get enought of them. Why dont we see them more in web applications? Well a couple of reasons as it happens:</p>
+<ul>
+ <li>Potential clashes with browser or OS shortcuts</li>
+  <li>Many web applications are still evolving from more promotional websites. The learning curve for a website <em>needs</em> to be instantaneous, otherwise your potential customer just left. But what about a web application? The users may <em>have</em> to use it, as well as having documentation and maybe even training.</li>
+  <li>Because we dont see them in web applications? The circular argument.</li>
+</ul>
+ <p>Personally I think in some cases keyboard shortcuts would be nice, I have a little plan for something in mind as well so started experimenting. The clash issue I&#8217;m going to leave for another post as it will take a bit of brute force experimenting but I did start playing with a simple way of assigning functions to keys.</p>
+ <p>The following code creates an object to store the lookup/hash/two dimensional array (pick one you like). This is a simple associate between a key, and a function to run when it&#8217;s pressed. A function is then assigned to the onkeyup and onkeydown events which monitors them, checks for one of the keys in the lookup to be pressed (in this case along with the ctrl key) and runs the assigned function.</p>
+<div>
+<p><code>
+&lt;pre&gt;
+&amp;lt;txp:php&amp;gt;
+include('/www/htdocs/morethanseven/scripts/sample/keyPress.js');
+&amp;lt;/txp:php&amp;gt;
+&lt;/pre&gt;
+</code></p>
+</div>
+ <p>A simple library function is used to add the event to the document onload. My library obviously includes other helper functions but we dont need any of those for this example.</p>
+<div>
+<p><code>
+&lt;pre&gt;
+&amp;lt;txp:php&amp;gt;
+include('/www/htdocs/morethanseven/scripts/sample/lib.js'); 
+&amp;lt;/txp:php&amp;gt;
+&lt;/pre&gt;
+</code></p>
+</div>
+ <p>Some improvements I can spot from here which I&#8217;ll implement as I actually take this out of the lab and into something production like.</p>
+<ul>
+ <li><span class="caps">JSON</span> (or <span class="caps">YAML</span>) data storage. Either one makes configuration simpler and scores geek points. It&#8217;s a win win.</li>
+  <li>Abstract the use of the ctrl key from the function and allow other modifiers to be set when used.</li>
+</ul>
+ <p>I&#8217;ll try get round to the look at keyboard shortcut clashes, or link to someone who already has, as I get round to it. In the mean time, what do people think about the use of keyboard shortcuts in web applications? Any good or bad examples welcome.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/02/19/last-week-with-ajax/">Last Week With Ajax</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-02-19T00:00:00+00:00" pubdate data-updated="true">Feb 19<span>th</span>, 2006</time>
+        
+         | <a href="/2006/02/19/last-week-with-ajax/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Last friday I got the chance to stick around in London and attend the <a href="http://clearleft.com">Clearleft</a> Ajax workshop with <a href="http://adactio.com">Jeremy Keith</a>. 30 people from different web disciplines and backgrounds trying to get as much out of a single day on the latest buzz word has to sound like fun?</p>
+ <p>I had heard Jeremy&#8217;s speak before at <a href="http://vivabit.com/atmedia2006">@media</a> last year where he was one of the highlights and friday was much of the same. In a good way. Clear, to the point, explanations. Examples where they help to make a point, some wry humour and the odd culinary simile. The only real let down there was he&#8217;s <a href="http://www.flickr.com/photos/adactio/96454214/">cut his hair short</a>. This tendency for <a href="http://www.flickr.com/photos/andybudd/98405129/in/pool-summit2006/">minimalism in hair cuts</a>  amongst <a href="http://htmldog.com">web designers</a> is disturbing me. Only <a href="http://www.flickr.com/photos/andybudd/98405572/in/pool-summit2006/">Norm</a> can <a href="http://cackhanded.net/">save us now</a>.</p>
+ <p>Back on topic the day covered everything from theory and first principals to some fully working examples, but stuck with playing with Javascript and code from scratch, rather than frameworks and server side stuff. A descision I think really made the day useful.</p>
+ <p>The morning was, to be fair, less useful from my standpoint. The speed introduction to Javascript, and some of the concepts of Ajax where covering ground I&#8217;d already covered personally. That&#8217;s not to say they weren&#8217;t well placed or interesting though, far from it, and did provide some people with what was probably the best crash course in Javascript imaginable.</p>
+ <p>The afternoon really kicked into gear though. Lots of examples; from simple updating content through to making use of the Yahoo <span class="caps">API</span>. Throw in some examples with server side code, the obligatory shopping basket example and, particularly impressive, a detailed look at <span class="caps">JSON</span>. This all in one afternoon remember.</p>
+ <p>The code examples we got to take away with, and much of this was generic enough to have already found it&#8217;s way into my working library. I&#8217;m very much a fan of Jeremy&#8217;s <span class="caps">DIY</span> ethic with regards Javascript. I too am sceptical of using huge frameworks to crack nuts without a clue about what they are doing. The actual simplicity of the Ajax methods I think was one thing that Jeremy got over better than anyone I&#8217;ve listened to date. It really is about application design more than new, fancy, complex technology.</p>
+ <p>A few other people who attended have posted <a href="http://www.molly.com/2006/02/17/jeremy-keith-and-the-truth-about-ajax/">their</a> <a href="http://www.brucelawson.co.uk/index.php/2006/ajax-hijax-and-accessibility/">opinions</a> .<em>I&#8217;m really not stalking Molly by the way</em>.</p>
+ <p>As Molly had hinted, Jermey is also very quotable. So here are a few of the things I&#8217;m sure he said, any loss of context here is completely my fault though:</p>
+<blockquote>
+  <p>The validator is my friend</p>
+</blockquote>
+<blockquote>
+  <p>What&#8217;s the problem? Reality! (refering to IE)</p>
+</blockquote>
+<blockquote>
+  <p><span class="caps">DOM</span> is like a scalpel, innerHTML is like a sledgehammer!</p>
+</blockquote>
+<blockquote>
+  <p>It&#8217;s hard to argue with one line of code (on innerHTML vs <span class="caps">DOM</span>)</p>
+</blockquote>
+<blockquote>
+  <p>Pointing at Google maps as an example of Ajax is like pointing at a ferari on a race course as an example of the combustion engine. You spend most of your time going wow!</p>
+</blockquote>
+ <p>We closed up the afternoon with some discussion of the accessibility concerns, some of the development issues (wireframing ajax apps anyone?) and a whistle stop look at frameworks. All in all a very useful day, both personally (ie. I had fun) and professionally (I think my employer got value for money.) It also reinforced what I&#8217;ve been thinking more and more recently. It&#8217;s nearly all about design when it comes to real work. <em>When</em> and <em>where</em> and <em>why</em> must come first, and <em>how</em> is often more trivial than you think.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/02/14/easy-for-whom-a-minor-rant-about-help-from-framewo/">Easy for Whom? - a Minor Rant About Help From Frameworks</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-02-14T00:00:00+00:00" pubdate data-updated="true">Feb 14<span>th</span>, 2006</time>
+        
+         | <a href="/2006/02/14/easy-for-whom-a-minor-rant-about-help-from-framewo/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Some people think that <a href="http://www.lscheffer.com/malbolge.shtml">programming should be hard</a> while others, like me, quite like the idea of anyone being able to build things, especially web sites. To me the fact that either of my housemates (non IT types) could probably build a website this evening if they so choose is great. And to be honest if they did I&#8217;d be unlikely to complain about the code or the programme they chose to build it with (Ok, I would, but that&#8217;s me and I&#8217;d like to pretend I wouldn&#8217;t.)</p>
+ <p>It&#8217;s pretty unlikely however that either of them, or any beginnner, would go along the route of choosing say <a href="http://asp.net"><span class="caps">ASP</span>.<span class="caps">NET</span></a> or <a href="http://rubyonrails.com">Ruby on Rails</a> for that first site. Which leads me to some sort of assumption &#8211; <em>that both of these</em> are for experts and <a href="http://www.molly.com/2005/11/14/web-standards-and-the-new-professionalism/">professionals</a>. There are other facets which could be used to back up this argument but I dont want to go on &#8211; rails making use of the command line (in very cool ways) or <span class="caps">ASP</span>.<span class="caps">NET</span> requiring <span class="caps">IIS</span> configuration for a start. Not something I fancy talking non experts through to be fair.</p>
+ <p>Using that assumption brings me nicely to helpers. Both are frameworks that try (and in may places succeed) in making life easier for developers. This is a good thing. What&#8217;s not so good is where this goes too far, in my opinion. <span class="caps">ASP</span>.<span class="caps">NET</span> <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpref/html/frlrfsystemwebuiwebcontrolslinkbuttonclasstopic.asp">linkButtons</a> are simply Evil. No questions. At All. Stop using them. Now. Rails wades in as well with it&#8217;s reliance, when it comes to certain controls, on inline Javascript. Did someone not get the <a href="http://adactio.com/atmedia2005/">memo</a>?</p>
+ <p>As good web standards people we have divided content from presentation. Behaviour from both (sort of). Now we have great (in both senses of the word) frameworks coming along and riding roughshod over our labour of love to make the web a better place. Making the developers life easier, but impacting negatively on the end users. Such wide ranging and powerful tools for experts need not treat all users as experts in everything. <span class="caps">ASP</span>.<span class="caps">NET</span> (or Ruby on Rails) does it so it must be OK? cannot be allowed to undo good works.</p>
+ <p>Lots of similar talk abounds at the moment, with certainly some light in some of these areas showing through. Visit <a href="http://www.vivabit.com/bollocks/2006/02/09/rails-is-the-devil-in-your-client-side-shoulder">Dan</a> and <a href="http://domscripting.com/blog/display/49">Jeremy</a> for more.</p>
+ <p>end Rant &#8211; mmm Rails</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/02/09/one-conference-down/">One Conference Down</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-02-09T00:00:00+00:00" pubdate data-updated="true">Feb 9<span>th</span>, 2006</time>
+        
+         | <a href="/2006/02/09/one-conference-down/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Well, yesterday was the long awaited <a href="http://carsonworkshops.com/summit">Carson Summit</a> which seemed to go pretty well all in all. Lots of <a href="http://adactio.com/journal/1087/">reviews</a> and <a href="http://simon.incutio.com/archive/2006/02/08/summit">notes</a> around at the moment but I&#8217;ll just throw a couple of my personal observations into the mix.</p>
+ <p>The presentation where all good, but nothing mindblowing. Most had something going for them; whether <a href="http://www.loudthinking.com/">enthusiasm</a>, <a href="http://carsonworkshops.com">numbers</a> or a <a href="http://feedburner.com">special announcement</a></p>
+ <p>I liked <a href="http://plasticbag.org">Tom Coates</a> diatribe about clean URLs, it something I&#8217;m fairly keen on too, I&#8217;m uming and arring over whether I too am a <a href="http://www.flickr.com/photos/redux/97126279/"><span class="caps">URL</span> Fetishist</a></p>
+ <p>The <a href="http://google.com">Google</a> vs <a href="http://yahoo.com">Yahoo</a> show was entertaining and interesting. Reading that Google tend to be more academic with Yahoo being a little bit more unhinged/entreprenurial is one thing &#8211; going to a conference where the guy from Google came across as something of a mad german professor with something of an <a href="http://www.google.co.uk/search?q=javascript">axe</a> to grind, compared to the Yahoo mob who ranged from a <a href="http://plasticbag.org">self confessed hippy</a> to <a href="http://www.iamcal.com/">Cal</a> and his three quarter length trousers. It&#8217;s appears all the rumours are true.</p>
+ <p>I did a couple of stints of SubEthaEdit collaborative note taking with <a href="http://simon.incutio.com/archive/2006/02/08/summit">Simon</a> which was fun and interesting at the same time. The <em>who&#8217;s going to write the next part</em> bit was quite amusing &#8211; at times writing the same things down, then everyone deleting them, then a pause.</p>
+ <p>The after show was, as always, good fun and fairly drunken. The pub was nice, but whomever suggested it on the wiki was playing a cruel joke. A conference with 800 geeks and a pub about 3 people wide at it&#8217;s widest point is not sensible. Neither was <a href="http://splintered.co.uk">Patrick&#8217;s</a> suggestion about not eating, but it all worked out in the end.</p>
+ <p>Was good to meet up with lots of people, both those <a href="http://htmldog.com">I</a> <a href="http://splintered.co.uk">had</a> <a href="http://www.thewatchmakerproject.com/">met</a> <a href="http://pixelicious.co.uk/">before</a> and those that <a href="http://cackhanded.net/">I hadn&#8217;t</a>. Hope to see everyone again soon, if not it will have to be <a href="http://vivabit.com/atmedia2006">@media</a>.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/02/06/molly-in-newcastle/">Molly in Newcastle</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-02-06T00:00:00+00:00" pubdate data-updated="true">Feb 6<span>th</span>, 2006</time>
+        
+         | <a href="/2006/02/06/molly-in-newcastle/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Not so subtle hint in the subject line, but without further ado, Molly (yes, that <a href="http://molly.com">Molly</a>) is coming to Newcastle for a talk.</p>
+ <p>All the details are still being confirmed but we are talking:</p>
+ <p><strong>15th February</strong><br />
+Room 149 Northumberland Building, Northumbria University, City Campus, Newcastle, NE1 8ST<br />
+<strong>5-7pm</strong></p>
+ <p>After talk drinks and food to be confirmed. Probably going to be along the lines of &#8220;Webstandards and Usability&#8221; with some time for a Q&#38;A session as well.</p>
+ <p>Big up to <a href="http://tomsimcox.com">Tom Simcox</a> here. He&#8217;s been threatening for a while and with Molly in the country she&#8217;s agreed to come and visit little old us. Mark (of sunderland uni and <span class="caps">NEUA</span> fame) also sorted out the venue, amongst other things. Good job everyone.</p>
+ <p>We need people along for this so tell you employers, whoop to your colleagues, threaten you employees and be there.</p>
+ <p>I&#8217;ll post more details as they are confirmed. If your from outside the region and want to come along let me know. It&#8217;s short notice but sometimes these things are &#8211; and you know you dont want to miss out.</p>
+ <p>To help us gauge interest a little it would be grate if you interested  to leave a comment below. If you cant come along because say, <a href="http://xlab.co.uk">it&#8217;s your birthday</a>, then what questions would you like asking?</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/02/01/small-software/">Small Software</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-02-01T00:00:00+00:00" pubdate data-updated="true">Feb 1<span>st</span>, 2006</time>
+        
+         | <a href="/2006/02/01/small-software/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Of late I&#8217;ve found myself making quite a few smaller purchases of software. I&#8217;ve always been a fan of Open Source (and before that shareware &#8211; mainly on the ZX Spectrum) and still use lots of open source apps (anyone say Firefox) but for some really specific jobs it&#8217;s nice to have something you know is maybe a little more polished.</p>
+ <p>I dont know if it&#8217;s just me getting older and having more disposable income, or a greater appreciation of what it takes to make really good software (probably a bit of both) but it&#8217;s sort of snuck up on me? Anyone else finding the same? I know <a href="http://hicksdesign.co.uk">Jon</a> has been mentioning some <a href="http://www.hicksdesign.co.uk/journal/happy-old-man">cool new apps</a> he&#8217;s using. What about everyone else?</p>
+ <p>Recent purchase have included the following, nearly all bought with <a href="http://paypal.com">PayPal</a> as it happens:</p>
+<ul>
+ <li><a href="http://www.rogueamoeba.com/airfoil/">Airfoil</a> allows any sounds (mainly music) to be send round the house to speakers connected to my AirPort. Lovely.</li>
+  <li><a href="http://www.nullriver.com/index/products/pspware">PSPWare</a> Like iSync but for my <span class="caps">PSP</span>. Also converts movies.</li>
+  <li><a href="http://www.griffintechnology.com/products/radioshark/">radioShark</a> Ok, software and hardware but useful at times.</li>
+  <li><a href="http://www.haveamint.com">Mint</a> I&#8217;ve mentioned before. Lovely stats.</li>
+</ul>
+ <p>I&#8217;m also evaluating (and at the moment being impressed by) a few other apps. Upcoming purchases probably.</p>
+<ul>
+ <li><a href="http://standalone.com/palmos/quick_news/">QuickNews</a> <span class="caps">RSS</span> reader (and podcasting app) for Palm OS.</li>
+  <li><a href="http://www.pocket-tunes.com/">PocketTunes</a> Good quality audio player for Palm OS, much better than the bundled Real Audio.</li>
+  <li><a href="http://macromates.com/">TextMate</a> The missing editor for OS X? Maybe. It&#8217;s toying with me at the moment to sit aside <a href="http://www.codingmonkeys.de/subethaedit/">SubEthaEdit</a></li>
+</ul>
+ <p>On a blog related point, I&#8217;m aware I&#8217;ve been blogging more technology related stuff of late. I&#8217;ll be back with alot more web design and development banter soon, and some things happening up this neck of the woods (including a revamped <a href="http://newcastlenewmedia.org">newcastlenewmedia</a> site hopefully) &#8211; it&#8217;s a matter of having the ideas but not having the time! Hope it&#8217;s still all interesting to everyone.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/01/26/the-meaning-of-scale/">The Meaning of Scale</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-01-26T00:00:00+00:00" pubdate data-updated="true">Jan 26<span>th</span>, 2006</time>
+        
+         | <a href="/2006/01/26/the-meaning-of-scale/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m quite a <em>numbers</em> person and have something of a penchant for statistics  As if you couldn&#8217;t guess from the site name. So it is with <a href="http://google.com">Google</a> (who also have a mathematical inspired site name). But unlike me they have more people (it&#8217;s just me) and lets face it, more computing power (only so many computers I can get in my house without getting told off).</p>
+ <p>So they bring us something of a <a href="http://code.google.com/webstats/index.html">large, automated, study</a> (including some decent analysis) of what markup is <em>actually</em> being used, interestingly also including common class names. I&#8217;d love to do something like that &#8211; over 1,000,000,000 sites analysed!</p>
+ <p>On a standards front seems to be good news and bad news, some of the common classes are things like:</p>
+<ul>
+ <li>footer  </li>
+  <li>menu </li>
+  <li>title, header, top </li>
+  <li>small, smalltext </li>
+  <li>text, content, main, body </li>
+  <li>nav </li>
+  <li>copyright </li>
+  <li>search </li>
+  <li>date</li>
+</ul>
+ <p>Most of those I can see use for. They <strong>Mean</strong> something for a start. Although some of the other top entries included things such as:</p>
+<ul>
+ <li>white</li>
+  <li>link</li>
+  <li><del>button</del></li>
+  <li>style1 (my personal fave)</li>
+</ul>
+ <p>Which maybe aren&#8217;t as well chosen.</p>
+ <p>On the other hand there are still lots of weirdness, proprietary   tags and bizarre attributes. iWeb might be using crazy nested divs but <a href="http://kurafire.net/log/archive/2006/01/26/iweb-is-not-evil">it&#8217;s still valid</a>.</p>
+ <p>Being Google it&#8217;s all written fairly amusingly, including a few digs at competitors with applications which generate nightmare markup. Overall, a good read. There are probably a good number of other useful nuggets of information burried in the document as well. Anyone coming across anything of particular relevance leave a comment.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/01/23/meme-warning-enter-at-own-risk/">Meme Warning! Enter at Own Risk</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-01-23T00:00:00+00:00" pubdate data-updated="true">Jan 23<span>rd</span>, 2006</time>
+        
+         | <a href="/2006/01/23/meme-warning-enter-at-own-risk/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Help! I&#8217;m not sure what to do? I appear to have been set upon by nearly published author <a href="http://collylogic.com">simon</a> in an attempt to spread a deadly meme. Oh well.</p>
+ <h3>Four jobs IÃ¢â‚¬â„¢ve had in my life<br />
+ <ol><br />
+ <li>Paper Boy</li>
+  <li>Kitchen Porter</li>
+  <li>Packager of Shower Fittings </li>
+  <li><a href="http://www.garrettdimon.com/archives/the-time-is-now-for-front-end-architects">Front End Architect</a></li>
+</ol></h3>
+ <h3>Four movies I can watch over and over<br />
+ <ol><br />
+ <li>Black Hawk Down</li>
+  <li>Serenity</li>
+  <li>28 Days Later</li>
+  <li>Impostor</li>
+</ol></h3>
+ <h3>Four places I have lived<br />
+ <ol><br />
+ <li>Bradford</li>
+  <li>Durham</li>
+  <li>Belmont (not to be confused with Belmarch)</li>
+  <li>Newcastle</li>
+</ol></h3>
+ <h3>Four TV shows I love to watch<br />
+ <ol><br />
+ <li>Alias</li>
+  <li>The Wire</li>
+  <li>The Shield</li>
+  <li>The West Wing</li>
+</ol></h3>
+ <h3>Four places I have been on vacation<br />
+ <ol><br />
+ <li>Cornwall</li>
+  <li>Rome</li>
+  <li>France</li>
+  <li>Denmark (Lego Land)</li>
+</ol></h3>
+ <h3>Four of my favourite dishes<br />
+ <ol><br />
+ <li>Sausage Casserole with Guinness Gravy</li>
+  <li>Seabass</li>
+  <li>Falafel, Spicy Chutney and Chilli Rice</li>
+  <li>Wild Mushroom and Real Ale Pie</li>
+</ol></h3>
+ <h3>Four websites I visit daily<br />
+ <ol><br />
+ <li>Google</li>
+  <li>Newsgator</li>
+  <li>Del.icio.us</li>
+  <li>Newcastlenewmedia.org</li>
+</ol></h3>
+ <h3>Four bloggers I am tagging<br />
+ <ol><br />
+ <li><a href="http://swoo.co.uk">Steve Woods</a></li>
+  <li><a href="http://xlab.co.uk">Phil Lindsay</a></li>
+  <li><a href="http://pixeldiva.co.uk">Pixeldiva</a></li>
+  <li><a href="http://www.mcskiver.com/blog/">Lee</a></li>
+</ol></h3>
+ <p>Here endeth the lists. I&#8217;d be intrigued to see a rather cumbersome tree diagram of this meme thang in action. You know, track it back to it&#8217;s source, looking at relationships and all that jazz. But it&#8217;s late and I&#8217;m tired.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/01/22/books/">Books</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-01-22T00:00:00+00:00" pubdate data-updated="true">Jan 22<span>nd</span>, 2006</time>
+        
+         | <a href="/2006/01/22/books/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m something of an avid reader and, making use of the nice <a href="http://www.amazon.co.uk">Amazon</a> <span class="caps">API</span> I&#8217;ll try to keep my reading list up to date on here. I&#8217;m just including books that are maybe a little relevant to the web &#8211; otherwise this will get out of hand. I&#8217;d like to include some brief reviews if the time ever comes along, though dont hold your breath.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/01/22/a-foundation-to-build-javascript-on/">A Foundation to Build Javascript On</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-01-22T00:00:00+00:00" pubdate data-updated="true">Jan 22<span>nd</span>, 2006</time>
+        
+         | <a href="/2006/01/22/a-foundation-to-build-javascript-on/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Like probably quite a few others I&#8217;m doing more Javascript of late, both professionally and at play. It&#8217;s not just the whole buzz around it, all the way back to <a href="http://adactio.com">Jeremy</a> <a href="http://adactio.com/atmedia2005/">using Javascript for Good not Evil</a> but I moved away from doing backend development when I moved jobs, Javascript is most definately in my client side job remit.</p>
+ <p>As an <a href="http://morethanseven.net/books">avid reader</a> I&#8217;ve got hold of  a few <a href="http://domscripting.com/book/">good quality</a> <a href="http://www.sitepoint.com/books/dhtml1/">Javascript books</a> that have come along and was on the lookout for more when I came upon <a href="http://www.apress.com/book/bookDisplay.html?bID=10042">Foundations of <span class="caps">AJAX</span></a> from <a href="http://www.apress.com/">Apress&#8217;s</a> black and yellow experts voice series. I haven&#8217;t read enough to give a full conclusion but I&#8217;ve been impressed with other books in the series and it looks promising so far. A few chapters did stand out (I jumped in and read them first) that had little to do with <span class="caps">AJAX</span>, concentrating instead on setting up a proper Javascript development environment.</p>
+ <p>I&#8217;m not a fan of bloated IDEs so the lack of one for Javascript doesn&#8217;t bother me as much as it does some. However debugging by browser is a pain for simple scripts, never mind larger applications. Firefox&#8217;s Javascript Console is mighty handy here, as is the <span class="caps">DOM</span> inspector and the <a href="http://jennifermadden.com/scripts/ViewRenderedSource.html">view rendered source</a> extension. There is also the <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=2f465be0-94fd-4569-b3c4-dffdf19ccd99&#38;DisplayLang=en">Windows Script Debugger</a> but I personally haven&#8217;t had much luck with that as yet.</p>
+ <p>Projects should have documentation and code should have comments. But it&#8217;s time consuming (honestly). Automatic generation of docs from source comments both makes you comment more efficiently and comprehensively <em>and</em> saves time. Everyone&#8217;s happy, at least as long as they are using the <a href="http://jsdoc.sourceforge.net/">JSDoc</a> perl application to do just that. Anyone familiar with Java will have come across JDoc and the name isn&#8217;t the only similarity. It&#8217;s now installed and ready to be used next time I write any Javascript.</p>
+ <p>Another area of interest recently has been application design, analysis and methodology, so I&#8217;d come across the idea of <a href="http://www.agiledata.org/essays/tdd.html">test driven development</a> before and experimented briefly &#8211; but not with Javascript. The idea is that you write tests that can be run automatically on your finished code before you write the code, it makes you <em>design</em> more which cant be a bad think. Anyway, Javascript has <a href="http://www.edwardh.com/jsunit/">JSUnit</a>, a nice unit testing framework. Again, installed and ready to give it a whirl.</p>
+ <p>Hopefully this brief list will prove useful to anyone else making more use of Javascript recently and looking to be more productive. Anyone else with any other useful tools do post a comment, or is their a mythical application that you just wish existed to help you with your Javascript woes?</p></div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/page/33/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/page/31/">Newer &rarr;</a>
+    
+  </div>
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo">
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

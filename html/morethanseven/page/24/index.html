@@ -1,0 +1,704 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="As a quick follow up to my previous post on unobtrusive javascript I thought I&#8217;d expand it even more, but this time in an attempt to make it &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/page/24">
+  <link href="/favicon.ico" rel="icon">
+  
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<meta content="etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8" name="google-site-verification">
+<link href="http://www.myopenid.com/server" rel="openid.server">
+<link href="http://garethr.myopenid.com/" rel="openid.delegate">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="no-sidebar"  >
+  <header>
+<hgroup>
+<h1><a href="/">Morethanseven</a></h1>
+<p>The blog of Gareth Rushgrove</p>
+
+<div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+</hgroup>
+</header>
+
+
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/06/02/json-configuration-example-printing/">JSON Configuration Example - Printing</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-06-02T00:00:00+01:00" pubdate data-updated="true">Jun 2<span>nd</span>, 2007</time>
+        
+         | <a href="/2007/06/02/json-configuration-example-printing/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As a quick follow up to my <a href="http://morethanseven.net/posts/unobtrusive-javascript-example-printing/">previous post on unobtrusive javascript</a> I thought I&#8217;d expand it even more, but this time in an attempt to make it easier to use.</p>
+<p>As we&#8217;ve already mentioned javascript should be treated like any other programming language &#8211; not necessarily left to the experts but their should ideally be an expert involved somewhere along the line. One way of doing this is to abstract out configuration from programmatic logic. This massively helps with code resuse as well, leaving everyone to play to their strengths. It&#8217;s interesting to note that even programmers who would always store configuration settings seperately when writing <span class="caps">PHP</span> or Rails applications don&#8217;t always get around to doing the same in Javascript. Hell, I used to be one of them until <a href="http://wait-till-i.com/">Chris Heilmann</a> pointed out how patently obvious the solution was while at <a href="http://thehighlandfling.com/2007/">The Highland Fling</a>.</p>
+<p>The answer is <a href="http://www.json.org/"><span class="caps">JSON</span></a>. I think it&#8217;s nearly always easier with a quick example so here&#8217;s the Print snippet from the previous post but this time with a few configurable options:</p>
+<pre><code>var Print = {
+   config: {
+      "id": "iNav",
+      "classname": "has-print",
+      "text": "Print"
+   },
+   init: new domFunction(function() {
+      if (list = document.getElementById(Print.config.id)) {
+         if (list.nodeName.toLowerCase() === 'ul') {
+            if (Print.hasClass(list,Print.config.classname)) {
+               var item = document.createElement("li");
+               item.className = "print";
+               var link = document.createElement("a");
+               link.href = "#";
+               link.onclick = Print.printpage;
+               var txt = document.createTextNode(Print.config.text);
+               link.appendChild(txt);
+               item.appendChild(link);
+               list.appendChild(item);
+            }
+         }
+      }
+   }),
+   hasClass: function(element,cName) { 
+      return new RegExp('\\b''&amp;#43;cName'&amp;#43;'\\b').test(element.className);
+   },
+   printpage: function() {
+      window.print();
+      return false;
+   }
+}</code></pre>
+<p>The main thing we have done is to add a new block:</p>
+<pre><code>config: {
+   "id": "iNav",
+   "classname": "has-print",
+   "text": "brand new text"
+},</code></pre>
+<p>This is simply a <span class="caps">JSON</span> object of name/value pairs. You can easily alter the right hand values and change the workings of the app. You then reference the settings in  the rest of you&#8217;re code using dot notation:</p>
+<pre><code>Print.config.text</code></pre>
+<p>In the above example our configuration directives are stored in our Print object. Depending on the circumstances of use you might find it easier to have a seperate Config object which stores all the configuration settings for the entire site.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/05/29/unobtrusive-javascript-example-printing/">Unobtrusive Javascript Example - Printing</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-29T00:00:00+01:00" pubdate data-updated="true">May 29<span>th</span>, 2007</time>
+        
+         | <a href="/2007/05/29/unobtrusive-javascript-example-printing/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In lieu of some real posts here&#8217;s a quick code sample to keep things ticking along.</p>
+<p>I&#8217;m sure you&#8217;ve had the need to place a nice print button on a web page from time to time. If you haven&#8217;t you&#8217;re probably alone. A quick google will throw up lots of results for print javascript &#8211; the problem is that most of them are horribly obtrusive.</p>
+<p>OK, so it&#8217;s easy to write something like:</p>
+<pre><code>&lt;a href="#" onclick="window.print();"&gt;print&lt;/a&gt;</code></pre>
+<p>But the problem is <em>What if you turn off javascript?</em> The following unobtrusive script automagically adds a print link to the page &#8211; in this case as part of a list item which is added to the unordered list with the id of <em>iNav</em> and a class of <em>has-print</em>.</p>
+<pre><code>var Print = {
+   init: new domFunction(function() {
+      if (list = document.getElementById("iNav")) {
+         if (list.nodeName.toLowerCase() === 'ul') {
+            if (Print.hasClass(list,'has-print')) {
+               var item = document.createElement("li");
+               item.className = "print";
+               var link = document.createElement("a");
+               link.href = "#";
+               link.onclick = Print.printpage;
+               var txt = document.createTextNode("Print");
+               link.appendChild(txt);
+               item.appendChild(link);
+               list.appendChild(item);
+            }
+         }
+      }
+   }),
+
+   hasClass: function(element,cName) { 
+      return new RegExp('\\b'&amp;#43;cName&amp;#43;'\\b').test(element.className);
+   },
+
+   printpage: function() {
+      window.print();
+      return false;
+   }
+}</code></pre>
+<p>With something like this you want it to load as soon as the dom is ready, rather than on page load. <a href="http://www.brothercake.com">Brothercake&#8217;s</a> <a href="http://www.brothercake.com/site/resources/scripts/domready/">domFunction</a> comes to the rescue here. The namespacing is based on <a href="http://www.kryogenix.org">Stuarts</a> technique which should make it more capable of just being dropped in to any site.</p>
+<p>The only problem with this is that it&#8217;s just a little longer than the original. I think this is down to one often missed fact, at least until recently &#8211; Javascript is a programming language and should be treated as such.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/05/18/some-good-news/">Some Good News</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-18T00:00:00+01:00" pubdate data-updated="true">May 18<span>th</span>, 2007</time>
+        
+         | <a href="/2007/05/18/some-good-news/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Yeah, I just got my confirmation email for <a href="http://hackday.org">hackday</a> in a months time.</p>
+<p><a href="http://www.hackday.org" style="border: none; padding: 0px; margin: 0px"><img src="http://l.yimg.com/us.yimg.com/i/us/ydn/hackday/hack_day_pattern_four.gif" alt="Hack Day: London, June 16/17 2007" width="180" height="105" style="border: none; margin: 0; padding: 0;"/></a></p>
+<p>So, who else is going along and does anyone have any ideas they want team mates for? I&#8217;m thinking something mobile or microformats related or alternatively something I know very little about. Any ideas?</p>
+<p>Oh, and I know I&#8217;ve been quite around the place lately, more on that when I can talk about it.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/05/07/cssxx/">CSSx.x</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-07T00:00:00+01:00" pubdate data-updated="true">May 7<span>th</span>, 2007</time>
+        
+         | <a href="/2007/05/07/cssxx/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://andybudd.com">Andy</a> gave a great thought provoking presentation (exactly what conference presentations should be) at the recent <a href="http://thehighlandfling.com/2007/">Highland Fling</a> shindig on the future of <span class="caps">CSS</span> which he&#8217;s written up into a good thought provoking blog post on <a href="http://www.andybudd.com/archives/2007/05/css22/index.php">CSS2.2</a></p>
+<h3>The Problem</h3>
+<p>As web standards developers we want new toys! I took to <span class="caps">CSS</span> because <em>it made sense</em> set against the madness of table based layouts, not necessarily because it appeared easy or flexible. <span class="caps">CSS</span> has turned out to be hugely flexible, but some of that flexibility has come at the expense of some weird and wonderful and successful techniques. I love this ingenuity, I&#8217;d like to think that the original <span class="caps">CSS</span> specification allowed for this cleverness in real world use.</p>
+<p>CSS3 has stalled. CSS3 is trying to solve a whole host of massive problems that others are better placed to comment on, but I&#8217;d love to hear some comment from members of the working group. If I&#8217;ve missed a regular blog by a working group member please leave a comment and let me know.</p>
+<p>I&#8217;m a real believer in open standards and I think that it&#8217;s this issue that worries me more about the pace of <span class="caps">CSS</span> development. Yes, I want new toys, or more specifically I want to be more efficient (yes rounded corners, I&#8217;m looking at you) but actually, I&#8217;d rather have a good CSS3 spec than a fast and loose one. But the immenent fight between Flash/Adobe and Silverlight/Microsoft is showing how productive huge commercial companies can be when it wants to get something done. Both are introducing interesting new tools and allowing for what could be improvements to usability (or horribly confusing interfaces but hey). <span class="caps">CSS</span> and <span class="caps">HTML</span> should be the glue that binds all this together in a web where everything plays nicely together. But if <span class="caps">CSS</span> provides too little or too late then this is put in doubt. And if <span class="caps">CSS</span> falls I dont see microformats, rdf, html5 or whatever making a real dent &#8211; and I really want a semantic web (upper <strong>and</strong> lower case).</p>
+<h3>The Solution?</h3>
+<p>Well, I&#8217;d like to say the solution isn&#8217;t <em>Browser Wars II &#8211; A good idea this time?</em></p>
+<p>Andy&#8217;s suggestion of an interim step (or steps) between now and CSS3 modules raises a problem. If the working group do the work then it takes their eye further off getting CSS3 modules out. If they don&#8217;t, will they accept suggestions from outside? Will outsiders be able to grok the whole standardisation process?</p>
+<p>What we need is a commercial company with lots of smart people and lots of cash &#8211; with a track record of working with standards. A member of the W3C would be a plus. Ideally they should have something invested in the web as a platform, maybe even in a smarter, cleverer, semantic web.</p>
+<p>Google to the rescue maybe? If you&#8217;re really cynical you could see Silverlight as an end run around Google&#8217;s apparent dominance of the web as a platform. Lock content away in proprietary silos and traditional search becomes less appealing? And surely Google has lots to gain from the long term adoption of anything that increases the semantic nature of the web. If <span class="caps">CSS</span> is a battleground then maybe they need to come out and make a stand(ard)?</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/04/28/if-computer-scientists-managed-birth-certificates/">If Computer Scientists Managed Birth Certificates</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-28T00:00:00+01:00" pubdate data-updated="true">Apr 28<span>th</span>, 2007</time>
+        
+         | <a href="/2007/04/28/if-computer-scientists-managed-birth-certificates/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve been pondering <a href="http://morethanseven.net/posts/authoritative-hcards-authority-in-microformats/">authority in microformats</a> and as a result been taking a closer look at <a href="http://microid.org">microID</a>.</p>
+<p>The situation I want to find a solution for is; If their are lots of published hcards for a given person they might be different, either out of date or more sinisterly fraudulent. If I do a search for contact details, lets say using the <a href="http://kitchen.technorati.com/contact/search/">technorati hcard search engine</a>, how do I know which one is to be trusted?</p>
+<p>If I publish an hcard on <a href="http://morethanseven.net">my site</a> using the following markup, including a microID using the included email and url details to form the hash.</p>
+<pre><code>&lt;div 
+   class="vcard microid-mailto+http:sha1:a52b4f86cfa4190b53634d99198c0f56970c8d83"&gt;
+   &lt;h2 class="fn"&gt;gareth rushgrove&lt;/h2&gt;
+   &lt;a href="http://morethanseven.net" class="url" rel="me"&gt;
+      morethanseven.net
+   &lt;/a&gt;
+   &lt;a href="mailto:gareth@morethanseven.net" class="email"&gt;
+      gareth@morethanseven.net
+   &lt;/a&gt;
+&lt;/div&gt;</code></pre>
+<p>If the hcard search engine reads that hcard on the morethanseven.net domain it could check the hash in the vcard against doings it&#8217;s own hash with the specified email address and url (checking the url is the same as the one on which the vcard lives). &#8220;Ah ha&#8221;. It can say. This looks like an authoritive hcard.</p>
+<p>This does however raise a couple of issues. In order for the search engine or external reader to be able to create its hash you have to include the email in your hcard. I&#8217;m also not sure it does solve the issue of evil me:</p>
+<pre><code>&lt;div 
+   class="vcard microid-mailto+http:sha1:40b46e5c349453bddd0dbd022fb33488494699cb"&gt;
+   &lt;h2 class="fn"&gt;evil gareth rushgrove&lt;/h2&gt;
+   &lt;a href="http://spammer.com" class="url" rel="me"&gt;
+      spammer.com
+   &lt;/a&gt;
+   &lt;a href="mailto:gareth@spammer.com" class="email"&gt;
+      gareth@spammer.com
+   &lt;/a&gt;
+&lt;/div&gt;</code></pre>
+<p>Assuming the above is published on spammer.com then I&#8217;m sunk. It&#8217;s another authorative hcard with the same name, in this case <em>my</em> name. Of course therein lies another problem, when we name our children we tend to just do it on a whim, we even copy names we like from other people! And we change or subvert these names when we dont like them with nick names and the like. Domain names are unique so we avoid this problem.</p>
+<p>So, a possible solution does present itself; using the uniqueness of domain names combined with the fact that most people aren&#8217;t evil spammers. Lets postulate a search engine finds lots of hcards for a given name. Most of these hcards probably point back to the url of the entity they are describing (so most hcards on the web describing me point back to this site). We can then check if one of the hcards is from that domain, and if it has a valid microID. In other words we use the lazy web to identify the most likely location of an authorative hcard.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/04/16/authoritative-hcards-authority-in-microformats/">Authoritative hCards - Authority in Microformats</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-16T00:00:00+01:00" pubdate data-updated="true">Apr 16<span>th</span>, 2007</time>
+        
+         | <a href="/2007/04/16/authoritative-hcards-authority-in-microformats/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve been pondering lots of potential uses for <a href="http://microformats.org">microformats</a> of late and came up on one thing I thought worth asking what people thought; namely the issue of authority in microformatted data.</p>
+<p><a href="http://technorati.com">Technorati</a> provide a very interesting <a href="http://kitchen.technorati.com/contact/search/">Microformats search engine</a> that allows you to search for a person and get back their contact details via hcards that it knows about. For instance try doing a <a href="http://kitchen.technorati.com/contact/search/rushgrove">search for me</a> and you get seven results (ironic given the domain name), try with one of those <a href="http://adactio.com">famous people</a> and you get <a href="http://kitchen.technorati.com/contact/search/jeremy+keith">lots more</a>. This poses a problem, what is the various hcard disagree?</p>
+<p>You can always look at the publication date but this might not be enough. I could publish an hcard with incorrect data for anyone right now on this site and it would be more recent that the other, possibly correct, information already available on the web. Note that this isn&#8217;t a problem with Microformats per ce, more an ever present problem with the web. It&#8217;s just that Microformats make the matter more of a potential issue.</p>
+<p>Is their a need for the ability to provide an authoritative hCard, or other Microformat instance? One that can always be trusted? If I publish an hcard of my details I&#8217;d like to think the latest version of that would be the most trustworthy. But how do you make a claim of ownership over a piece of data on the web (microformatted or not)? And for some of this data do you need a way of deciding who has access to it and who does not in a standard manner?</p>
+<p>I&#8217;m pretty interested in the issue of identity at the moment, spurred on by the likes of <a href="http://openid.net/">OpenID</a> and <a href="http://microid.org/">MicroID</a>. I&#8217;m wondering if their isn&#8217;t some clever cross over here? Sites like <a href="http://claimid.com/">ClaimID</a> are doing some things in this space already so we&#8217;ll have to see.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/04/07/working-example-of-microformats-as-an-api/">Working Example of Microformats as an API</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-07T00:00:00+01:00" pubdate data-updated="true">Apr 7<span>th</span>, 2007</time>
+        
+         | <a href="/2007/04/07/working-example-of-microformats-as-an-api/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://allinthehead.com/">Drew</a> posted a while ago asking <a href="http://allinthehead.com/retro/301/can-your-website-be-your-api">can-your-website-be-your-api</a>. The simple idea is that you just might be able to live without a dedicated <span class="caps">API</span> in favour of good use of microformats.</p>
+<p>It also turns out <a href="http://tantek.com/">Tantek</a> has also been on the case with his presentation <a href="http://tantek.com/presentations/20040928sdforumws/semantic-xhtml.html">Can your website be your <span class="caps">API</span>? &#8211; Using semantic <span class="caps">XHTML</span> to show what you mean</a> and</p>
+<p><a href="http://www.glennjones.net">Glenn</a> has <a href="http://www.webdd.org.uk/ViewSession.aspx?SessionID=60">spoken on the subject too</a> at <a href="http://www.webdd.org.uk">WebDD</a> and <a href="http://barcamp.org/BarCampLondon2">BarCamp</a>.</p>
+<p>This has interested me for a while and I&#8217;ve finally gotten around to writing some code, in fact I wrote the bulk of it during <a href="http://thehighlandfling.com/2007/">The Highand Fling</a> and then the rest before the <a href="http://refreshedinburgh.com/">Refresh</a> event after I got to te venue an hour early.</p>
+<p>I used Drew&#8217;s <a href="http://allinthehead.com/hkit">hKit</a> for the microformat parsing so everything that follows is PHP5 only I&#8217;m afraid. The also means I dont have a working example on this server at the moment but you can <a href="http://morethanseven.net/_assets/downloads/microformatsapi/microformatsapi.zip">grab the code</a> and try it out yourself. It also makes use of a couple of <a href="http://pear.php.net"><span class="caps">PEAR</span></a> modules; <span class="caps">PEAR</span> <a href="http://pear.php.net/package/Validate">Validate</a> and <span class="caps">PEAR</span> <a href="http://pear.php.net/package/HTTP_Request">HTTP_Request</a>.</p>
+<p>At the moment I&#8217;ve worked on a simple hCard example. It demonstrates the idea of a website exposing methods based on the presense of microformats, plus using that exposed method to extract the information we&#8217;re looking for.</p>
+<p>First we create objects for the parser and the website:</p>
+<pre><code>$parser = new hKit;
+$website = new Website('http://morethanseven.net',$parser);</code></pre>
+<p>Then we&#8217;ll ask what methods the website exposes:</p>
+<pre><code>$website-&gt;expose();</code></pre>
+<p>In this example we get back an array of the available methods, in this case <em>getContacts</em>. Then just as an example lets print out some contact details:</p>
+<pre><code>foreach ($website-&gt;getContacts() as $contact) {
+   echo $contact-&gt;getFN();
+}</code></pre>
+<p>This is a very early release, more of a proof of concept and as such their is no documentation and only a portion of hCard is supported. Hell, their&#8217;s not even a name beginning with h! Having said that I have a plan for a little project to kick the tyres and so I&#8217;l l be adding to it and hopfully have a proper release at some point.</p>
+<p>The plan is to introduce methods like getReviews, getEvents, etc. which allow for the extraction of the relevant details. The part I find most interesting however is the idea of the expose method &#8211; asking a web page if it has an <span class="caps">API</span>, and if it does then what information you can extract automagically. If you&#8217;re interested let me know what you think.</p>
+<p><a href="http://morethanseven.net/_assets/downloads/microformatsapi/microformatsapi.zip">Download example</a></p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/04/02/software-i-installed-on-my-n800/">Software I Installed on My N800</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-02T00:00:00+01:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2007</time>
+        
+         | <a href="/2007/04/02/software-i-installed-on-my-n800/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Ok, so I&#8217;ve been shopping again but I&#8217;ll try and make this post a little more useful that <em>oh, look at my shiny new toy</em>.</p>
+<p>I decided that what I was really missing to help with my <a href="http://twitter.com">twitter</a> addiction and growing interest in the mobile web was a shiny new Nokia N800 Internet Tablet.</p>
+<p><img src="http://morethanseven.net/_assets/media/imgN800.jpg" title="Nokia N800 Internet Tablet" alt="Nokia N800 Internet Tablet" /></p>
+<p>I cant really write a fair review at the moment as I&#8217;ve only just got my mits on it so that will have to save for later. All I can think at the moment is <em>&#8220;Oh, shiny&#8221;</em>. What I will do is list the software I installed on it from the start, partly to demonstrate what you can get on it, partly to link to thinks I found useful and mostly to remind me if and when I need to do it again.</p>
+<ul>
+	<li><a href="http://openbossa.indt.org/canola/">Canola</a> &#8211; interesting media player app</li>
+	<li><a href="http://tuomas.kulve.fi/blog/2007/01/17/maemo-screen-grabber/">Maemo Screengrabber</a></li>
+</ul>
+<ul>
+	<li><a href="https://garage.maemo.org/projects/scite/">SciTE Text Editor</a></li>
+</ul>
+<ul>
+	<li><a href="http://770.fs-security.com/xterm/">X Terminal</a></li>
+	<li><a href="http://david.connolly.name/blog/hub/maemo/2006/04/25/Curl-Package-for-Nokia-770.html">Curl</a></li>
+	<li><a href="http://www.owenwilliams.plus.com/maemo/">Sqlite</a></li>
+	<li><a href="http://test.maemo.org/downloads/product/vim/">Vim</a></li>
+	<li><a href="http://armin-warda.de/">Wget</a></li>
+	<li><span class="caps">SSH</span></li>
+</ul>
+<ul>
+	<li><a href="http://rubyforge.org/projects/rubynokia770/">Ruby 1.8.4</a></li>
+	<li><a href="http://pymaemo.garage.maemo.org/">Python 25</a></li>
+	<li><a href="http://www.mono-project.com/Maemo">Mono</a></li>
+</ul>
+<p>And just for <a href="http://anotherblog.com">Phil</a> it already has <span class="caps">GCC</span>-3.4-base on so no need to install.</p>
+<p>Oh, and for the nay sayers thinking iPhone I don&#8217;t care. From all I&#8217;ve read the iPhone is going to be a closed system and this is a full blown Linux OS that is designed expressly to be hackable. Plus the N800 makes people swoon now, not in six months or a year when the iPhone hits the shelves.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/03/28/even-more-events/">Even More Events</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-28T00:00:00+01:00" pubdate data-updated="true">Mar 28<span>th</span>, 2007</time>
+        
+         | <a href="/2007/03/28/even-more-events/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I occasionally get some stick for wandering the country attending as many web related get togethers as I can manage but in fairness their are so many good events to get along to at the moment it would be rude not to. So here&#8217;s yet another run down of some upcoming events that people really should try and get along to:</p>
+<h3>The Highland Fling</h3>
+<p>Yes! It&#8217;s <a href="http://thehighlandfling.com">The Highland Fling</a> in only a couple of weeks and it&#8217;s still looking as great as when I bought my tickets. A nice, small, event with a host of good speakers (and good guys) and it&#8217;s not south of me for the first time ever. Props to <a href="http://www.alanwhitewebdevelopment.com/">Alan</a> for getting this off the ground.</p>
+<h3>Refresh Edinburgh</h3>
+<p>If that wasn&#8217;t enought it&#8217;s worth staying around an extra day in Edinburgh for a Refresh get together. Again a good lineup of <a href="http://groups.google.com/group/refresh-edinburgh/browse_thread/thread/be872d4891580ee4">speakers</a> and I would imagine a much interesting discussion and debate.</p>
+<h3>BarCamp NorthEast</h3>
+<p>With all the <a href="http://barcamp.org">BarCamp</a> goings on around <a href="http://barcamp.org/BarCampLondon2">BarCamp London</a> lots of other UK BarCamps have started to get organised, including one around <a href="http://barcamp.org/BarCampNorthEast">these parts</a>. Heather, <a href="http://www.agm.me.uk/blog">Alistair</a>, <a href="http://blog.meriwilliams.com/">Meri</a> and myself (ably supported with some soon to be revealed logo design by <a href="http://www.ellythompson.co.uk/blog/">Elly</a>) have plans. Watch this space.</p>
+<h3>Barcamp Sheffield</h3>
+<p>While we&#8217;re getting out act together another northern BarCamp is about to get going. <a href="http://barcamp.org/BarCampSheffield">BarCamp Sheffield</a> is happening in only a few weeks time. I&#8217;m hoping to make it along, maybe just for the saturday, but if anyone else is going along let me know.</p>
+<h3>HackDay</h3>
+<p>If that wasn&#8217;t already enought (and I haven&#8217;t even mentioned <a href="http://www.vivabit.com/atmedia2007/">@media</a>) their was something of a <a href="http://backstage.bbc.co.uk/news/archives/2007/03/hack_day_2007_g.html">big announcement</a> from <a href="http://www.thelondonbiker.com/blog/">Matt</a> over at the <span class="caps">BBC</span> today. Matt, and <a href="http://www.plasticbag.org/">Tom</a> from Yahoo have put together what looks like being <em>the</em> event of the year over the weekend of June 16th and 17th. Hackday is going to involve 400 geeks (you and me and all our friends in other words) spending 48 hours hacking on APIs and the like then watching some suitably bemused band.</p>
+<p>Most of these have details on <a href="http://upcoming.org">Upcoming</a> which I&#8217;m increasingly thinking could be incredibly useful if only a few more people used it. So after telling you to go to all these events (which would cost money) I&#8217;ll leave with telling you all to sign up for Upcoming (which costs nothing) and add <a href="http://upcoming.org/user/52694/">me</a> as a friend.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/03/18/semantic-web-acronym-links-primer/">Semantic Web Acronym Links Primer</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-18T00:00:00+00:00" pubdate data-updated="true">Mar 18<span>th</span>, 2007</time>
+        
+         | <a href="/2007/03/18/semantic-web-acronym-links-primer/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>One thing you hit pretty rapidly when you start having a look into all this Semantic Web malarkey is the number of rather <em>silly</em> acronyms and abbreviations. In fairness it&#8217;s true of pretty much every technical or academic discipline I&#8217;ve come across and you can ask the people I work with what I think about that &#8211; I wont ramble on here.</p>
+<p>And dont think this is all because I&#8217;m not technical enough for ya, I have code on my blog and a faintly scary collection of technical tomes. I just think acronyms tend to breed elitism and make the world less penetrable, especially when they are often described in relation to other acronyms. So, after pointing out a problem here&#8217;s a stab at a solution; a web designers guide (with the relevant links) to my understanding of the different things involved. I&#8217;m not an expert on this yet mind, so if I&#8217;m wrong and someone more knowlegable can provide a better description then please comment. If the descriptions from the relevant links I have are good enough I&#8217;ll just use those as well.</p>
+<p>Most people will probably have come across <a href="http://www.w3.org/XML/"><span class="caps">XML</span></a> so hopefully this is an easy one. <span class="caps">XML</span> is the eXtensible Markup Language. For me that means it&#8217;s a set of rules for defining your own markup language; from simple data exchange formats to whole programming languages. The W3C says (which I think nicely highlights my problem from above)</p>
+<blockquote>
+<p>Extensible Markup Language (<span class="caps">XML</span>) is a simple, very flexible text format derived from <span class="caps">SGML</span> (<span class="caps">ISO</span> 8879)</p>
+</blockquote>
+<p><a href="http://www.w3.org/TR/xslt"><span class="caps">XSLT</span></a> is another quite common tool. The W3C again defines it in relation to another acronym but this time I dont mind as much and we&#8217;ve got a defintion of <span class="caps">XML</span> here anyway.</p>
+<blockquote>
+<p>[<span class="caps">XSLT</span> is] a language for transforming <span class="caps">XML</span> documents into other <span class="caps">XML</span> documents</p>
+</blockquote>
+<p>This is a pretty straighforward description, the only real problem for the outsider is wondering why you would want to do that!</p>
+<p><a href="http://www.w3.org/RDF/"><span class="caps">RDF</span></a> <a href="http://www.w3schools.com/rdf/default.asp">W3Schools says</a> is really where the Semantic Web stuff starts. The W3C start off with:</p>
+<blockquote>
+<p>The Resource Description Framework (<span class="caps">RDF</span>) integrates a variety of application&#8230;</p>
+</blockquote>
+<p>Ah. It integrates applications&#8230; What! But wait:</p>
+<blockquote>
+<p>The <span class="caps">RDF</span> specifications provide a lightweight ontology system to support the exchange of knowledge on the Web</p>
+</blockquote>
+<p>This is pretty good actually, as long as you&#8217;re happy with the word <a href="http://en.wikipedia.org/wiki/Ontology_%28computer_science%29">ontology</a>. Their is a <a href="http://www.xml.com/pub/a/2001/01/24/rdf1.html">good article</a> that takes a stab at the question from Tim Bray. I think, simply put, <span class="caps">RDF</span> is common set of rules for defining your own meta data (information about information) so it&#8217;s interopable with everyone else doing the same thing.</p>
+<p>But how are we going to get all that <span class="caps">RDF</span> into our web pages (Semantic or otherwise)? <a href="http://www.w3.org/TR/xhtml-rdfa-primer/">RDFa</a> is one possibility (not going there right now) which involves extending <span class="caps">HTML</span> (all varieties) with some additional attributes with the purpose of being able to embed <span class="caps">RDF</span> in the document. Or from the W3C:</p>
+<blockquote>
+<p>RDFa is a syntax that expresses this structured data using a set of elements and attributes that embed <span class="caps">RDF</span> in <span class="caps">HTML</span></p>
+</blockquote>
+<p><a href="http://www.w3.org/TR/2004/NOTE-grddl-20040413/"><span class="caps">GRDDL</span></a> is probably the worst offender here in terms of someone spending too much time coming up with the acronym. It stands for <em>Gleaning Resource Descriptions from Dialects of Languages</em>. From looking it appears to be a standard way of saying:</p>
+<blockquote>
+<p>Here be some <span class="caps">RDF</span>. If you want the <span class="caps">RDF</span> for this document please use this <span class="caps">XSL</span> transformation.</p>
+</blockquote>
+<p><a href="http://research.talis.com/2005/erdf/wiki/Main/RdfInHtml">eRDF</a>, or embedded <span class="caps">RDF</span> is a simpler approach to RDFa which involves no additional custom attributes but does not aim to be able to represent all the possible <span class="caps">RDF</span> constructs.</p>
+<p>Of course their are many more, but at least that&#8217;s a start. Let me know what you think.</p></div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/page/25/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/page/23/">Newer &rarr;</a>
+    
+  </div>
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo">
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

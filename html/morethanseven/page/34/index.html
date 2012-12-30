@@ -1,0 +1,571 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="Ok, so everyone by now has no doubt had a play with XML&quot;&gt;AJAX in some shape or form, and their are lots of good tutorials and articles around &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/page/34">
+  <link href="/favicon.ico" rel="icon">
+  
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<meta content="etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8" name="google-site-verification">
+<link href="http://www.myopenid.com/server" rel="openid.server">
+<link href="http://garethr.myopenid.com/" rel="openid.delegate">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="no-sidebar"  >
+  <header>
+<hgroup>
+<h1><a href="/">Morethanseven</a></h1>
+<p>The blog of Gareth Rushgrove</p>
+
+<div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+</hgroup>
+</header>
+
+
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/11/27/ajax-and-privacy/">AJAX and Privacy</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-11-27T00:00:00+00:00" pubdate data-updated="true">Nov 27<span>th</span>, 2005</time>
+        
+         | <a href="/2005/11/27/ajax-and-privacy/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Ok, so everyone by now has no doubt had a play with <acronym>XML&quot;&gt;<span class="caps">AJAX</span></acronym> in some shape or form, and their are lots of good <a href="http://rajshekhar.net/blog/archives/85-Rasmus-30-second-AJAX-Tutorial.html">tutorials</a> and <a href="http://dhtmlnirvana.com/ajax/ajax_tutorial/">articles</a> around. I&#8217;m not going to add to the pile, but on my travels I did do something that raised a couple of questions. Let me know if anyone has any answers.</p>
+ <p>The questions are more ethical than technological however and came about when considering online advertising and it&#8217;s never ending need for metrics &#8211; at the moment that generally means impressions and click throughs (maybe also including converting click throughs). These two states are imposed to some extent by the stateless nature of most web pages. We can tell what gets shown to the visitor. But they then disappear from our radar until they do something &#8211; in this case click on an advert (or dont).</p>
+ <p>But what about the asynchronous nature of our new toy <span class="caps">AJAX</span>? We are starting to break out from the constrains of the stateless web so can anything be added to our add example? Why yes of course it can.</p>
+ <p>I&#8217;ve set up a quick working example that should hopefully make my point a little clearer. Open in a new tab (I know 80% of you can &#8211; <a href="http://haveamint.com">mint</a> is great) if you will &#8211; <a href="http://morethanseven.net/monitor">morethanseven.net/monitor</a></p>
+ <p>Mouse over the two <em>Ad</em> areas a few times. Click on them a few times too. Obviously the appearing message telling you what you have done is hardly exciting but it&#8217;s actually a response from an <span class="caps">AJAX</span> (actually it&#8217;s not returning <span class="caps">XML</span> so is that AJ?) call. All the call does is log the action inn a text file and return a success or failure. This isn&#8217;t high tech stuff &#8211; it&#8217;s proof of concept remember, it gets interesting a couple of jumps forwards.</p>
+ <p>The two buttons at the bottom, clear log and view log, allow you to see the log of actions (and delete them). I dont imagine this attracting high but the log file will log everyone&#8217;s actions not just yours, so you might want to clear the log first to more easily see your actions appear.</p>
+ <p>OK, so what? Well lets imagine instead of just the actions I log your IP address, some date details, maybe store a cookie on your computer while I&#8217;m at it. Also as well as hooking up two add areas as in the example I hook up <em>everything</em> on the page. Not only can I build up a picture of your activities between pages (your path through the site), I can build up a picture of what your mouse was doing on a given page. Now where stalking.</p>
+ <p>OK, so I&#8217;m not sure if their is a correlation between a web users mouse pointer and what they intend but think of other examples &#8211; I could trigger the events on focus for form elements. You might get half way through registering or purchasing (you&#8217;ve entered your name and an email address) and then decide against it. Normally all I&#8217;d be able to get would be someone went to the page in question and did not complete the required actions &#8211; with <span class="caps">AJAX</span> I could log who you where and were you got to in the process (and then email you to ask why).</p>
+ <p>Ethics anyone? Anyone else see problems? Let me know.</p>
+ <p><em>Note. The javascript examples are not great and I&#8217;ve testing in recent versions of IE and Firefox only. It&#8217;s a proof of concept rather than tutorial.</em></p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/11/26/roll-on-february/">Roll on February</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-11-26T00:00:00+00:00" pubdate data-updated="true">Nov 26<span>th</span>, 2005</time>
+        
+         | <a href="/2005/11/26/roll-on-february/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Well &#8211; It looks like february has made a quick move to try and secure the prestigious <em>month of the year</em> award.</p>
+ <p>With two events happening in London, namely <a href="http://clearleft.com">Clearleft&#8217;s</a> <a href="http://www.clearleft.com/training/ajax.php">Ajax Training Workshop</a> on the 10th and <a href="http://www.carsonworkshops.com/">Carson Workshops</a> <a href="http://www.carsonworkshops.com/summit/">Future of Web Apps</a> summit on the 8th it&#8217;s <em>all go</em> in the rapidly expanding world of web geek meetups.</p>
+ <p>After missing <a href="http://dconstruct.org">d.Construct</a> I dont feel two bad about the outlay for going to both of these, especially with the assistance of my lovely employers. So I need to work out the details; travel, accomodation, what to do on the thursday, etc. but that should hopefully not be too painful. Any suggestions welcome &#8211; especially if anyone else is going along to one or both &#8211; be good to be in the same hotel as other attendess &#8211; I met <a href="http://theintranetblog.blogspot.com/">Nic</a> at <a href="http://atmedia2005.co.uk">@Media</a> last year as she was in the same hotel.</p>
+ <p>So, anyone else going along? Want to meet up? Ideas for accomodation or things to do on the Thursday? See you in February!</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/11/20/accessify-rocks-manchester/">Accessify ROCKS Manchester</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-11-20T00:00:00+00:00" pubdate data-updated="true">Nov 20<span>th</span>, 2005</time>
+        
+         | <a href="/2005/11/20/accessify-rocks-manchester/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Back from Manchester after a pretty <a href="http://accessifyforum.com/viewtopic.php?t=3770&#38;postdays=0&#38;postorder=asc&#38;highlight=meetup&#38;start=150">good weekend</a> all in all.</p>
+ <p>It didn&#8217;t start particularly well. Very briefly I was late getting to the station. Missed train. Waited an hour and the next train was delayed half an hour. Missed meeting everyone at the station and had no clue where the place was. After a trip (in the opposite direction to the pub) to the tourist information centre I finally got there and things picked up markedly.</p>
+ <p>Present where <a href="http://www.splintered.co.uk/">Patrick Lauke</a>, <a href="http://vigo.org.uk">Vigo</a>, <a href="http://www.logohere.co.uk/">Andy Saxton</a>, <a href="http://www.thepickards.co.uk">Jack Pickard</a>, <a href="http://www.pixeldiva.co.uk">Pixeldiva</a>, <a href="http://www.xhtmlcoder.com">Robert Wellock</a>, <a href="http://accidentalsmallholder.net">Dan Champion</a> and myself.</p>
+ <p>We started out in a small deserted bar where Patrick had booked a table (including a reserved sign with bad fonts). Considering that we accounted for the vast majority of people in their throughout the afternoon this was mildy amusing.</p>
+ <p>I missed most of the introductions but not to fear. Conversation jumped around &#8211; people who made it to <a href="http://dconstruct.org">d.Construct</a> filled everyone else in with the highlights and the behind the scenes gossip. Tales of massages and ladies mainly. We had a wireless laptop connection and browsed around a little. Bad examples of error messages (I&#8217;ll dig out the links later on), brand new public sector sites that simply consist of sliced up images (including links with blue underlines and ovely image maps) and goings on at the <span class="caps">BBC</span>. But we cant speak about the later. Some talk as well on privacy issues tied in with the whole open <span class="caps">API</span> goings on and an idea we intent to sell to google &#8211; stalking.google.com &#8211; which is fairly self explanatory but we got into a worrying level of detail!</p>
+ <p>After a brief break to stop off at the hotel, and for some of the group to depart, we got some Indian food on the way to a pub recommended by Patrick, who was going to meet the rest of us there. It was a <span class="caps">ROCK</span> pub. Rage on the jukebox, lots of proper beers, people wearing black, etc. All of a sudden we found something else we had in common &#8211; musical tastes. More discussions going backwards and forwards between the music (what&#8217;s that tune?) and the state of the industry. All good fun.</p>
+ <p>Overall, another enjoyable meetup. Thumbs up to everyone turning up and I&#8217;ll look forward to the next one. I&#8217;ll post links and the obligatory <a href="http://flickr.com">flick</a> details once everyone else has their say.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/11/15/creatives/">&#39;Creatives&#39;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-11-15T00:00:00+00:00" pubdate data-updated="true">Nov 15<span>th</span>, 2005</time>
+        
+         | <a href="/2005/11/15/creatives/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m not going to prattle on but something that&#8217;s bugged me for an age. The usage of the word &#8220;Creatives&#8221;. And lo and behold it bugs <a href="http://37signals.com/svn/archives2/creatives.php">other people</a> too.</p>
+ <p>I like knowing that it&#8217;s not just me!</p>
+ <p>Just to say as well that anyone reading this and going along to the <a href="http://www.accessify.com">Accessify</a> <a href="http://www.accessifyforum.com/viewtopic.php?t=3770&#38;postdays=0&#38;postorder=asc&#38;highlight=meetup&#38;start=120">Meetup</a> in Manchester this weekend let me know. Leave a comment. Be good to put names and faces to email addresses and web sites!</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/11/12/dconstruct/">d.Construct?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-11-12T00:00:00+00:00" pubdate data-updated="true">Nov 12<span>th</span>, 2005</time>
+        
+         | <a href="/2005/11/12/dconstruct/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Right. I wasn&#8217;t at <a href="http://www.dconstruct.org">d.Construct</a> I&#8217;m still a bit gutted really as it sounded like a hoot and lots of it was up my street and would have been good to meet up with &#8216;people&#8217;. But hey, I can still watch the feeds pour in right?</p>
+ <p>With that in mind, to again make my life easier and hopefully be of some use I&#8217;ve set up another (the first one was for <a href="http://www.atmedia2005.co.uk">@media</a>) feed syndicator.</p>
+ <p><a href="http://morethanseven.net/dconstruct">morethanseven.net/dconstruct</a></p>
+ <p>All I&#8217;m doing is parsing, storing and displaying all the feeds. On first run I picked up 27 and hopefully by the time you read this more will have been said. The collection of feeds are a combination of people I&#8217;ve met and people who where blogging about <code>media. If you have a feed and want it adding just leave a comment on here or drop me an &lt;a href="mailto:gareth</code>morethanseven.net&quot;&gt;email</a> and I&#8217;ll add it to the rest.</p>
+ <p>I&#8217;ll just say a big shout for everyone at <a href="http://www.clearleft.com">Clearleft</a> for organising it on such short notice. I&#8217;d rather thinks like this happen and me not be there than they not happen at all because of problems with size or cost or admin. Maybe next year?</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/11/08/tips-for-fluid-design/">Tips for Fluid Design</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-11-08T00:00:00+00:00" pubdate data-updated="true">Nov 8<span>th</span>, 2005</time>
+        
+         | <a href="/2005/11/08/tips-for-fluid-design/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>After getting a few comments about the site design, and in particular a few of the fluid nature comments about it being tricky to get right. I&#8217;ve found myself tending to develop fluid designs more often that not over the <a href="http://thebgroup.co.uk">last</a> <a href="http://newcastlenewmedia.org">few</a> <a href="http://www.cravens.co.uk">years</a> and thought I&#8217;d do a short series of posts about some of the techniques I use. I&#8217;ve generally found it pretty easier to find <a href="http://www.boagworld.com/archives/2005/06/liquid_vs_fixed.html">discussions</a> about the <a href="http://www.digital-web.com/articles/fluid_thinking/">pro&#8217;s</a> and <a href="http://9rules.com/whitespace/design/death_of_liquid_layouts.php">cons</a> and the basic principles but less so on actual techniques. I&#8217;ll try cover some or all of the following over the next few weeks or so:</p>
+<ul>
+ <li>extendable background images</li>
+  <li>using overflow hidden</li>
+  <li>use of fluid flash banners</li>
+  <li>min-width and max-width (and javascript)</li>
+</ul>
+ <p>I&#8217;ll kick off with tricks for background images.</p>
+ <p>This techniques makes extensive use of the <em>background</em> <acronym title="Cascading Style Sheets"><span class="caps">CSS</span></acronym> property which is used as following: <em>div#iBackground { background: url(path/to/image) center top no-repeat; }</em></p>
+ <p>I&#8217;ll assume some familiarity with this and <span class="caps">CSS</span> in general, basically all we are doing is setting a background image to the div with an id of iBackground which is set to align to the top vertically and centered horizontally.</p>
+ <p>Moving the image to the background has a couple of interesting effects, the one that we are interested in here is that the the size of the div is not affected by the size of the image (as it would be if the image was placed inside it). It acts as a kind of viewport into the world of the image. By specifying the width of the div in percentages (or em&#8217;s if you are dealing with an elastic design) the size of the viewport can change dependent on the size of the browser window. An example is inorder:</p>
+ <p><a href="http://joshuaink.com">joshuaink.com</a> makes use of a large background graphic that stretches the full width of the site. This means the space can be used for pretty large imagery but without breaking the experience (sideways scrolling!) for those with lower resolution displays. Note that the flower background is 2000px wide.</p>
+ <p>The only problem with this technique that I have come across is generating the images in such a way that they degrade gracefully. You need to make sure real <em>content</em> (logos or text) appear in a smaller area that the whole image and live with the fact that not everyone is going to see the whole thing. In my mind this is a small price to pay for asthetically interesting fluid layouts.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/11/06/mint-goings-on/">Mint Goings On</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-11-06T00:00:00+00:00" pubdate data-updated="true">Nov 6<span>th</span>, 2005</time>
+        
+         | <a href="/2005/11/06/mint-goings-on/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Well. Lots of goings on since the <a href="http://cssreboot.com">reboot</a>. Rather than fill up lots of posts I thought I&#8217;d summarise &#8211; If something is interesting enough I&#8217;ll probably come back to it.</p>
+ <p>Thanks everyone for positive comments about the redesign, lots of new visitors to the site from the reboot site itself and people who liked the design and said so on their sites:</p>
+<ul>
+ <li><a href="http://pixelicious.co.uk/">pixelicious.co.uk</a></li>
+  <li><a href="http://www.net-lounge.de">net-lounge.de</a></li>
+  <li><a href="http://brainfuel.tv/">brainfuel.tv</a></li>
+</ul>
+ <p>I even got onto <a href="http://screenspire.com/view/morethanseven.net/">screenspire</a> which was nice.</p>
+ <p>All of this I&#8217;ve had the joy of watching from the vantage point of <a href="http://www.haveamint.com">mint</a>. I mentioned that I&#8217;d installed it a while back, as much to have a play around as anything but as many before me had stated, you can easily get hooked on the stats &#8211; and I&#8217;m enough of a numbers fan as it is. So what follows is a very brief, but real world opinion, of Mint. In case your only interested in the final opinion &#8211; I&#8217;m a fan (you could tell that anyway).</p>
+ <p>First things first, purchase, download and installation was an absoolute breeze. OK so I&#8217;m fine with all kinds of command line driven installs but their was non of that anyhow. Just change a simple text configuration file, create a database and upload. Everything else was just point at a <span class="caps">URL</span> and away we go.</p>
+ <p>I decided to install a couple of the official peppers (plugins) along the way, again a simple matter of upload, login and click install.</p>
+ <p>Login presents the nice interface everyone was googling over. It&#8217;s all nice shades of green, shadows and javascript scrolling. The pane&#8217;s themselves provide information about Visits, Referrers, Pages and Searches. This isn&#8217;t all the information you might be used to from other log file based packages but once you get over that you dont really need anything else under most circumstances.</p>
+ <p>One thing that did interest me was information about screen resolutions and that&#8217;s where the User Agent 007 pepper comes in. Displaying information about screen resolution, along with details of Browser and Flash versions. It&#8217;s all very voyeuristic I know but hey.</p>
+ <p>The Visits and Referrers panes are probably where most of the action is. The Referrers section is great from my point of view for seeing who is linking to me, really useful for tracking down interesting people I have no other way of finding out about. Visits details lots of information about the number of visits and visitors &#8211; cunningly logged using javascript so as to avoid lots of referrer (ie. spider) spam. Having said that, Google cropped up in my User Agent 007 pane so maybe Google triggers it too?</p>
+ <p>So. Is it for you? I get the feeling that it depends. It&#8217;s come out of the blogging scene so to speak and it shows. Design decisions have been made that strengthen it immeasurably for blogs while, in my mind, weaken it for other kinds of sites &#8211; in particular from my past experience for campaign style sites where you really want to look at this sort of detail.</p>
+ <p>For example the choice of <span class="caps">PHP</span>, how many well known blogs (at least in the corner of the web inhabited by web designers) dont use <span class="caps">PHP</span>? So for blogs that&#8217;s not a problem but for other sites it can be.</p>
+ <p>Another area is the ability to query the statistics. For a blog you just want to know traffic all the time probably. For a campaign you want to know what happened when. And that might mean going back in time so to speak &#8211; when putting together a report for instance. It might be possible to mine this data, even build a pepper around it &#8211; but I&#8217;m not sure that&#8217;s playing to Mints strengths.</p>
+ <p>As I said initially, these aren&#8217;t really critisisms. Specialist software is where it&#8217;s at in my mind. And this is definately a very nice piece of software.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/11/01/reboot/">Reboot</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-11-01T00:00:00+00:00" pubdate data-updated="true">Nov 1<span>st</span>, 2005</time>
+        
+         | <a href="/2005/11/01/reboot/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The real <a href="http://www.cssreboot.com"><span class="caps">CSS</span> Reboot</a> should be going off anytime now. But I&#8217;m in Rome (this message is coming at you through the magic of Textpatterns publish on date facility) so had to put things up a <em>little</em> prematurely. Oh well. In fairness I know which one I&#8217;d prefer to be doing.</p>
+ <p>I&#8217;ll miss the initial rush of running through lots of screen shots and sites, finding new things and generally wanting to redo the design at least for a week anyway. When I&#8217;m back I&#8217;ll post a list of one&#8217;s that caught my eye.</p>
+ <p>In the meantime a couple of other ongoing bits. I&#8217;ll try and sort out lots of photos onto Flickr when I&#8217;m back, hopefully including some shots from Rome and a few other series I&#8217;ve taken and not got round to. Also after meetups, lots of discussion on and around <a href="http://newcastlenewmedia.org">newcastlenewmedia.org</a> hopefully a sense of renewed focus and some hapenings around that.</p>
+ <p>All in all I&#8217;m sure I wont be missed, but enjoy the reboot. If you have any personal favourites then leave a comment. If you have opinions about mine then leave those too. Especially if they&#8217;re nice.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/10/28/tonight-tonight-accessify-meetup/">Tonight Tonight - Accessify Meetup</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-10-28T00:00:00+01:00" pubdate data-updated="true">Oct 28<span>th</span>, 2005</time>
+        
+         | <a href="/2005/10/28/tonight-tonight-accessify-meetup/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong><span class="caps">UPDATE</span></strong> Well. Five people seemed a good number on the notice and the size of the table we got at the Forth. The trick of leaving a copy of bulletproof web design casually on the side of the table worked a treat.</p>
+ <p>Lots of hello&#8217;s, some vague recognition and lots of shared experiences and good ideas floated around. All in all a positive thing I though and hopefully the first of similar meetups in Newcastle.</p>
+ <p>Hi to, in no particular order:</p>
+<ul>
+ <li><a href="http://www.buy.at/">Ben</a></li>
+  <li><a href="http://www.mcskiver.com/blog/">Lee</a></li>
+  <li><a href="http://coded.uk.com">Kev</a></li>
+  <li>Name to be remembered!</li>
+</ul>
+ <p>The <a href="http://www.accessify.com">accessify</a> forum meetup <del>is tonight</del> <ins>was on Thursday</ins> at the <strong>Forth</strong> for anyone who doesn&#8217;t know about it and is around the area. Looking to be a small number turning up but should hopefully be good to meet new people. I&#8217;ll post more details on here, and any photos (no photos, sorry), post event.</p>
+ <p>What do I want out of it besides the beer? Hopefully some ideas and enthusiasm. I keep meaning to do more with <a href="http://www.newcastlenewmedia.org">newcastlenewmedia</a> and a few people have expressed an interest in pulling some things off &#8211; the mailing list even kicked off yesterday with a flurry of posts. So some concrete ideas, a broader network and some beer will do nicely.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/10/25/contact/">Contact</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-10-25T00:00:00+01:00" pubdate data-updated="true">Oct 25<span>th</span>, 2005</time>
+        
+         | <a href="/2005/10/25/contact/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If you want to talk to me about, well anything really, let me know. Your best bet is probably emailing me on <a href="mailto:gareth@morethanseven.net">gareth@morethanseven.net</a> and hopefully I should get back to you. Unless you&#8217;re a spam bot in which case expect to be automatically deleted or ignored.</p>
+ <p>On the other hand I can be found wandering the corridors over at <a href="http://www.designersinhouse.com/">designersinhouse.com</a> or appearing in person at anything I can get along to that sounds interesting.</p></div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/page/35/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/page/33/">Newer &rarr;</a>
+    
+  </div>
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo">
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

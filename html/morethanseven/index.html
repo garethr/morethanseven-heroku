@@ -1,332 +1,686 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-  <head>
-    <title>morethanseven - a blog by Gareth Rushgrove</title>
-    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
-    <meta content='python, twitter, django, im, stomp, ruby, stompserver, oauth, openmicroblogging, vmware, sphinx, morbid, xmpp, jabber, barcampbrighton3, erlang, restructuredtext, appengine, gae, pyunit, google, css, unittesting, mozilla, webkit, rails, environments, profiling, morethanseven, cssdoc, git, github, unitesting, muffinresearch, rambling, musing, memcache, spotify, tools, programming, development, integrity, api, webhook, conference, bamboojuice, localbuilder, jaiku, lastfm, apis, djugl, ant, apache, json, sinatra, dvcs, pep, image-host, radiant, pdb, settings, personal, rest, imified, epydoc, business, dmigrations, campug, cambridge, javascript, html, rewiredstate, soa, wsgi, hackernews, wonderwheel, architecture, rev=canonical, gitbug, thinkingdigital, tdc, ie6, universal, malarkey, webdev, mnml, testing, camgeeknights, messagequeues, sass, urltest, pypi, quality, pypants, djangodash, rant, xhtml, xhtml2, w3c, html5, data, asteroid, fabric, deployment, solaris, bcb4, test-extensions, operations, hadoop, dumbo, pragprog, screencasts, dreque, devops, dibi, newcastle, sed, awk, cucumber, nagios, rabbitmq, amqp, industry, blogging, tumblr, mysql, cucumber-nagios, nanoc, piston, security, webservices, virtualenv, sandbox, hive, misc, barcamp, barcamb3, debian, ubuntu, ganglia, gmetrics, websockets, javscript, eventmachine, freeagent, chef, vagrant, virtualisation, virtualbox, amazon, heroku, devopsweekly, java, jruby, glassfish, sysadvent, pass, solr, packaging, checkinstall, puppet, fosdem, brightbox, jenkins, metrics, cambridgegeeknight, theguardian, fpm, cron, whenever, rubygems, vagrantboxes, cloudfoundry, http, performance, varnish, caching, vim, homebrew, lrug, gds, rundeck, mongodb, mongoid, puppet facter, clojure, noir, ec2, node, hubot, govuk, presentations, warbler, jetty, nginx, riemann' name='keywords' />
-    <meta content='etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8' name='google-site-verification' />
-    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
-    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
-    <link href='/assets/css/code.css' rel='stylesheet' type='text/css' />
-    <link href='http://www.myopenid.com/server' rel='openid.server' />
-    <link href='http://garethr.myopenid.com/' rel='openid.delegate' />
-    <link href='/articles.atom' rel='alternate' title='Morethanseven Atom Feed' type='application/atom+xml' />
-  </head>
-  <body>
-    <div id='main'>
-      <div id='header'>
-        <div class='logo'>
-          morethanseven
-        </div>
-        <div id='carbonads-container'>
-          <div class='carbonad'>
-            <div id='carbon'></div>
-            <script type='text/javascript'>
-              //<![CDATA[
-                var z = document.createElement("script");
-                z.type = "text/javascript";
-                z.async = true;
-                z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
-                var s = document.getElementsByTagName("script")[0];
-                s.parentNode.insertBefore(z, s);
-              //]]>
-            </script>
-          </div>
-        </div>
-        <div id='nav'>
-          <ul>
-            <li><a href='/about.html'>about</a></li>
-            <li><a href='/archives.html'>archives</a></li>
-            <li><a href='/tags.html'>tags</a></li>
-            <li>
-              <a href='/articles.atom'>rss</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class='clear'></div>
-      <div id='sticky'>
-        <div class='body'>
-          <p>Gareth Rushgrove on web development, software and miscellany</p>
-        </div>
-      </div>
-      <div class='excerpt'>
-        <h2>
-          <a class='permalink' href='/2012/08/11/Riemann-puppet-module.html'>&laquo; Riemann Puppet Module</a>
-        </h2>
-        <div class='body'>
-          <p>
-            
-          </p>
-        </div>
-      </div>
-      <div class='excerpt'>
-        <h2>
-          <a class='permalink' href='/2012/07/01/The-vagrantbox.es-story.html'>&laquo; The Vagrantbox.es Story</a>
-        </h2>
-        <div class='body'>
-          <p>
-            
-          </p>
-        </div>
-      </div>
-      <div class='excerpt'>
-        <h2>
-          <a class='permalink' href='/2012/06/05/Static-sites-with-nginx-on-heroku.html'>&laquo; Static Sites With Nginx On Heroku</a>
-        </h2>
-        <div class='body'>
-          <p>
-            
-          </p>
-        </div>
-      </div>
-      <div class='excerpt'>
-        <h2>
-          <a class='permalink' href='/2012/04/06/Self-contained-jruby-web-applications.html'>&laquo; Self Contained Jruby Web Applications</a>
-        </h2>
-        <div class='body'>
-          <p>
-            
-          </p>
-        </div>
-      </div>
-      <div class='excerpt'>
-        <h2>
-          <a class='permalink' href='/2012/03/31/Recent-projects-and-talks.html'>&laquo; Recent Projects And Talks</a>
-        </h2>
-        <div class='body'>
-          <p>
-            
-          </p>
-        </div>
-      </div>
-      <div class='excerpt'>
-        <h2>
-          <a class='permalink' href='/2012/02/19/Dashboards-at-govuk.html'>&laquo; Dashboards At Gov.Uk</a>
-        </h2>
-        <div class='body'>
-          <p>
-            
-          </p>
-        </div>
-      </div>
-      <div class='clear'></div>
-      <div id='taglist'>
-        <a class='tag' href='/tags/amazon/'>amazon</a>
-        <a class='tag' href='/tags/amqp/'>amqp</a>
-        <a class='tag' href='/tags/ant/'>ant</a>
-        <a class='tag' href='/tags/apache/'>apache</a>
-        <a class='tag' href='/tags/api/'>api</a>
-        <a class='tag' href='/tags/apis/'>apis</a>
-        <a class='tag' href='/tags/appengine/'>appengine</a>
-        <a class='tag' href='/tags/architecture/'>architecture</a>
-        <a class='tag' href='/tags/asteroid/'>asteroid</a>
-        <a class='tag' href='/tags/awk/'>awk</a>
-        <a class='tag' href='/tags/bamboojuice/'>bamboojuice</a>
-        <a class='tag' href='/tags/barcamb3/'>barcamb3</a>
-        <a class='tag' href='/tags/barcamp/'>barcamp</a>
-        <a class='tag' href='/tags/barcampbrighton3/'>barcampbrighton3</a>
-        <a class='tag' href='/tags/bcb4/'>bcb4</a>
-        <a class='tag' href='/tags/blogging/'>blogging</a>
-        <a class='tag' href='/tags/brightbox/'>brightbox</a>
-        <a class='tag' href='/tags/business/'>business</a>
-        <a class='tag' href='/tags/caching/'>caching</a>
-        <a class='tag' href='/tags/cambridge/'>cambridge</a>
-        <a class='tag' href='/tags/cambridgegeeknight/'>cambridgegeeknight</a>
-        <a class='tag' href='/tags/camgeeknights/'>camgeeknights</a>
-        <a class='tag' href='/tags/campug/'>campug</a>
-        <a class='tag' href='/tags/checkinstall/'>checkinstall</a>
-        <a class='tag' href='/tags/chef/'>chef</a>
-        <a class='tag' href='/tags/clojure/'>clojure</a>
-        <a class='tag' href='/tags/cloudfoundry/'>cloudfoundry</a>
-        <a class='tag' href='/tags/conference/'>conference</a>
-        <a class='tag' href='/tags/cron/'>cron</a>
-        <a class='tag' href='/tags/css/'>css</a>
-        <a class='tag' href='/tags/cssdoc/'>cssdoc</a>
-        <a class='tag' href='/tags/cucumber/'>cucumber</a>
-        <a class='tag' href='/tags/cucumber-nagios/'>cucumber-nagios</a>
-        <a class='tag' href='/tags/data/'>data</a>
-        <a class='tag' href='/tags/debian/'>debian</a>
-        <a class='tag' href='/tags/deployment/'>deployment</a>
-        <a class='tag' href='/tags/development/'>development</a>
-        <a class='tag' href='/tags/devops/'>devops</a>
-        <a class='tag' href='/tags/devopsweekly/'>devopsweekly</a>
-        <a class='tag' href='/tags/dibi/'>dibi</a>
-        <a class='tag' href='/tags/django/'>django</a>
-        <a class='tag' href='/tags/djangodash/'>djangodash</a>
-        <a class='tag' href='/tags/djugl/'>djugl</a>
-        <a class='tag' href='/tags/dmigrations/'>dmigrations</a>
-        <a class='tag' href='/tags/dreque/'>dreque</a>
-        <a class='tag' href='/tags/dumbo/'>dumbo</a>
-        <a class='tag' href='/tags/dvcs/'>dvcs</a>
-        <a class='tag' href='/tags/ec2/'>ec2</a>
-        <a class='tag' href='/tags/environments/'>environments</a>
-        <a class='tag' href='/tags/epydoc/'>epydoc</a>
-        <a class='tag' href='/tags/erlang/'>erlang</a>
-        <a class='tag' href='/tags/eventmachine/'>eventmachine</a>
-        <a class='tag' href='/tags/fabric/'>fabric</a>
-        <a class='tag' href='/tags/fosdem/'>fosdem</a>
-        <a class='tag' href='/tags/fpm/'>fpm</a>
-        <a class='tag' href='/tags/freeagent/'>freeagent</a>
-        <a class='tag' href='/tags/gae/'>gae</a>
-        <a class='tag' href='/tags/ganglia/'>ganglia</a>
-        <a class='tag' href='/tags/gds/'>gds</a>
-        <a class='tag' href='/tags/git/'>git</a>
-        <a class='tag' href='/tags/gitbug/'>gitbug</a>
-        <a class='tag' href='/tags/github/'>github</a>
-        <a class='tag' href='/tags/glassfish/'>glassfish</a>
-        <a class='tag' href='/tags/gmetrics/'>gmetrics</a>
-        <a class='tag' href='/tags/google/'>google</a>
-        <a class='tag' href='/tags/govuk/'>govuk</a>
-        <a class='tag' href='/tags/hackernews/'>hackernews</a>
-        <a class='tag' href='/tags/hadoop/'>hadoop</a>
-        <a class='tag' href='/tags/heroku/'>heroku</a>
-        <a class='tag' href='/tags/hive/'>hive</a>
-        <a class='tag' href='/tags/homebrew/'>homebrew</a>
-        <a class='tag' href='/tags/html/'>html</a>
-        <a class='tag' href='/tags/html5/'>html5</a>
-        <a class='tag' href='/tags/http/'>http</a>
-        <a class='tag' href='/tags/hubot/'>hubot</a>
-        <a class='tag' href='/tags/ie6/'>ie6</a>
-        <a class='tag' href='/tags/im/'>im</a>
-        <a class='tag' href='/tags/image-host/'>image-host</a>
-        <a class='tag' href='/tags/imified/'>imified</a>
-        <a class='tag' href='/tags/industry/'>industry</a>
-        <a class='tag' href='/tags/integrity/'>integrity</a>
-        <a class='tag' href='/tags/jabber/'>jabber</a>
-        <a class='tag' href='/tags/jaiku/'>jaiku</a>
-        <a class='tag' href='/tags/java/'>java</a>
-        <a class='tag' href='/tags/javascript/'>javascript</a>
-        <a class='tag' href='/tags/javscript/'>javscript</a>
-        <a class='tag' href='/tags/jenkins/'>jenkins</a>
-        <a class='tag' href='/tags/jetty/'>jetty</a>
-        <a class='tag' href='/tags/jruby/'>jruby</a>
-        <a class='tag' href='/tags/json/'>json</a>
-        <a class='tag' href='/tags/lastfm/'>lastfm</a>
-        <a class='tag' href='/tags/localbuilder/'>localbuilder</a>
-        <a class='tag' href='/tags/lrug/'>lrug</a>
-        <a class='tag' href='/tags/malarkey/'>malarkey</a>
-        <a class='tag' href='/tags/memcache/'>memcache</a>
-        <a class='tag' href='/tags/messagequeues/'>messagequeues</a>
-        <a class='tag' href='/tags/metrics/'>metrics</a>
-        <a class='tag' href='/tags/misc/'>misc</a>
-        <a class='tag' href='/tags/mnml/'>mnml</a>
-        <a class='tag' href='/tags/mongodb/'>mongodb</a>
-        <a class='tag' href='/tags/mongoid/'>mongoid</a>
-        <a class='tag' href='/tags/morbid/'>morbid</a>
-        <a class='tag' href='/tags/morethanseven/'>morethanseven</a>
-        <a class='tag' href='/tags/mozilla/'>mozilla</a>
-        <a class='tag' href='/tags/muffinresearch/'>muffinresearch</a>
-        <a class='tag' href='/tags/musing/'>musing</a>
-        <a class='tag' href='/tags/mysql/'>mysql</a>
-        <a class='tag' href='/tags/nagios/'>nagios</a>
-        <a class='tag' href='/tags/nanoc/'>nanoc</a>
-        <a class='tag' href='/tags/newcastle/'>newcastle</a>
-        <a class='tag' href='/tags/nginx/'>nginx</a>
-        <a class='tag' href='/tags/node/'>node</a>
-        <a class='tag' href='/tags/noir/'>noir</a>
-        <a class='tag' href='/tags/oauth/'>oauth</a>
-        <a class='tag' href='/tags/openmicroblogging/'>openmicroblogging</a>
-        <a class='tag' href='/tags/operations/'>operations</a>
-        <a class='tag' href='/tags/packaging/'>packaging</a>
-        <a class='tag' href='/tags/pass/'>pass</a>
-        <a class='tag' href='/tags/pdb/'>pdb</a>
-        <a class='tag' href='/tags/pep/'>pep</a>
-        <a class='tag' href='/tags/performance/'>performance</a>
-        <a class='tag' href='/tags/personal/'>personal</a>
-        <a class='tag' href='/tags/piston/'>piston</a>
-        <a class='tag' href='/tags/pragprog/'>pragprog</a>
-        <a class='tag' href='/tags/presentations/'>presentations</a>
-        <a class='tag' href='/tags/profiling/'>profiling</a>
-        <a class='tag' href='/tags/programming/'>programming</a>
-        <a class='tag' href='/tags/puppet/'>puppet</a>
-        <a class='tag' href='/tags/puppet facter/'>puppet facter</a>
-        <a class='tag' href='/tags/pypants/'>pypants</a>
-        <a class='tag' href='/tags/pypi/'>pypi</a>
-        <a class='tag' href='/tags/python/'>python</a>
-        <a class='tag' href='/tags/pyunit/'>pyunit</a>
-        <a class='tag' href='/tags/quality/'>quality</a>
-        <a class='tag' href='/tags/rabbitmq/'>rabbitmq</a>
-        <a class='tag' href='/tags/radiant/'>radiant</a>
-        <a class='tag' href='/tags/rails/'>rails</a>
-        <a class='tag' href='/tags/rambling/'>rambling</a>
-        <a class='tag' href='/tags/rant/'>rant</a>
-        <a class='tag' href='/tags/rest/'>rest</a>
-        <a class='tag' href='/tags/restructuredtext/'>restructuredtext</a>
-        <a class='tag' href='/tags/rev=canonical/'>rev=canonical</a>
-        <a class='tag' href='/tags/rewiredstate/'>rewiredstate</a>
-        <a class='tag' href='/tags/riemann/'>riemann</a>
-        <a class='tag' href='/tags/ruby/'>ruby</a>
-        <a class='tag' href='/tags/rubygems/'>rubygems</a>
-        <a class='tag' href='/tags/rundeck/'>rundeck</a>
-        <a class='tag' href='/tags/sandbox/'>sandbox</a>
-        <a class='tag' href='/tags/sass/'>sass</a>
-        <a class='tag' href='/tags/screencasts/'>screencasts</a>
-        <a class='tag' href='/tags/security/'>security</a>
-        <a class='tag' href='/tags/sed/'>sed</a>
-        <a class='tag' href='/tags/settings/'>settings</a>
-        <a class='tag' href='/tags/sinatra/'>sinatra</a>
-        <a class='tag' href='/tags/soa/'>soa</a>
-        <a class='tag' href='/tags/solaris/'>solaris</a>
-        <a class='tag' href='/tags/solr/'>solr</a>
-        <a class='tag' href='/tags/sphinx/'>sphinx</a>
-        <a class='tag' href='/tags/spotify/'>spotify</a>
-        <a class='tag' href='/tags/stomp/'>stomp</a>
-        <a class='tag' href='/tags/stompserver/'>stompserver</a>
-        <a class='tag' href='/tags/sysadvent/'>sysadvent</a>
-        <a class='tag' href='/tags/tdc/'>tdc</a>
-        <a class='tag' href='/tags/test-extensions/'>test-extensions</a>
-        <a class='tag' href='/tags/testing/'>testing</a>
-        <a class='tag' href='/tags/theguardian/'>theguardian</a>
-        <a class='tag' href='/tags/thinkingdigital/'>thinkingdigital</a>
-        <a class='tag' href='/tags/tools/'>tools</a>
-        <a class='tag' href='/tags/tumblr/'>tumblr</a>
-        <a class='tag' href='/tags/twitter/'>twitter</a>
-        <a class='tag' href='/tags/ubuntu/'>ubuntu</a>
-        <a class='tag' href='/tags/unitesting/'>unitesting</a>
-        <a class='tag' href='/tags/unittesting/'>unittesting</a>
-        <a class='tag' href='/tags/universal/'>universal</a>
-        <a class='tag' href='/tags/urltest/'>urltest</a>
-        <a class='tag' href='/tags/vagrant/'>vagrant</a>
-        <a class='tag' href='/tags/vagrantboxes/'>vagrantboxes</a>
-        <a class='tag' href='/tags/varnish/'>varnish</a>
-        <a class='tag' href='/tags/vim/'>vim</a>
-        <a class='tag' href='/tags/virtualbox/'>virtualbox</a>
-        <a class='tag' href='/tags/virtualenv/'>virtualenv</a>
-        <a class='tag' href='/tags/virtualisation/'>virtualisation</a>
-        <a class='tag' href='/tags/vmware/'>vmware</a>
-        <a class='tag' href='/tags/w3c/'>w3c</a>
-        <a class='tag' href='/tags/warbler/'>warbler</a>
-        <a class='tag' href='/tags/webdev/'>webdev</a>
-        <a class='tag' href='/tags/webhook/'>webhook</a>
-        <a class='tag' href='/tags/webkit/'>webkit</a>
-        <a class='tag' href='/tags/webservices/'>webservices</a>
-        <a class='tag' href='/tags/websockets/'>websockets</a>
-        <a class='tag' href='/tags/whenever/'>whenever</a>
-        <a class='tag' href='/tags/wonderwheel/'>wonderwheel</a>
-        <a class='tag' href='/tags/wsgi/'>wsgi</a>
-        <a class='tag' href='/tags/xhtml/'>xhtml</a>
-        <a class='tag' href='/tags/xhtml2/'>xhtml2</a>
-        <a class='tag' href='/tags/xmpp/'>xmpp</a>
-      </div>
-      <div class='clear'></div>
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="I&#8217;ve been spending a bit of time recently pushing a few Puppet modules to the Forge. This is Puppetlabs attempt to make a central repository of &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net">
+  <link href="/favicon.ico" rel="icon">
+  
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<meta content="etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8" name="google-site-verification">
+<link href="http://www.myopenid.com/server" rel="openid.server">
+<link href="http://garethr.myopenid.com/" rel="openid.delegate">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="no-sidebar"  >
+  <header>
+<hgroup>
+<h1><a href="/">Morethanseven</a></h1>
+<p>The blog of Gareth Rushgrove</p>
+
+<div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+</hgroup>
+</header>
+
+
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/12/03/on-the-forge/">On the Forge</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-03T08:18:00+00:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2012</time>
+        
+         | <a href="/2012/12/03/on-the-forge/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve been spending a bit of time recently pushing a few Puppet modules to the <a href="http://forge.puppetlabs.com">Forge</a>. This is Puppetlabs attempt to make a central repository of reusable puppet modules. I started doing it as a bit of an experiment, to find out what I liked and what worked and I decided to writeup a few opinions.</p>
+<p>So far I&#8217;ve shipped the following modules:</p>
+<ul>
+	<li><a href="http://forge.puppetlabs.com/garethr/riemann">Riemann</a></li>
+	<li><a href="http://forge.puppetlabs.com/garethr/graphite">Graphite</a></li>
+	<li><a href="http://forge.puppetlabs.com/garethr/logstash">Logstash</a></li>
+	<li><a href="http://forge.puppetlabs.com/garethr/freight">Freight</a></li>
+</ul>
+<p>Quite a few of these started as forks of other modules but have evolved quite a bit towards being more reusable.</p>
+<p>I&#8217;ve also started sending pull requests for modules that basically do what I want but don&#8217;t always play well with others.</p>
+<ul>
+	<li><a href="https://github.com/thomasvandoren/puppet-redis/pull/10">Redis</a></li>
+</ul>
+<h2>Improved tools</h2>
+<p>It turns out the experience is mainly a pleasurable one, partly down to the much improved tooling around Puppet. Specifically I&#8217;m making extensive use of:</p>
+<ul>
+	<li><a href="http://rspec-puppet.com/">Rspec Puppet</a> &#8211; for writing tests for module behavious</li>
+	<li><a href="https://github.com/rodjek/librarian-puppet">Librarian Puppet</a> &#8211; dependency management for modules</li>
+	<li><a href="https://github.com/puppetlabs/puppetlabs_spec_helper">Puppet spec helper</a> &#8211; conventions and helpers for testing modules</li>
+	<li><a href="https://travis-ci.org/">Travis CI</a> &#8211; easy continuous integration for module code</li>
+	<li><a href="http://vagrantup.com/">Vagrant</a> &#8211; manage virtual machines, useful for smoke testing on different distributions</li>
+</ul>
+<p>Lots of those tools make testing Puppet modules both easier and useful. Here&#8217;s an example of one of the above modules being tested. Note that it&#8217;s run across Ruby 1.8.7, 1.9.2 and 1.9.3 and Puppet versions 2.7.17, 2.7.18 and 3.0.1 for a total of 9 builds. Handily the Redis module mentioned also had a test suite. The pull request includes changes to that, and Travis <a href="https://travis-ci.org/thomasvandoren/puppet-redis/builds/3462513">automatically tested the pull request</a> for the modules author.</p>
+<h2>Antipatterns</h2>
+<p>Using modules from the Forge really forces you to think about reusability. The pull request mentioned above for the Redis module for instance replaced an explicit mention of the build-essential package with the &#8220;puppetlabs/gcc&#8221;: class from the Forge. This makes the module less self contained, but without that change the module is incompatible with any other module that also uses that common package. I also went back and replaced explicit references to wget and build-essential in my Riemann module.</p>
+<p>As a rule of thumb. For a specific module only include resources that are unique to the software the module manages. Anything else should be in another module with a dependency in the Modulefile.</p>
+<p>This can feel a little much when you&#8217;re replacing a simple Package resource with a whole new module but it has two advantages I care about. As well as the ability to use the module with other third party modules more easily it also makes it more likely that the module will work cross platform.</p>
+<h2>What&#8217;s missing?</h2>
+<p>I&#8217;d like to see a few things improved when it comes to the Forge.</p>
+<ul>
+	<li>I&#8217;d like to be able to publish a new version of a module without having to use the web interface. The current workflow involves running a build command, then uploading the generated artifact via a web form after logging in.</li>
+	<li>I&#8217;d like to see best practice module development guides front and centre on the Forge. Lots of modules won&#8217;t work with other modules and I think that&#8217;s fixable.</li>
+	<li>Integration with puppet-lint would be nice, giving some indication of whether the authors care about the Puppet styleguide.</li>
+	<li><del>A command line search interface would be useful</del>. And <a href="http://docs.puppetlabs.com/man/module.html">turns out to exist</a>. Thanks <a href="http://twitter.com/a1cy">@a1cy</a> for the heads up.</li>
+	<li>The Forge tracks number of downloads, but as a publisher I don&#8217;t know how often my modules have been downloaded.</li>
+	<li>And finally I&#8217;d like to see more people using it.</li>
+</ul></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/10/21/shipping/">Shipping</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-21T21:50:00+01:00" pubdate data-updated="true">Oct 21<span>st</span>, 2012</time>
+        
+         | <a href="/2012/10/21/shipping/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Last week we shipped <a href="https://www.gov.uk"><span class="caps">GOV</span>.UK</a>. Over the last year we&#8217;ve built a team to build a website. Now we&#8217;re busy building a culture too. I&#8217;ve got so much that needs writing up about everything we&#8217;ve been up to. Hopefully I&#8217;ll make a start in the next week or so.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/08/19/Tale-of-a-grok-pattern/">Tale of a Grok Pattern</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-19T00:00:00+01:00" pubdate data-updated="true">Aug 19<span>th</span>, 2012</time>
+        
+         | <a href="/2012/08/19/Tale-of-a-grok-pattern/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m all of a sudden adding lots more code to GitHub. Here&#8217;s the latest project, <a href="https://github.com/garethr/logstash-patterns">grok patterns for logstash</a>. At the moment this repo only contains one new pattern but I&#8217;m hoping to add more, and maybe even for others to add more too.</p>
+<p>First, a bit of background. <a href="http://logstash.net/">Logstash</a> is the excellent, open source, log agregation and processing framework. It takes inputs from various configurable places, processes them with filters and then outputs the results. So maybe you&#8217;ll take inputs from various application log files and output then into an elastic search index for easy searching, or output the same inputs to graphite and statsd to get graphs of rates. One of the host powerful filters in logstash is the <a href="http://logstash.net/docs/1.0.17/filters/grok">grok filter</a>. It takes a grok pattern and parses out information contained in the text into fields that can be more easily used by outputs. This post serves hopefully as both an explanation of why and an example of how you might do that.</p>
+<h2>The problem</h2>
+<p>Rails logs are horrible, that is until you install the excellent <a href="https://github.com/roidrage/lograge">lograge</a> output formatter. That gives you lines like:</p>
+<pre>GET /jobs/833552.json format=json action=jobs#show status=200 duration=58.33 view=40.43 db=15.26</pre>
+<p>This contains loads of useful information that&#8217;s easily parsable by a developer. We have the <span class="caps">HTTP</span> status code, the rails controller and information about response time too. A grok filter lets us teach logstash about that information too. The working grok filter for filtering this line looks like this:</p>
+<h2>The solution</h2>
+<pre>LOGRAGE %{WORD:method}%{SPACE}%{DATA}%{SPACE}action=%{WORD:controller}#%{WORD:action}%{SPACE}status=%{INT:status}%{SPACE}duration=%{NUMBER:duration}%{SPACE}view=%{NUMBER:view}(%{SPACE}db=%{NUMBER:db})?%{GREEDYDATA}</pre>
+<p>That was worked out pretty much with a bit of trial and error and use of the logstash java binary, using stdin and stdout inputs and outputs. It works but getting their wasn&#8217;t that much funand proving it works outside a running logstash setup was tricky. Enter rspec and the grok implementation in pure Ruby. The project above contains an Rspec matcher for use when testing grok filters for logstash. I&#8217;ll probably extract that into a gem at some point but you&#8217;ll get the idea. Now we can write tests like these:</p>
+<pre>the lograge grok pattern
+  with a standard lograge log line
+    should have the correct http method value
+    should have the correct value for the request duration
+    should have the correct value for the request view time
+    should have the correct controller and action
+    should have the correct value for db time
+  without the db time
+    should have the correct value for the request view time
+  with a post request
+    should have the correct http method value
+
+Finished in 0.01472 seconds
+7 examples, 0 failures
+</pre>
+<p>The <a href="https://github.com/garethr/logstash-patterns/blob/master/spec/lograge_spec.rb">tests themselves</a> are just basic Rspec with most of the work done in the <a href="https://github.com/garethr/logstash-patterns/blob/master/spec/spec_helper.rb">custom matcher</a>. This not only means I can be a bit more confident that my grok pattern works, it also provides a much nicer framework for writing more patterns for other log formats. Parsing rules like this are one area where test driven development is a huge boon in my experience. And with tests comes continuous integration, in this case via <a href="http://travis-ci.org/#!/garethr/logstash-patterns">Travis</a>.</p>
+<p>I&#8217;ll hopefully find myself writing more patterns and tests for them, and if anyone wants to send pull requests and to start collecting working grok patterns together so much the better.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/08/11/Riemann-puppet-module/">Riemann Puppet Module</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-11T00:00:00+01:00" pubdate data-updated="true">Aug 11<span>th</span>, 2012</time>
+        
+         | <a href="/2012/08/11/Riemann-puppet-module/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Thanks to an <a href="https://twitter.com/bitprophet/status/233626675307479040">errant tweet</a> I started playing with <a href="http://aphyr.github.com/riemann/">Riemann</a> again. It ticks lots of boxes for me, from the clojure to configuration as code and the overloadable dashboard application. What started as using Puppet and Vagrant to investigate Riemann turned into a full blown tool and module writing exercise, resulting in two related projects on GitHub.</p>
+<ul>
+	<li><a href="https://github.com/garethr/garethr-riemann/">garethr-riemann</a> is a Puppet module for installing and configuring Riemann. It allows for easily specifying your own server configuration and dashboard views.</li>
+	<li><a href="https://github.com/garethr/riemann-vagrant">riemann-vagrant</a> is a Vagrantfile and other code which uses above puppet module to setup a local testing environment.</li>
+</ul>
+<p>I like this combination, a separate Puppet module along with a vagrant powered test bed. I&#8217;ve written a reasonable rspec based test suite to check the module but it&#8217;s always easier to be able to run <em>vagrant provision</em> as well to check everything is working. This also turned out to be the perfect opportunity to use <a href="https://github.com/rodjek/librarian-puppet">Librarian-Puppet</a> to manage the dependencies and eventually to ship the module to the <a href="https://forge.puppetlabs.com/garethr/riemann">Puppet Forge</a>.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/07/01/The-vagrantbox.es-story/">The Vagrantbox.es Story</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-01T00:00:00+01:00" pubdate data-updated="true">Jul 1<span>st</span>, 2012</time>
+        
+         | <a href="/2012/07/01/The-vagrantbox.es-story/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A few weeks ago now <a href="http://www.vagrantbox.es/">Vagrantbox.es</a> (a website I maintain for third party hosted <a href="http://vagrantup.com/">Vagrant</a> base boxes) dissapeared from the internet for a few days. This was completely my fault, the (lovely) hosting people <a href="https://www.ep.io/">ep.io</a> had unfortunately closed down the service they had in beta and I&#8217;d been so busy that I hadn&#8217;t had chance to move it elsewhere.</p>
+<p>The original version of the site (I had the code and good backups of the data) was a pretty simple Django application, but I&#8217;d used it to experiment (read over-engineer) with various bits of tech including Varnish, Solr, some <span class="caps">ORM</span> caching and lots more. This had been great, but it made it less portable. I had everything described in Puppet, but with virtually no spare time I decided to go a different route.</p>
+<p>I threw a flat version of the site up on <a href="https://github.com/garethr/vagrantboxes-heroku">GitHub</a>, served it using Nginx on <a href="http://www.heroku.com/">Heroku</a> and added a quick <em>Fork me on GitHub</em> badge to the top. Suggest a box moved from being a web form to a pull request. It&#8217;s fair to say I did this pretty quickly and made a good few typos on the way. But within a couple of weeks I&#8217;ve had 8 pull requests either fixing my bugs, removing dead boxes and adding new ones.</p>
+<p>What I&#8217;m going to take from this is, if you&#8217;re building a community project that&#8217;s aimed at developers, then throw the content on GitHub. In my case I have the entire site on there too but I think that&#8217;s secondary. Pull requests are much better than any content management system or workflow you&#8217;re likely to build, and even more importantly the time to implement something drops hugely.</p>
+<p>With all the spare time I don&#8217;t have I&#8217;ll be thinking about a content management model using GitHub for content, pull requests for workflow and post commit hooks for loading that content into a site or service somewhere.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/06/05/Static-sites-with-nginx-on-heroku/">Static Sites With Nginx on Heroku</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-05T00:00:00+01:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time>
+        
+         | <a href="/2012/06/05/Static-sites-with-nginx-on-heroku/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have a few static sites on Heroku but in one case in particular I already had quite an involved nginx configuration &#8211; mainly 410s for some previous content and a series of redirects from older versions of the site. The common way of having static sites on Heroku appears to be to use a simple Rack middleware, but that would have meant reimplementing lots of boring redirect logic.</p>
+<p>Heroku <a href="https://devcenter.heroku.com/articles/buildpacks">buildpacks</a> are great. The newer cedar stack is no longer tied to a particular language or framework, instead all of the discovery and knowledge about particular software is put into a buildpack. As well as the Heroku provided list it&#8217;s possible to write you&#8217;re own. Or in this case use one someone has <a href="https://github.com/essh/heroku-buildpack-nginx">created earlier</a>.</p>
+<p>I&#8217;ve just moved <a href="http://www.vagrantbox.es/">Vagrantbox.es</a> over to Heroku due to the closure of a previous service. In doing that, instead of the simple database backed app, I&#8217;ve simply thrown all the content onto <a href="https://github.com/garethr/vagrantboxes-heroku">GitHub</a>. This means anyone can fork the content and send pull requests. Hopefully this should mean I pay a bit more attention to suggestions and new boxes.</p>
+<p>The repository is a nice simple example of using the mentioned Heroku Nginx buildpack too. You just run the following command to create a new Heroku application.</p>
+<pre>heroku create --stack cedar --buildpack http://github.com/essh/heroku-buildpack-nginx.git</pre>
+<p>And then in typical Heroku fashion use a git remote to deploy changes and updates. The repository is split into a <em>www</em> folder with the site content and a <em>conf</em> folder with the nginx configuration. The only clever parts involve the use of an <span class="caps">ERB</span> template for the nginx configuration file so we can pickup the correct port. We also use 1 worker process and don&#8217;t automatically daemonize the process &#8211; Heroku deals with this itself.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/04/06/Self-contained-jruby-web-applications/">Self Contained Jruby Web Applications</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-06T00:00:00+01:00" pubdate data-updated="true">Apr 6<span>th</span>, 2012</time>
+        
+         | <a href="/2012/04/06/Self-contained-jruby-web-applications/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Several things seemed to come together at once to make me want to hack on this particular project. In no particular order:</p>
+<p>The <a href="http://www.thoughtworks.com/articles/technology-radar-march-2012">Thoughtworks Technology Radar</a> said the following:</p>
+<blockquote>
+<p>Embedding a servlet container, such as Jetty, inside a Java application has many advantages over running the application inside a container. Testing is relatively painless because of the simple startup, and the development environment is closer to production. Nasty surprises like mismatched versions of libraries or drivers are eliminated by not sharing across multiple applications. While you will have to manage and monitor multiple Java Virtual Machines in production using this model, we feel the advantages offered by the simplicity and isolation are significant.</p>
+</blockquote>
+<p>I&#8217;ve been getting more interested in JRuby anyway, partly because we&#8217;re finding ourselves using both Ruby and Scala at work, and maintaining a single target platform makes sense to me. Throw in the potential for interop between those languages and it&#8217;s certainly worth investigating.</p>
+<p><a href="http://www.playframework.org/">Play 2.0</a> shipped and currently only provides the ability to create a self contained executable with bundled web server. Creating <span class="caps">WAR</span> files for more traditional application servers is on the roadmap but interestingly wasn&#8217;t deemed essential for the big 2.0 release. I had a nice chat with <a href="https://twitter.com/minglis">Martyn Inglis</a> at work about some of the nice side effects of this setup.</p>
+<p>And throw in every time I have to configure straight Ruby applications for production environments I get cross. I know where all the bits and pieces are buried and can do it well, but with so many moving parts it&#8217;s absolutely no fun whatsoever.</p>
+<p>Warbler, the JRuby tool for creating <span class="caps">WAR</span> files from Ruby source, has just added the ability to <a href="https://github.com/jruby/warbler/commit/0558a285eb59a0801cf7c0f274777b06b63883b3">embed Jetty to the master branch</a>.</p>
+<p>I decided to take all of this for a quick spin, and the <a href="https://github.com/garethr/jruby-embedded-jetty">resulting code is up on GitHub</a>.</p>
+<p>This is the simplest Rack application possible, it just prints <em>Hello Jetty</em>. And the <span class="caps">README</span> covers how to install and run it so I won&#8217;t duplcate that information here.</p>
+<p>But I will print some nearly meaningless and unscientific benchmarks because, hey, who doesn&#8217;t like those?</p>
+<pre>⚡ ab -c 50 -n 5000 http://localhost:8090/
+
+Server Software:        Jetty(8.y.z-SNAPSHOT)
+Server Hostname:        localhost
+Server Port:            8090
+
+Document Path:          /
+Document Length:        16 bytes
+
+Concurrency Level:      50
+Time taken for tests:   1.827 seconds
+Complete requests:      5000
+Failed requests:        0
+Write errors:           0
+Total transferred:      555999 bytes
+HTML transferred:       80144 bytes
+Requests per second:    2736.47 [#/sec] (mean)
+Time per request:       18.272 [ms] (mean)
+Time per request:       0.365 [ms] (mean, across all concurrent requests)
+Transfer rate:          297.16 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   2.2      1      18
+Processing:     1   16   7.7     15      61
+Waiting:        0   14   7.2     13      57
+Total:          2   18   7.5     17      61
+
+Percentage of the requests served within a certain time (ms)
+  50%     17
+  66%     19
+  75%     21
+  80%     22
+  90%     27
+  95%     30
+  98%     42
+  99%     52
+ 100%     61 (longest request)
+</pre>
+<p>Running the same test on the same machine but using Ruby 1.9.2-p290 and Thin gives.</p>
+<pre>Server Software:        thin
+Server Hostname:        localhost
+Server Port:            9292
+
+Document Path:          /
+Document Length:        16 bytes
+
+Concurrency Level:      50
+Time taken for tests:   3.125 seconds
+Complete requests:      5000
+Failed requests:        0
+Write errors:           0
+Total transferred:      620620 bytes
+HTML transferred:       80080 bytes
+Requests per second:    1600.16 [#/sec] (mean)
+Time per request:       31.247 [ms] (mean)
+Time per request:       0.625 [ms] (mean, across all concurrent requests)
+Transfer rate:          193.96 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.3      0       9
+Processing:     3   31   6.4     33      52
+Waiting:        3   25   6.4     28      47
+Total:          4   31   6.4     33      52
+
+Percentage of the requests served within a certain time (ms)
+  50%     33
+  66%     34
+  75%     34
+  80%     35
+  90%     38
+  95%     41
+  98%     46
+  99%     50
+ 100%     52 (longest request)</pre>
+<p>2736 requests per second on JRuby/Jetty vs 1600 on Ruby/Thin. As noted this isn&#8217;t meaningfully useful, in that it&#8217;s a hello world example and I&#8217;ve not tried to pick the fastest stacks on either side. I&#8217;m more bothered about it not being slower, because the main reason to pursue this approach is simplicity. Having a single self contained artefact that contains all it&#8217;s dependencies including a production web server is very appealing.</p>
+<p>I&#8217;m hoping to give this a go with some less trivial applications, and probably more importantly look to compare a production stack based around these self-contained executables vs the dependency chain that is modern Ruby application stacks.</p>
+<p>Thanks to <a href="http://blog.nicksieger.com/">Nick Sieger</a> for both writing Warbler and for helping with a few questions on the JRuby mailing list and on Twitter. Thanks also to <a href="https://twitter.com/jabley">James Abley</a> for a few pointers on Java system properties.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/03/31/Recent-projects-and-talks/">Recent Projects and Talks</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-31T00:00:00+01:00" pubdate data-updated="true">Mar 31<span>st</span>, 2012</time>
+        
+         | <a href="/2012/03/31/Recent-projects-and-talks/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve been pretty busy with all things <a href="https://www.gov.uk"><span class="caps">GOV</span>.UK</a> recently but I&#8217;ve managed to get a few bits of unrelated code up and a few talks in. I&#8217;m <em>still</em> pretty busy so here&#8217;s a list of some of them rather than a proper blog post.</p>
+<ul>
+	<li><a href="http://www.slideshare.net/garethr/mining-puppet">Puppet Data Mining</a> talk from last weeks PuppetCamp in Edinburgh.</li>
+	<li><a href="http://www.slideshare.net/garethr/web-operations">Introducting Web Operations</a> talk I gave at work to give my mainly non-development colleagues an idea about what it&#8217;s all about.</li>
+	<li><a href="http://www.slideshare.net/garethr/learnings-from-govuk">Learning from building <span class="caps">GOV</span>.UK</a> talk I gave a month back or so to Cambridge Geek Night. We did an excellent full project retrospective after the beta launch and this lists some of the things we learnt.</li>
+</ul>
+<p>After someone bugged me on Twitter I realised the small bit of code we&#8217;ve been using for our Nagios dashboard wasn&#8217;t out in the wild. So introducing <a href="https://github.com/garethr/nash">Nash</a>, a very simple high level check dashboard which screenscrapes nagiosand runs happily on Heroku.</p>
+<p>Although I&#8217;ve not been writing too much on here I&#8217;ve been keeping <a href="http://devopsweekly.com/">Devops Weekly</a> going each week for over a year now. I&#8217;ve just crossed 3000 subscribers which is pretty neat for a pet project.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/02/19/Dashboards-at-govuk/">Dashboards at Gov.Uk</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-19T00:00:00+00:00" pubdate data-updated="true">Feb 19<span>th</span>, 2012</time>
+        
+         | <a href="/2012/02/19/Dashboards-at-govuk/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This is a bit of a cheat blog post really. I&#8217;ve been crazy busy all month with little time for anything except work (specifically shipping the first release of <a href="https://www.gov.uk/">www.gov.uk</a>). I have had a little time to blog over on the Cabinet Office blog though, about work we&#8217;ve done with dashboards.</p>
+<p><a href="http://digital.cabinetoffice.gov.uk/2012/02/08/radiating-information/">http://digital.cabinetoffice.gov.uk/2012/02/08/radiating-information/</a></p>
+<p>If you&#8217;re ever looking for good little hack projects dashboards are perfect, and often hugely useful once up and running. Convincing people of this before you have a few in the office might be hard &#8211; so just build something simple in a lunch break and find a screen to put it on. We&#8217;ve had great feedback from ours, both from people wandering through the office and from our colleagues who have a better idea of what&#8217;s going on.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/01/06/Talking-to-jenkins-from-campfire-with-hubot/">Talking to Jenkins From Campfire With Hubot</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-06T00:00:00+00:00" pubdate data-updated="true">Jan 6<span>th</span>, 2012</time>
+        
+         | <a href="/2012/01/06/Talking-to-jenkins-from-campfire-with-hubot/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In what turned out to be a productive holiday hacking with languages I&#8217;d not used before, I got round to writing some coffeescript on node.js. This was more to do with scratching a personal itch that pure experimentation. I had a play with <a href="https://github.com/github/janky">Janky</a> (Github&#8217;s Jenkins/Hubot mashup) but found it a little opinionated on the Jenkins side, but the campfire integration is excellent. Looking at the Jenkins commands in <a href="https://github.com/github/hubot-scripts/">hubot-scripts</a> though I found those even more opinionated.</p>
+<p>The magic of open source though is you can just fix things, then ask nice people if they like what you&#8217;ve done. I set about writing a few more general commands and lo, the&#8217;ve been quickly <a href="https://github.com/github/hubot-scripts/pull/23840h">merged upstream</a>.</p>
+<p>These add:</p>
+<ul>
+	<li>A command to list all your Jenkins jobs and the current state</li>
+	<li>A command to trigger a normal build</li>
+	<li>A command to trigger a build with a list of parameters</li>
+</ul>
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRipwAIM" alt="campfire window showing jenkins tasks"/></p>
+<p>This was made much easier by first looking at the previous Jenkins commands, and then looking at other scripts in the hubot-scripts repository. The best way of learning a new language/framework is still on the shoulders of others.</p>
+<p>I&#8217;ve got a few other good ideas for Jenkins related commands. I want to add a filter command to the jobs list, both by name and by current state. For longer running jobs I also want to report whether a build is currently running. And then maybe get information about a specific job, like the last few runs or similar. Any other requests or ideas most welcome.</p></div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/page/2/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+  </div>
+</div>
+
     </div>
-    <script type='text/javascript'>
-      //<![CDATA[
-        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-      //]]>
-    </script>
-    <script type='text/javascript'>
-      //<![CDATA[
-        try {
-          var pageTracker = _gat._getTracker("UA-435455-1");
-          pageTracker._setDomainName(".morethanseven.net");
-          pageTracker._setAllowHash(false);
-          pageTracker._trackPageview();
-          pageTracker._trackPageLoadTime();
-        } catch(err) {}
-      //]]>
-    </script>
-  </body>
+  </div>
+  <footer role="contentinfo">
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
 </html>

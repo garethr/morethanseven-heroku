@@ -1,0 +1,840 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="Thanks to Brad I&#8217;ve just released a new version of Django Test Extensions (also on GitHub with support for running tests without the overhead &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/page/9">
+  <link href="/favicon.ico" rel="icon">
+  
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<meta content="etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8" name="google-site-verification">
+<link href="http://www.myopenid.com/server" rel="openid.server">
+<link href="http://garethr.myopenid.com/" rel="openid.delegate">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="no-sidebar"  >
+  <header>
+<hgroup>
+<h1><a href="/">Morethanseven</a></h1>
+<p>The blog of Gareth Rushgrove</p>
+
+<div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+</hgroup>
+</header>
+
+
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/09/13/no-database-test-runner-added-test-extensions/">No Database Test Runner Added to Test Extensions</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-13T00:00:00+01:00" pubdate data-updated="true">Sep 13<span>th</span>, 2009</time>
+        
+         | <a href="/2009/09/13/no-database-test-runner-added-test-extensions/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Thanks to <a href="http://intranation.com/">Brad</a> I&#8217;ve just released a new version of <a href="http://pypi.python.org/pypi/django-test-extensions/0.5">Django Test Extensions</a> (also on <a href="http://github.com/garethr/django-test-extensions">GitHub</a> with support for running tests without the overhead of setting up and tearing down the database. Django still has a few places were it assumes you&#8217;ll have a database somewhere in your project &#8211; and the default test runner is one of them.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/09/06/automating-web-site-deployment-barcamp-brighton/">Automating Web Site Deployment at Barcamp Brighton</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-06T00:00:00+01:00" pubdate data-updated="true">Sep 6<span>th</span>, 2009</time>
+        
+         | <a href="/2009/09/06/automating-web-site-deployment-barcamp-brighton/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>On the first day at Barcamp Brighton this year I did a brief talk about getting started with automating deployment. I kept it nice and simple and didn&#8217;t focus on any specific technology or tool &#8211; just the general principles and pitfalls of doing anything manually. You can see the &#8220;slides on Slideshare&#8221;:</p>
+<p><object style="margin:0px" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=automatingdeployment-090906054723-phpapp01&stripped_title=automating-web-site-deployment" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=automatingdeployment-090906054723-phpapp01&stripped_title=automating-web-site-deployment" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object></p>
+<p>As part of the presentation I even did a live demo and promised I&#8217;d upload the code I used. The following is an incredibly simple fabric file that has most the basic set of tasks. <a href="http://pypi.python.org/pypi/Fabric/">Fabric</a> is a python tool similar to capistrano in Ruby. I don&#8217;t really care whether you&#8217;re using make, ant, rake, capistrano or just plain shell scripts. Getting from not automating things to automating deployments is the important part &#8211; and it&#8217;s easier that you think.</p>
+<script src="http://gist.github.com/181755.js"></script><p>The other part of the code example was a very basic apache virtualhost so just in case anyone needed that as well here it is:</p>
+<pre>&amp;lt;VirtualHost *:80&amp;gt;
+    ServerName sample.local
+    DocumentRoot /srv/sample/releases/current
+    &amp;lt;Directory /srv/sample/releases/current&amp;gt;
+        Order deny,allow
+        Allow from all
+    &amp;lt;/Directory&amp;gt;
+    ErrorLog /var/log/apache2/sample/error.log
+    LogLevel warn
+    CustomLog /var/log/apache2/sample/access.log combined
+&amp;lt;/VirtualHost&amp;gt;</pre></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/08/31/another-chance-djugl/">Another Chance to DJUGL</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-08-31T00:00:00+01:00" pubdate data-updated="true">Aug 31<span>st</span>, 2009</time>
+        
+         | <a href="/2009/08/31/another-chance-djugl/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://djugl.eventwax.com/djugllondon-python"><span class="caps">DJUGL</span></a> is back, the <em>monthly</em> Django meetup in London. I think the last few times have been as much about useful Python stuff as just using Django, and this time it&#8217;s officially a bit more broad ranging. If you&#8217;re in or around London on the 24th September then come along.</p>
+<p>You can get more information on <a href="http://twitter.com/londonpython">Twitter</a> or by following <a href="http://twitter.com/robertlofthouse/">Rob</a>. But expect a few short talks, some interesting conversations and maybe some beer with other like minded developers.</p>
+<p>I&#8217;m going to be talking about automating deployment of Python web applications. If you follow me on Twitter you&#8217;ll have heard me rambling a little about some of what I&#8217;ve been up to, and some of the posts here give an insight into what I&#8217;ve been working on. But the short version is that several friends mentioned how difficult it could be to get a working Django application from a local machine to a production web server. And I though I better get down in script form my experiences of Django, <span class="caps">WSGI</span> applications and web server setup to make things easier.</p>
+<p>I think this situation is partially caused by the success of the Django development server, and partially by people coming from a <span class="caps">PHP</span> background. In my <span class="caps">PHP</span> days I think I always wanted to know how Apache did it&#8217;s think, so long ago jumped into anything and everything in httpd.conf from loading modules to virtual hosts. But not everyone does the same, and <span class="caps">PHP</span> does make simple deployments easy enough that you might get away without doing so. Rails went through the same problems and seems to be coming out the other side. I&#8217;m hoping that Django and Python is soon to be in the same position, where basic deployment is just a given.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/08/21/django-wsgi-deployment-solaris/">Django and WSGI Deployment on Solaris</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-08-21T00:00:00+01:00" pubdate data-updated="true">Aug 21<span>st</span>, 2009</time>
+        
+         | <a href="/2009/08/21/django-wsgi-deployment-solaris/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Now I&#8217;m generally an Ubuntu guy, but I&#8217;ve just had the need to setup some boxes running Solaris for Django and a handful of <span class="caps">WSGI</span> applications. I know my way around Ubuntu pretty well. I know all the packages I need to install and in what order. Hell, I even have all that scripted so I can just run a command and it works by magic. I&#8217;ll script the following steps if I can do when I get round to it but here, in one list, are the installation instructions for Apache, mod_wsgi, Mysql, MySQLdb, setuptools and memcached that worked for me on the latest version of <a href="http://www.opensolaris.com/">Open Solaris</a> (2009.06 at the time of writing).</p>
+<p>First up I needed to install Apache and start the service running.</p>
+<pre>pfexec pkg install SUNWapch22
+svcadm enable http:apache22</pre>
+<p>You should be able to test that&#8217;s running by hitting localhost on a browser running on the same box. Now for MySQL.</p>
+<pre>pfexec pkg install SUNWmysql5
+svcadm enable mysql:version_50</pre>
+<p>This installs the mysql binary into /usr/mysql/5.0/bin/mysql on the system I&#8217;m working on. As I want to talk to the MySQL database server using Python I need to install MySQLdb.</p>
+<pre>pfexec pkg install SUNWmysql-python
+ln -s /usr/mysql/5.0/lib/mysql/libmysqlclient_r.so.15 /usr/lib/libmysqlclient_r.so.15</pre>
+<p>This installs the library files into /usr/mysql/5.0/lib and Python doesn&#8217;t know were to find them. The above command links them into the more standard /usr/lib folder were Python will pick it up nicely.</p>
+<p>I tend to use <a href="http://code.google.com/p/modwsgi/">mod_wsgi</a> for serving Python apps behind Apache,  however a mod_wsgi package isn&#8217;t part of the default package list. It is however available in the pending list so first you need to add that list of packages.</p>
+<pre>pfexec pkg set-authority -O http://pkg.opensolaris.org/pending pending
+pfexec pkg refresh
+pfexec pkg install mod-wsgi</pre>
+
+<p>This installs the module but you then need to tell Apache to load it. Add the following line to /etc/apache2/2.2/conf.d/modules-32.load or /etc/apache2/2.2/conf.d/modules-64.load depending on your architecture.</p>
+<pre>LoadModule wsgi_module    libexec/mod_wsgi.so</pre>
+<p>To get Apache to load that module you need to restart it like so:</p>
+<pre>svcadm restart http:apache22</pre>
+<p>I use <a href="http://pypi.python.org/pypi/pip">Pip</a> for installing Python code, but tend to install setuptools to make installing Pip easier. I don&#8217;t know if an up to date Pip package exists.</p>
+<pre>pfexec pkg install python-setuptools</pre>
+<p>This should leave you with easy_install on your path so installing Pip, then virtualenv should be a breeze.</p>
+<p>As an added bonus I also installed memcached for some snappy caching.</p>
+<pre>pfexec pkg install SUNWmemcached</pre>
+<p>This won&#8217;t start up by default and needs a little configuration. The first command will launch you into a prompt where you can type the rest of the commands.</p>
+<pre>svccfg
+svc:&gt; select memcached
+svc:/application/database/memcached&gt; setprop memcached/options=("-u" "nobody")
+svc:/application/database/memcached&gt; quit</pre>
+<p>Once you&#8217;d done that you should be able to start memcache on the standard port.</p>
+<pre>svcadm refresh memcached
+svcadm enable memcached</pre>
+<p>Et voila. The internet helped massively on my quest to track down this information. Not all of the following links turned out to work for me but all of them led me in the right direction. Thanks everyone.</p>
+<ul>
+	<li>http://blogs.sun.com/quenelle/entry/jazz_guitar_and_rpath</li>
+	<li>http://blogs.sun.com/natarajan/entry/installing_amp_stack_within_glassfish</li>
+	<li>http://blogs.sun.com/overstre/entry/django_on_solaris10_with_the</li>
+	<li>https://cds.sun.com/is-bin/<span class="caps">INTERSHOP</span>.enfinity/<span class="caps">WFS</span>/<span class="caps">CDS</span>-CDS_SMI-Site/en_US/-/<span class="caps">USD</span>/ViewProductDetail-Start?ProductRef=Web-Stack-1.5-<span class="caps">OTH</span>-G-F@CDS-CDS_SMI</li>
+	<li>http://wiki.joyent.com/mod_wsgi</li>
+	<li>http://textusers.com/wiki/AcceleratorDjango</li>
+	<li>http://wiki.joyent.com/accelerators:kb:django</li>
+	<li>http://www.b-list.org/weblog/2007/sep/04/django-accelerated/</li>
+	<li>http://blogs.sun.com/natarajan/entry/getting_ruby_or_amp_apache</li>
+	<li>http://blogs.sun.com/overstre/entry/opensolaris_with_mod_wsgi</li>
+	<li>http://branesks.blogspot.com/2009/01/installing-modwsgi-on-opensolaris.html</li>
+	<li>http://blogs.sun.com/overstre/entry/django_on_opensolaris</li>
+	<li>http://code.google.com/p/modwsgi/wiki/InstallationOnSolaris</li>
+	<li>http://groups.google.com/group/modwsgi/browse_thread/thread/7e2cc7ce366253cc</li>
+	<li>http://blogs.sun.com/lr/entry/django_setup_mysql_python_opensolaris</li>
+	<li>http://blogs.sun.com/trond/entry/memcached_in_solaris</li>
+	<li>http://blog.hendrikvolkmer.de/2009/1/29/deploying-a-rails-application-on-opensolaris-with-passenger-aka-modrails/</li>
+</ul>
+<p>I&#8217;m not a Solaris admin. I&#8217;m not really a sysadmin at all, I just end up pretending to be one of late. Any experienced Solaris people with experience of these tools reading this I&#8217;d be grateful for any hints and tips. Hopefully this saves a few people from the head scratching I&#8217;ve been doing for the last few days.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/08/15/your-own-pypi-server/">Your Own PyPi Server</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-08-15T00:00:00+01:00" pubdate data-updated="true">Aug 15<span>th</span>, 2009</time>
+        
+         | <a href="/2009/08/15/your-own-pypi-server/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So one of the problems with using pip or easy_install as part of an automated deployment process is they rely on an internet connection. More than that, they rely on PyPi being up as it&#8217;s a centralised system, unlike all the apt package mirrors.</p>
+<p>The best solution seems to be to host your own PyPi compliant server. Not only can you load all the third party modules you use onto it, but you could also upload any internal applications or libraries that you like. By running this on your local network you ensure your not dependent on pypi or an internet connection.</p>
+<p>At the moment I&#8217;m playing with <a href="http://github.com/ask/chishop/tree/master">Chishop</a> which is a django application for maintaining a PyPi compatible server. Another alternative if that doesn&#8217;t work out is <a href="http://pypi.python.org/pypi/EggBasket/">EggBasket</a></p>
+<p>To install from your own PyPi server you can specify the location of your Chishop instance with the -i flag.</p>
+<pre>easy_install -i http://localhost:8000/ PACKAGE_NAME</pre>
+<p>This will fall back to the PyPi server if it doesn&#8217;t find the relevant package. If you want to stop that behaviour and make sure you have a local package then you can limit the hosts with the -H flag like so.</p>
+<pre>easy_install -H localhost:8000 -i http::/localhost:8000/ PACKAGE_NAME</pre>
+<p>I&#8217;m not yet sure how to do this with pip, if someone wants to enlighten me in the comments then I&#8217;d be most grateful.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/27/fabric-django-git-apache-mod-wsgi-virtualenv-and-p/">Fabric, Django, Git, Apache, Mod_wsgi, Virtualenv and Pip Deployment</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-27T00:00:00+01:00" pubdate data-updated="true">Jul 27<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/27/fabric-django-git-apache-mod-wsgi-virtualenv-and-p/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve been playing with automating Django deployments again, this time using <a href="http://fabfile.org/">Fabric</a>. I found a number of examples on the web but non of them quite fit the bill for me. I don&#8217;t like serving directly from a repository, I like to have either a package or tar I can use to say &#8220;that is what went to the server&#8221;. I also like having a quick rollback command as well as being able to deploy a particular version of the code when the need arises. I also wanted to go from a clean ubuntu install (plus <span class="caps">SSH</span>) to a running Django application in one command from the local development machine. The Apache side of things is nicely documented in <a href="http://gist.github.com/106077">this Gist</a> which made a good starting point.</p>
+<p>I&#8217;m still missing a few things in this setup mind and at the moment you still have to setup your local machine yourself. I&#8217;m probably going to create a paster template and another fabfile to do that I think. The instructions are a little rough as well at the moment and I&#8217;ve left the database out of it as everyone has there own preference.</p>
+<p>This particular fabric file makes setting up and deploying a django application much easier, but it does make a few assumptions. Namely that you&#8217;re using Git, Apache and mod_wsgi and your using Debian or Ubuntu. Also you should have  Django installed on your local machine and <span class="caps">SSH</span> installed on both the local machine and any servers you want to deploy to.</p>
+<p><em>note that I&#8217;ve used the name project_name throughout this example. Replace this with whatever your project is called.</em></p>
+<p>First step is to create your project locally:</p>
+<pre>mkdir project_name
+cd project_name
+django-admin.py startproject project_name</pre>
+<p>Now add a requirements file so pip knows to install Django. You&#8217;ll probably add other required modules in here later. Creat a file called requirements.txt and save it at the top level with the following contents:</p>
+<pre>Django</pre>
+<p>Then save this fabfile.py file in the top level directory which should give you:</p>
+<pre>project_name
+    fabfile.py
+    requirements.txt
+    project_name
+        __init__.py
+        manage.py
+        settings.py
+        urls.py</pre>
+<p>You&#8217;ll need a <span class="caps">WSGI</span> file called project_name.wsgi, where project_name  is the name you gave to your django project. It will probably look like the following, depending on your specific paths and the location of your settings module</p>
+<pre>import os
+import sys
+# put the Django project on sys.path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
+os.environ["DJANGO_SETTINGS_MODULE"] = "project_name.settings"
+from django.core.handlers.wsgi import WSGIHandler
+application = WSGIHandler()</pre>
+<p>Last but not least you&#8217;ll want a virtualhost file for apache which looks  something like the following. Save this as project_name in the inner directory. You&#8217;ll want to change /path/to/project_name/ to the location on the remote server you intent to deploy to.</p>
+<pre>&lt;VirtualHost *:80&gt;
+        WSGIDaemonProcess project_name-production user=project_name group=project_name threads=10 python-path=/path/to/project_name/lib/python2.6/site-packages
+        WSGIProcessGroup project_name-production
+        WSGIScriptAlias / /path/to/project_name/releases/current/project_name/project_name.wsgi
+        &lt;Directory /path/to/project_name/releases/current/project_name&gt;
+            Order deny,allow
+            Allow from all
+        &lt;/Directory&gt;
+        ErrorLog /var/log/apache2/error.log
+        LogLevel warn
+        CustomLog /var/log/apache2/access.log combined
+&lt;/VirtualHost&gt;</pre>
+<p>Now create a file called .gitignore, containing the following. This prevents the compiled python code being included in the repository and the archive we use for deployment.</p>
+<pre>*.pyc</pre>
+<p>You should now be ready to initialise a git repository in the top level project_name directory.</p>
+<pre>git init
+git add .gitignore project_name
+git commit -m "Initial commit"</pre>
+<p>All of that should leave you with</p>
+<pre>project_name
+    .git
+    .gitignore
+    requirements.txt
+    fabfile.py
+    project_name
+        __init__.py
+        project_name
+        project_name.wsgi
+        manage.py
+        settings.py
+        urls.py</pre>
+<p>In reality you might prefer to keep your wsgi files and virtual host files elsewhere. The fabfile has a variable (config.virtualhost_path) for this case.  You&#8217;ll also want to set the hosts that you intend to deploy to (config.hosts) as well as the user (config.user).</p>
+<p>The first task we&#8217;re interested in is called setup. It installs all the  required software on the remote machine, then deploys your code and restarts the webserver.</p>
+<pre>fab local setup</pre>
+<p>After you&#8217;ve made a few changes and commit them to the master Git branch you can run to deply the changes.</p>
+<pre>fab local deploy</pre>
+<p>If something is wrong then you can rollback to the previous version.</p>
+<pre>fab local rollback</pre>
+<p>Note that this only allows you to rollback to the release immediately before the latest one. If you want to pick a arbitrary release then you can use the following, where 20090727170527 is a timestamp for an existing release.</p>
+<pre>fab local deploy_version:20090727170527</pre>
+<p>If you want to ensure your tests run before you make a deployment then you can do the following.</p>
+<pre>fab local test deploy</pre>
+<p>The actual fabfile looks like this. I&#8217;ve uploaded a <a href="http://gist.github.com/156623">Gist of it</a>, along with the docs, so if you want to improve it please clone it.</p>
+<pre># globals
+config.project_name = 'project_name'
+# environments
+def local():
+    "Use the local virtual server"
+    config.hosts = ['172.16.142.130']
+    config.path = '/path/to/project_name'
+    config.user = 'garethr'
+    config.virtualhost_path = "/"
+# tasks
+def test():
+    "Run the test suite and bail out if it fails"
+    local("cd $(project_name); python manage.py test", fail="abort")
+def setup():
+    """
+    Setup a fresh virtualenv as well as a few useful directories, then run
+    a full deployment
+    """
+    require('hosts', provided_by=[local])
+    require('path')
+    sudo('aptitude install -y python-setuptools')
+    sudo('easy_install pip')
+    sudo('pip install virtualenv')
+    sudo('aptitude install -y apache2')
+    sudo('aptitude install -y libapache2-mod-wsgi')
+    # we want rid of the defult apache config
+    sudo('cd /etc/apache2/sites-available/; a2dissite default;')
+    run('mkdir -p $(path); cd $(path); virtualenv .;')
+    run('cd $(path); mkdir releases; mkdir shared; mkdir packages;', fail='ignore')
+    deploy()
+def deploy():
+    """
+    Deploy the latest version of the site to the servers, install any
+    required third party modules, install the virtual host and 
+    then restart the webserver
+    """
+    require('hosts', provided_by=[local])
+    require('path')
+    import time
+    config.release = time.strftime('%Y%m%d%H%M%S')
+    upload_tar_from_git()
+    install_requirements()
+    install_site()
+    symlink_current_release()
+    migrate()
+    restart_webserver()
+def deploy_version(version):
+    "Specify a specific version to be made live"
+    require('hosts', provided_by=[local])
+    require('path')
+    config.version = version
+    run('cd $(path); rm releases/previous; mv releases/current releases/previous;')
+    run('cd $(path); ln -s $(version) releases/current')
+    restart_webserver()
+def rollback():
+    """
+    Limited rollback capability. Simple loads the previously current
+    version of the code. Rolling back again will swap between the two.
+    """
+    require('hosts', provided_by=[local])
+    require('path')
+    run('cd $(path); mv releases/current releases/_previous;')
+    run('cd $(path); mv releases/previous releases/current;')
+    run('cd $(path); mv releases/_previous releases/previous;')
+    restart_webserver()    
+# Helpers. These are called by other functions rather than directly
+def upload_tar_from_git():
+    require('release', provided_by=[deploy, setup])
+    "Create an archive from the current Git master branch and upload it"
+    local('git archive --format=tar master | gzip &gt; $(release).tar.gz')
+    run('mkdir $(path)/releases/$(release)')
+    put('$(release).tar.gz', '$(path)/packages/')
+    run('cd $(path)/releases/$(release) &amp;&amp; tar zxf ../../packages/$(release).tar.gz')
+    local('rm $(release).tar.gz')
+def install_site():
+    "Add the virtualhost file to apache"
+    require('release', provided_by=[deploy, setup])
+    sudo('cd $(path)/releases/$(release); cp $(project_name)$(virtualhost_path)$(project_name) /etc/apache2/sites-available/')
+    sudo('cd /etc/apache2/sites-available/; a2ensite $(project_name)') 
+def install_requirements():
+    "Install the required packages from the requirements file using pip"
+    require('release', provided_by=[deploy, setup])
+    run('cd $(path); pip install -E . -r ./releases/$(release)/requirements.txt')
+def symlink_current_release():
+    "Symlink our current release"
+    require('release', provided_by=[deploy, setup])
+    run('cd $(path); rm releases/previous; mv releases/current releases/previous;', fail='ignore')
+    run('cd $(path); ln -s $(release) releases/current')
+def migrate():
+    "Update the database"
+    require('project_name')
+    run('cd $(path)/releases/current/$(project_name);  ../../../bin/python manage.py syncdb --noinput')
+def restart_webserver():
+    "Restart the web server"
+    sudo('/etc/init.d/apache2 restart')
+</pre></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/23/whats-new-django-11/">What&#8217;s New in Django 1.1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-23T00:00:00+01:00" pubdate data-updated="true">Jul 23<span>rd</span>, 2009</time>
+        
+         | <a href="/2009/07/23/whats-new-django-11/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>With the <a href="http://www.djangoproject.com/weblog/2009/jul/21/rc/">release candidate for Django 1.1</a> out the door I decided to have a quick look at what&#8217;s new. This isn&#8217;t a complete list, rather the bits I found most interesting.</p>
+<h2><a href="http://docs.djangoproject.com/en/dev/topics/conditional-view-processing/">Conditional Views</a></h2>
+<blockquote>
+<p>Django now has much better support for conditional view processing using the standard ETag and Last-Modified <span class="caps">HTTP</span> headers. This means you can now easily short-circuit view processing by testing less-expensive conditions. For many views this can lead to a serious improvement in speed and reduction in bandwidth.</p>
+</blockquote>
+<p>A nice set of decorators for dealing with ETags and Last-Modified headers. Again very simple to use and set up, and a simple way of squeezing a little more performance out of you application.</p>
+<h2><a href="http://docs.djangoproject.com/en/dev/ref/contrib/admin/actions/#ref-contrib-admin-actions">Admin Actions</a></h2>
+<blockquote>
+<p>The basic workflow of Django’s admin is, in a nutshell, “select an object, then change it.” This works well for a majority of use cases. However, if you need to make the same change to many objects at once, this workflow can be quite tedious. In these cases, Django’s admin lets you write and register “actions” – simple functions that get called with a list of objects selected on the change list page.</p>
+</blockquote>
+<p>Anything that makes the admin a little more powerful and a little more flexible is a good idea in my book. Admin actions allow you to run code over multiple objects at once, simple select them with a checkbox then select an action to run. This is worth it for the delete action alone, but you can write your own actions simply enough as well (for instance for approving a batch of comments, or archiving a set or articles.)</p>
+<h2><a href="http://docs.djangoproject.com/en/dev/ref/contrib/admin/#admin-list-editable">Editable Admin List Items</a></h2>
+<blockquote>
+<p>You can now make fields editable on the admin list views via the new list_editable admin option. These fields will show up as form widgets on the list pages, and can be edited and saved in bulk.</p>
+</blockquote>
+<p>Another time saving admin addition, this time for making some fields editable from the change list rather than the object view. For quick changes, especially to boolean fields, I think this again is a nice addition.</p>
+<h2><a href="http://docs.djangoproject.com/en/dev/ref/models/options/#django.db.models.Options.managed">Unmanaged Models</a></h2>
+<blockquote>
+<p>You can now control whether or not Django creates database tables for a model using the managed model option. This defaults to True, meaning that Django will create the appropriate database tables in syncdb and remove them as part of reset command. That is, Django manages the database table’s lifecycle. If you set this to False, however, no database table creating or deletion will be automatically performed for this model. This is useful if the model represents an existing table or a database view that has been created by some other means.</p>
+</blockquote>
+<p>I particularly like this addition. One of the issues I had with Django was some of the built in assumptions, in particular that you&#8217;d be using a <span class="caps">SQL</span> database backend. Using unmanaged models looks like a great approach to using an alternative database like couchdb, tokyotyrant or mongodb or representing a webservice interface in your application.</p>
+<p>I&#8217;m sure I&#8217;ll have missed a few other interesting changes or additions. Anyone else have a favourite?</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/15/simple-app-running-scripts-and-recording-results/">Asteroid - Simple App for Running Scripts and Recording the Results</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-15T00:00:00+01:00" pubdate data-updated="true">Jul 15<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/15/simple-app-running-scripts-and-recording-results/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Asteroid is a simple web interface for running scripts and recording the results. It&#8217;s like a much simpler and more general purpose version of something like Cruise Control. You can <a href="http://github.com/garethr/Asteroid/tree/master">get the code on Github</a>.</p>
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRj5VQw" alt="Asteroid Dashboard"/></p>
+<p>I built it to solve two main problems:</p>
+<ul>
+	<li>It&#8217;s sometimes useful to have a historical record of a scripts execution, in particular whether it passed or failed and what the output was. Just running a command line script probably doesn&#8217;t give you that. It&#8217;s also useful to have a more graphical interface for those members of the team who don&#8217;t use the command line.</li>
+	<li>When working in a team you often want to run scripts against shared infrastructure, for instance deploying a testing release or running a test suite. Seeing what is running at present helps with that.</li>
+</ul>
+<p>So it should be useful for running deployments, running test suites, running backups, etc. It currently doesn&#8217;t have scheduling or similar build in, but as everything is triggered by hitting a <span class="caps">URL</span> it would be simple enough to use cron for something like that. It should also be useful whatever language you write your scripts in; rake, ant, shell scripts, etc. At the end of the day it just executes a command at the console.</p>
+<h2>Requirements</h2>
+<p>Asteroid uses the Django Python framework under the hood.</p>
+<ul>
+	<li>Django &#8211; <a href="http://www.djangoproject.com/">http://www.djangoproject.com/</a></li>
+</ul>
+<p>You&#8217;ll also need a database. The default in the shipped settings is to use sqlite but this should work with any database supported by Django.</p>
+<p>You&#8217;ll also need a decent web browser. I&#8217;ve gone and used HTML5 as an experiment and with this being a developer tool I&#8217;m hoping to stick with it. It would be easy enough to convert the templates if this is a problem however.</p>
+<p>The application has an optional message queue backend which can be enabled in the settings file. This is used to improve the responsiveness of the application as well as allow commands to be executed on a remote machine, rather than on the box Asteroid is running.</p>
+<ul>
+	<li>AMQPlib &#8211; <a href="http://barryp.org/software/py-amqplib/">http://barryp.org/software/py-amqplib/</a></li>
+	<li>RabbitMQ &#8211; <a href="http://www.rabbitmq.com/">http://www.rabbitmq.com/</a></li>
+</ul>
+<p>Other <span class="caps">AMQP</span> compliant message queues should work but it&#8217;s currently only tested with Rabbit.</p>
+<p>If you are intending to do any development on Asteroid, or just want to look more closely at the code, I&#8217;d recommend installing</p>
+<ul>
+	<li>Clue &#8211; <a href="http://github.com/garethr/django-clue/tree/master">http://github.com/garethr/django-clue/tree/master</a></li>
+	<li>Test Extensions &#8211; <a href="http://github.com/garethr/django-test-extensions/tree/master">http://github.com/garethr/django-test-extensions/tree/master</a></li>
+</ul>
+<h2>Usage Instructions</h2>
+<p>You should be able to just download asteroid and run it from wherever you put it, once you setup the database.</p>
+<pre>cd asteroid/configs/common
+manage.py syncdb
+manage.py runserver</pre>
+<p>This should bring the local web server up on port 8000 so visit http://localhost:8000 and see.</p>
+<p>If you&#8217;re using the message queue backend you&#8217;ll need to run the listener script in order to get your commands executed. At the moment that means modifying a constant in the listener script to point at a running message queue instance at asteroid/bin/asteroid_listen.py.</p>
+<pre>cd asteroid/bin
+./asteroid_listen.py</pre>
+<p>Once you&#8217;re up and running you should be able to add commands via the admin interface at http://localhost:8000/admin/. The username and password should be those you added when creating the database via the syncdb command above.</p>
+<p>The development configs include a few additional applications (mentioned above) which I use for testing and debugging. You can run the test suite like so:</p>
+<pre>cd asteroid/configs/development
+manage.py test --coverage
+</pre>
+<h2>Todo</h2>
+<p>This is an early release that just about <em>works for me</em>. I can already see a number of areas I&#8217;d like to clean up a little or extend. For instance:</p>
+<ul>
+	<li>Other deployment options, including a <span class="caps">WSGI</span> file and a spawning startup script.</li>
+	<li>Use a database migration system to make upgrades easier.</li>
+	<li>Make the message queue listener script more robust.</li>
+	<li>Make the command entry more robust, it sometimes takes a bit of fiddling with to get something to run correctly.</li>
+	<li>Formalise running scripts on remote machines, including support for running on multiple machines.</li>
+	<li>Paging for long lists of commands or runs.</li>
+</ul>
+<h2>Notes</h2>
+<p>I&#8217;m pretty happy with how it&#8217;s shaping up so far. Under the hood it works by having the web app put a <span class="caps">JSON</span> document on the message queue. The <span class="caps">JSON</span> contains the command to be run and a callback <span class="caps">URL</span>. The script listening to the message queue picks up the message, runs the command, and posts a <span class="caps">JSON</span> document back to the webhook url. It keeps the web interface snappy, as well as meaning it can show which commands are currently in progress at any given time. It also has the side benefit of meaning you can execute commands on a remote machine, as the listener doesn&#8217;t care where it&#8217;s running.</p>
+<p>As noted above I have a few ideas of where I want to take it, but I&#8217;m going to try using it for a bit and see how that goes. If anyone else finds it useful then do let me know.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/13/its-data-we-want/">It&#8217;s the Data We Want</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-13T00:00:00+01:00" pubdate data-updated="true">Jul 13<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/13/its-data-we-want/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><blockquote>
+<p>A spreadsheet. A <span class="caps">CSV</span> file. Whatever is in use internally. Made available to people like us under a suitable license.</p>
+</blockquote>
+<p>I feel a little self adsorbed quoting myself (from a recent <a href="http://refreshcambridge.org/">Refresh Cambridge</a> discussion) but I did like the turn of phrase. What I was rambling on about was Cambridge County mapping data, after a question from a nice chap from the council about what <em>&#8220;new, exciting map technology&#8221;</em> we&#8217;d like to see. But it applies to any data that you&#8217;re trying to make public what-so-ever, be it government or otherwise.</p>
+<p>What myself and a few other people were talking about, and one of the things that has been discussed as part of the <a href="http://rewiredstate.org/">Rewired State</a> group, is that it&#8217;s all about the data, not necessarily about a nice web based <span class="caps">API</span>.</p>
+<p>Now I&#8217;ve written and spoken about the need for well designed API&#8217;s being treated as part of the user interface. But remember interface design, and by association <span class="caps">API</span> design, isn&#8217;t easy. <span class="caps">API</span> design is often about building manageable flexibility. A public <span class="caps">API</span> is often about managing the flow of data you control out to third parties, as well as the information itself it might include limitations on usage, or request rate, or storage. A public <span class="caps">API</span> codifies how that information can be accessed. APIs also have to tread a fine line between making it easy for you to solve your problem, and making it easy for everyone else to solve their completely different problems. These compromises are design.</p>
+<p>But not everything needs an <span class="caps">API</span>. Sometimes it&#8217;s just about the data, and the best way of getting at that data is as raw as possible. Government data is an easy sell here, as it is (or rather should be) <em>our</em> data. It&#8217;s also for the most part interesting to read rather than write (historical council tax data, or population data for instance). Raw data can generally be provided quicker than via an <span class="caps">API</span>. It doesn&#8217;t need fragile computer systems or extensive manual labour. It doesn&#8217;t need particularly clever computing resources. Just upload a spreadsheet or a <span class="caps">CSV</span> file to a sensible <span class="caps">URL</span> on a known, regular basis and away we go.</p>
+<p>And giving data like this away to the development community is likely to have a few additional benefits if that data is useful (it probably is to someone). We&#8217;ll happily write software libraries, or create APIs over the top of it for you. We&#8217;ll also write all sorts of useful tools using the data in ways no one else thought of. So if you&#8217;re sat on a load of data that&#8217;s not core to your business, or is meant to be public anyway, then lets start talking publicly about how to just get this out on the web quickly and cheaply, rather than spending lots of your time and money on something fancy.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/08/thoughts-whole-xhtml-and-html5-affair/">Thoughts on the Whole XHTML/HTML5 Affair</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-08T00:00:00+01:00" pubdate data-updated="true">Jul 8<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/08/thoughts-whole-xhtml-and-html5-affair/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I wasn&#8217;t going to write anything about <a href="http://www.w3.org/News/2009#item119">the whole XHTML2 thing</a>. I noted its passing, got <a href="https://twitter.com/jamierumbelow/status/2442111140">a nice message on Twitter</a> and thought that would be it. But no. The web standards world exploded. I honestly didn&#8217;t see that coming.</p>
+<p>Let&#8217;s get a few things straight:</p>
+<ul>
+	<li>I use <span class="caps">XHTML</span> 1.0 for this site. In fact I&#8217;ve been using it for the majority of things for most of my professional life.</li>
+	<li>I don&#8217;t serve content with an <span class="caps">XML</span> mime type. Neither does <em>anyone</em> else. It&#8217;s a complete non issue. Ignore it.</li>
+	<li>At my last job we used <span class="caps">HTML</span> 4. It meant I had to remember not to close my image elements, which bugged me, but not too much. I still quoted everything. Closed everything I could. And only used lowercase element names.</li>
+	<li>My latest two pet projects are using HTML5. I&#8217;m still closing everything (including image elements, yay), quoting everything and lowercasing everything.</li>
+</ul>
+<p>Web Standards are interesting, in that they are standards for both implementors (browser makers) and for authors (us). I like coding standards in programming languages too, it&#8217;s one of the things I love about Python and <a href="http://www.python.org/dev/peps/pep-0008/">PEP8</a>. But with these standards it&#8217;s not about making your code <em>work</em>, it&#8217;s about shared conventions and readability. So common spacing, <span class="caps">UPPERCASE</span> for constants and Leading caps for class names for instance. It&#8217;s also about having a tool to check everyone is adhering to standards, like <a href="http://svn.browsershots.org/trunk/devtools/pep8/pep8.py">pep8.py</a> or <span class="caps">FXCOP</span> for .<span class="caps">NET</span>. If everyone writes code in the same way it&#8217;s easier to read, write and to pick up someone else&#8217; code. You can do that with <span class="caps">HTML</span>, but you <em>have</em> to do that with <span class="caps">XHML</span>.</p>
+<p>Now the whole <span class="caps">HTML</span> 4.0 vs <span class="caps">XHTML</span> 1.0 thing has come up lots of times, on mailing lists, at conferences as well as down the pub. I know on occasion me, <a href="http://allinthehead.com">Drew</a>, <a href="http://rachelandrew.co.uk">Rachel</a> and <a href="http://adactio.com">Jeremy</a> side against <a href="http://simonwillison.net">Simon</a> and <a href="http://natbat.net">Nat</a> on the issue. But what&#8217;s interesting is that I think we all agree on all the typographical conventions stuff. My <a href="http://intranation.com">former</a> <a href="http://thecssdiv.com">colleagues</a> with a passion for front end standards and <span class="caps">HTML</span> 4 did the same thing. I even remember Simon looking for ways to validate against <span class="caps">HTML</span> 4 but also to check for all lower case elements, closed paragraphs and the like.</p>
+<p>Which brings me to the reason why I use <span class="caps">XHTML</span>: The validator enforces my preferred coding standards for <span class="caps">HTML</span> &#8211; lowercase elements, quoted attributes and closed elements. That&#8217;s it. Not much really. I <em>know</em> it&#8217;s <a href="http://hsivonen.iki.fi/xhtml2-html5-q-and-a/">marketing <span class="caps">XHTML</span> rather than technical <span class="caps">XHTML</span></a>. I don&#8217;t care. Or rather I do care, I just make a conscious pragmatic decision based on a small personal advantage. I&#8217;m both pedantic and like having a tool chain which enforces that, <span class="caps">XHTML</span> suits my style.</p>
+<p>The markup language debate is being talked about in terms of pragmatists vs purists. But ignoring the people who both really understood and really wanted XHTML2, it&#8217;s mainly the pragmatists arguing amongst themselves now. Some of them are big company people, others working for themselves. Some have standards or academic leanings, others are rooted in commercial web design. Some people probably work on huge long term projects, others relatively small sites and apps. And I think it&#8217;s these cultural differences that are the root of arguments now. So blog posts coming out saying the same thing but arguing with other people give a strange impression of disagreement. Throw in that the web lends itself to popular blogs gathering a crowd of like-minded people around them and hey presto we have people feeling unfairly put upon and getting agitated.</p>
+<p>What a storm in a teacup. Who doesn&#8217;t genuinely think the best approach is to use whatever you&#8217;re using now for most projects, investigate HTML5 as time permits, and then expect to start using HTML5 in bits and pieces in the short to medium term, when being mainly dependent on your target audience?</p>
+<p>In my opinion the only genuine problem that this saga has highlighted is the fear, uncertainty and doubt around all flavours of <span class="caps">HTML</span> amongst a large number of web professionals. People don&#8217;t get this stuff at all. With the added resources soon to be put into the HTML5 working group at the W3C this <em>outreach and education</em> side of the project has to have just as much love and attention as the spec itself.</p></div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/page/10/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/page/8/">Newer &rarr;</a>
+    
+  </div>
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo">
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Simulating Rails like Environments in Django - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="I was always a fan of Rail environments and as part of some work upgrading this site to the latest version of Django I decided to clean up my whole &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2008/11/01/simulating-rails-environments-django">
+  <link href="/favicon.ico" rel="icon">
+  
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<meta content="etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8" name="google-site-verification">
+<link href="http://www.myopenid.com/server" rel="openid.server">
+<link href="http://garethr.myopenid.com/" rel="openid.delegate">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="no-sidebar"  >
+  <header>
+<hgroup>
+<h1><a href="/">Morethanseven</a></h1>
+<p>The blog of Gareth Rushgrove</p>
+
+<div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+</hgroup>
+</header>
+
+
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Simulating Rails Like Environments in Django</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-01T00:00:00+00:00" pubdate data-updated="true">Nov 1<span>st</span>, 2008</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I was always a fan of <a href="http://wiki.rubyonrails.org/rails/pages/Environments">Rail environments</a> and as part of some work upgrading this site to the latest version of Django I decided to clean up my whole deployment process. Part of that involved replacing everything in settings.py with the following snippet of code:</p>
+<pre>ENV = "development"
+try:
+    exec "from environments." + ENV + " import *"
+except ImportError:
+    print "You must specify a valid environment"
+    exit()</pre>
+<p>I now have two settings files stored in an environments module containing all the usual django settings; one for my development environment and one suitable for live. The settings.py above is for my local development environment, with only one small change for live (this file doesn&#8217;t get deployed along with the source code for the site, so doesn&#8217;t get overwritten).</p>
+<pre>ENV = 'live'</pre>
+<p>This isn&#8217;t quite the same as the Rails implementation obviously. I run completely different server setups so I&#8217;m not too bothered about a flag on the runserver command like the -e flag for mongel. I could also probably do something to autodetect the environment but this works fine for me.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn"><a href="/about" title="About the author (Gareth Rushgrove)" rel="author">Gareth Rushgrove</a></span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-01T00:00:00+00:00" pubdate data-updated="true">Nov 1<span>st</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/tags/django/'>django</a>, <a class='category' href='/tags/environments/'>environments</a>, <a class='category' href='/tags/python/'>python</a>, <a class='category' href='/tags/rails/'>rails</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2008/11/01/simulating-rails-environments-django/" data-via="garethr" data-counturl="http://www.morethanseven.net/2008/11/01/simulating-rails-environments-django/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2008/10/13/unit-testing-css-looking-solution/" title="Previous Post: Unit Testing CSS - Looking for a Solution">&laquo; Unit Testing CSS - Looking for a Solution</a>
+      
+      
+        <a class="basic-alignment right" href="/2008/11/09/django-performance-tip-profile-your-filters/" title="next Post: Django Performance Tip - Profile Your Filters">Django Performance Tip - Profile Your Filters &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo">
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2008/11/01/simulating-rails-environments-django/';
+        var disqus_url = 'http://www.morethanseven.net/2008/11/01/simulating-rails-environments-django/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,640 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="So, DIBI is just over a week away and lots of people seem to be getting excited. Personally I&#8217;m really looking forward to it. I get a nice trip &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/page/7">
+  <link href="/favicon.ico" rel="icon">
+  
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<meta content="etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8" name="google-site-verification">
+<link href="http://www.myopenid.com/server" rel="openid.server">
+<link href="http://garethr.myopenid.com/" rel="openid.delegate">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="no-sidebar"  >
+  <header>
+<hgroup>
+<h1><a href="/">Morethanseven</a></h1>
+<p>The blog of Gareth Rushgrove</p>
+
+<div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+</hgroup>
+</header>
+
+
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/04/19/Dibi-twitter-aggregator/">DIBI Twitter Aggregator</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-04-19T00:00:00+01:00" pubdate data-updated="true">Apr 19<span>th</span>, 2010</time>
+        
+         | <a href="/2010/04/19/Dibi-twitter-aggregator/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So, <a href="http://dibiconference.com/"><span class="caps">DIBI</span></a> is just over a week away and lots of people seem to be getting excited. Personally I&#8217;m really looking forward to it. I get a nice trip back up to my old home of Newcastle and get to talk geek to an audience of likeminded (and not so likeminded) web professionals. I&#8217;m also going to catch up with quite a few people I haven&#8217;t seen in quite a while.</p>
+<p>Anyway, Twitter is at it&#8217;s best at conferences like this. It&#8217;s perfect for the <em>where to go now</em> situation. But I also like going back in time after the fact and looking at what people said, especially to get feedback about my talk. With that in mind I&#8217;ve build a <a href="http://dibiconf.appspot.com/">little aggregator</a> for all things #dibi. So far that appears to be a mixture of excitement and travel chaos.</p>
+<p>I specifically wanted something that ran on the server, which discounted an awful lot of pure javascript versions. I think Twitter clients generally do a good job of the <em>right now</em> anyway. I also like to collect data for mining later, assuming I have the time. After a number of discussions on Twitter, then just some wandering around GitHub I found <a href="http://github.com/steffentchr/twitterengine">TwitterEngine</a> which is fantastic. I&#8217;ve hacked it around quite a bit into something more general purpose. I&#8217;ve added some caching, some other App Engine performance tweaks and some monitoring. I&#8217;ll commit those to GitHub when I get the chance. I&#8217;d forgotten quite how much fun App Engine development was.</p>
+<p>I still want to add a few more features before the conference. The styles work quite well on my Android but less well (text too small) on my iPod Touch. So I&#8217;ll fix that first. Any other requests?</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/04/05/Hadoop-hive-web-interface/">Hadoop Hive Web Interface</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-04-05T00:00:00+01:00" pubdate data-updated="true">Apr 5<span>th</span>, 2010</time>
+        
+         | <a href="/2010/04/05/Hadoop-hive-web-interface/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve been playing with Hive recently and liking what I&#8217;ve found. In theory at least it provides a very nice, simple way of getting into analysing large data sets. To make it even easier to show other people what you&#8217;re up to Hive has a nascent web interface with a little documentation <a href="http://wiki.apache.org/hadoop/Hive/HiveWebInterface">on the wiki</a></p>
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRiBfQw" alt="image of hive web ui"/></p>
+<p>On the one hand it&#8217;s rather simple at this point, but that should be easily enought to prettify given a bit of time. The bigger problem was getting it working in the first place. What follows worked for me using the latest cloudera packages on debian testing. I&#8217;m assuming you already have Hive and Hadoop installed, the basic packages worked fine for me here.</p>
+<p>Next up you&#8217;ll need the <span class="caps">JDK</span> (not just the <span class="caps">JRE</span>) as their is some compilation that will go on the first time you run the web interface.</p>
+<% syntax_colorize :bash, type=:coderay do %>
+apt-get install ant sun-java6-jdk
+<% end %>
+<p>Next up I had to modify the installed <em>/etc/hive/conf/hive-site.xml</em> file as follows:</p>
+<p>I changed this:</p>
+<% syntax_colorize :xml, type=:coderay do %>
+<property>
+  <name>hive.metastore.uris</name>
+  <value>file:///var/lib/hivevar/metastore/metadb/</value>
+  <description>Comma separated list of URIs of metastore servers. The first server that can be connected to will be used.</description>
+</property>
+<% end %>
+<p>To this. Note the hivevar path doesn&#8217;t exist so I&#8217;m not sure if this was a typo in the source.</p>
+<% syntax_colorize :xml, type=:coderay do %>
+<property>
+  <name>hive.metastore.uris</name>
+  <value>file:///var/lib/hive/var/metastore/metadb/</value>
+  <description>Comma separated list of URIs of metastore servers. The first server that can be connected to will be used.</description>
+</property>
+<% end %>
+<p>I also change the following section regarding the metastore name:</p>
+<% syntax_colorize :xml, type=:coderay do %>
+<property>
+  <name>javax.jdo.option.ConnectionURL</name>
+  <value>jdbc:derby:;databaseName=/var/lib/hive/metastore/${user.name}_db;create=true</value>
+  <description>JDBC connect string for a JDBC metastore</description>
+</property>
+<% end %>
+<p>To this, with a fixed name. When using the above confirguration the file was actually called ${user.name} rather than my username being subsituted in. Elsewhere this seems to work fine.</p>
+<% syntax_colorize :xml, type=:coderay do %>
+<property>
+  <name>javax.jdo.option.ConnectionURL</name>
+  <value>jdbc:derby:;databaseName=/var/lib/hive/metastore/metastore_db;create=true</value>
+  <description>JDBC connect string for a JDBC metastore</description>
+</property>
+<% end %>
+<p>I&#8217;m not convinced the above two changes are needed but have left them here just in case. The main tricky part is making sure a load of environment variables are correctly set. The following worked for me:</p>
+<% syntax_colorize :bash, type=:coderay do %>
+export ANT_LIB=/usr/share/ant/lib
+export HIVE_HOME=/usr/lib/hive
+export HADOOP_HOME=/usr/lib/hadoop
+export PATH=$PATH:$HADOOP_HOME/bin
+export JAVA_HOME=/usr/lib/jvm/java-6-sun
+<% end %>
+<p>All being well that should allow you to run the hive command with the web interface like so:</p>
+<% syntax_colorize :bash, type=:coderay do %>
+hive &#8211;service hwi
+<% end %>
+<p>That should bring up a webserver on port 9999 where you should see something similar to the screenshot above.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/03/28/More-django-project-templates/">More Django Project Templates</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-28T00:00:00+00:00" pubdate data-updated="true">Mar 28<span>th</span>, 2010</time>
+        
+         | <a href="/2010/03/28/More-django-project-templates/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Quite a while ago I released some handy scripts for building up Django project layouts. Part of the reason behind this was to kick off discussions about ideal pproject layouts and maybe even get a few user submitted layouts into the project. Paster makes this soft of thing really easy to do and I was interested in what people might come up with.</p>
+<p>Well, the team over at <a href="http://chicagotribune.com/">The Chicargo Tribune</a> have done just that, creating a branch of the original project and <a href="http://github.com/ryanmark/django-project-templates/">adding a very rich example project to it</a></p>
+<p>I&#8217;ve finally gotten around to merging that back into <a href="http://github.com/garethr/django-project-templates/">my branch</a> and releasing a new version to <a href="http://pypi.python.org/pypi/django-project-templates/0.11">PyPi</a>. It&#8217;s got a good number of PostGreSQL commands that might be of use, as well as several Amazon S3 and EC2 examples. Even if none of these complete templates fit what you&#8217;re looking for exactly their are lots of smaller fabric recipes worth taking a look at.</p>
+<p>You can read all about what is in the project over on their <a href="http://blog.apps.chicagotribune.com/2010/03/08/advanced-django-project-layout/">developer blog</a>, which if filled with other interesting web and operations goodness.</p>
+<p>So, huge thanks to <a href="http://blog.apps.chicagotribune.com/author/cgroskopf/">Chris</a>, <a href="http://blog.apps.chicagotribune.com/author/bboyer/">Brian</a>, <a href="http://blog.apps.chicagotribune.com/author/ryanthomasmark/">Ryan</a> and <a href="http://blog.apps.chicagotribune.com/author/joegermuskact/">Joe</a> for some great work.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/03/21/Sandbox-your-ruby-gems/">Sandbox Your Ruby Gems</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-21T00:00:00+00:00" pubdate data-updated="true">Mar 21<span>st</span>, 2010</time>
+        
+         | <a href="/2010/03/21/Sandbox-your-ruby-gems/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m a huge fan of virtualenv for Python. It&#8217;s a simple tool that lets you have an isolated python environment into which you can install libraries via setup tools. It makes experimenting with different versions of code easier and avoids lots of problems with hard to find bugs caused by unknown third party conflicts.</p>
+<p><a href="http://github.com/nkryptic/sandbox">Sandbox</a> aims to do exactly the same for Ruby. It isolates your gem installation from the system libraries and providesa script to activate the named environment. The GitHub repo has been around since 2008, yet only has 37 followers. I&#8217;m not sure whether that is because another more popular and feature rich solution exists or because Ruby people haven&#8217;t yet found this technique useful. For me finding tools that work the same way as those I already like in other languages makes me happy.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/03/19/Static-generator-for-web-services/">Static Generator for Web Services</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-19T00:00:00+00:00" pubdate data-updated="true">Mar 19<span>th</span>, 2010</time>
+        
+         | <a href="/2010/03/19/Static-generator-for-web-services/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>My latest <em>on a train</em> project is <a href="http://github.com/garethr/Dumper">Dumper</a>, a static generator for web services. I&#8217;m a huge fan of <a href="http://nanoc.stoneship.org/">Nanoc</a> and tools like <a href="http://github.com/mojombo/jekyl">Jekyl</a> for building websites. But I spend at least as much time building small webservicds. I wanted something super simple that would let me expose data I had access to as a read only web service.</p>
+<p>At the moment that means using a mysql database, specifying a <span class="caps">SQL</span> query and running a python script. Hey presto you have lots and lots of <span class="caps">XML</span> and <span class="caps">JSON</span> files representing your data. Dumper provides hooks for you to customise the ourput or even overide the database layer. It should be possible if you were so inclined to replace the mysql backend with another database, or other type of data store. Hopefully some of these might end up in my branch at a later date.</p>
+<p>At a basic level all you need is a config file which looks a little like:</p>
+<% syntax_colorize :ini, type=:coderay do %>
+[Dumper]
+path: people
+index: id
+backend: mysql
+
+[Database]
+sql: SELECT id, name FROM people
+host: localhost
+username: root
+password:
+database: dumper
+<% end %>
+<p>And then run a command line application against that file:</p>
+<% syntax_colorize :bash, type=:coderay do %>
+dumper -c people.ini dump
+<% end %>
+<p>The application supports a number of flags for specifying where you want the files to be generated, what your config file is called and to clean up any generated files if you want to try again. The output will let you know which files have been updated, which deleted and which added too. If you&#8217;d rather have a single file but with all your records in then that&#8217;s easy too &#8211; just add something to the config file.</p>
+<p>It&#8217;s somewhat early days for Dumper, and I&#8217;ve not seen anything similar so their are definately some rough edges that could do with some work. All of that will really come down to how much use it gets. I&#8217;d appreciate any feedback from anyone with a similar itch to scratch too.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/03/08/Piston-and-sanitising-json-callbacks/">Piston and Sanitising Json Callbacks</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-08T00:00:00+00:00" pubdate data-updated="true">Mar 8<span>th</span>, 2010</time>
+        
+         | <a href="/2010/03/08/Piston-and-sanitising-json-callbacks/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m a big fan of <a href="http://bitbucket.org/jespern/django-piston">Piston</a>, the django app for creating RESTful web services. As part of a project at work I ended up looking through the source code, mainly at some of the neat tricks of serialisation of objects. While poking around I came across something in my mind that wanted fixing. This being open source rather than just file a bug report I setup a <a href="http://bitbucket.org">bitbucket</a> account and got hacking.</p>
+<% syntax_colorize :python, type=:coderay do %>
+def render(self, request):
+	cb = request.GET.get(&#8216;callback&#8217;)
+        seria = simplejson.dumps(self.construct(),
+		cls=DateTimeAwareJSONEncoder,
+		ensure_ascii=False, indent=4)
+
+        # Callback
+        if cb:
+            return &#8216;%s(%s)&#8217; % (cb, seria)
+
+        return seria
+<% end %>
+<p>Can you spot the problem? Note the use of the callback passed in the query string arguments and then used <em>without any checking</em> in the output.</p>
+<p>What we really want to do is something like this:</p>
+<% syntax_colorize :python, type=:coderay do %>
+if is_valid_jsonp_callback_value(cb):
+<% end %>
+<p>Which is exactly what has just <a href="http://bitbucket.org/jespern/django-piston/changeset/f558b2c66dcc/">gone into the code for Piston</a>. <a href="http://tav.espians.com/sanitising-jsonp-callback-identifiers-for-security.html">This article</a> contains lots of background information about why <span class="caps">JSONP</span> callbacks can be a security hole, and helpfully provides a <a href="http://github.com/tav/scripts/blob/master/validate_jsonp.py">nice Python module</a> to help with the sanitisation. Nice to be on the authors list for something I&#8217;m using actively.</p>
+<p>Thanks to <a href="http://twitter.com/jespern">Jesper Noehr</a> for Piston, for some pointers on bitbucket and for quickly taking the patch. If you&#8217;re accepting a callback on your site or application, especially if it&#8217;s a public service, you really want to do something like this or you just might have an exploitable security hole.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/03/07/New-nanoc-powered-blog/">New Nanoc Powered Blog</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-07T00:00:00+00:00" pubdate data-updated="true">Mar 7<span>th</span>, 2010</time>
+        
+         | <a href="/2010/03/07/New-nanoc-powered-blog/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>It&#8217;s taken longer than I would have liked but I&#8217;ve finally gotten around to relaunching this site on <a href="http://nanoc.stoneship.org/">nanoc</a>.</p>
+<p>After looking through lots of code from the <a href="http://projects.stoneship.org/trac/nanoc/wiki/Showcase">nanoc showcase</a> I had a pretty good feel for how I wanted things to work and I then used the excellent <a href="http://github.com/mgutz/nanoc3_blog">nanoc3_blog</a> template to get started. I&#8217;ve hacked around quite a bit with the code to get things how I wanted them. Using <a href="http://lesscss.org/">Less</a> to make the <span class="caps">CSS</span> more manageable, <a href="http://coderay.rubychan.de/">Coderay</a> for lovely syntax highlighting and making everything default to textile rather than markdown. I&#8217;ve also written import scripts for my old blog (in Python) and another one so I can use tumblr is I want to create items on here (in Ruby).</p>
+<p>Nanoc really is a joy to work with and I&#8217;m hoping that alone will get me back into writing more freqently than I have done for a while. The fact I can just write in Vim or WriteRoom or whatever editor I have to hand feels nice. And using Git, Rake and Rsync complete my little toolset. Everything is still served via Nginx.</p>
+<p>I&#8217;ve thrown the all the code, including all the content, up on <a href="http://github.com/garethr/morethanseven">GitHub</a> for anyone interested. Back to writing.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/03/07/Mysql-support-for-cucumber-nagios/">Mysql Support for Cucumber Nagios</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-07T00:00:00+00:00" pubdate data-updated="true">Mar 7<span>th</span>, 2010</time>
+        
+         | <a href="/2010/03/07/Mysql-support-for-cucumber-nagios/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I just noticed Lindsay had <a href="http://github.com/auxesis/cucumber-nagios">committed</a> the amqp steps for cucumber-nagios and remembered I hadn&#8217;t mentioned on here some other work I&#8217;ve been doing on the same project. We use MySQL quite a bit at work and I&#8217;ve been wanting to extent our monitoring for a while. So I set about thinking how that would work with cucumber-nagios. What I&#8217;ve come up with looks something like this:</p>
+<pre>
+Feature: localhost
+  To make sure the rest of the system is in order
+  Our database server should not be overloaded
+
+  Scenario: check running processes count
+    Given I have a MySQL server on localhost
+    And I use the username root
+    Then it should have less than 10 processes
+
+  Scenario: check queries per second
+    Given I have a MySQL server on localhost
+    And I use the username root
+    Then it should have less than 200 select queries per second
+    Then it should have less than 300 queries per second
+    Then it should have less than 5 slow queries pers second
+    Then it should have at least 10 queries per second
+</pre>
+<p>The numbers, username details and host details are all variables. So you can write senarios for your specific deployments. The tests over time are based on a very short lived sampling mechanic which I&#8217;ve yet to test in anger. I&#8217;m not sure just yet is this approach will lead to too many false positives but we&#8217;ll have to see.</p>
+<p>This <a href="http://codeinthehole.com/archives/8-Monitoring-MySQL-with-Ganglia-and-gmetric.html">mysql gmetric script</a> gave me lots of the ideas for invidual steps. I&#8217;ll be writing more about some work I&#8217;ve been doing with cucumber-nagios and ganglia soon as well.</p>
+<p>For the moment if anyone want&#8217;s to try these steps out you can either check out <a href="http://github.com/garethr/cucumber-nagios">my cucumber-nagios</a> fork or just grab the steps from the <a href="http://github.com/garethr/cucumber-nagios/blob/master/lib/generators/project/features/steps/mysql_steps.rb">mysql_steps.rb</a> file. Any feedback much appreciated.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/02/15/blogging-platforms/">On Blogging Platforms</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-02-15T00:00:00+00:00" pubdate data-updated="true">Feb 15<span>th</span>, 2010</time>
+        
+         | <a href="/2010/02/15/blogging-platforms/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Every now and again I feel the need for a change and spent a little time tonight looking at different blogging software. I&#8217;m currently running a custom django app I wrote a good while ago, more as an excuse to play with Django than anything. Previously I&#8217;ve used Wordpress, Textpattern and even Radiant. But I&#8217;m coming to the conclusion that what I want doesn&#8217;t exist. In theory that means an opportunity for someone to enter the market, in reality I think it might just be me. So, what do I want?</p>
+<ul>
+	<li>Customisable <span class="caps">URL</span> patterns and redirects. Tumblr did well until this point but I have years of content on nice URLs and I&#8217;d not going to throw that away.</li>
+	<li>Command line interface for posting snippets</li>
+	<li>Nice looking web based <span class="caps">API</span> (bonus points to Typepad here for some nifty features like pubsubhubhub)</li>
+	<li>iPod touch app</li>
+	<li>Real control over the design, not just pre-made templates unless you pay for a pro account</li>
+	<li>Hackable (this could mean anything, but I know it when I see it. So not WordPress then.)</li>
+	<li>Export plain text out</li>
+	<li>Use my own domain name</li>
+</ul>
+<p>I have a sneaking suspicion what I might be thinking about is a private tumblr blog used as a datasource for <a href="http://nanoc.stoneship.org/">Nanoc3</a>. But that relies on me having the time to build that as I can&#8217;t find anyone who might have written such a think. Maybe one day.</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/02/11/djugl-february/">DJUGL February</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-02-11T00:00:00+00:00" pubdate data-updated="true">Feb 11<span>th</span>, 2010</time>
+        
+         | <a href="/2010/02/11/djugl-february/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The next Django User Group London is in two weeks time. You can register over on <a href="http://londonpython.eventwax.com/djugl-february">Eventwax</a>. So far we have <a href="http://intranation.com">Brad</a> talking with more speakers to be announced shortly. Hope to see a few people there.</p></div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/page/8/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/page/6/">Newer &rarr;</a>
+    
+  </div>
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo">
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>
