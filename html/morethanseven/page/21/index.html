@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I like small. I have a macbook rather than a macbook pro because it&#8217;s smaller. Especially now I&#8217;m wandering about more often with work ( &hellip;">
+  <meta name="description" content="I mentioned previously that I&#8217;d been playing with the symfony framework on a couple of projects and I have to admit to being more and more &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,50 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/12/26/nice-bits-of-symfony-web-debug-toolbar/">Nice Bits of Symfony: Web Debug Toolbar</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-26T00:00:00+00:00" pubdate data-updated="true">Dec 26<span>th</span>, 2007</time>
+        
+         | <a href="/2007/12/26/nice-bits-of-symfony-web-debug-toolbar/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I <a href="http://morethanseven.net/posts/getting-going-with-symfony/">mentioned previously</a> that I&#8217;d been playing with the <a href="http://www.symfony-project.org/">symfony</a> framework on a couple of projects and I have to admit to being more and more impressed as I wade in looking for things. I&#8217;ve worked with enough <span class="caps">MVC</span>-like frameworks to know they are all quite similar in more ways than they are dramatically different. So it&#8217;s the little bits and pieces that win you over.</p>
+<p>One of my favourite little bits in symfony has to be the Web Debug Toolbar. When running in development mode you get a little menu floating above your application like so (top right hand corner).</p>
+<p><img src="http://morethanseven.net/_assets/media/imgSymfonyToolbar.png" title="Web page showing the symfony web debug toolbar in the top right corner" alt="Web page showing the symfony web debug toolbar in the top right corner" /></p>
+<p>This gives you all sorts of useful information as you&#8217;re developing your application &#8211; from the number of database queries to the rendering time, with a full logger built in. It&#8217;s also been particularly useful in learning symfony &#8211; being able to follow the entire request through the stack from the logger is really handy when you don&#8217;t know what is going on.</p>
+<p><img src="http://morethanseven.net/_assets/media/imgSymfonyToolbar2.png" title="Web page showing the symfony web debug toolbar fully expanded" alt="Web page showing the symfony web debug toolbar fully expanded" /></p>
+<p>With the increasing use of object relational mapping in web frameworks it&#8217;s quite easy to end up with a <em>working</em> application on your development box that turns out to absolutely hammer your database when used in the real world by only a few hundred people (I&#8217;m looking at you tagging). The database utilities, showing the number of queries and the <span class="caps">SQL</span> for those queries, is particularly handy for finding bottlenecks here.</p>
+<p><img src="http://morethanseven.net/_assets/media/imgSymfonySQL.png" title="Web page showing the symfony web debug toolbar SQL view" alt="Web page showing the symfony web debug toolbar SQL view" /></p>
+<p>I&#8217;ve not come across something similar in other frameworks, <span class="caps">PHP</span> or otherwise. I&#8217;d be interested to know if similar things do exist for Rails or Django in particular.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -518,52 +562,6 @@ print 'Archived ' + str(tweets) + ' of ' + username + \
 <p>A few other thinks to throw into the pot. <a href="http://www.amazon.co.uk/Beyond-Java-Bruce-Tate/dp/0596100949">Beyond Java</a> is an interesting read &#8211; summing up with a call for more fragmentation and for small nimble languages to be used where it makes sense. Oh, and I think <a href="http://tommorris.org/blog/">Tom</a> is busy learning Java as well. Mmmmm.</p>
 <p>Some good coverage around of <a href="http://ben-ward.co.uk/journal/ajaxising/">both</a> <a href="http://www.blackphoebe.com/msjen/2007/11/london-day-6-future.html#more">conferences</a> and I know my first impression was basically <em>this way lies madness</em>. But it would have been more interesting had their been a few more Java people around to argue with.</p>
 <p>Note that I&#8217;m not advocating a Google like disregard for the web here. Markup really matters, I happen to disagree with <a href="http://crockford.com/">Douglas</a> and think <span class="caps">CSS</span> rocks and I love writing Javascript. But should we just learn Java anyhow and try to subvert some of the existing tools to be more web like?</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/11/17/joost-developer-day/">Joost Developer Day</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-11-17T00:00:00+00:00" pubdate data-updated="true">Nov 17<span>th</span>, 2007</time>
-        
-         | <a href="/2007/11/17/joost-developer-day/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I spent yesterday afternoon over with <a href="http://joost.com">Joost</a> in London as part of their UK developer day. The event was mainly for them to show off their new widget platform and to get some input from prospective developers about what they would like to see next. About 20 people or so came along from the <span class="caps">BBC</span>, Ebay and a couple of london agencies, with me and <a href="http://tommorris.org/">Tom</a> loitering around the edges. The afternoon was split into a series of short talks from people on the team. What follows is some of the interesting bits.</p>
-<p>Joost describe themselves as <em>The Best of the Internet and best of TV</em>, if you haven&#8217;t seen it yet it&#8217;s basically TV running on the Mozilla platform. All in all pretty impressive. <a href="http://danbri.org">Dan Brickley</a> had a different slant, seeing Joost as Web 2.0 +/- 1 <em>Built and extended with modern web technology, modern web attitude</em>. The idea of taking an unashamedly desktop piece of software and learning lessons from the web is pretty interesting.</p>
-<p>The <a href="http://dev.joost.com">Joost development site</a> is now public, although not linked to from the main site as yet. Their is some documentation of the various APIs but we can expect more in the future, including some videos from the developer days in a development channel.</p>
-<p>The main emphasis for developers at this moment was on overlays and widgets (<em>little bundles of web technology</em>) which integrate with the Joost client. We got a sneak peak (and a chat with some of the developers) of the first commercial Joost widget for Coca Cola &#8211; <a href="http://cokebubbles.com">Coke Bubbles</a> and <a href="http://www.ilrt.bris.ac.uk/~ecemm/">Libby Miller</a> and <a href="http://jibbering.com">Jim Ley</a> showed off a few of the default widgets.</p>
-<p>The most interesting bits from my point of view were to do with the technology. Joost has an interesting advantage as a platform being a single, dedicated client. No more cross browser testing here. They also keep  pretty close to trunk for Mozilla, which gives them quite a bit of CSS3 support too. You can also try out other new technologies not available in too many browsers yet: <span class="caps">SVG</span>, <span class="caps">RDF</span>, Canvas and E4X for example. This was the second time in a few days I&#8217;d seen <span class="caps">SVG</span> pushed as cool, the first being at Future of Mobile which I&#8217;ll jot down some thoughts on later.</p>
-<p>What was interesting was that the people along from the development team came from a W3C background rather than say an product development or design companies. Joost makes extensive use of Semantic Web technologies under the hood and exposes quite a bit of RDFa if you go looking for it. It also follows along with various other web-like ideas, unique URLs for channels and programmes, including the ability to pass these parameters for instance to deep link into a video at a current time. The widget platform as well is starting to align with standards work going on at the W3C &#8211; we saw a quick demo of a widget build for the Opera browser which worked seamlessly with Joost too. The development team are now working on dealing with signed widgets, local storage APIs, interwidget communication, as well as usable, clear privacy models. All pretty interesting.</p>
-<p>Some of the event was hampered by a shoddy internet connection but the general mood was relaxed and friendly and no one seemed to mind too much. The beer probably helped. I did chuckle when a senior alternative marketing guy from Coke described as <em>Insane</em> the typical agency setup though (rich guy in Notting Hill &#8594; account manager &#8594; project manager &#8594; developers).</p>
-<p>Their will be a Coke sponsored widget competition announced after the rest of the developer days (in Amsterdam and New York) with the title of <em>International widgets champion of Joost</em> up for grabs along with some cash and <em>a t-shirt</em>.</p>
-<p>My only real complaint was probably the low level mutterings about Javascript! Audience members and Joost developers alike made a couple of digs during the course of the day. Javascript rocks, people. Oh well, I&#8217;m back in London for <a href="http://vivabit.com/atmediaAjax">@media Ajax</a> where I don&#8217;t think I&#8217;ll have that problem.</p>
-<p>If any of this sounds interesting (or you just want to watch more TV) I&#8217;d recommend having a look through the <a href="http://dev.joost.com">development site</a>, jumping on the joost-dev freenode <span class="caps">IRC</span> channel, signing up to the <a href="http://groups.google.com/group/joost-dev">mailing list</a> or reading the <a href="http://blogs.joost.com/dev">development teams blog</a>.</p></div>
   
   
 

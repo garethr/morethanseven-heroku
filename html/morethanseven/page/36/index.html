@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="Well, their are no doubt lots of typo&#8217;s on this site but I&#8217;m referring to the Ruby on Rails blogging application Typo (currently version &hellip;">
+  <meta name="description" content="I all one for nice url&#8217;s, that is removing all the gumf involving question marks and ampersands and the like for something that is both shorter &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,73 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/08/29/nice-urls-and-php/">Nice URLs and PHP</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-08-29T00:00:00+01:00" pubdate data-updated="true">Aug 29<span>th</span>, 2005</time>
+        
+         | <a href="/2005/08/29/nice-urls-and-php/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I all one for nice url&#8217;s, that is removing all the  gumf involving question marks and ampersands and the like for something that is both shorter, more human readable and more search engine friendly.</p>
+ <p>Doing it in <span class="caps">PHP</span> is actually pretty straightforward once you get the hang of it and can be pretty powerful &#8211; so here goes with a short tutorial of sorts. It&#8217;s will probably be brief and make too many assumptions of the reader &#8211; any questions just let me know and I may even try and write it up properly.</p>
+ <p>The basic principle is to stop using the <span class="caps">GET</span> array (accessible from $_SERVER[&#8216;<span class="caps">GET</span>&#8217;]) to make descisions with. The question then becomes what to replace it with. A simple class borrowed from the <a href="http://www.sitepoint.com">Sitepoint</a> <a href="http://www.sitepoint.com/books/phpant1/"><span class="caps">PHP</span> Anthology</a> book written by <a href="http://www.sitepoint.com/books/phpant1/about.php">Harry Fuecks</a> is at least my answer. The PathVars class does pretty much what is says in the name, specifically providing access to the path contents in the form of an array. I&#8217;ll provide a link to a <a href="/code/dispatcher.zip">code archive</a> for this article rather than just copy and paste whole classes &#8211; download it now if you are interested in the behind the scenes bits.</p>
+ <p>So we now create a new PathVars instance like so:</p>
+<p><code>
+&lt;pre&gt;
+/* Pathvars object */
+$pathvars = new PathVars($_SERVER['SCRIPT_NAME']);
+&lt;/pre&gt;
+</code></p>
+ <p>And we can now magically get access to each element of the path (separated by a /) from the instance variable pathvars:</p>
+<p><code>$params = $pathvars-&amp;gt;pathVars;</code></p>
+ <p>Or more correctly by using the method provided:</p>
+<p><code>$pathvars-&amp;gt;fetchByIndex(0)</code></p>
+ <p>Where the fetchByIndex parameter is the element you want from the array.</p>
+ <p>Ok, so so far I&#8217;m really just repeating the work of others, if you like this sort of thing I&#8217;d really recommend the book. The next step on top of this is however is to decide what to do with the information when you have it. The following shows a very simple example &#8211; potentially for use in a simple blog or news site:</p>
+<p><code>
+&lt;pre&gt;
+switch ($pathvars-&amp;gt;fetchByIndex(0)) {</p>
+case &#8220;article&#8221;:
+include(views/article.view.php);
+case &#8220;page&#8221;:
+include(views/page.view.php);
+default:
+include(&#8216;views/home.view.php&#8217;);
+<p>}<br />
+</pre><br />
+</code></p>
+ <p>In this example where we have www.example.com/article or www.example.com/article/a_sample_article_name the article view include file is used.</p>
+ <p>What these include files then do is up to you, in my case each of them passes different parameters to a simple templating system which then outputs the page. Again, have a look at the code samples to see that in action.</p>
+ <p>Let me know if anyone found this interesting, useful or informative and I might post other titbits, otherwise it&#8217;s probably back to inane ramblings and misplaced conjecture.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -519,51 +586,6 @@ schedule("window", init);
   <li>R.E.M. Strange Currencies</li>
 </ol>
  <p>Note that that list probably changes every day but hey, that&#8217;s for today. I quite like <a href="http://www.collylogic.com/index.php?/weblog/comments/music_monthlies_july_2005/">Simon&#8217;s</a> music monthlies idea but dont know whether I could ever really get round to it. Oh well.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2005/07/17/few-bits-of-housekeeping/">Few Bits of Housekeeping</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-07-17T00:00:00+01:00" pubdate data-updated="true">Jul 17<span>th</span>, 2005</time>
-        
-         | <a href="/2005/07/17/few-bits-of-housekeeping/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Been a little busy with the new job but had chance to do a few behind the scenes bits and pieces, including:</p>
-<ul>
- <li>valid and formatted feed</li>
-  <li>blogroll from <a href="http://www.newsgator.com">NewsGator</a></li>
-  <li><a href="http://www.morethanseven.net/projects/12">StripComments </a> project</li>
-  <li>autocomplete on search box (type c, x or p)</li>
-  <li>added <a href="http://www.textism.com">Textile</a> formatting for posts</li>
-</ul>
- <p>Should be back with more soon. I need to reply to phil (<a href="http://xlab.co.uk">xlab</a>) about my musical preferences, jot down notes on using <a href="http://www.newsgator.com">NewsGator</a> as an online feed reader and a web standards redoing of the <a href="http://www.qwikiwiki.com">QWikiWiki</a> output layer that I&#8217;m part way through.</p></div>
   
   
 

@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="One of the projects that came out of the Django Dash recently was PyPants which I&#8217;m finding very cool. It&#8217;s basically a quality tracking &hellip;">
+  <meta name="description" content="I wasn&#8217;t going to write anything about the whole XHTML2 thing. I noted its passing, got a nice message on Twitter and thought that would be it &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,56 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/08/thoughts-whole-xhtml-and-html5-affair/">Thoughts on the Whole XHTML/HTML5 Affair</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-08T00:00:00+01:00" pubdate data-updated="true">Jul 8<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/08/thoughts-whole-xhtml-and-html5-affair/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I wasn&#8217;t going to write anything about <a href="http://www.w3.org/News/2009#item119">the whole XHTML2 thing</a>. I noted its passing, got <a href="https://twitter.com/jamierumbelow/status/2442111140">a nice message on Twitter</a> and thought that would be it. But no. The web standards world exploded. I honestly didn&#8217;t see that coming.</p>
+<p>Let&#8217;s get a few things straight:</p>
+<ul>
+	<li>I use <span class="caps">XHTML</span> 1.0 for this site. In fact I&#8217;ve been using it for the majority of things for most of my professional life.</li>
+	<li>I don&#8217;t serve content with an <span class="caps">XML</span> mime type. Neither does <em>anyone</em> else. It&#8217;s a complete non issue. Ignore it.</li>
+	<li>At my last job we used <span class="caps">HTML</span> 4. It meant I had to remember not to close my image elements, which bugged me, but not too much. I still quoted everything. Closed everything I could. And only used lowercase element names.</li>
+	<li>My latest two pet projects are using HTML5. I&#8217;m still closing everything (including image elements, yay), quoting everything and lowercasing everything.</li>
+</ul>
+<p>Web Standards are interesting, in that they are standards for both implementors (browser makers) and for authors (us). I like coding standards in programming languages too, it&#8217;s one of the things I love about Python and <a href="http://www.python.org/dev/peps/pep-0008/">PEP8</a>. But with these standards it&#8217;s not about making your code <em>work</em>, it&#8217;s about shared conventions and readability. So common spacing, <span class="caps">UPPERCASE</span> for constants and Leading caps for class names for instance. It&#8217;s also about having a tool to check everyone is adhering to standards, like <a href="http://svn.browsershots.org/trunk/devtools/pep8/pep8.py">pep8.py</a> or <span class="caps">FXCOP</span> for .<span class="caps">NET</span>. If everyone writes code in the same way it&#8217;s easier to read, write and to pick up someone else&#8217; code. You can do that with <span class="caps">HTML</span>, but you <em>have</em> to do that with <span class="caps">XHML</span>.</p>
+<p>Now the whole <span class="caps">HTML</span> 4.0 vs <span class="caps">XHTML</span> 1.0 thing has come up lots of times, on mailing lists, at conferences as well as down the pub. I know on occasion me, <a href="http://allinthehead.com">Drew</a>, <a href="http://rachelandrew.co.uk">Rachel</a> and <a href="http://adactio.com">Jeremy</a> side against <a href="http://simonwillison.net">Simon</a> and <a href="http://natbat.net">Nat</a> on the issue. But what&#8217;s interesting is that I think we all agree on all the typographical conventions stuff. My <a href="http://intranation.com">former</a> <a href="http://thecssdiv.com">colleagues</a> with a passion for front end standards and <span class="caps">HTML</span> 4 did the same thing. I even remember Simon looking for ways to validate against <span class="caps">HTML</span> 4 but also to check for all lower case elements, closed paragraphs and the like.</p>
+<p>Which brings me to the reason why I use <span class="caps">XHTML</span>: The validator enforces my preferred coding standards for <span class="caps">HTML</span> &#8211; lowercase elements, quoted attributes and closed elements. That&#8217;s it. Not much really. I <em>know</em> it&#8217;s <a href="http://hsivonen.iki.fi/xhtml2-html5-q-and-a/">marketing <span class="caps">XHTML</span> rather than technical <span class="caps">XHTML</span></a>. I don&#8217;t care. Or rather I do care, I just make a conscious pragmatic decision based on a small personal advantage. I&#8217;m both pedantic and like having a tool chain which enforces that, <span class="caps">XHTML</span> suits my style.</p>
+<p>The markup language debate is being talked about in terms of pragmatists vs purists. But ignoring the people who both really understood and really wanted XHTML2, it&#8217;s mainly the pragmatists arguing amongst themselves now. Some of them are big company people, others working for themselves. Some have standards or academic leanings, others are rooted in commercial web design. Some people probably work on huge long term projects, others relatively small sites and apps. And I think it&#8217;s these cultural differences that are the root of arguments now. So blog posts coming out saying the same thing but arguing with other people give a strange impression of disagreement. Throw in that the web lends itself to popular blogs gathering a crowd of like-minded people around them and hey presto we have people feeling unfairly put upon and getting agitated.</p>
+<p>What a storm in a teacup. Who doesn&#8217;t genuinely think the best approach is to use whatever you&#8217;re using now for most projects, investigate HTML5 as time permits, and then expect to start using HTML5 in bits and pieces in the short to medium term, when being mainly dependent on your target audience?</p>
+<p>In my opinion the only genuine problem that this saga has highlighted is the fear, uncertainty and doubt around all flavours of <span class="caps">HTML</span> amongst a large number of web professionals. People don&#8217;t get this stuff at all. With the added resources soon to be put into the HTML5 working group at the W3C this <em>outreach and education</em> side of the project has to have just as much love and attention as the spec itself.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -527,59 +577,6 @@ h2 {
 
 
   <div class="entry-content"><p>It&#8217;s the first <a href="http://cambridgegeeknights.net/">Cambridge Geek Night</a> next week, on Wednesday the 10th to be precise. You can find more information on <a href="http://upcoming.yahoo.com/event/2735951/">Upcoming</a> or on the <a href="http://cambridgegeeknights.wordpress.com/">Cambridge Geek Night blog</a>. The event also has a <a href="http://twitter.com/camgeeknights">twitter feed</a> to keep up with goings on. If you&#8217;re in Cambridge you don&#8217;t want to miss the perfect combination of geeks and beer.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/06/04/testing-wsgi-application-urltest/">Testing WSGI Application With Urltest</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-06-04T00:00:00+01:00" pubdate data-updated="true">Jun 4<span>th</span>, 2009</time>
-        
-         | <a href="/2009/06/04/testing-wsgi-application-urltest/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I found myself wanted something to make writing high level, functional tests for <span class="caps">WSGI</span> application easier and quicker. If I liked the term I&#8217;d call it a domain specific language for testing URLs. Basically I found myself writing a lot of tests like:</p>
-<pre>def test_404_handler(self):  
-    response = self.app.get('/does-not-exist', expect_errors=True)        
-    self.assertEquals("404 Not Found", response.status)</pre>
-<p>Testing more than a view URLs like this got boring quickly. What I wanted was a short hand syntax for defining this sort of simple test and then running them all individually. So was born <a href="http://github.com/garethr/urltest/tree/master">Urltest</a>. It uses the rather nifty <a href="http://pypi.python.org/pypi/WebTest/0.9">Webtest</a> module and hooks into unittest from the standard library. You&#8217;re test script then looks a little like:</p>
-<pre>#!/usr/bin/env python
-from example_app import application
-from urltest import verify_urls
-if __name__ == "__main__":
-    urls = (
-        {'url':"/", 'code':200},
-        {'url':"/bob", 'code':200},
-        {'url':"/jim", 'code':404},
-        {'url':"/jim", 'method': "POST", 'code':405},
-    )    
-    verify_urls(urls, application)</pre>
-<p>Let me know if you use it as at the moment this is <em>works for me</em> ware, although it&#8217;s reasonably well tested and commented.</p></div>
   
   
 

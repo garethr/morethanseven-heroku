@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I&#8217;ve been spending a bit of time recently pushing a few Puppet modules to the Forge. This is Puppetlabs attempt to make a central repository of &hellip;">
+  <meta name="description" content="I&#8217;m a big fan of system packages for lots of reasons and have often ended up rolling my own debian package repository at work, or working with &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,51 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/12/30/my-personal-package-repository/">My Personal Package Repository</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-30T16:52:00+00:00" pubdate data-updated="true">Dec 30<span>th</span>, 2012</time>
+        
+         | <a href="/2012/12/30/my-personal-package-repository/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m a <a href="http://www.morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages/">big fan of system packages for lots of reasons</a> and have often ended up rolling my own debian package repository at work, or working with others that have done so. Recently I finally got round to setting up a personal package repo, at <a href="http://packages.garethrushgrove.com">packages.garethrushgrove.com</a>. More interesting than the repo is probably the tool chain I used, oh and the rather nice bootstrap based styling.</p>
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjh1wIM" alt="nice looking package repository"/></p>
+<p>The source code for everything is <a href="https://github.com/garethr/packages">on GitHub</a> although not much documentation exists yet. In the middle are a few shell scripts that generate the repo. Around them is a Vagrant box (which makes it easier to build packages for different achitectures or distros) and some Rake commands</p>
+<pre><code>bundle exec rake -T
+rake recipes:build[recipe]  # Build a package from one of the available recipes
+rake recipes:list           # List available recipes
+rake repo:build             # Build the repository</code></pre>
+<p>The recipes commands allow for building new packages based on scripts. A few examples are included which use fpm, but you could use anything. The repo:build command triggers the debian repository to be rebuilt.</p>
+<p>The vagrant configuration shares various folders between and guest and host which also opens up a few useful features. One is I can just drop any old debian package into the debs folder and run the repo:build command and it will be in my repository. The other useful capability is that the resulting repo is shared back to the host, which means I can then check it into Git and in my case push it up to Heroku.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -582,53 +627,6 @@ Percentage of the requests served within a certain time (ms)
   <div class="entry-content"><p>This is a bit of a cheat blog post really. I&#8217;ve been crazy busy all month with little time for anything except work (specifically shipping the first release of <a href="https://www.gov.uk/">www.gov.uk</a>). I have had a little time to blog over on the Cabinet Office blog though, about work we&#8217;ve done with dashboards.</p>
 <p><a href="http://digital.cabinetoffice.gov.uk/2012/02/08/radiating-information/">http://digital.cabinetoffice.gov.uk/2012/02/08/radiating-information/</a></p>
 <p>If you&#8217;re ever looking for good little hack projects dashboards are perfect, and often hugely useful once up and running. Convincing people of this before you have a few in the office might be hard &#8211; so just build something simple in a lunch break and find a screen to put it on. We&#8217;ve had great feedback from ours, both from people wandering through the office and from our colleagues who have a better idea of what&#8217;s going on.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/01/06/Talking-to-jenkins-from-campfire-with-hubot/">Talking to Jenkins From Campfire With Hubot</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-06T00:00:00+00:00" pubdate data-updated="true">Jan 6<span>th</span>, 2012</time>
-        
-         | <a href="/2012/01/06/Talking-to-jenkins-from-campfire-with-hubot/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In what turned out to be a productive holiday hacking with languages I&#8217;d not used before, I got round to writing some coffeescript on node.js. This was more to do with scratching a personal itch that pure experimentation. I had a play with <a href="https://github.com/github/janky">Janky</a> (Github&#8217;s Jenkins/Hubot mashup) but found it a little opinionated on the Jenkins side, but the campfire integration is excellent. Looking at the Jenkins commands in <a href="https://github.com/github/hubot-scripts/">hubot-scripts</a> though I found those even more opinionated.</p>
-<p>The magic of open source though is you can just fix things, then ask nice people if they like what you&#8217;ve done. I set about writing a few more general commands and lo, the&#8217;ve been quickly <a href="https://github.com/github/hubot-scripts/pull/23840h">merged upstream</a>.</p>
-<p>These add:</p>
-<ul>
-	<li>A command to list all your Jenkins jobs and the current state</li>
-	<li>A command to trigger a normal build</li>
-	<li>A command to trigger a build with a list of parameters</li>
-</ul>
-<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRipwAIM" alt="campfire window showing jenkins tasks"/></p>
-<p>This was made much easier by first looking at the previous Jenkins commands, and then looking at other scripts in the hubot-scripts repository. The best way of learning a new language/framework is still on the shoulders of others.</p>
-<p>I&#8217;ve got a few other good ideas for Jenkins related commands. I want to add a filter command to the jobs list, both by name and by current state. For longer running jobs I also want to report whether a build is currently running. And then maybe get information about a specific job, like the last few runs or similar. Any other requests or ideas most welcome.</p></div>
   
   
 

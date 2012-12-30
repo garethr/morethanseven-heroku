@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="Thanks to Brad I&#8217;ve just released a new version of Django Test Extensions (also on GitHub with support for running tests without the overhead &hellip;">
+  <meta name="description" content="I&#8217;m keep meaning to get around to writing about why I think the future of web developers is operations but in lieu of a proper post here&#8217; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,51 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/09/21/learnings-september/">Learnings From September</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-21T00:00:00+01:00" pubdate data-updated="true">Sep 21<span>st</span>, 2009</time>
+        
+         | <a href="/2009/09/21/learnings-september/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m keep meaning to get around to writing about why I think the future of web developers is operations but in lieu of a proper post here&#8217;s a list of things I&#8217;ve been spending my work life getting to know this month:</p>
+<ul>
+	<li><a href="http://reductivelabs.com/products/puppet">Puppet</a> &#8211; It&#8217;s brilliant. Define (with a Ruby <span class="caps">DSL</span> of course) what software and services you want running on all your machines, install a daemon on each of them, and hey presto central configuration management.</li>
+	<li><a href="http://www.vmware.com/products/vsphere/">VMWare vsphere</a> &#8211; puppet makes more sense the more boxes you have. With vsphere I can have as many boxes as I want (nearly). Command line scripts and an actually very nice windows gui for settings up virtual machines is all pretty nice, especially running on some meaty hardware.</li>
+	<li><a href="http://nagios.org/">Nagios</a> &#8211; With lots of boxes comes lots of responsibility (or something). Nagios might look a bit ugly, and bug me with it&#8217;s needless frames based admin, but I can see what people see in it. Which frankly is the ability to monitor everything everywhere for any change what-so-ever.</li>
+	<li><a href="http://lucene.apache.org/solr/">Solr</a> &#8211; I&#8217;m now also pretty well versed in using Solr. I&#8217;ve used it in the past, but always behind a Ruby or Python library. Now I know my way around all the <span class="caps">XML</span> based configuration inards. Heck, I&#8217;m even running a nighly release from a couple of days ago in a production environment because I wanted a cool new feature. A special mention to the Solr community on the mailing list, twitter and irc for being great when I had questions.</li>
+	<li>Solaris &#8211; I nearly forgot, I spend more time than I care to remember working out how to use Open Solaris (conclusion: OK, but not Debian) and eventually Solaris 10 (conclusion: hope I don&#8217;t have to do that again). My installation notes read like some hideous hack but everything works fine in production and it&#8217;s scarily repeatable so I&#8217;ll live with it for now.</li>
+</ul>
+<p>I do wonder if it&#8217;s just me that&#8217;s drawn to knowing how everything in the full web stack works. But personally I can&#8217;t just write code if I don&#8217;t understand how to deploy it or what it&#8217;s running on. Front end types know this all too well. Being a master of <span class="caps">CSS</span>, <span class="caps">HTML</span> and Javascript simply isn&#8217;t enough. You need to understand the browser to get anything done. I&#8217;m not sure it&#8217;s the same for all backend inclined folk; how many <span class="caps">PHP</span> programmers really understand Apache and a few other useful bits of web tech?</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -731,56 +776,6 @@ manage.py test --coverage
 <p>Now I&#8217;ve written and spoken about the need for well designed API&#8217;s being treated as part of the user interface. But remember interface design, and by association <span class="caps">API</span> design, isn&#8217;t easy. <span class="caps">API</span> design is often about building manageable flexibility. A public <span class="caps">API</span> is often about managing the flow of data you control out to third parties, as well as the information itself it might include limitations on usage, or request rate, or storage. A public <span class="caps">API</span> codifies how that information can be accessed. APIs also have to tread a fine line between making it easy for you to solve your problem, and making it easy for everyone else to solve their completely different problems. These compromises are design.</p>
 <p>But not everything needs an <span class="caps">API</span>. Sometimes it&#8217;s just about the data, and the best way of getting at that data is as raw as possible. Government data is an easy sell here, as it is (or rather should be) <em>our</em> data. It&#8217;s also for the most part interesting to read rather than write (historical council tax data, or population data for instance). Raw data can generally be provided quicker than via an <span class="caps">API</span>. It doesn&#8217;t need fragile computer systems or extensive manual labour. It doesn&#8217;t need particularly clever computing resources. Just upload a spreadsheet or a <span class="caps">CSV</span> file to a sensible <span class="caps">URL</span> on a known, regular basis and away we go.</p>
 <p>And giving data like this away to the development community is likely to have a few additional benefits if that data is useful (it probably is to someone). We&#8217;ll happily write software libraries, or create APIs over the top of it for you. We&#8217;ll also write all sorts of useful tools using the data in ways no one else thought of. So if you&#8217;re sat on a load of data that&#8217;s not core to your business, or is meant to be public anyway, then lets start talking publicly about how to just get this out on the web quickly and cheaply, rather than spending lots of your time and money on something fancy.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/07/08/thoughts-whole-xhtml-and-html5-affair/">Thoughts on the Whole XHTML/HTML5 Affair</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-07-08T00:00:00+01:00" pubdate data-updated="true">Jul 8<span>th</span>, 2009</time>
-        
-         | <a href="/2009/07/08/thoughts-whole-xhtml-and-html5-affair/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I wasn&#8217;t going to write anything about <a href="http://www.w3.org/News/2009#item119">the whole XHTML2 thing</a>. I noted its passing, got <a href="https://twitter.com/jamierumbelow/status/2442111140">a nice message on Twitter</a> and thought that would be it. But no. The web standards world exploded. I honestly didn&#8217;t see that coming.</p>
-<p>Let&#8217;s get a few things straight:</p>
-<ul>
-	<li>I use <span class="caps">XHTML</span> 1.0 for this site. In fact I&#8217;ve been using it for the majority of things for most of my professional life.</li>
-	<li>I don&#8217;t serve content with an <span class="caps">XML</span> mime type. Neither does <em>anyone</em> else. It&#8217;s a complete non issue. Ignore it.</li>
-	<li>At my last job we used <span class="caps">HTML</span> 4. It meant I had to remember not to close my image elements, which bugged me, but not too much. I still quoted everything. Closed everything I could. And only used lowercase element names.</li>
-	<li>My latest two pet projects are using HTML5. I&#8217;m still closing everything (including image elements, yay), quoting everything and lowercasing everything.</li>
-</ul>
-<p>Web Standards are interesting, in that they are standards for both implementors (browser makers) and for authors (us). I like coding standards in programming languages too, it&#8217;s one of the things I love about Python and <a href="http://www.python.org/dev/peps/pep-0008/">PEP8</a>. But with these standards it&#8217;s not about making your code <em>work</em>, it&#8217;s about shared conventions and readability. So common spacing, <span class="caps">UPPERCASE</span> for constants and Leading caps for class names for instance. It&#8217;s also about having a tool to check everyone is adhering to standards, like <a href="http://svn.browsershots.org/trunk/devtools/pep8/pep8.py">pep8.py</a> or <span class="caps">FXCOP</span> for .<span class="caps">NET</span>. If everyone writes code in the same way it&#8217;s easier to read, write and to pick up someone else&#8217; code. You can do that with <span class="caps">HTML</span>, but you <em>have</em> to do that with <span class="caps">XHML</span>.</p>
-<p>Now the whole <span class="caps">HTML</span> 4.0 vs <span class="caps">XHTML</span> 1.0 thing has come up lots of times, on mailing lists, at conferences as well as down the pub. I know on occasion me, <a href="http://allinthehead.com">Drew</a>, <a href="http://rachelandrew.co.uk">Rachel</a> and <a href="http://adactio.com">Jeremy</a> side against <a href="http://simonwillison.net">Simon</a> and <a href="http://natbat.net">Nat</a> on the issue. But what&#8217;s interesting is that I think we all agree on all the typographical conventions stuff. My <a href="http://intranation.com">former</a> <a href="http://thecssdiv.com">colleagues</a> with a passion for front end standards and <span class="caps">HTML</span> 4 did the same thing. I even remember Simon looking for ways to validate against <span class="caps">HTML</span> 4 but also to check for all lower case elements, closed paragraphs and the like.</p>
-<p>Which brings me to the reason why I use <span class="caps">XHTML</span>: The validator enforces my preferred coding standards for <span class="caps">HTML</span> &#8211; lowercase elements, quoted attributes and closed elements. That&#8217;s it. Not much really. I <em>know</em> it&#8217;s <a href="http://hsivonen.iki.fi/xhtml2-html5-q-and-a/">marketing <span class="caps">XHTML</span> rather than technical <span class="caps">XHTML</span></a>. I don&#8217;t care. Or rather I do care, I just make a conscious pragmatic decision based on a small personal advantage. I&#8217;m both pedantic and like having a tool chain which enforces that, <span class="caps">XHTML</span> suits my style.</p>
-<p>The markup language debate is being talked about in terms of pragmatists vs purists. But ignoring the people who both really understood and really wanted XHTML2, it&#8217;s mainly the pragmatists arguing amongst themselves now. Some of them are big company people, others working for themselves. Some have standards or academic leanings, others are rooted in commercial web design. Some people probably work on huge long term projects, others relatively small sites and apps. And I think it&#8217;s these cultural differences that are the root of arguments now. So blog posts coming out saying the same thing but arguing with other people give a strange impression of disagreement. Throw in that the web lends itself to popular blogs gathering a crowd of like-minded people around them and hey presto we have people feeling unfairly put upon and getting agitated.</p>
-<p>What a storm in a teacup. Who doesn&#8217;t genuinely think the best approach is to use whatever you&#8217;re using now for most projects, investigate HTML5 as time permits, and then expect to start using HTML5 in bits and pieces in the short to medium term, when being mainly dependent on your target audience?</p>
-<p>In my opinion the only genuine problem that this saga has highlighted is the fear, uncertainty and doubt around all flavours of <span class="caps">HTML</span> amongst a large number of web professionals. People don&#8217;t get this stuff at all. With the added resources soon to be put into the HTML5 working group at the W3C this <em>outreach and education</em> side of the project has to have just as much love and attention as the spec itself.</p></div>
   
   
 

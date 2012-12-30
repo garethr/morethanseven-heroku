@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="For running ad-hoc commands across a small number of servers you really can&#8217;t beat Fabric. It requires nothing other than ssh installed on the &hellip;">
+  <meta name="description" content="In what turned out to be a productive holiday hacking with languages I&#8217;d not used before, I got round to writing some coffeescript on node.js. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,53 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/01/06/Talking-to-jenkins-from-campfire-with-hubot/">Talking to Jenkins From Campfire With Hubot</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-06T00:00:00+00:00" pubdate data-updated="true">Jan 6<span>th</span>, 2012</time>
+        
+         | <a href="/2012/01/06/Talking-to-jenkins-from-campfire-with-hubot/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In what turned out to be a productive holiday hacking with languages I&#8217;d not used before, I got round to writing some coffeescript on node.js. This was more to do with scratching a personal itch that pure experimentation. I had a play with <a href="https://github.com/github/janky">Janky</a> (Github&#8217;s Jenkins/Hubot mashup) but found it a little opinionated on the Jenkins side, but the campfire integration is excellent. Looking at the Jenkins commands in <a href="https://github.com/github/hubot-scripts/">hubot-scripts</a> though I found those even more opinionated.</p>
+<p>The magic of open source though is you can just fix things, then ask nice people if they like what you&#8217;ve done. I set about writing a few more general commands and lo, the&#8217;ve been quickly <a href="https://github.com/github/hubot-scripts/pull/23840h">merged upstream</a>.</p>
+<p>These add:</p>
+<ul>
+	<li>A command to list all your Jenkins jobs and the current state</li>
+	<li>A command to trigger a normal build</li>
+	<li>A command to trigger a build with a list of parameters</li>
+</ul>
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRipwAIM" alt="campfire window showing jenkins tasks"/></p>
+<p>This was made much easier by first looking at the previous Jenkins commands, and then looking at other scripts in the hubot-scripts repository. The best way of learning a new language/framework is still on the shoulders of others.</p>
+<p>I&#8217;ve got a few other good ideas for Jenkins related commands. I want to add a filter command to the jobs list, both by name and by current state. For longer running jobs I also want to report whether a build is currently running. And then maybe get information about a specific job, like the last few runs or similar. Any other requests or ideas most welcome.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -556,48 +603,6 @@ end
   <div class="entry-content"><p>I stepped in at the last minute to do a talk at the last London Ruby User Group. From the feedback afterwards folks seemed to enyoy it and I certainly had fun. Thanks to everyone who came along.</p>
 <p><object id="__sse8828889" width="595" height="497"> <param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=configmanagamentfordevelopmentenvironmentsii-110811103611-phpapp02&rel=0&stripped_title=config-managament-for-development-environments-ii&userName=garethr" /> <param name="allowFullScreen" value="true"/> <param name="allowScriptAccess" value="always"/> <embed name="__sse8828889" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=configmanagamentfordevelopmentenvironmentsii-110811103611-phpapp02&rel=0&stripped_title=config-managament-for-development-environments-ii&userName=garethr" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="595" height="497"></embed> </object></p>
 <p>As well as the slides the nice Skills Matter folks have already uploaded the <a href="http://skillsmatter.com/podcast/home/chef-vagrant">videos from the night</a>.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2011/07/31/Vim-with-ruby-support-using-homebrew/">Vim With Ruby Support Using Homebrew</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-31T00:00:00+01:00" pubdate data-updated="true">Jul 31<span>st</span>, 2011</time>
-        
-         | <a href="/2011/07/31/Vim-with-ruby-support-using-homebrew/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;ve spend a bit of time this weekend cleaning, tidying and upgrading software on my mac. While doing that I got round to compiling my own Vim. I&#8217;d been meaning to do this for a while, I prefer using Vim in a terminal to using MacVim, and I like having access to things like <a href="http://www.vim.org/scripts/script.php?script_id=3025">Command-T</a> which requires Ruby support which the inbuild version lacks.</p>
-<p>Vim isn&#8217;t in Homebrew, because Homebrew&#8217;s policy is to not provide duplicates of already installed software. Enter <a href="https://github.com/adamv/homebrew-alt">Homebrew Alt</a> which provides formulas for anything not allowed by the homebrew policy. As luck would have it a <a href="https://github.com/adamv/homebrew-alt/blob/master/duplicates/vim.rb">Vim Formula</a> already exists. And installing from it couldn&#8217;t be easier.</p>
-<pre>brew install https://raw.github.com/adamv/homebrew-alt/master/duplicates/vim.rb</pre>
-<p>As it turns out this failed the first time I ran it because I had an rvm installed Ruby on my path. I reset this to the system version and everything compiled fine.</p>
-<pre>rvm use system</pre>
-<p>Note also that it&#8217;s really quite simple to use a different revision or different flags when compiling. Just download that file, modify it, serve it locally (say with a python one line web server) and point brew install at it. Next step, running off head for all the latest and greatest Vim features.</p></div>
   
   
 

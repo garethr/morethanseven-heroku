@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="Yes folks. @media 2006 is all over. Except for the year thing, everything else really was doubled. Double the people. Double the speakers. Double the &hellip;">
+  <meta name="description" content="Chris Wilson, during his @media presentation mentioned in passing the IE 7 Readiness Toolkit. This vaguely uninspiring title hides a very nice &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/06/22/ie-7-readiness-toolkit/">IE 7 Readiness Toolkit</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-06-22T00:00:00+01:00" pubdate data-updated="true">Jun 22<span>nd</span>, 2006</time>
+        
+         | <a href="/2006/06/22/ie-7-readiness-toolkit/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://blogs.msdn.com/ie/archive/2005/03/09/391362.aspx">Chris Wilson</a>, during his <a href="http://vivabit.com/atmedia2006">@media</a> presentation mentioned in passing the <a href="http://www.microsoft.com/downloads/details.aspx?familyid=D13EE10D-2718-47F1-AA86-1E32D526383D&#38;displaylang=en">IE 7 Readiness Toolkit</a>. This vaguely uninspiring title hides a very nice collection of essential tools for discerning web developers on Windows.</p>
+ <p><a href="http://poisonedminds.com/comics/pm20060621.png">IE is painful</a> we already know that. We have a large number of tools available in Firefox to help us out, but sometimes you need to go to the source. Along with a nice <del>rip off</del> <ins>implementation</ins> of a web developer toolbar, it also put me onto <a href="http://www.fiddlertool.com/fiddler/">the Fiddler</a> (what is it about these names) which is an <span class="caps">HTTP</span> Debugging proxy. What? Well it sits next to IE and monitors all <span class="caps">HTTP</span> traffic, allowing you to find out exactly what&#8217;s going on. Very handy indeed, and worth running just to see what&#8217;s really going on, especially in Ajax land.</p>
+ <p>A couple of other interesting tools are included that I&#8217;ve not had a look at yet, the Expression Finder looks particularly interesting. It basically tracks down any hacks in your files and tells you off.</p>
+ <p>All in all a good move from Microsoft. What with <a href="http://opensearch.a9.com/">Open Search</a> being integrated into IE 7 as well, and <span class="caps">RSS</span> maybe reacing a tipping point eventually (Non geeks will believe my predictions one day) things might be looking up.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -487,58 +527,6 @@
  <p>We are like footballers. We are the Premiership. We hang out in the trendy bars (conferences), we do everything we can to get mentioned in the papers (A-list blogs, A List Apart) and we get multi million pound book deals (<a href="http://domscripting.com"><span class="caps">DOM</span> Scripting</a>).</p>
  <p>But theirs a difference. Youth players (students), the lower leagues (Z-list) and amateurs watch football every week. They read about it every day online and in the papers. Everyone knows who the best players are, whether they like football or not. Even then thats before you get to scouts from the big clubs getting along to youth and lower league games to find the next big thing, or the World Cup. Web design still seems spit between those in the know (probably you) and those not, for whatever reason.</p>
  <p>So my question, if their is one, is &#8211; is football simply more mature? Do we need scouting systems? World Cups and better training facilities? Or alternatively have I taken this football analogy way too far?</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2006/04/23/a-proliferation-of-feed-standards/">A Proliferation of Feed Standards</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2006-04-23T00:00:00+01:00" pubdate data-updated="true">Apr 23<span>rd</span>, 2006</time>
-        
-         | <a href="/2006/04/23/a-proliferation-of-feed-standards/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Google just announced <a href="http://code.google.com/apis/gdata/overview.html">GData</a>, which is apparently a:</p>
-<blockquote>
-  <p>&#8230;simple standard protocol for reading and writing data on the web.</p>
-</blockquote>
- <p>It is basically an amalgamation of Atom, <span class="caps">RSS</span> and bits and pieces of Goodle juice. It piqued my interest for a couple of reasons:</p>
-<ul>
- <li>What was termed <em>Optimistic Concurrency</em></li>
-  <li>A promise of <em>Authentication</em></li>
-  <li><em><span class="caps">REST</span></em> based</li>
-</ul>
- <p>The former relates to a simple solution to the problem of concurrent updates. Say I grab a file and make a change, but in between another individual grabs the same file, and after I submit my changes, they also try top submit changes all my changes could be lost. GData specifies a solution to this by introducing version numbers, only if the version you are modifying has the latest version number will it be accepted. The version number is simply provided in the edit <span class="caps">URI</span> in the feed. Nice.</p>
- <p>I wont ramble too much about <a href="http://www.xfront.com/REST-Web-Services.html"><span class="caps">REST</span>,</a> safe to say if you like URLs then it makes perfect sense and you can just get on with it. Lots of other posts about <a href="http://billburnham.blogs.com/burnhamsbeat/2004/12/rest_vs_soap_wh.html">why</a> if you missed the (ongoing) debate. It&#8217;s a bit like <a href="http://microformats.org">Microformats</a> and the Semantic Web. The bariers to entry for microformats are the the same as those for building web pages.</p>
- <p>I say the promise of Authentication above because it turns out that part of the system is not in place yet. The other part of that I&#8217;m sceptical about is, from my reading, a complete reliance on Google to provide the <a href="http://code.google.com/apis/gdata/protocol.html#Authentication">authentication</a>. For some applications that&#8217;s fine, for others you probably dont want Google in charge of the keys.</p>
- <p>It also has simple proscribed methods of dealing with categories and search queries, including <a href="http://opensearch.a9.com/">Opensearch</a> integration.</p>
- <p>I was thinking about playing with a <span class="caps">PHP</span> based client/server for GData, or at least having a look, but I think I&#8217;ll wait until I know more about the authentication side.</p>
- <p>I have a feeling Microsoft will do something like this as well, take existing open standards and republish them with a few bells and whistles. And again the developers, ie. us, are left supporting multiple slight variations on a theme. Maybe I&#8217;m just suspicious. Time will tell.</p></div>
   
   
 

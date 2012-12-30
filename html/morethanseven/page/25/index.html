@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="After the numerous games of Werewolf at Barcamp London recently a few of us got chatting about the idea of custom Werewolf cards using Flickr. Well I &hellip;">
+  <meta name="description" content="One thing you hit pretty rapidly when you start having a look into all this Semantic Web malarkey is the number of rather silly acronyms and &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,72 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/03/18/semantic-web-acronym-links-primer/">Semantic Web Acronym Links Primer</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-18T00:00:00+00:00" pubdate data-updated="true">Mar 18<span>th</span>, 2007</time>
+        
+         | <a href="/2007/03/18/semantic-web-acronym-links-primer/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>One thing you hit pretty rapidly when you start having a look into all this Semantic Web malarkey is the number of rather <em>silly</em> acronyms and abbreviations. In fairness it&#8217;s true of pretty much every technical or academic discipline I&#8217;ve come across and you can ask the people I work with what I think about that &#8211; I wont ramble on here.</p>
+<p>And dont think this is all because I&#8217;m not technical enough for ya, I have code on my blog and a faintly scary collection of technical tomes. I just think acronyms tend to breed elitism and make the world less penetrable, especially when they are often described in relation to other acronyms. So, after pointing out a problem here&#8217;s a stab at a solution; a web designers guide (with the relevant links) to my understanding of the different things involved. I&#8217;m not an expert on this yet mind, so if I&#8217;m wrong and someone more knowlegable can provide a better description then please comment. If the descriptions from the relevant links I have are good enough I&#8217;ll just use those as well.</p>
+<p>Most people will probably have come across <a href="http://www.w3.org/XML/"><span class="caps">XML</span></a> so hopefully this is an easy one. <span class="caps">XML</span> is the eXtensible Markup Language. For me that means it&#8217;s a set of rules for defining your own markup language; from simple data exchange formats to whole programming languages. The W3C says (which I think nicely highlights my problem from above)</p>
+<blockquote>
+<p>Extensible Markup Language (<span class="caps">XML</span>) is a simple, very flexible text format derived from <span class="caps">SGML</span> (<span class="caps">ISO</span> 8879)</p>
+</blockquote>
+<p><a href="http://www.w3.org/TR/xslt"><span class="caps">XSLT</span></a> is another quite common tool. The W3C again defines it in relation to another acronym but this time I dont mind as much and we&#8217;ve got a defintion of <span class="caps">XML</span> here anyway.</p>
+<blockquote>
+<p>[<span class="caps">XSLT</span> is] a language for transforming <span class="caps">XML</span> documents into other <span class="caps">XML</span> documents</p>
+</blockquote>
+<p>This is a pretty straighforward description, the only real problem for the outsider is wondering why you would want to do that!</p>
+<p><a href="http://www.w3.org/RDF/"><span class="caps">RDF</span></a> <a href="http://www.w3schools.com/rdf/default.asp">W3Schools says</a> is really where the Semantic Web stuff starts. The W3C start off with:</p>
+<blockquote>
+<p>The Resource Description Framework (<span class="caps">RDF</span>) integrates a variety of application&#8230;</p>
+</blockquote>
+<p>Ah. It integrates applications&#8230; What! But wait:</p>
+<blockquote>
+<p>The <span class="caps">RDF</span> specifications provide a lightweight ontology system to support the exchange of knowledge on the Web</p>
+</blockquote>
+<p>This is pretty good actually, as long as you&#8217;re happy with the word <a href="http://en.wikipedia.org/wiki/Ontology_%28computer_science%29">ontology</a>. Their is a <a href="http://www.xml.com/pub/a/2001/01/24/rdf1.html">good article</a> that takes a stab at the question from Tim Bray. I think, simply put, <span class="caps">RDF</span> is common set of rules for defining your own meta data (information about information) so it&#8217;s interopable with everyone else doing the same thing.</p>
+<p>But how are we going to get all that <span class="caps">RDF</span> into our web pages (Semantic or otherwise)? <a href="http://www.w3.org/TR/xhtml-rdfa-primer/">RDFa</a> is one possibility (not going there right now) which involves extending <span class="caps">HTML</span> (all varieties) with some additional attributes with the purpose of being able to embed <span class="caps">RDF</span> in the document. Or from the W3C:</p>
+<blockquote>
+<p>RDFa is a syntax that expresses this structured data using a set of elements and attributes that embed <span class="caps">RDF</span> in <span class="caps">HTML</span></p>
+</blockquote>
+<p><a href="http://www.w3.org/TR/2004/NOTE-grddl-20040413/"><span class="caps">GRDDL</span></a> is probably the worst offender here in terms of someone spending too much time coming up with the acronym. It stands for <em>Gleaning Resource Descriptions from Dialects of Languages</em>. From looking it appears to be a standard way of saying:</p>
+<blockquote>
+<p>Here be some <span class="caps">RDF</span>. If you want the <span class="caps">RDF</span> for this document please use this <span class="caps">XSL</span> transformation.</p>
+</blockquote>
+<p><a href="http://research.talis.com/2005/erdf/wiki/Main/RdfInHtml">eRDF</a>, or embedded <span class="caps">RDF</span> is a simpler approach to RDFa which involves no additional custom attributes but does not aim to be able to represent all the possible <span class="caps">RDF</span> constructs.</p>
+<p>Of course their are many more, but at least that&#8217;s a start. Let me know what you think.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -529,48 +595,6 @@
  <p>My presentation was basically a whistle stop tour of <a href="http://radiantcms.org">Radiant</a>. I rambled on for about fifty minutes or so, quickly going through the basic concepts of Pages, Layouts and Snippets and then on to an example site which I built from scratch in front of everyone &#8211; with only a few obvious errors and obvious mistakes.</p>
  <p>I ended up talking some about ommissions in Radiant, which I&#8217;m not sure I got across as the positive that I feel they are (at least for me). I dont want a fully featured blogging system, rather something that&#8217;s easy enought to jump into somewhere and see how it works. A few ideas came up from this discussion that, given the chance, I&#8217;ll mention on the Radiant mailing lists, or give them a go myself &#8211; like the ability to save configurations of pages, snippets and layouts and then load then instead of one of the three default prepopulation options. Though I&#8217;m busy modding the Radiant commentable behaviour and pondering a move to the Mental release candidate at the moment.</p>
  <p>It at least got me back in to presenting to an industry audience, quite different from the teaching I&#8217;d been doing. Hopefully a good thing ahead of <a href="http://barcamp.org/BarCampLondon2">BarCamp</a> in a weeks time.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/02/04/webdd/">WebDD</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-02-04T00:00:00+00:00" pubdate data-updated="true">Feb 4<span>th</span>, 2007</time>
-        
-         | <a href="/2007/02/04/webdd/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Just back from <a href="//webdd.org.uk">WebDD</a> down in Reading at the Microsoft Campus and thought I&#8217;d post a few thoughts. I&#8217;ll get into a few of these topics in more detail down the line when time permits but for now&#8230;</p>
- <p>I went to a few talks, one on Microformats by <a href="http://www.glennjones.net">Glenn Jones</a> and the other on web standards design by <a href="http://www.splintered.co.uk">Patrick Lauke</a> that I enjoyed but didn&#8217;t learn much. I wasn&#8217;t the intended audience really and I&#8217;d gone along because I didn&#8217;t fancy the alternatives. Both were entertaining and well attended anyhow, and I&#8217;m sure the more developer orientated folk got a lot out of both.</p>
- <p>The main two things I came away thinking about however were the upcoming version of <a href="http://msdn2.microsoft.com/en-us/vstudio/aa700830.aspx">Visual Studio</a> (codename &#8220;Orcas&#8221;) and Microsofts new identity platform <a href="http://cardspace.netfx3.com/">CardSpace</a></p>
- <p>Now I&#8217;m not generally a fan of IDEs, but someone has been thinking <em>alot</em> about how Visual Studio (and the new Expression Web) can be of use to web designers. Some of the <span class="caps">CSS</span> tools are very cool, I might do some screenshot from Expression (we all got free copies) if I get the chance. Their has also been a huge effort to integrate Javascript functionality, including full debugging and breakpoint support as well as intelissense. All of which looks really rather nice.</p>
- <p>According to Microsoft <q><a href="http://cardspace.netfx3.com/">Windows CardSpace</a> enables users to provide their digital identities in a familiar, secure and easy way.</q> Which should have alarm bells going off and (bad) memories of Passport flooding back. I went in not knowing much and in quite a sceptical mood, assuming the worst. Turns out I was wrong. The presentation, by <a href="http://www.idunno.org/">Barry Dorrans</a>, covered quite a bit of ground from an introduction, through code and working examples and even a big discussion of the issue of identity and <a href="http://openid.net/">OpenID</a> in particularly. I&#8217;m suprised that I haven&#8217;t seen any mention of CardSpace along with the recent rise in discussion around identity and OpenID. More on this soon.</p>
- <p>One last thing on the WebDD site caught my eye: <q>around 350 people with a 50/50 split of web developers and web designers</q>. In reality I think about 20 of us registered as designers which amused me. Microsoft doesn&#8217;t (yet) have a pull over designers as it does over developers. More on that too when I get my thoughts in order.</p></div>
   
   
 

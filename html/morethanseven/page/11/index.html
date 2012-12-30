@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="Although still a big fan of Django, but for some problems I&#8217;m finding more and more cases where I prefer less code and more freedom. My biggest &hellip;">
+  <meta name="description" content="I found myself wanted something to make writing high level, functional tests for WSGI application easier and quicker. If I liked the term I&#8217;d &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,59 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/06/04/testing-wsgi-application-urltest/">Testing WSGI Application With Urltest</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-06-04T00:00:00+01:00" pubdate data-updated="true">Jun 4<span>th</span>, 2009</time>
+        
+         | <a href="/2009/06/04/testing-wsgi-application-urltest/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I found myself wanted something to make writing high level, functional tests for <span class="caps">WSGI</span> application easier and quicker. If I liked the term I&#8217;d call it a domain specific language for testing URLs. Basically I found myself writing a lot of tests like:</p>
+<pre>def test_404_handler(self):  
+    response = self.app.get('/does-not-exist', expect_errors=True)        
+    self.assertEquals("404 Not Found", response.status)</pre>
+<p>Testing more than a view URLs like this got boring quickly. What I wanted was a short hand syntax for defining this sort of simple test and then running them all individually. So was born <a href="http://github.com/garethr/urltest/tree/master">Urltest</a>. It uses the rather nifty <a href="http://pypi.python.org/pypi/WebTest/0.9">Webtest</a> module and hooks into unittest from the standard library. You&#8217;re test script then looks a little like:</p>
+<pre>#!/usr/bin/env python
+from example_app import application
+from urltest import verify_urls
+if __name__ == "__main__":
+    urls = (
+        {'url':"/", 'code':200},
+        {'url':"/bob", 'code':200},
+        {'url':"/jim", 'code':404},
+        {'url':"/jim", 'method': "POST", 'code':405},
+    )    
+    verify_urls(urls, application)</pre>
+<p>Let me know if you use it as at the moment this is <em>works for me</em> ware, although it&#8217;s reasonably well tested and commented.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -515,43 +568,6 @@ application = TokenBasedApplication(routes)</pre>
 <p>The timeline view, and time based filters, look more useful for most search activities. Just getting hold of recent content on a particular search term is the sort of thing blog search engines have sended to do well in the past and that Twitter search has been showing off.</p>
 <p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRiiHww" /></p>
 <p>I hope I keep these features during whatever testing is going on and that they all go live soon. It&#8217;s a pretty big improvement if you ask me.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/03/22/github-links-lines-code/">Github Links to Lines of Code</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-03-22T00:00:00+00:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2009</time>
-        
-         | <a href="/2009/03/22/github-links-lines-code/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Just saw this and thought it was cool. You can <a href="http://github.com/garethr/booky/blob/08615163198a2b51353aeba07f25ec9ed477d60c/src/booky/lib/builder.py#L17-24">link to a specific line, or set of lines</a> on GitHub. All you need to do is append something like #L17-24 to specify highlighting lines 17 to 24.</p></div>
   
   
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Morethanseven]]></title>
   <link href="http://www.morethanseven.net/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2012-12-30T13:33:41+00:00</updated>
+  <updated>2012-12-30T17:13:16+00:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -12,6 +12,22 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[my personal package repository]]></title>
+    <link href="http://www.morethanseven.net/2012/12/30/my-personal-package-repository/"/>
+    <updated>2012-12-30T16:52:00+00:00</updated>
+    <id>http://www.morethanseven.net/2012/12/30/my-personal-package-repository</id>
+    <content type="html"><![CDATA[<p>I&#8217;m a <a href="http://www.morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages/">big fan of system packages for lots of reasons</a> and have often ended up rolling my own debian package repository at work, or working with others that have done so. Recently I finally got round to setting up a personal package repo, at <a href="http://packages.garethrushgrove.com">packages.garethrushgrove.com</a>. More interesting than the repo is probably the tool chain I used, oh and the rather nice bootstrap based styling.</p>
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjh1wIM" alt="nice looking package repository"/></p>
+<p>The source code for everything is <a href="https://github.com/garethr/packages">on GitHub</a> although not much documentation exists yet. In the middle are a few shell scripts that generate the repo. Around them is a Vagrant box (which makes it easier to build packages for different achitectures or distros) and some Rake commands</p>
+<pre><code>bundle exec rake -T
+rake recipes:build[recipe]  # Build a package from one of the available recipes
+rake recipes:list           # List available recipes
+rake repo:build             # Build the repository</code></pre>
+<p>The recipes commands allow for building new packages based on scripts. A few examples are included which use fpm, but you could use anything. The repo:build command triggers the debian repository to be rebuilt.</p>
+<p>The vagrant configuration shares various folders between and guest and host which also opens up a few useful features. One is I can just drop any old debian package into the debs folder and run the repo:build command and it will be in my repository. The other useful capability is that the resulting repo is shared back to the host, which means I can then check it into Git and in my case push it up to Heroku.</p>]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[On the forge]]></title>
@@ -495,19 +511,6 @@ end
     <content type="html"><![CDATA[<p>I stepped in at the last minute to do a talk at the last London Ruby User Group. From the feedback afterwards folks seemed to enyoy it and I certainly had fun. Thanks to everyone who came along.</p>
 <p><object id="__sse8828889" width="595" height="497"> <param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=configmanagamentfordevelopmentenvironmentsii-110811103611-phpapp02&rel=0&stripped_title=config-managament-for-development-environments-ii&userName=garethr" /> <param name="allowFullScreen" value="true"/> <param name="allowScriptAccess" value="always"/> <embed name="__sse8828889" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=configmanagamentfordevelopmentenvironmentsii-110811103611-phpapp02&rel=0&stripped_title=config-managament-for-development-environments-ii&userName=garethr" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="595" height="497"></embed> </object></p>
 <p>As well as the slides the nice Skills Matter folks have already uploaded the <a href="http://skillsmatter.com/podcast/home/chef-vagrant">videos from the night</a>.</p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Vim With Ruby Support Using Homebrew]]></title>
-    <link href="http://www.morethanseven.net/2011/07/31/Vim-with-ruby-support-using-homebrew/"/>
-    <updated>2011-07-31T00:00:00+01:00</updated>
-    <id>http://www.morethanseven.net/2011/07/31/Vim-with-ruby-support-using-homebrew</id>
-    <content type="html"><![CDATA[<p>I&#8217;ve spend a bit of time this weekend cleaning, tidying and upgrading software on my mac. While doing that I got round to compiling my own Vim. I&#8217;d been meaning to do this for a while, I prefer using Vim in a terminal to using MacVim, and I like having access to things like <a href="http://www.vim.org/scripts/script.php?script_id=3025">Command-T</a> which requires Ruby support which the inbuild version lacks.</p>
-<p>Vim isn&#8217;t in Homebrew, because Homebrew&#8217;s policy is to not provide duplicates of already installed software. Enter <a href="https://github.com/adamv/homebrew-alt">Homebrew Alt</a> which provides formulas for anything not allowed by the homebrew policy. As luck would have it a <a href="https://github.com/adamv/homebrew-alt/blob/master/duplicates/vim.rb">Vim Formula</a> already exists. And installing from it couldn&#8217;t be easier.</p>
-<pre>brew install https://raw.github.com/adamv/homebrew-alt/master/duplicates/vim.rb</pre>
-<p>As it turns out this failed the first time I ran it because I had an rvm installed Ruby on my path. I reset this to the system version and everything compiled fine.</p>
-<pre>rvm use system</pre>
-<p>Note also that it&#8217;s really quite simple to use a different revision or different flags when compiling. Just download that file, modify it, serve it locally (say with a python one line web server) and point brew install at it. Next step, running off head for all the latest and greatest Vim features.</p>]]></content>
   </entry>
   
 </feed>

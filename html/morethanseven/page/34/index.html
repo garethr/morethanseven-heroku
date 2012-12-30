@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="Ok, so everyone by now has no doubt had a play with XML&quot;&gt;AJAX in some shape or form, and their are lots of good tutorials and articles around &hellip;">
+  <meta name="description" content="A while back I decided to jot down a couple of practical, simple techniques that have served me well when actually building fluid designs. One of the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,48 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/12/04/tips-for-fluid-design-ii/">Tips for Fluid Design II</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-12-04T00:00:00+00:00" pubdate data-updated="true">Dec 4<span>th</span>, 2005</time>
+        
+         | <a href="/2005/12/04/tips-for-fluid-design-ii/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A while back I decided to jot down a couple of practical, simple techniques that have served me well when actually building fluid designs.</p>
+ <p>One of the situations that often comes up is the need to make an elements width vary. This is no problem when that element is a block level element (say a div or a paragraph) as unless you tell them otherwise their width willl vary with the space available. However, when it comes to graphics this can be a problem. After all, these will (probably) have been designed with a fixed size in mind.</p>
+ <p>Their are a couple of possible solutions here, both useful in different circumstances. However, both rely on the image itself to some extent.</p>
+ <p>The sometimes obvious method is using the <span class="caps">CSS</span> <em>background</em> rules, the image wont actually be part of the page and so wont take up any space, the size of the image can then be controlled by the size of the element (say a div) on which the background image is placed. This works but has a couple of ugly side effects &#8211; if the image is content based (ie. it carries some sort of important message rather than being just for it&#8217;s asthetic attributes) then placing it in the <span class="caps">CSS</span> removes it from the page completely, not good for those without <span class="caps">CSS</span> support. Another consequence is in site management. Having content imagery in the <span class="caps">CSS</span> can make life a little tricky.</p>
+ <p>The second approach involves using the <span class="caps">CSS</span> overflow property. By wrapping the inline image with a container (again, maybe a div) and assigning this an <em>overflow: hidden</em> we can control the viewable area of the image by controlling the size of the surrounding div (with <span class="caps">CSS</span>, natch). An example of this can be seen on these pages, with the favourite sites and flickr images. Resize the window. These images should expand to fill the available space.</p>
+ <p>OK, so we have added some additional markup to the page, depending on your feelings on this that solution may be fine. Want to go a bit further? What about assigning a class to the image and using some nifty <span class="caps">DOM</span> scripting to add in the additional markup?</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -474,44 +516,6 @@
 </ul>
  <p>The <a href="http://www.accessify.com">accessify</a> forum meetup <del>is tonight</del> <ins>was on Thursday</ins> at the <strong>Forth</strong> for anyone who doesn&#8217;t know about it and is around the area. Looking to be a small number turning up but should hopefully be good to meet new people. I&#8217;ll post more details on here, and any photos (no photos, sorry), post event.</p>
  <p>What do I want out of it besides the beer? Hopefully some ideas and enthusiasm. I keep meaning to do more with <a href="http://www.newcastlenewmedia.org">newcastlenewmedia</a> and a few people have expressed an interest in pulling some things off &#8211; the mailing list even kicked off yesterday with a flurry of posts. So some concrete ideas, a broader network and some beer will do nicely.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2005/10/25/contact/">Contact</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-10-25T00:00:00+01:00" pubdate data-updated="true">Oct 25<span>th</span>, 2005</time>
-        
-         | <a href="/2005/10/25/contact/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If you want to talk to me about, well anything really, let me know. Your best bet is probably emailing me on <a href="mailto:gareth@morethanseven.net">gareth@morethanseven.net</a> and hopefully I should get back to you. Unless you&#8217;re a spam bot in which case expect to be automatically deleted or ignored.</p>
- <p>On the other hand I can be found wandering the corridors over at <a href="http://www.designersinhouse.com/">designersinhouse.com</a> or appearing in person at anything I can get along to that sounds interesting.</p></div>
   
   
 

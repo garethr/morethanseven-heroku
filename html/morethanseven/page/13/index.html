@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I always enjoy reading things by Paul Graham, even if I&#8217;d like to be able to disagree with his conclusions on occasion. It&#8217;s not just &hellip;">
+  <meta name="description" content="I&#8217;ve finally been getting round to doing a bit of work on dmigrations, the Python based database migration tool we developed at work. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,49 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/03/02/quick-dmigrations-update/">Quick Dmigrations Update</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-02T00:00:00+00:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2009</time>
+        
+         | <a href="/2009/03/02/quick-dmigrations-update/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve finally been getting round to doing a bit of work on <a href="http://code.google.com/p/dmigrations/">dmigrations</a>, the Python based database migration tool we developed at <a href="http://thisisglobal.com">work</a>.</p>
+<blockquote>
+<p>dmigrations offers a simple but flexible way of managing changes to the database in your Django projects. It is a replacement for Django&#8217;s built in syncdb command.</p>
+</blockquote>
+<p>I still have some work to do to merge in a number of modifications we&#8217;ve been running internally for a while but I&#8217;ve triaged the issues list that had been left alone for too long and merged in a fantastic collection of patches from a few people including Alexander Robbins and <a href="http://chris-lamb.co.uk/">Chris Lamb</a>. Thanks hugely to everyone for these.</p>
+<p>Everything is available in <a href="http://code.google.com/p/dmigrations/source/browse/#svn/trunk">trunk in <span class="caps">SVN</span></a> at the moment ahead of me cleaning a few thinks up and updating the download version. I&#8217;ve added a setup.py file as well ahead of hopefully adding it to the <a href="http://pypi.python.org/pypi">Python Package Index</a>.</p>
+<p>I obviously wasn&#8217;t the only one who had decided to do some work on the project in the last couple of days. <a href="http://www.djangosnippets.org/users/msaelices/">msaelices</a> has just submitted <a href="http://code.google.com/p/dmigrations/issues/detail?id=21">a patch</a> which adds a <a href="http://www.postgresql.org/">PostgreSQL</a> backend. I don&#8217;t tend to use PostgreSQL personally so if anyone does want to have a look at running dmigrations with the patch I&#8217;d love to hear about it.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -543,59 +586,6 @@ DATABASE_NAME = os.path.join(SITE_ROOT, 'db') + '/development.db'</pre>
     os.path.join(SITE_ROOT, 'templates')
 )</pre>
 <p>I actually think this should probably make it&#8217;s way into the default settings file. I might very well be missing something but I can&#8217;t see when it&#8217;s not much better to do things this way.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/02/10/append-slashes-urls-django/">Append Slashes to URLs in Django</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-02-10T00:00:00+00:00" pubdate data-updated="true">Feb 10<span>th</span>, 2009</time>
-        
-         | <a href="/2009/02/10/append-slashes-urls-django/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Quick Django pop quiz. Can anyone spot the deliberate mistake in the following url definition? We&#8217;re trying to define a view called log_viewer and instructing a specific url pattern to render it.</p>
-<pre>urlpatterns = patterns('',
-    (r'^log/?$', log_viewer),
-)</pre>
-<p>In this case our regex matches /log or /log/ using the /? optional pattern. This is because even if we only link to one format we know people will probably visit both, either by entering the <span class="caps">URL</span> manually or by linking from an external source.</p>
-<p>As far as <span class="caps">HTTP</span> is concerned though /log and /log/ are separate URLs, even if they display the same content. The main reason this matters for public facing websites is that our friendly search engine spiders are likely to index both separately, leading to splitting the page rank as well as accusations of duplicate content which might see further erosion of rankings.</p>
-<p>The solution is generally to issue a 301 redirect from one format to the other. This tells search engines and people alike that the canonical location for the requested content is elsewhere. You could specify the redirect manually, but this is going to get irritating quickly once you have a few more definitions.</p>
-<pre>urlpatterns = patterns('',
-    (r'^log$', redirect_to, {'url': '/log/'}),
-    (r'^log/$', log_viewer),
-)</pre>
-<p>Handily Django provides a mechanism to do exactly what we want to do by setting <a href="http://docs.djangoproject.com/en/dev/ref/settings/#append-slash">APPEND_SLASH</a> to True in your settings file. Even better it&#8217;s switched on by default. So if you don&#8217;t know much about the intricacies of <span class="caps">HTTP</span> you still get the correct behavior. That is unless you specify your <span class="caps">URL</span> patterns in the format above.</p>
-<p>You see APPEND_SLASH only works if the <span class="caps">URL</span> doesn&#8217;t match a specified pattern. If no pattern match is found it appends a trailing slash and checks for a match again. Because the above pattern matches the pattern without the trailing slash (/log) the desired behavior is never triggered, and the view is rendered at both URLs. So although we want to catch /log and /log/ on the front end, our urls.py definition should actually be:</p>
-<pre>urlpatterns = patterns('',
-    (r'^log/$', log_viewer),
-)</pre>
-<p>Django has lots of useful bits of magic for doing the right thing, but unless you know what they <em>actually</em> do you either end up recreating functionality yourself, or find features don&#8217;t work in quite the way you thought. It&#8217;s a good argument for keeping frameworks small whenever possible, and for developers to at least know their way around the code of their respective framework.</p></div>
   
   
 

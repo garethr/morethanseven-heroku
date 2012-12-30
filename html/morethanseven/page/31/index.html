@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I&#8217;ve become something of a Gmail convert over the last good few months. Moving everything online has made my life oh so much easier. I&#8217;d &hellip;">
+  <meta name="description" content="Google just announced GData, which is apparently a: &#8230;simple standard protocol for reading and writing data on the web. It is basically an &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,58 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/04/23/a-proliferation-of-feed-standards/">A Proliferation of Feed Standards</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-04-23T00:00:00+01:00" pubdate data-updated="true">Apr 23<span>rd</span>, 2006</time>
+        
+         | <a href="/2006/04/23/a-proliferation-of-feed-standards/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Google just announced <a href="http://code.google.com/apis/gdata/overview.html">GData</a>, which is apparently a:</p>
+<blockquote>
+  <p>&#8230;simple standard protocol for reading and writing data on the web.</p>
+</blockquote>
+ <p>It is basically an amalgamation of Atom, <span class="caps">RSS</span> and bits and pieces of Goodle juice. It piqued my interest for a couple of reasons:</p>
+<ul>
+ <li>What was termed <em>Optimistic Concurrency</em></li>
+  <li>A promise of <em>Authentication</em></li>
+  <li><em><span class="caps">REST</span></em> based</li>
+</ul>
+ <p>The former relates to a simple solution to the problem of concurrent updates. Say I grab a file and make a change, but in between another individual grabs the same file, and after I submit my changes, they also try top submit changes all my changes could be lost. GData specifies a solution to this by introducing version numbers, only if the version you are modifying has the latest version number will it be accepted. The version number is simply provided in the edit <span class="caps">URI</span> in the feed. Nice.</p>
+ <p>I wont ramble too much about <a href="http://www.xfront.com/REST-Web-Services.html"><span class="caps">REST</span>,</a> safe to say if you like URLs then it makes perfect sense and you can just get on with it. Lots of other posts about <a href="http://billburnham.blogs.com/burnhamsbeat/2004/12/rest_vs_soap_wh.html">why</a> if you missed the (ongoing) debate. It&#8217;s a bit like <a href="http://microformats.org">Microformats</a> and the Semantic Web. The bariers to entry for microformats are the the same as those for building web pages.</p>
+ <p>I say the promise of Authentication above because it turns out that part of the system is not in place yet. The other part of that I&#8217;m sceptical about is, from my reading, a complete reliance on Google to provide the <a href="http://code.google.com/apis/gdata/protocol.html#Authentication">authentication</a>. For some applications that&#8217;s fine, for others you probably dont want Google in charge of the keys.</p>
+ <p>It also has simple proscribed methods of dealing with categories and search queries, including <a href="http://opensearch.a9.com/">Opensearch</a> integration.</p>
+ <p>I was thinking about playing with a <span class="caps">PHP</span> based client/server for GData, or at least having a look, but I think I&#8217;ll wait until I know more about the authentication side.</p>
+ <p>I have a feeling Microsoft will do something like this as well, take existing open standards and republish them with a few bells and whistles. And again the developers, ie. us, are left supporting multiple slight variations on a theme. Maybe I&#8217;m just suspicious. Time will tell.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -483,48 +535,6 @@ The Pragmatic Programmer</p>
  <p>If you are someone involved with the building of appications give some of the above a try if you ever feel like reading up on something different, apart from the latest <a href="http://cssmastery.com"><span class="caps">CSS</span></a> or <a href="http://domscripting.com/">Javascript</a> tricks.</p>
  <p>If your involved in the management of projects but come from a non software (dont kid yourself because it&#8217;s the web it&#8217;s not software) background then dive in. You&#8217;ll start to understand some of the little bits that puzzle you so.</p>
  <p>Anyone else got any books in a similar vein? I&#8217;m always on the look out for an interesting read. Or do you complely disagree &#8211; do you even still read books?</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2006/03/08/apples-and-pears/">Apples and PEARs</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2006-03-08T00:00:00+00:00" pubdate data-updated="true">Mar 8<span>th</span>, 2006</time>
-        
-         | <a href="/2006/03/08/apples-and-pears/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;ve finally decided that <a href="http://pear.php.net"><span class="caps">PEAR</span></a> is a good thing. For those unfamiliar with it it&#8217;s a little like <span class="caps">CPAN</span> for Perl. For those unfamiliar with <em>that</em> it&#8217;s a repository of high quality <span class="caps">PHP</span> code, covering everything from benchmarking and debugging to database abstraction.</p>
- <p>I&#8217;m about to dive back into <span class="caps">PHP</span> after a minor break playing with mainly client side toys, and with my work now mainly on the markup/styles and planning side of things <span class="caps">PHP</span> is a nice break. <strong><span class="caps">PHP</span> isn&#8217;t the devil</strong> as far as I&#8217;m concerned, and I think now I&#8217;ve grown up <span class="caps">PEAR</span> is part of the non devil like side to <span class="caps">PHP</span> &#8211; the professional side if you will.</p>
- <p>I like <span class="caps">PHP</span> for it&#8217;s flexibility. The same problems this causes in terms of it being easy to write poor, unmaintainable code are the same boons in brings if you use it nicely. I dont want static typing, on occasion being able to get down and dirty with procedural code is handy and with so much <em>good</em> code out there in places like <span class="caps">PEAR</span> it&#8217;s often very quick to put together something from existing parts.</p>
- <p>I even went as far as getting a book, <a href="http://www.amazon.com/gp/product/1590592808/104-7139045-1616718?v=glance&#38;n=283155"><span class="caps">PHP</span> Tools</a> to have a good going through. I&#8217;ve been on something of a mad web design book shopping spree of late, so I&#8217;ll try do a quick round up of books soon as well.</p>
- <p>Anyone else have much playtime with <span class="caps">PEAR</span>, or similar code repositories?</p>
- <p><em>PS. Apologies for the two week hiatus. I&#8217;m something of a busy person at the moment. More quality posts as soon as possible. Promise.</em></p></div>
   
   
 
