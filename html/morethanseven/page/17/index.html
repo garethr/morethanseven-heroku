@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I&#8217;m busy experimenting with various blogging approaches at the moment, hence the short links I&#8217;ve been posting recently. Another type of &hellip;">
+  <meta name="description" content="I&#8217;m starting to play around with using App Engine again for small projects. It&#8217;s great for simple, somewhat throwaway apps as long as you &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,49 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/10/11/google-app-engine-pyunit-test-runner/">Google App Engine PyUnit Test Runner</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-11T00:00:00+01:00" pubdate data-updated="true">Oct 11<span>th</span>, 2008</time>
+        
+         | <a href="/2008/10/11/google-app-engine-pyunit-test-runner/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m starting to play around with using <a href="http://code.google.com/appengine/">App Engine</a> again for small projects. It&#8217;s great for simple, somewhat throwaway apps as long as you don&#8217;t need anything too fancy. Actually all I want really is long running processes but I digress.</p>
+<p>I&#8217;m increasingly writing test suites as well for even small projects and was missing the convenience of the Django test runner for running them against App Engine code. So I&#8217;ve spent a little time writing a simple test running script to use for non-Django Python projects. I&#8217;ve posted it over on the <a href="http://appengine-cookbook.appspot.com/recipe/app-engine-test-runner/">App Engine Cookbook</a> for anyone else who might want to do the same.</p>
+<p>I ended up writing something myself as I couldn&#8217;t find anything else which quite met my needs, so it&#8217;s the typical programmers itch code and as such is provided as <em>works for me</em> software. The other approaches out their didn&#8217;t quite meet my needs but might be useful to know about if you want to start testing your apps.</p>
+<ul>
+	<li><a href="http://code.google.com/p/nose-gae/">Nose <span class="caps">GAE</span></a> uses the nose testing framework which I&#8217;m less familiar with.</li>
+	<li><a href="http://code.google.com/p/gaeunit/"><span class="caps">GAE</span> Unit</a> uses PyUnit but presents it&#8217;s results in a browser rather than on the command line.</li>
+</ul></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -617,45 +660,6 @@ while not connected:
 <h3>Continuous Integration</h3>
 <p>When not working on Django, or writing <span class="caps">HTML</span>, <span class="caps">CSS</span> or Javascipt (now mainly using <a href="http://jquery.com">JQuery</a>), I&#8217;ve been busy pushing the benefits of Continuous Integration. As someone who is actually pretty bad at writing unit tests I like the process of working with <a href="http://cruisecontrol.sourceforge.net/">Cruise Control</a> as a gatekeeper. I also like automation in general so have been busy with Ant scripts and some Twill scripts as well for more functional testing. Django&#8217;s test suite is pretty nifty and easy to use. <a href="http://www.djangoproject.com/documentation/testing/">The official documentation</a> is a pretty good starting point but I&#8217;m still on the lookout for some more in depth best practices articles.</p>
 <p>So, between writing lots of code I&#8217;ve had less time to write words other than internal documentation. I&#8217;m finding the change pretty refreshing at the moment but want to keep up with writing every now and again. Who knows how that will work out? I have a feeling that I might blog more geeky code related stuff but time will see how that plays out.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/06/02/where-are-the-rock-star-web-project-managers/">Where Are the Rock Star Web Project Managers?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-06-02T00:00:00+01:00" pubdate data-updated="true">Jun 2<span>nd</span>, 2008</time>
-        
-         | <a href="/2008/06/02/where-are-the-rock-star-web-project-managers/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In maybe a more constructive manner than <a href="http://morethanseven.net/posts/media-designers-vs-developers/">yesterday</a> I started wondering where the rock star web project managers hang out? I think we&#8217;re all aware of something of a celebrity culture within web circles. Their are a hardcore of people who&#8217;s blogs, books and conference appearances we&#8217;ve all seen several times over. And in the main I think this has had a positive effect on everyone involved. People like <a href="http://adaction.com">Jeremy</a>, <a href="http://molly.com">Molly</a> and <a href="http://simonwillison.net">Simon</a> have at different times acted as pretty useful barometers and yard sticks for lots of people. But these people are invariably designers and developers &#8211; not product managers or project managers.</p>
-<p>The only person I can think of who has talked a little about the topic of project management is <a href="http://blog.geekmanager.co.uk/">Meri</a> with her new book <a href="http://www.sitepoint.com/books/project1/">Principles of Project Management</a>. The topic occasionally comes up in conversation, or is mentioned by the designers and developers noted above. And their are lots of blogs (more often by developers it seems) about Agile, XP and Scrumm. But what about the practice of web product management? You can point to countless blogs written by designers and developers at the likes of last.fm, flickr and Yahoo. But where are the managers?</p>
-<p>So, my question to you is: do you know of any great web product or project managers that blog about the discipline?</p></div>
   
   
 

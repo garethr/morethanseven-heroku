@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I&#8217;ve written before about why I like System Packages, but even I&#8217;ll admit that the barriers to creating them mean I don&#8217;t use them &hellip;">
+  <meta name="description" content="A recent question on Twitter prompted me to write a quick blog post about managing cron jobs. As more and more people want to automate provisioning &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,67 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/05/07/Version-control-and-deployment-of-cron-jobs/">Version Control and Deployment of Cron Jobs</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-07T00:00:00+01:00" pubdate data-updated="true">May 7<span>th</span>, 2011</time>
+        
+         | <a href="/2011/05/07/Version-control-and-deployment-of-cron-jobs/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A recent question on Twitter prompted me to write a quick blog post about managing cron jobs. As more and more people want to automate provisioning and deployment of web applications some, maybe previously manually managed, items come into the fold.</p>
+<p>Cron jobs are interesting because you may prefer to see them as part of the infrastructure (like apache or mysql) or as part of your application code. I think both are valid, sometimes at the same time. For instance you might have a cron job which deals with scheduled database backups. All that requires is the database and the script to be present. At other times your cron jobs might require your entire application stack. For instance a rake task which uses a Rails application model, or a django management command.</p>
+<h2>Configuration Management and Cron</h2>
+<p>Both <a href="http://opscode.com/chef/">Chef</a> and <a href="http://puppetlabs.com/puppet/">Puppet</a> provide a cron resource type. This is particularly handy for things like database backup scripts or ganglia gmetric scripts. You probably want these scripts and cron jobs to be installed on machines that have the related software installed, and you&#8217;re probably already describing this in your Chef recipes or Puppet manifests. If you&#8217;re not already using one of these tools using them to manage just your cron jobs is a nice way of starting out.</p>
+<p>Using the <a href="http://docs.puppetlabs.com/references/latest/type.html#cron">Puppet Cron Type</a> looks like this:</p>
+<pre><code>cron { command:
+  command =&gt; "/usr/local/sbin/command",
+  hour =&gt; 2,
+  minute =&gt; 0
+}</code></pre>
+<p>And the equivalent <a href="http://wiki.opscode.com/display/chef/Resources#Resources-Cron">Chef Reasource</a> looks like:</p>
+<pre><code>cron "describe your job" do
+  hour "2"
+  minute "0"
+  command "/usr/local/sbin/command"
+end</code></pre>
+<p>The important part is that by describing your cron jobs in code you can then version control them easily, and both Chef and Puppet have mechanisms to push these jobs out to be installed by the relevant hosts. With cron jobs you might not want all your machines to be running the same jobs for instance.</p>
+<h2>Using Whenever</h2>
+<p>An alternative, or complimentary, approach to versioning and deploying cron jobs would be to tie it in with your application code. This makes sense when those jobs are tightly coupled to your application, for instance rails specific rake tasks or django management commands. <a href="https://github.com/javan/whenever">Whenever</a> is a tool I&#8217;ve been using recently that makes this pretty simple. You describe your cron jobs in a file called schedule.rb like so:</p>
+<pre><code>every 3.hours do
+  command "/usr/local/sbin/command"
+end</code></pre>
+<p>And then running the provided whenever command line application will generate a working crontab. Whenever ships with capistrano integration and some useful shortcuts for running rake tasks or accessing Ruby code, but it&#8217;s simple to write your own command shortcuts without having to write ruby code too.</p>
+<h2>Other Approaches</h2>
+<p>I have seen some tools which replace cron completely, but I&#8217;ve never liked that idea much. Cron works pretty well, and is clever enough to deal with things like daylight saving time and leap years inteligently if needed. I know other folks who are centralising all regular jobs into something like Jenkins. I can see advantages to that, although I&#8217;ve yet to find a really nice way of automating this outside the gui interface or manually modifying configuration files.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -594,79 +655,6 @@ Generating with project generator:
 <p>@garethr basically has this subject completely covered. He&#8217;s even advocating the correct editor. excellent #fosdem talk</p>
 </blockquote>
 <p>All in all another good event, I have notes about some of the other talks I went along to that I&#8217;ll try write up soon.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2011/01/29/Using-checkinstall-with-virtualenv-for-python-deployments/">Using Checkinstall With Virtualenv for Python Deployments</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-29T00:00:00+00:00" pubdate data-updated="true">Jan 29<span>th</span>, 2011</time>
-        
-         | <a href="/2011/01/29/Using-checkinstall-with-virtualenv-for-python-deployments/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Michael Brunton-Spall wrote last week about some <a href="http://www.brunton-spall.co.uk/post/2011/01/26/packaging-and-deploying-python-web-apps/">frustrations with packagings and deploying Python web applications</a>. Although his experience was with Python, the problems he describes are the same for Ruby and <span class="caps">PHP</span> and a whole host of languages. The following example uses Python, but works equally as well for anything else.</p>
-<p>Michael has three simple rules for his servers:</p>
-<ol>
-	<li>they cannot access the internet</li>
-	<li>they cannot access internal services that are for development</li>
-	<li>they cannot have compilers / utilities on them</li>
-</ol>
-<p>I won&#8217;t go into all the reasons for doing this (you can read the blog post linked to above) but these are pretty sensible security precautions.</p>
-<p>My approach to this problem would be to use your friendly system packages and using a handy tool called <a href="http://www.asic-linux.com.mx/~izto/checkinstall/">Checkinstall</a> to create a deb or rpm. I&#8217;m going to use as an example the <a href="http://wiki.secondlife.com/wiki/Eventlet">Eventlet</a> library. This is available in PyPi and one of it&#8217;s dependencies (Greenlets) provides a C extension. The same approach would work for an entire Python web application too. I&#8217;m as ever using the apt package management tool but this should work with yum as well.</p>
-<p>The first step is to build the package on a build machine. This should be a machine or virtual machine running the same operating system as your production web servers. You might build these packages manually or as part of a continuous integration system. On this machine we&#8217;ll need the compilers and development tools:</p>
-<pre>sudo apt-get install build-essential python-dev python-setuptools checkinstall
-sudo easy_install virtualenv</pre>
-<p>We&#8217;ll also create a virtualenv into which we&#8217;ll be installing our packages:</p>
-<pre>sudo virtualenv --no-site-packages /usr/local/environment
-source /usr/local/environment/bin/activate</pre>
-<p>Now, instead of just calling easy_install to install the package, we prefix it with checkinstall.</p>
-<pre>sudo checkinstall /usr/local/environment/bin/easy_install eventlet</pre>
-<p>This will prompt for various meta data about the package you want to create, including the name and version of the package. If you&#8217;re using this method in the real world you&#8217;ll want to decide on a versioning and naming scheme for your packages to avoid clashes with system provided packages. You can also set many of these options from the command line rather than having to manually fill them in each time.</p>
-<p>Once everything has been filled in successfully this should run through, installing eventlet and greenlets and eventually creating a deb or rpm package depending on what platform you&#8217;re running on. You should see something like:</p>
-<pre>Done. The new package has been installed and saved to
-
- /home/vagrant/eventlet-gareth_20110129-1_i386.deb
-
- You can remove it from your system anytime using: 
-
-      dpkg -r eventlet-gareth</pre>
-<p>Now lets grab that package and take it to one of our front end web servers via a controlled deployment process. That front end web server needs the virtualenv creating but nothing else. So:</p>
-<pre>sudo apt-get install python-virtualenv
-sudo virtualenv --no-site-packages /usr/local/environment</pre>
-<p>(Now you might be thinking that installing the python-virtualenv package in this way breaks rule 1 above. And you&#8217;d be right in most cases, but I&#8217;m guessing Michael&#8217;s systems team have a local package repo for authorised packages, or alternatively you could download the package to the build machine and push it to the production environment.)</p>
-<p>Now install the package we created earlier.</p>
-<pre>sudo dpkg -i eventlet-gareth_20110129-1_i386.deb</pre>
-<p>That should throw all the required files into the virtualenv environment we created. No compilers. No calls to internal or external systems. Just move some precompiled binaries and text files to predefined places on disk.</p>
-<p>I used a PyPi package as an example. Checkinstall could have been pointed at a custom build file written especially for your own application, one that moves files and folders to where they are needed. Say something that looks like this:</p>
-<pre>#!/bin/sh
-cp /home/stage/myapplication /var/www/apps/</pre>
-<p>The running checkinstall against that (or a more complex build file using capistrano or ant or fabric) you can create a package containing your application code and install it into the specified place.</p></div>
   
   
 

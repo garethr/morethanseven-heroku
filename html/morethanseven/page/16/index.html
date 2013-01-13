@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I&#8217;ve been thinking recently about what happens when we all get older. Now, I&#8217;m not actually referring to everyone here but more &hellip;">
+  <meta name="description" content="I&#8217;ve been looking at different ways of using simple sessions on App Engine, in particular for one shot flash messaging after redirects and the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/12/06/gmemsess/">Gmemsess</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-12-06T00:00:00+00:00" pubdate data-updated="true">Dec 6<span>th</span>, 2008</time>
+        
+         | <a href="/2008/12/06/gmemsess/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve been looking at different ways of using simple sessions on App Engine, in particular for one shot flash messaging after redirects and the like. Their are some issues with Cookie support at the moment but  <a href="http://code.google.com/p/gmemsess/">Gmemsess</a> solved my problem perfectly.</p>
+<blockquote>
+<p>gmemsess is a secure lightweight memcache-backed session class for Google appengine.</p>
+</blockquote></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -495,49 +535,6 @@ p {
 </ul>
 <p>I reason their are a fair few things that would be needed to make this first practical and later standard; nice APIs, run times in various languages, and working out whether or not it actually helps <span class="caps">CSS</span> development to name but a few. But right now I&#8217;d go for a limited proof of concept that works on my machine. If anyone has any links to thinks that might be good starting points please let me know. Other ideas welcome as well.</p>
 <p>One last thing; <a href="http://ajaxian.com/archives/ajaxians-join-mozilla-creating-developer-tools">Mozilla&#8217;s latest employees</a> are looking at the whole spectrum of developer tools. I&#8217;d love for them to start with something like this.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/10/11/google-app-engine-pyunit-test-runner/">Google App Engine PyUnit Test Runner</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-10-11T00:00:00+01:00" pubdate data-updated="true">Oct 11<span>th</span>, 2008</time>
-        
-         | <a href="/2008/10/11/google-app-engine-pyunit-test-runner/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;m starting to play around with using <a href="http://code.google.com/appengine/">App Engine</a> again for small projects. It&#8217;s great for simple, somewhat throwaway apps as long as you don&#8217;t need anything too fancy. Actually all I want really is long running processes but I digress.</p>
-<p>I&#8217;m increasingly writing test suites as well for even small projects and was missing the convenience of the Django test runner for running them against App Engine code. So I&#8217;ve spent a little time writing a simple test running script to use for non-Django Python projects. I&#8217;ve posted it over on the <a href="http://appengine-cookbook.appspot.com/recipe/app-engine-test-runner/">App Engine Cookbook</a> for anyone else who might want to do the same.</p>
-<p>I ended up writing something myself as I couldn&#8217;t find anything else which quite met my needs, so it&#8217;s the typical programmers itch code and as such is provided as <em>works for me</em> software. The other approaches out their didn&#8217;t quite meet my needs but might be useful to know about if you want to start testing your apps.</p>
-<ul>
-	<li><a href="http://code.google.com/p/nose-gae/">Nose <span class="caps">GAE</span></a> uses the nose testing framework which I&#8217;m less familiar with.</li>
-	<li><a href="http://code.google.com/p/gaeunit/"><span class="caps">GAE</span> Unit</a> uses PyUnit but presents it&#8217;s results in a browser rather than on the command line.</li>
-</ul></div>
   
   
 

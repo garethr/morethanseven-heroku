@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="Just back from WebDD down in Reading at the Microsoft Campus and thought I&#8217;d post a few thoughts. I&#8217;ll get into a few of these topics in &hellip;">
+  <meta name="description" content="Well, my presentation over at the local Ruby on Rails Usergroup went down OK last Thursday. I could have done with some more time to prepare and do &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/02/11/shiny-content-management/">Shiny Content Management</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-11T00:00:00+00:00" pubdate data-updated="true">Feb 11<span>th</span>, 2007</time>
+        
+         | <a href="/2007/02/11/shiny-content-management/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Well, my presentation over at the local <a href="http://rubyandrails.org/usergroups/newcastle/">Ruby on Rails Usergroup</a> went down OK last Thursday. I could have done with some more time to prepare and do up some nicer slides but most of the presentation was quite hands on with me coding and talking, which was a first for me.</p>
+ <p>My presentation was basically a whistle stop tour of <a href="http://radiantcms.org">Radiant</a>. I rambled on for about fifty minutes or so, quickly going through the basic concepts of Pages, Layouts and Snippets and then on to an example site which I built from scratch in front of everyone &#8211; with only a few obvious errors and obvious mistakes.</p>
+ <p>I ended up talking some about ommissions in Radiant, which I&#8217;m not sure I got across as the positive that I feel they are (at least for me). I dont want a fully featured blogging system, rather something that&#8217;s easy enought to jump into somewhere and see how it works. A few ideas came up from this discussion that, given the chance, I&#8217;ll mention on the Radiant mailing lists, or give them a go myself &#8211; like the ability to save configurations of pages, snippets and layouts and then load then instead of one of the three default prepopulation options. Though I&#8217;m busy modding the Radiant commentable behaviour and pondering a move to the Mental release candidate at the moment.</p>
+ <p>It at least got me back in to presenting to an industry audience, quite different from the teaching I&#8217;d been doing. Hopefully a good thing ahead of <a href="http://barcamp.org/BarCampLondon2">BarCamp</a> in a weeks time.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -577,67 +617,6 @@ if (empty($buffer)) {
  <p>Their will likely be a few gremlins lying around that I&#8217;ll get to over the coming weeks, and I have some decent posts in mind to keep people interested. Expect less about what I&#8217;m up to and more about the pressing issues of web design and development that I keep meaning to write about.</p>
  <p>The design is a little on the minimal side at the moment but on purpose. I want to play around with different designs for the site while keeping everything clean and simple. I might even set a file size limit for the <span class="caps">CSS</span> and I definately want to start playing more with CSS3 selectors (more than 80% of you dont use IE6, for the other 20% <em>please</em> upgrade). I&#8217;m not going to say anything I&#8217;d regret, like one new design every other month, but I can dream.</p>
  <p>As I get more familiar with Rails (one of the reasons for the move) and Radiant I&#8217;ll likely add some bits like a <a href="http://flickr.com">Flickr</a> powered gallery and maybe something to do with <a href="http://twitter.com">Twitter</a> but for the moment it&#8217;s all about the content.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/01/07/fluidflash/">Fluidflash</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-01-07T00:00:00+00:00" pubdate data-updated="true">Jan 7<span>th</span>, 2007</time>
-        
-         | <a href="/2007/01/07/fluidflash/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Their is nothing wrong with a nice header graphic. Clients, designers and customers alike love them. But I often see them used as an excuse for fixed width designs. Well no more I say (unless, of course you have a perfectly good reason for a fixed width design in which case you dont really need this technique.)</p>
-<p>The plan was simple. Find a way of incorporating flash headers into sites using liquid or elastic designs in much the same way you might use lots of sliding doors background-image goodness.</p>
-<p>And all it takes is a snippet of actionscript goodness:</p>
-
-
-<pre><code>Stage.scaleMode = "noScale" 
-Stage.align = "TL" 
-var width
-var height
-function resizeEvent ( ) {
-    width = Stage.width
-    height = Stage.height
-    dimensions.text    = 
-       'width : ' + width+ '
-        height : ' + height
-    topRight._x = width
-    bottomLeft._y = height
-    bottomRight._y = height
-    bottomRight._x = width
-}
-resizeEvent ( )
-var stageListener = new Object ( );
-stageListener.onResize = resizeEvent
-Stage.addListener ( stageListener );</code></pre>
-<p><a href="/_assets/downloads/fluidflash/fluidflash.zip">Download example</a></p></div>
   
   
 

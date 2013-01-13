@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I&#8217;ve spend a bit of time this weekend cleaning, tidying and upgrading software on my mac. While doing that I got round to compiling my own Vim &hellip;">
+  <meta name="description" content="I stepped in at the last minute to do a talk at the last London Ruby User Group. From the feedback afterwards folks seemed to enyoy it and I &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,45 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/08/11/Talking-configuration-management-vagrant-and-chef-at-lrug/">Talking Configuration Management, Vagrant and Chef at Lrug</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-11T00:00:00+01:00" pubdate data-updated="true">Aug 11<span>th</span>, 2011</time>
+        
+         | <a href="/2011/08/11/Talking-configuration-management-vagrant-and-chef-at-lrug/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I stepped in at the last minute to do a talk at the last London Ruby User Group. From the feedback afterwards folks seemed to enyoy it and I certainly had fun. Thanks to everyone who came along.</p>
+<p><object id="__sse8828889" width="595" height="497"> <param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=configmanagamentfordevelopmentenvironmentsii-110811103611-phpapp02&rel=0&stripped_title=config-managament-for-development-environments-ii&userName=garethr" /> <param name="allowFullScreen" value="true"/> <param name="allowScriptAccess" value="always"/> <embed name="__sse8828889" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=configmanagamentfordevelopmentenvironmentsii-110811103611-phpapp02&rel=0&stripped_title=config-managament-for-development-environments-ii&userName=garethr" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="595" height="497"></embed> </object></p>
+<p>As well as the slides the nice Skills Matter folks have already uploaded the <a href="http://skillsmatter.com/podcast/home/chef-vagrant">videos from the night</a>.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -633,67 +672,6 @@ For good sample modules, try the jeffmccune-motd and jeffmccune-mockbuild module
 Created by Ken Barber, ken@puppetlabs.com</pre>
 <p>This proved a good excuse to delve into the Vagrant source code which is pretty readable for the most part once you understand the libraries it&#8217;s build upon. It&#8217;s simple enough to extend for adding commands like this too, which bodes well for other more useful additions in the future.</p>
 <p>If anyone has any problems with this extensions do let me know. Error handling currently consists of returning blank output rather than sensible error codes or messages, and as I&#8217;ve yet to add a small test suite so their might (will) be a few bugs lying around. I&#8217;ll try and make it better behaved in the next week or two but reasoned it&#8217;s useful straight away.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2011/05/07/Version-control-and-deployment-of-cron-jobs/">Version Control and Deployment of Cron Jobs</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-05-07T00:00:00+01:00" pubdate data-updated="true">May 7<span>th</span>, 2011</time>
-        
-         | <a href="/2011/05/07/Version-control-and-deployment-of-cron-jobs/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>A recent question on Twitter prompted me to write a quick blog post about managing cron jobs. As more and more people want to automate provisioning and deployment of web applications some, maybe previously manually managed, items come into the fold.</p>
-<p>Cron jobs are interesting because you may prefer to see them as part of the infrastructure (like apache or mysql) or as part of your application code. I think both are valid, sometimes at the same time. For instance you might have a cron job which deals with scheduled database backups. All that requires is the database and the script to be present. At other times your cron jobs might require your entire application stack. For instance a rake task which uses a Rails application model, or a django management command.</p>
-<h2>Configuration Management and Cron</h2>
-<p>Both <a href="http://opscode.com/chef/">Chef</a> and <a href="http://puppetlabs.com/puppet/">Puppet</a> provide a cron resource type. This is particularly handy for things like database backup scripts or ganglia gmetric scripts. You probably want these scripts and cron jobs to be installed on machines that have the related software installed, and you&#8217;re probably already describing this in your Chef recipes or Puppet manifests. If you&#8217;re not already using one of these tools using them to manage just your cron jobs is a nice way of starting out.</p>
-<p>Using the <a href="http://docs.puppetlabs.com/references/latest/type.html#cron">Puppet Cron Type</a> looks like this:</p>
-<pre><code>cron { command:
-  command =&gt; "/usr/local/sbin/command",
-  hour =&gt; 2,
-  minute =&gt; 0
-}</code></pre>
-<p>And the equivalent <a href="http://wiki.opscode.com/display/chef/Resources#Resources-Cron">Chef Reasource</a> looks like:</p>
-<pre><code>cron "describe your job" do
-  hour "2"
-  minute "0"
-  command "/usr/local/sbin/command"
-end</code></pre>
-<p>The important part is that by describing your cron jobs in code you can then version control them easily, and both Chef and Puppet have mechanisms to push these jobs out to be installed by the relevant hosts. With cron jobs you might not want all your machines to be running the same jobs for instance.</p>
-<h2>Using Whenever</h2>
-<p>An alternative, or complimentary, approach to versioning and deploying cron jobs would be to tie it in with your application code. This makes sense when those jobs are tightly coupled to your application, for instance rails specific rake tasks or django management commands. <a href="https://github.com/javan/whenever">Whenever</a> is a tool I&#8217;ve been using recently that makes this pretty simple. You describe your cron jobs in a file called schedule.rb like so:</p>
-<pre><code>every 3.hours do
-  command "/usr/local/sbin/command"
-end</code></pre>
-<p>And then running the provided whenever command line application will generate a working crontab. Whenever ships with capistrano integration and some useful shortcuts for running rake tasks or accessing Ruby code, but it&#8217;s simple to write your own command shortcuts without having to write ruby code too.</p>
-<h2>Other Approaches</h2>
-<p>I have seen some tools which replace cron completely, but I&#8217;ve never liked that idea much. Cron works pretty well, and is clever enough to deal with things like daylight saving time and leap years inteligently if needed. I know other folks who are centralising all regular jobs into something like Jenkins. I can see advantages to that, although I&#8217;ve yet to find a really nice way of automating this outside the gui interface or manually modifying configuration files.</p></div>
   
   
 

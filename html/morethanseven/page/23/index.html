@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="Back from a madcap weekend in Brighton for the dconstruct BarCamp Brighton double header. If I was to write down everything I can remember we&#8217;d &hellip;">
+  <meta name="description" content="I&#8217;ve tinkered with a rather large number of these web application frameworks, in Ruby, Python, PHP and C#, at some point over the last few &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,94 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/09/16/getting-going-with-symfony/">Getting Going With Symfony</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-16T00:00:00+01:00" pubdate data-updated="true">Sep 16<span>th</span>, 2007</time>
+        
+         | <a href="/2007/09/16/getting-going-with-symfony/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve tinkered with a rather large number of these web application frameworks, in Ruby, Python, <span class="caps">PHP</span> and C#, at some point over the last few years. But I&#8217;ve never really settled on any of them &#8211; mainly because my day job didn&#8217;t need me to and also because I like playing with new toys. I even tinkered with <a href="http://morethanseven.net/posts/webphp/">my own homage</a> to <a href="http://webpy.org/">Web.py</a> in <span class="caps">PHP</span> which a few people have picked and are <a href="http://code.google.com/p/wephp/">running with</a>.</p>
+<p>Right now though I&#8217;ve been doing some work with a <a href="http://rbd.shiftnetwork.co.uk/">few</a> <a href="http://www.bofh.org.uk/">people</a> on a Rails project. Their are some seriously nice things in Rails that I don&#8217;t see elsewhere; really good testing support baked in for one, and some serious deplyments for another.</p>
+<p><a href="http://www.symfony-project.com/">Symfony</a> is another <span class="caps">PHP</span> framework but one that only supports PHP5 (a good thing in my book). It&#8217;s basically a slick integration of lots of existing mature <span class="caps">PHP</span> tools plus some good old <span class="caps">MVC</span> and tried and trusted Software Patterns. I also discovered from a few YAHOO&#8217;s that they have started using it on some levels within <span class="caps">YAHOO</span>.</p>
+<p>My interest piqued I found a couple of <a href="http://www.slideshare.net/fullo/federico-feroldi-php-in-yahoo/">related</a> <a href="http://www.slideshare.net/dustin.whittle/symfony-yui-professional-web-20">presentations</a> on <a href="http://www.slideshare.net/">Slideshare</a> (my new favourite web app), and the site has a <a href="http://www.symfony-project.com/book/1_0">high quality online documentation</a> which can also be <a href="http://www.amazon.co.uk/Definitive-Guide-Symfony-Experts-Source/dp/1590597869">purchased in dead tree format</a>.</p>
+<p>Having a play around with Symfony it took me a little while to get everything up and running, but I&#8217;d kept some handy notes for later. Hopefully they might be useful to someone other than me.</p>
+<p>I&#8217;ve dropped in a few variables denoted by braces where relevant. The paths are from my <span class="caps">MAMP</span> and <span class="caps">PEAR</span> based environment and I&#8217;m using a MySQL database, though you could just as easily use Sqlite.</p>
+<p>First we set up a virtual host in Apache. You have to do this manually at the moment. I already have a script for setting up virtual hosts under apache on OS X which I might extend to do this for me if I end up using Symfony alot.</p>
+<p><code>&lt;pre&gt;&lt;VirtualHost 127.0.0.1&gt;
+  ServerName 
+  DocumentRoot "/Applications/MAMP/htdocs/{project}/web"
+  DirectoryIndex index.php
+  Alias /sf /Applications/MAMP/bin/php5/lib/php/data/symfony/web/sf
+  &lt;Directory "/Applications/MAMP/bin/php5/lib/php/data/symfony/web/sf"&gt;
+    AllowOverride All 
+    Allow from All</p>
+</Directory>
+&lt;Directory &#8220;/Applications/<span class="caps">MAMP</span>/htdocs/{project}/web&#8221;&gt;
+AllowOverride All
+Allow from All
+</Directory>
+<p></VirtualHost></pre></code></p>
+<p><code>&lt;pre&gt;cd /www
+mkdir {project}
+cd {project}&lt;/pre&gt;</code></p>
+<p>Now we dive into the actual symfony commands. We&#8217;ll just setting up both a frontend and a backend for this app which I think is likely to be pretty typical. I quite like the idea of seperate entities for these.</p>
+<p><code>&lt;pre&gt;symfony init-project {project_name}
+symfony init-app frontend
+symfony init-module frontend {module_name}&lt;/pre&gt;</code></p>
+<p>Next we have to configure our database connection by editing /config/databases.yml</p>
+<p><code>&lt;pre&gt;all:
+    propel:
+      class: sfPropelDatabase
+      param:
+        dsn: mysql://{username}:{password}@localhost:3306/{database_name}&lt;/pre&gt;</code></p>
+<p>That done we can set up our data definitions in <em>/config/schema.yml</em>. Read the documention for all the details but you can probably get the general idea.</p>
+<p><code>&lt;pre&gt;propel:
+ item:
+   id:
+   title: varchar(200)
+   description: longvarchar
+   created_at:&lt;/pre&gt;</code></p>
+<p>And yet another quick change in <em>/config/propel.ini</em></p>
+<p><code>&lt;pre&gt;propel.database.createUrl = mysql://{username}:{password}@localhost:3306
+propel.database.url = mysql://{username}:{password}@localhost:3306/{database_name}&lt;/pre&gt;</code></p>
+<p>The next set of commands build our model files, create <span class="caps">SQL</span> for out chosen database and then create the tables in the database.</p>
+<p><code>&lt;pre&gt;symfony propel-build-model
+symfony propel-build-sql
+symfony propel-insert-sql&lt;/pre&gt;</code></p>
+<p>We&#8217;ll quickly create a backend using the scaffolding. Note that <em>item</em> here is the model name which is taken from the <em>schema.yml</em> config file above.</p>
+<p><code>&lt;pre&gt;symfony init-app backend
+symfony propel-generate-crud backend items Item&lt;/pre&gt;</code></p>
+<p>All in all not bad going. And that&#8217;s basically the same for most of the apps you&#8217;re likely to develop. It could probably be a little easier in the database and apache config areas in fairness. Rails&#8217; use of an inbuild webserver really helps here. But the use of <span class="caps">YAML</span> to define the model is, in my mind, more straightforward that using Ruby in Rails migrations. I&#8217;ve an app in the works at the moment and I&#8217;m looking at using Symfony. If that pans out I&#8217;ll blog more about the bits I&#8217;m interested in &#8211; the inbuilt unit testing framework high on my list.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -477,62 +565,6 @@
 <p>I&#8217;ve set up a couple of examples over on <a href="http://morethanseven.net/presents/target">morethanseven.net/presents/target</a>.</p>
 <p>These examples basically remove the need for Javascript implementations but I&#8217;m not sure whether I&#8217;d actually use either of these. But you get the general idea. One thing about the examples was their simplicity compared with similar approaches though.</p>
 <p>It&#8217;s already pretty well implemented according to this handy <a href="http://www.css3.info/modules/selector-compat">compatability table</a> from <a href="http://www.css3.info/">CSS3.info</a> and I would imagine an ideal candidate for <a href="http://andybudd.com">Andy Budd&#8217;s</a> <a href="http://www.andybudd.com/archives/2007/05/css22/">CSS2.2</a>.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/06/22/encoded-characters-in-css3-generated-content/">Encoded Characters in CSS3 Generated Content</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-06-22T00:00:00+01:00" pubdate data-updated="true">Jun 22<span>nd</span>, 2007</time>
-        
-         | <a href="/2007/06/22/encoded-characters-in-css3-generated-content/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>A quick, but hopefully informative post on something that took me a little time to work out and I thought might trip a few others up too.</p>
-<p>I&#8217;m playing with quite a bit of CSS3 at the moment for our <a href="http://hedgehoglab.com">new company</a> site. It seemed like a good excuse to put into practice lots of progressive enhancement and the like and so far is going nicely if I do say so my self.</p>
-<p>The <a href="http://www.w3.org/TR/css3-content/">CSS3 Generated Content Module</a> has some nice little bits in and I decided to use it to put some icons after external link ala wikipedia (but with nicer icons). Actually what I wanted was simply an arrow and I didn&#8217;t really need an image for that did I?</p>
-<p>Well my first try went a little something like this:</p>
-<pre><code>p a[href^="http:"]:after {
-    content: "#8594;";
-}</code></pre>
-<p>Nope, no luck. By the time it hits the browser it&#8217;s not what I was looking for. I didn&#8217;t think old style named entities would work but what the heck?</p>
-<pre><code>p a[href^="http:"]:after {
-    content: "&amp;rarr;";
-}</code></pre>
-<p>Nope. As I thought. No luck their either. I also tried the character itself (but forgot to put that in the first post &#8211; thanks <a href="http://joeclarke.org/weblogs/">Joe</a>) but again to no avail.</p>
-<pre><code>p a[href^="http:"]:after {
-    content: "â†’";
-}</code></pre>
-<p>Some digging around and I managed to infer the correct syntax from some hidden away examples about something else.</p>
-<pre><code>p a[href^="http:"]:after {
-    content: "\2192";
-}</code></pre>
-<p>You need to use the Unicode encoding. Doh. Job done.</p></div>
   
   
 

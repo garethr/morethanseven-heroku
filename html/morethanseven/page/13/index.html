@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I&#8217;ve finally been getting round to doing a bit of work on dmigrations, the Python based database migration tool we developed at work. &hellip;">
+  <meta name="description" content="I gave a short presentation about App Engine last night at the Cambridge Python User Group and as always it&#8217;s available on Slideshare. I find &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/03/04/app-engine-python-developers/">App Engine for Python Developers</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-04T00:00:00+00:00" pubdate data-updated="true">Mar 4<span>th</span>, 2009</time>
+        
+         | <a href="/2009/03/04/app-engine-python-developers/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I gave a short presentation about App Engine last night at the <a href="http://campug.org.uk/">Cambridge Python User Group</a> and as always it&#8217;s available on <a href="http://slideshare.net">Slideshare</a>.</p>
+<p><object style="margin:0px" width="425" height="355"><param name="movie" value="http://static.slideshare.net/swf/ssplayer2.swf?doc=appengine-090304031400-phpapp02&stripped_title=app-engine-for-python-developers" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed src="http://static.slideshare.net/swf/ssplayer2.swf?doc=appengine-090304031400-phpapp02&stripped_title=app-engine-for-python-developers" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object></p>
+<p>I find App Engine a great way of just writing (Python) code and putting it online quickly, and the presentation was aimed at being something of a fanboy ode. During questions afterwards we talked about some of the limitations and cases where App Engine isn&#8217;t as well suited, and at least a few people were heading off planning on having a play.</p>
+<p>The event was good fun and I picked up a few Python related tips and tricks from the other presentations and general conversation. Thanks for everyone who organised and attended the event and to <a href="http://www.realvnc.com/">RealVNC</a> for hosting the talks.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -529,63 +569,6 @@ except:
 <pre>LOG_FILE: "/var/log/application_name.log"</pre>
 <p>It lets us keep production paths that might change out of the developers code, at the same time as giving the sys admins a familiar way of managing the production environment.</p>
 <p>It does have one downside, if you&#8217;re not aware of it&#8217;s presence then it can make debugging settings related issues a pain. With that in mind you could wrap it so as to only work this way when <span class="caps">DEBUG</span> is False, or take the approach here which is to leave extensive comments.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/02/11/django-settings-tip-setting-relative-paths/">Django Settings Tip - Setting Relative Paths</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-02-11T00:00:00+00:00" pubdate data-updated="true">Feb 11<span>th</span>, 2009</time>
-        
-         | <a href="/2009/02/11/django-settings-tip-setting-relative-paths/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Django settings files are pretty interesting. Rather than being written in some sort of purely declarative markup they just use Python. This brings both lots of power as well as the ability to do things in the settings file that you probably shouldn&#8217;t do.</p>
-<p>One area where I find this capability particularly useful is when specifying file system paths. Lots of the settings concern where Django can find templates, images, or stylesheets for instance. The examples given in the default settings file are all of the form <em>/this/directory/structure/</em>. If you plan on only working on your own, and never running your applications anywhere except your local machine this is probably fine. The moment you want to deploy your application, or want to collaborate with others this becomes a problem. You either have to agree upon a fixed directory structure between all developers (annoying) or have distinct settings files for each machine, which probably means them being outside source control (also annoying).</p>
-<p>A better approach is to have those paths dynamically ascertained at runtime. It makes the application much more portable, making local development and production use easier. Using the standard library <em>os</em> module we can do just that.</p>
-<pre>import os
-import django
-# calculated paths for django and the site
-# used as starting points for various other paths
-DJANGO_ROOT = os.path.dirname(os.path.realpath(django.__file__))
-SITE_ROOT = os.path.dirname(os.path.realpath(__file__))</pre>
-<p>Here we set a couple of useful constants, one is the path to the site folder and the other the path to where django is stored on this machine. settings.py contains a number of places where these constants are useful. For instance the MEDIA_ROOT settings which specifies the file system location for assets like images or stylesheets. The default settings file even comes with an instruction and example showing a non portable path.</p>
-<pre># Absolute path to the directory that holds media.
-# Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = os.path.join(SITE_ROOT, 'assets')</pre>
-<p>Other examples include setting the path for a SQLite database:</p>
-<pre>DATABASE_ENGINE = 'sqlite3'
-DATABASE_NAME = os.path.join(SITE_ROOT, 'db') + '/development.db'</pre>
-<p>Or specifying directories in which we can place templates.</p>
-<pre>TEMPLATE_DIRS = (
-    os.path.join(SITE_ROOT, 'templates')
-)</pre>
-<p>I actually think this should probably make it&#8217;s way into the default settings file. I might very well be missing something but I can&#8217;t see when it&#8217;s not much better to do things this way.</p></div>
   
   
 

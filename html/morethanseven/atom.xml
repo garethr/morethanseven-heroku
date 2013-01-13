@@ -4,7 +4,7 @@
   <title><![CDATA[Morethanseven]]></title>
   <link href="http://www.morethanseven.net/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2012-12-30T17:13:16+00:00</updated>
+  <updated>2013-01-13T16:42:46+00:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Django and Rails presentation from QCon]]></title>
+    <link href="http://www.morethanseven.net/2013/01/13/django-and-rails-presentation-from-qcon/"/>
+    <updated>2013-01-13T16:31:00+00:00</updated>
+    <id>http://www.morethanseven.net/2013/01/13/django-and-rails-presentation-from-qcon</id>
+    <content type="html"><![CDATA[<p>I had great fun back in November at the <a href="http://qconsf.com/">QCon</a> conference in San Francisco. As well as currating one of the tracks and catching up with people in the area I managed to give the following talk.</p>
+<script async class="speakerdeck-embed" data-id="7e1dd5a03efc0130083b123139173def" data-ratio="1.33333333333333" src="http://www.morethanseven.net//speakerdeck.com/assets/embed.js"></script><p>In hindsight it might have been a bit odd to try and cover both Rails and Django examples in the one presentation but it was quite good fun putting together code examples using both of them at the same time. As well as a large set of tips, tricks and tools I settled on a few things that I think any web (or other) framework should support out of the box.</p>
+<ul>
+	<li>A debug toolbar</li>
+	<li>Transparent caching support</li>
+	<li>Hooks for instrumentation</li>
+	<li>Configurable logging</li>
+</ul>]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[my personal package repository]]></title>
@@ -501,16 +516,6 @@ end
     <content type="html"><![CDATA[<p>This blog post is mainly an excuse to use the pun in the title. It&#8217;s also an opportunity to tell folks that don&#8217;t already know I&#8217;ll be starting a new job on Monday working for the UK Government. I&#8217;m going to be work for the <a href="http://digital.cabinetoffice.gov.uk/">Government Digital Service</a>, a new department tasked with a pretty wide range of sorting the Government out online.</p>
 <p>The opportunity is huge. And when it came around I couldn&#8217;t turn it down. I&#8217;m going to be working with a bunch of people I&#8217;ve <a href="http://memespring.co.uk/">known</a> <a href="http://nicepaul.com/">and</a> <a href="http://fberriman.com/">respected</a> for a while, as well as other equally smart people. That means I&#8217;m going to be back in London again as well.</p>
 <p>Hopefully I&#8217;ll be able to talk lots about what we&#8217;re up to. The groundwork for that has already been laid by the <a href="http://alpha.gov.uk">alpha.gov</a> team who have been blogging furiously about topics of interest.</p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Talking Configuration Management, Vagrant And Chef At Lrug]]></title>
-    <link href="http://www.morethanseven.net/2011/08/11/Talking-configuration-management-vagrant-and-chef-at-lrug/"/>
-    <updated>2011-08-11T00:00:00+01:00</updated>
-    <id>http://www.morethanseven.net/2011/08/11/Talking-configuration-management-vagrant-and-chef-at-lrug</id>
-    <content type="html"><![CDATA[<p>I stepped in at the last minute to do a talk at the last London Ruby User Group. From the feedback afterwards folks seemed to enyoy it and I certainly had fun. Thanks to everyone who came along.</p>
-<p><object id="__sse8828889" width="595" height="497"> <param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=configmanagamentfordevelopmentenvironmentsii-110811103611-phpapp02&rel=0&stripped_title=config-managament-for-development-environments-ii&userName=garethr" /> <param name="allowFullScreen" value="true"/> <param name="allowScriptAccess" value="always"/> <embed name="__sse8828889" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=configmanagamentfordevelopmentenvironmentsii-110811103611-phpapp02&rel=0&stripped_title=config-managament-for-development-environments-ii&userName=garethr" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="595" height="497"></embed> </object></p>
-<p>As well as the slides the nice Skills Matter folks have already uploaded the <a href="http://skillsmatter.com/podcast/home/chef-vagrant">videos from the night</a>.</p>]]></content>
   </entry>
   
 </feed>

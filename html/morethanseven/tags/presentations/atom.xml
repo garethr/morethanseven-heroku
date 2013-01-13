@@ -4,7 +4,7 @@
   <title><![CDATA[Category: presentations | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/presentations/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2012-12-30T17:13:16+00:00</updated>
+  <updated>2013-01-13T16:42:46+00:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Django and Rails presentation from QCon]]></title>
+    <link href="http://www.morethanseven.net/2013/01/13/django-and-rails-presentation-from-qcon/"/>
+    <updated>2013-01-13T16:31:00+00:00</updated>
+    <id>http://www.morethanseven.net/2013/01/13/django-and-rails-presentation-from-qcon</id>
+    <content type="html"><![CDATA[<p>I had great fun back in November at the "QCon":http://qconsf.com/ conference in San Francisco. As well as currating one of the tracks and catching up with people in the area I managed to give the following talk.</p>
+
+<script async class="speakerdeck-embed" data-id="7e1dd5a03efc0130083b123139173def" data-ratio="1.33333333333333" src="http://www.morethanseven.net//speakerdeck.com/assets/embed.js"></script>
+
+
+<p>In hindsight it might have been a bit odd to try and cover both Rails and Django examples in the one presentation but it was quite good fun putting together code examples using both of them at the same time. As well as a large set of tips, tricks and tools I settled on a few things that I think any web (or other) framework should support out of the box.</p>
+
+<ul>
+<li>A debug toolbar</li>
+<li>Transparent caching support</li>
+<li>Hooks for instrumentation</li>
+<li>Configurable logging</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Recent Projects And Talks]]></title>

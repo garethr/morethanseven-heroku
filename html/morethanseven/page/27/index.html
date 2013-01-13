@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="Web.py is a really nice lightweight web framework written in Python. It&#8217;s not trying to be Rails or Django, it&#8217;s trying to be as simple &hellip;">
+  <meta name="description" content="Their is nothing wrong with a nice header graphic. Clients, designers and customers alike love them. But I often see them used as an excuse for fixed &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,67 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/01/07/fluidflash/">Fluidflash</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-01-07T00:00:00+00:00" pubdate data-updated="true">Jan 7<span>th</span>, 2007</time>
+        
+         | <a href="/2007/01/07/fluidflash/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Their is nothing wrong with a nice header graphic. Clients, designers and customers alike love them. But I often see them used as an excuse for fixed width designs. Well no more I say (unless, of course you have a perfectly good reason for a fixed width design in which case you dont really need this technique.)</p>
+<p>The plan was simple. Find a way of incorporating flash headers into sites using liquid or elastic designs in much the same way you might use lots of sliding doors background-image goodness.</p>
+<p>And all it takes is a snippet of actionscript goodness:</p>
+
+
+<pre><code>Stage.scaleMode = "noScale" 
+Stage.align = "TL" 
+var width
+var height
+function resizeEvent ( ) {
+    width = Stage.width
+    height = Stage.height
+    dimensions.text    = 
+       'width : ' + width+ '
+        height : ' + height
+    topRight._x = width
+    bottomLeft._y = height
+    bottomRight._y = height
+    bottomRight._x = width
+}
+resizeEvent ( )
+var stageListener = new Object ( );
+stageListener.onResize = resizeEvent
+Stage.addListener ( stageListener );</code></pre>
+<p><a href="/_assets/downloads/fluidflash/fluidflash.zip">Download example</a></p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -489,46 +550,6 @@ oAllowOverride All
 Include /Applications/MAMP/conf/apache/virtualhosts&lt;/pre&gt;
 </code></p>
  <p>I keep meaning to do a screen capture tutorial of sorts, so maybe something like this would be a good starting point? We shall see as and when time permits. Probably this time next year. Any problems let me know and I&#8217;ll try and debug.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2006/11/12/an-admission-about-source-control/">An Admission About Source Control</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2006-11-12T00:00:00+00:00" pubdate data-updated="true">Nov 12<span>th</span>, 2006</time>
-        
-         | <a href="/2006/11/12/an-admission-about-source-control/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I have an admission to make; for personal projects, of which I have many, I haven&#8217;t been using source control until now. The reason? Probably laziness. I do lots of reading around the whole software development process but most of that gets used at work, at least until now.</p>
- <p>One of my favourite articles is the old <a href="http://www.joelonsoftware.com/articles/fog0000000043.html">Joel Test</a>. Some of this is less relevant to the home developer, but it does give you somewhere to start from. Well, I&#8217;ve now got <a href="http://subversion.tigris.org/">subversion</a> up and running and all new projects will be going in their. I&#8217;ve already added the repository to my backup policy. The free book <a href="http://svnbook.red-bean.com/">Version Control with Subversion</a> provided all the information I needed to get up and running. I&#8217;m more of a fan of command line interfaces anyway so haven&#8217;t installed any special interface. I&#8217;m sure I&#8217;ll look into the <a href="http://www.macromates.com/">Textmate</a> integration once I know my way around the command line interface a bit more.</p>
- <p>Next up I&#8217;m on the lookout for something to use for bug tracking. I already use <a href="http://backpackit.com">backpack</a> and <a href="http://basecamphq.com">basecamp</a> for different activities but I&#8217;m not sure yet if they will do for proper bug tracking. I dont really like <a href="http://www.bugzilla.org/">bugzilla</a>, although maybe <a href="http://trac.edgewall.org/">trac</a> is what I&#8217;m looking for?</p>
- <p>What does anyone else use, either for source control or bug tracking?</p></div>
   
   
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: django | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/django/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2012-12-30T17:13:16+00:00</updated>
+  <updated>2013-01-13T16:42:46+00:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Django and Rails presentation from QCon]]></title>
+    <link href="http://www.morethanseven.net/2013/01/13/django-and-rails-presentation-from-qcon/"/>
+    <updated>2013-01-13T16:31:00+00:00</updated>
+    <id>http://www.morethanseven.net/2013/01/13/django-and-rails-presentation-from-qcon</id>
+    <content type="html"><![CDATA[<p>I had great fun back in November at the "QCon":http://qconsf.com/ conference in San Francisco. As well as currating one of the tracks and catching up with people in the area I managed to give the following talk.</p>
+
+<script async class="speakerdeck-embed" data-id="7e1dd5a03efc0130083b123139173def" data-ratio="1.33333333333333" src="http://www.morethanseven.net//speakerdeck.com/assets/embed.js"></script>
+
+
+<p>In hindsight it might have been a bit odd to try and cover both Rails and Django examples in the one presentation but it was quite good fun putting together code examples using both of them at the same time. As well as a large set of tips, tricks and tools I settled on a few things that I think any web (or other) framework should support out of the box.</p>
+
+<ul>
+<li>A debug toolbar</li>
+<li>Transparent caching support</li>
+<li>Hooks for instrumentation</li>
+<li>Configurable logging</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Django Performance Patterns 1: Measuring Performance]]></title>
@@ -397,23 +419,6 @@ LOGGING = {
 <p>h2. Environment</p>
 
 <p>Whatever bits and pieces you decide to use from the Python ecosystem I'd recommend getting to who "pip and virtualenv":http://clemesha.org/blog/2009/jul/05/modern-python-hacker-tools-virtualenv-fabric-pip/ - note that fabric is also cool, but not essential and these docs are out of date on that tool). Think about using Ruby without gem, bundler or rvm and you'll be in the right direction.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[More Django Project Templates]]></title>
-    <link href="http://www.morethanseven.net/2010/03/28/More-django-project-templates/"/>
-    <updated>2010-03-28T00:00:00+00:00</updated>
-    <id>http://www.morethanseven.net/2010/03/28/More-django-project-templates</id>
-    <content type="html"><![CDATA[<p>Quite a while ago I released some handy scripts for building up Django project layouts. Part of the reason behind this was to kick off discussions about ideal pproject layouts and maybe even get a few user submitted layouts into the project. Paster makes this soft of thing really easy to do and I was interested in what people might come up with.</p>
-
-<p>Well, the team over at "The Chicargo Tribune":http://chicagotribune.com/ have done just that, creating a branch of the original project and "adding a very rich example project to it":http://github.com/ryanmark/django-project-templates/</p>
-
-<p>I've finally gotten around to merging that back into "my branch":http://github.com/garethr/django-project-templates/ and releasing a new version to "PyPi":http://pypi.python.org/pypi/django-project-templates/0.11. It's got a good number of PostGreSQL commands that might be of use, as well as several Amazon S3 and EC2 examples. Even if none of these complete templates fit what you're looking for exactly their are lots of smaller fabric recipes worth taking a look at.</p>
-
-<p>You can read all about what is in the project over on their "developer blog":http://blog.apps.chicagotribune.com/2010/03/08/advanced-django-project-layout/, which if filled with other interesting web and operations goodness.</p>
-
-<p>So, huge thanks to "Chris":http://blog.apps.chicagotribune.com/author/cgroskopf/, "Brian":http://blog.apps.chicagotribune.com/author/bboyer/, "Ryan":http://blog.apps.chicagotribune.com/author/ryanthomasmark/ and "Joe":http://blog.apps.chicagotribune.com/author/joegermuskact/ for some great work.</p>
 ]]></content>
   </entry>
   
