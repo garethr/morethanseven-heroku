@@ -9,8 +9,8 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="A quick, but hopefully informative post on something that took me a little time to work out and I thought might trip a few others up too.
-I&#8217;m &hellip;">
+  <meta name="description" content="Apologies up front for the bad pun but I&#8217;ve been busy playing with another little feature found in CSS3, namely the :target pseudo-class.
+It&# &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +81,57 @@ I&#8217;m &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/06/24/targeting-on-css3/">Target(ing) on CSS3</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-06-24T00:00:00+01:00" pubdate data-updated="true">Jun 24<span>th</span>, 2007</time>
+        
+         | <a href="/2007/06/24/targeting-on-css3/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Apologies up front for the bad pun but I&#8217;ve been busy playing with another little feature found in CSS3, namely the :target pseudo-class.</p>
+<p>It&#8217;s actually pretty well described in the <a href="http://www.w3.org/TR/2001/CR-css3-selectors-20011113/#target-pseudo">CSS3 Selectors module</a>, (although given that the specs make lots of use of partial URLs the spec style sheet is crying out for use of said selector to I digress).</p>
+<p>Put simply it allows you to style elements of a page that are the target of in page anchors, ie. <code>&amp;lt;a href="#target"&amp;gt;in page link&amp;lt;/a&amp;gt;</code></p>
+<p>For example. The following <span class="caps">CSS</span> hides all div children of an element with an id of <em>example3</em>.</p>
+<pre><code>#example3 &gt;div {
+    display: none;
+}</code></pre>
+<p>The we can say &#8220;if said element has been targetted then display them all&#8221;</p>
+<pre><code>#example3:target &gt;div {
+    display: block;
+}</code></pre>
+<p>So if you visiting #example3 you would see the divs, otherwise they will be hidden away.</p>
+<p>I&#8217;ve set up a couple of examples over on <a href="http://morethanseven.net/presents/target">morethanseven.net/presents/target</a>.</p>
+<p>These examples basically remove the need for Javascript implementations but I&#8217;m not sure whether I&#8217;d actually use either of these. But you get the general idea. One thing about the examples was their simplicity compared with similar approaches though.</p>
+<p>It&#8217;s already pretty well implemented according to this handy <a href="http://www.css3.info/modules/selector-compat">compatability table</a> from <a href="http://www.css3.info/">CSS3.info</a> and I would imagine an ideal candidate for <a href="http://andybudd.com">Andy Budd&#8217;s</a> <a href="http://www.andybudd.com/archives/2007/05/css22/">CSS2.2</a>.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -567,68 +618,6 @@ $website = new Website('http://morethanseven.net',$parser);</code></pre>
 <p>This is a very early release, more of a proof of concept and as such their is no documentation and only a portion of hCard is supported. Hell, their&#8217;s not even a name beginning with h! Having said that I have a plan for a little project to kick the tyres and so I&#8217;l l be adding to it and hopfully have a proper release at some point.</p>
 <p>The plan is to introduce methods like getReviews, getEvents, etc. which allow for the extraction of the relevant details. The part I find most interesting however is the idea of the expose method &#8211; asking a web page if it has an <span class="caps">API</span>, and if it does then what information you can extract automagically. If you&#8217;re interested let me know what you think.</p>
 <p><a href="http://morethanseven.net/_assets/downloads/microformatsapi/microformatsapi.zip">Download example</a></p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/04/02/software-i-installed-on-my-n800/">Software I Installed on My N800</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-04-02T00:00:00+01:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2007</time>
-        
-         | <a href="/2007/04/02/software-i-installed-on-my-n800/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Ok, so I&#8217;ve been shopping again but I&#8217;ll try and make this post a little more useful that <em>oh, look at my shiny new toy</em>.</p>
-<p>I decided that what I was really missing to help with my <a href="http://twitter.com">twitter</a> addiction and growing interest in the mobile web was a shiny new Nokia N800 Internet Tablet.</p>
-<p><img src="http://morethanseven.net/_assets/media/imgN800.jpg" title="Nokia N800 Internet Tablet" alt="Nokia N800 Internet Tablet" /></p>
-<p>I cant really write a fair review at the moment as I&#8217;ve only just got my mits on it so that will have to save for later. All I can think at the moment is <em>&#8220;Oh, shiny&#8221;</em>. What I will do is list the software I installed on it from the start, partly to demonstrate what you can get on it, partly to link to thinks I found useful and mostly to remind me if and when I need to do it again.</p>
-<ul>
-	<li><a href="http://openbossa.indt.org/canola/">Canola</a> &#8211; interesting media player app</li>
-	<li><a href="http://tuomas.kulve.fi/blog/2007/01/17/maemo-screen-grabber/">Maemo Screengrabber</a></li>
-</ul>
-<ul>
-	<li><a href="https://garage.maemo.org/projects/scite/">SciTE Text Editor</a></li>
-</ul>
-<ul>
-	<li><a href="http://770.fs-security.com/xterm/">X Terminal</a></li>
-	<li><a href="http://david.connolly.name/blog/hub/maemo/2006/04/25/Curl-Package-for-Nokia-770.html">Curl</a></li>
-	<li><a href="http://www.owenwilliams.plus.com/maemo/">Sqlite</a></li>
-	<li><a href="http://test.maemo.org/downloads/product/vim/">Vim</a></li>
-	<li><a href="http://armin-warda.de/">Wget</a></li>
-	<li><span class="caps">SSH</span></li>
-</ul>
-<ul>
-	<li><a href="http://rubyforge.org/projects/rubynokia770/">Ruby 1.8.4</a></li>
-	<li><a href="http://pymaemo.garage.maemo.org/">Python 25</a></li>
-	<li><a href="http://www.mono-project.com/Maemo">Mono</a></li>
-</ul>
-<p>And just for <a href="http://anotherblog.com">Phil</a> it already has <span class="caps">GCC</span>-3.4-base on so no need to install.</p>
-<p>Oh, and for the nay sayers thinking iPhone I don&#8217;t care. From all I&#8217;ve read the iPhone is going to be a closed system and this is a full blown Linux OS that is designed expressly to be hackable. Plus the N800 makes people swoon now, not in six months or a year when the iPhone hits the shelves.</p></div>
   
   
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Morethanseven]]></title>
   <link href="http://www.morethanseven.net/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2013-01-13T16:42:46+00:00</updated>
+  <updated>2013-02-17T17:15:21+00:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Going fast in government]]></title>
+    <link href="http://www.morethanseven.net/2013/02/17/going-fast-in-government/"/>
+    <updated>2013-02-17T17:08:00+00:00</updated>
+    <id>http://www.morethanseven.net/2013/02/17/going-fast-in-government</id>
+    <content type="html"><![CDATA[<p>About a month ago I had the good fortune of speaking at the <a href="http://www.meetup.com/London-Web-Performance-Group/">London Web Performance</a> meetup. This was one of the first talks I&#8217;ve done about our work at The Government Digital Service since the luanch of <span class="caps">GOV</span>.UK back in October. The topic was all about moving quickly in a large organisation (The UK Civil Service is about 450,000 people so I think it counts) and featured just a hand full of technical and organisational tricks we used.</p>
+<script async class="speakerdeck-embed" data-id="bc48ed2042c20130b322123138156909" data-ratio="1.33333333333333" src="http://www.morethanseven.net//speakerdeck.com/assets/embed.js"></script>]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Django and Rails presentation from QCon]]></title>
@@ -506,16 +515,6 @@ end
 <pre>./run -j "Run NRPE checks" -p PRGMR</pre>
 <p>This example shows running a specific pre-defined job, but it&#8217;s also equally possible to fire of adhoc commands to some or all of the machines rundeck knows about.</p>
 <p>One thing in particular that I prefer about this approach to say using Capistrano or Fabric for remote execution tasks is that you have a centralised authentication and logging capability. It would be easy enough to encapsulate the jobs into cap or fabric tasks (and manage that in source control) which means you&#8217;re not stuck if Rundeck isn&#8217;t available.</p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[On Her Majesty's Digital Service]]></title>
-    <link href="http://www.morethanseven.net/2011/08/19/On-her-majestys-digital-service/"/>
-    <updated>2011-08-19T00:00:00+01:00</updated>
-    <id>http://www.morethanseven.net/2011/08/19/On-her-majestys-digital-service</id>
-    <content type="html"><![CDATA[<p>This blog post is mainly an excuse to use the pun in the title. It&#8217;s also an opportunity to tell folks that don&#8217;t already know I&#8217;ll be starting a new job on Monday working for the UK Government. I&#8217;m going to be work for the <a href="http://digital.cabinetoffice.gov.uk/">Government Digital Service</a>, a new department tasked with a pretty wide range of sorting the Government out online.</p>
-<p>The opportunity is huge. And when it came around I couldn&#8217;t turn it down. I&#8217;m going to be working with a bunch of people I&#8217;ve <a href="http://memespring.co.uk/">known</a> <a href="http://nicepaul.com/">and</a> <a href="http://fberriman.com/">respected</a> for a while, as well as other equally smart people. That means I&#8217;m going to be back in London again as well.</p>
-<p>Hopefully I&#8217;ll be able to talk lots about what we&#8217;re up to. The groundwork for that has already been laid by the <a href="http://alpha.gov.uk">alpha.gov</a> team who have been blogging furiously about topics of interest.</p>]]></content>
   </entry>
   
 </feed>

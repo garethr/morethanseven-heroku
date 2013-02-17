@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="Every now and again I feel the need for a change and spent a little time tonight looking at different blogging software. I&#8217;m currently running &hellip;">
+  <meta name="description" content="I just noticed Lindsay had committed the amqp steps for cucumber-nagios and remembered I hadn&#8217;t mentioned on here some other work I&#8217;ve &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,64 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/03/07/Mysql-support-for-cucumber-nagios/">Mysql Support for Cucumber Nagios</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-07T00:00:00+00:00" pubdate data-updated="true">Mar 7<span>th</span>, 2010</time>
+        
+         | <a href="/2010/03/07/Mysql-support-for-cucumber-nagios/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I just noticed Lindsay had <a href="http://github.com/auxesis/cucumber-nagios">committed</a> the amqp steps for cucumber-nagios and remembered I hadn&#8217;t mentioned on here some other work I&#8217;ve been doing on the same project. We use MySQL quite a bit at work and I&#8217;ve been wanting to extent our monitoring for a while. So I set about thinking how that would work with cucumber-nagios. What I&#8217;ve come up with looks something like this:</p>
+<pre>
+Feature: localhost
+  To make sure the rest of the system is in order
+  Our database server should not be overloaded
+
+  Scenario: check running processes count
+    Given I have a MySQL server on localhost
+    And I use the username root
+    Then it should have less than 10 processes
+
+  Scenario: check queries per second
+    Given I have a MySQL server on localhost
+    And I use the username root
+    Then it should have less than 200 select queries per second
+    Then it should have less than 300 queries per second
+    Then it should have less than 5 slow queries pers second
+    Then it should have at least 10 queries per second
+</pre>
+<p>The numbers, username details and host details are all variables. So you can write senarios for your specific deployments. The tests over time are based on a very short lived sampling mechanic which I&#8217;ve yet to test in anger. I&#8217;m not sure just yet is this approach will lead to too many false positives but we&#8217;ll have to see.</p>
+<p>This <a href="http://codeinthehole.com/archives/8-Monitoring-MySQL-with-Ganglia-and-gmetric.html">mysql gmetric script</a> gave me lots of the ideas for invidual steps. I&#8217;ll be writing more about some work I&#8217;ve been doing with cucumber-nagios and ganglia soon as well.</p>
+<p>For the moment if anyone want&#8217;s to try these steps out you can either check out <a href="http://github.com/garethr/cucumber-nagios">my cucumber-nagios</a> fork or just grab the steps from the <a href="http://github.com/garethr/cucumber-nagios/blob/master/lib/generators/project/features/steps/mysql_steps.rb">mysql_steps.rb</a> file. Any feedback much appreciated.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -461,43 +519,6 @@ worker.work()</code></pre></div>
 <p>The main problem with learning something new on the train is space. Reading a book (or my new Kindle) or just using my laptop is fine. Trying to do both at once is nearly impossible (I&#8217;ve tried). So I&#8217;ve decided to give another approach a try, namely screencasts.</p>
 <p>I&#8217;ve only done the first <a href="http://www.pragprog.com/screencasts/v-kserl/erlang-in-practice">Erlang in Practice</a> episode so far but I was hugely impressed with the content and general presentation. $5 as well doesn&#8217;t seem bad at all I don&#8217;t think. The episode was half an hour long, but took me a little longer, probably closer to 45 minutes, as I was playing along at home and typing the code examples as I went. I also got sidetracked with messing with my vim configuration at the same time but hey. This makes them perfect for my hour long commute. The full series is 8 episodes long and with luck I&#8217;ll be able to work through them this week.</p>
 <p>So, good job <a href="http://weblog.hypotheticalabs.com/">Kevin Smith</a> and <a href="http://www.pragprog.com">Pragmatic</a> for a nice, accessible start to Erlang. All I need to do now is find something interesting to hack on in Erlang.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/10/24/django-committers/">Django Committers</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-10-24T00:00:00+01:00" pubdate data-updated="true">Oct 24<span>th</span>, 2009</time>
-        
-         | <a href="/2009/10/24/django-committers/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;ve been lurking on the django-developers mailing list for the last couple of weeks and that provided an excuse to play with the <a href="http://blog.twitter.com/2009/09/soon-to-launch-lists.html">new Twitter Lists</a> feature. So here&#8217;s a <a href="http://twitter.com/garethr/djangocommitters">list of djangocommitters on twitter</a>. If I missed someone do let me know. Their is a chance you won&#8217;t be able to see this if you&#8217;re not on the beta yet I think, sorry!</p></div>
   
   
 

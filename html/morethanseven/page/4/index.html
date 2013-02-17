@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="A recent question on Twitter prompted me to write a quick blog post about managing cron jobs. As more and more people want to automate provisioning &hellip;">
+  <meta name="description" content="After Patrick released Sahara, a nifty extension for the Vagrant command line tool, I&#8217;ve been meaning to put together a similar extension for &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,65 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/05/08/Vagrant-plugin-for-interacting-with-vagrantboxes/">Vagrant Plugin for Interacting With Vagrantbox.es</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-08T00:00:00+01:00" pubdate data-updated="true">May 8<span>th</span>, 2011</time>
+        
+         | <a href="/2011/05/08/Vagrant-plugin-for-interacting-with-vagrantboxes/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>After <a href="http://www.jedi.be/blog">Patrick</a> released <a href="https://github.com/jedi4ever/sahara/">Sahara</a>, a nifty extension for the <a href="http://vagrantup.com">Vagrant</a> command line tool, I&#8217;ve been meaning to put together a similar extension for interacting with the growing list of base boxes on <a href="http://www.vagrantbox.es">vagrantbox.es</a>.</p>
+<p>After a bit of hacking this morning I&#8217;ve just pushed out an initial release of the <a href="https://rubygems.org/gems/vagrantboxes">vagrantboxes gem</a> and you can find the <a href="https://github.com/garethr/ruby-vagrantboxes">source code and some documentation on GitHub</a>.</p>
+<p>The extensions adds a vagrantboxes namespace to the vagrant command line tool which provides a few useful commands. Specifically you can list all the available boxes, do text searches, show the full details of a box and most handily of all add a box that takes your fancy to your local base box store, all without having to worry about the URLs of the boxes if you don&#8217;t want to.</p>
+<p>Here&#8217;s an example of a simple search:</p>
+<pre>&gt;&gt; vagrant vagrantboxes search centos
+3    centos 5.5                http://dl.dropbox.com/u/15307300/vagrant-0.7-centos-64-base.box
+6    opscode centos 5          http://opscode-vagrant-boxes.s3.amazonaws.com/centos5-gems.box
+7    opscode ubuntu 10.04      http://opscode-vagrant-boxes.s3.amazonaws.com/ubuntu10.04-gems.box
+9    puppet centos 5.5 64      http://puppetlabs.s3.amazonaws.com/pub/centos5_64.box
+10   puppet centos 4 64        http://puppetlabs.s3.amazonaws.com/pub/centos4_64.box
+21   centos 5.6 32             http://yum.mnxsolutions.com/vagrant/centos_56_32.box</pre>
+<p>And another quick example, this time of show printing the full description. In the future I might look to store more structured metadata and make this more useful.</p>
+<pre>&gt;&gt; vagrant vagrantboxes show 18
+puppet debian lenny 64
+http://puppetlabs.s3.amazonaws.com/pub/debian_lenny_64.box
+
+Debian Lucid 64 bit vagrant box. Puppet 2.6.6 installed and ready to provision using the Puppet provisioner in Vagrant.
+
+For good sample modules, try the jeffmccune-motd and jeffmccune-mockbuild modules posted to http://forge.puppetlabs.com/
+
+Created by Ken Barber, ken@puppetlabs.com</pre>
+<p>This proved a good excuse to delve into the Vagrant source code which is pretty readable for the most part once you understand the libraries it&#8217;s build upon. It&#8217;s simple enough to extend for adding commands like this too, which bodes well for other more useful additions in the future.</p>
+<p>If anyone has any problems with this extensions do let me know. Error handling currently consists of returning blank output rather than sensible error codes or messages, and as I&#8217;ve yet to add a small test suite so their might (will) be a few bugs lying around. I&#8217;ll try and make it better behaved in the next week or two but reasoned it&#8217;s useful straight away.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -611,50 +670,6 @@ Generating with project generator:
 	<li>Build shared appreciation</li>
 	<li>Metrics conversations are really powerful</li>
 </ul></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2011/02/08/Configuration-management-for-development-environments/">Configuration Management for Development Environments</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-08T00:00:00+00:00" pubdate data-updated="true">Feb 8<span>th</span>, 2011</time>
-        
-         | <a href="/2011/02/08/Configuration-management-for-development-environments/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I had the pleasure of speaking at <a href="http://www.fosdem.org/2011/">Fosdem</a> last weekend to a packed <a href="http://www.fosdem.org/2011/schedule/track/configuration_systems_management_devroom">Configuration amd systems management devroom</a>.</p>
-<p>My presentation covered some of the same ground as recent blog posts, namely why you should be using virtualisation and config management tools to manage your local development environment.</p>
-<p><object id="__sse6836888" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=configmanagamentfordevelopmentenvironments-110207033122-phpapp02&stripped_title=config-managament-for-development-environments-6836888&userName=garethr" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed name="__sse6836888" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=configmanagamentfordevelopmentenvironments-110207033122-phpapp02&stripped_title=config-managament-for-development-environments-6836888&userName=garethr" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object></p>
-<p>People even said <a href="http://twitter.com/#!/unixdaemon/status/34209307390124033">nice things</a> about it:</p>
-<blockquote>
-<p>@garethr basically has this subject completely covered. He&#8217;s even advocating the correct editor. excellent #fosdem talk</p>
-</blockquote>
-<p>All in all another good event, I have notes about some of the other talks I went along to that I&#8217;ll try write up soon.</p></div>
   
   
 

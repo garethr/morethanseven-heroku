@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I&#8217;m just getting back from Newcastle after getting to present at the first Design It Build It conference. It was great to be back up in &hellip;">
+  <meta name="description" content="I&#8217;ve been playing with Integrity again as a simple continuous integration server and have installed it on a few debian and ubuntu machines in &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,62 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/05/18/Installing-integrity-on-debianubuntu/">Installing Integrity on Debian/Ubuntu</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-05-18T00:00:00+01:00" pubdate data-updated="true">May 18<span>th</span>, 2010</time>
+        
+         | <a href="/2010/05/18/Installing-integrity-on-debianubuntu/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve been playing with <a href="http://integrityapp.com">Integrity</a> again as a simple continuous integration server and have installed it on a few debian and ubuntu machines in the last few weeks. The current site has good installation instructions for the Ruby side of things but leaves it as an excercise for the installer to make sure all the system level dependencies are installed.</p>
+<p>So probably as much for me in the future, here is what I had to install to get the installation instructions to work for me.</p>
+<% syntax_colorize :bash, type=:coderay do %>
+apt-get install build-essential
+apt-get install ruby
+apt-get install rdoc
+apt-get install sqlite3
+apt-get install libdbd-sqlite3-ruby
+apt-get install libdataobjects-sqlite3-ruby1.8 
+apt-get install libsqlite3-dev
+apt-get install libxml2
+apt-get install libxml2-dev
+apt-get install libxsl-dev
+apt-get install libopenssl-ruby
+<% end %>
+<p>I also needed to install the following package on Ubuntu:</p>
+<% syntax_colorize :bash, type=:coderay do %>
+apt-get install ruby1.8-dev
+<% end %>
+<p>If you want to use a database other than the default SQLite then you won&#8217;t need those packages and I&#8217;ll assume you know what you&#8217;re doing.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -575,64 +631,6 @@ if is_valid_jsonp_callback_value(cb):
 <p>After looking through lots of code from the <a href="http://projects.stoneship.org/trac/nanoc/wiki/Showcase">nanoc showcase</a> I had a pretty good feel for how I wanted things to work and I then used the excellent <a href="http://github.com/mgutz/nanoc3_blog">nanoc3_blog</a> template to get started. I&#8217;ve hacked around quite a bit with the code to get things how I wanted them. Using <a href="http://lesscss.org/">Less</a> to make the <span class="caps">CSS</span> more manageable, <a href="http://coderay.rubychan.de/">Coderay</a> for lovely syntax highlighting and making everything default to textile rather than markdown. I&#8217;ve also written import scripts for my old blog (in Python) and another one so I can use tumblr is I want to create items on here (in Ruby).</p>
 <p>Nanoc really is a joy to work with and I&#8217;m hoping that alone will get me back into writing more freqently than I have done for a while. The fact I can just write in Vim or WriteRoom or whatever editor I have to hand feels nice. And using Git, Rake and Rsync complete my little toolset. Everything is still served via Nginx.</p>
 <p>I&#8217;ve thrown the all the code, including all the content, up on <a href="http://github.com/garethr/morethanseven">GitHub</a> for anyone interested. Back to writing.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010/03/07/Mysql-support-for-cucumber-nagios/">Mysql Support for Cucumber Nagios</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-03-07T00:00:00+00:00" pubdate data-updated="true">Mar 7<span>th</span>, 2010</time>
-        
-         | <a href="/2010/03/07/Mysql-support-for-cucumber-nagios/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I just noticed Lindsay had <a href="http://github.com/auxesis/cucumber-nagios">committed</a> the amqp steps for cucumber-nagios and remembered I hadn&#8217;t mentioned on here some other work I&#8217;ve been doing on the same project. We use MySQL quite a bit at work and I&#8217;ve been wanting to extent our monitoring for a while. So I set about thinking how that would work with cucumber-nagios. What I&#8217;ve come up with looks something like this:</p>
-<pre>
-Feature: localhost
-  To make sure the rest of the system is in order
-  Our database server should not be overloaded
-
-  Scenario: check running processes count
-    Given I have a MySQL server on localhost
-    And I use the username root
-    Then it should have less than 10 processes
-
-  Scenario: check queries per second
-    Given I have a MySQL server on localhost
-    And I use the username root
-    Then it should have less than 200 select queries per second
-    Then it should have less than 300 queries per second
-    Then it should have less than 5 slow queries pers second
-    Then it should have at least 10 queries per second
-</pre>
-<p>The numbers, username details and host details are all variables. So you can write senarios for your specific deployments. The tests over time are based on a very short lived sampling mechanic which I&#8217;ve yet to test in anger. I&#8217;m not sure just yet is this approach will lead to too many false positives but we&#8217;ll have to see.</p>
-<p>This <a href="http://codeinthehole.com/archives/8-Monitoring-MySQL-with-Ganglia-and-gmetric.html">mysql gmetric script</a> gave me lots of the ideas for invidual steps. I&#8217;ll be writing more about some work I&#8217;ve been doing with cucumber-nagios and ganglia soon as well.</p>
-<p>For the moment if anyone want&#8217;s to try these steps out you can either check out <a href="http://github.com/garethr/cucumber-nagios">my cucumber-nagios</a> fork or just grab the steps from the <a href="http://github.com/garethr/cucumber-nagios/blob/master/lib/generators/project/features/steps/mysql_steps.rb">mysql_steps.rb</a> file. Any feedback much appreciated.</p></div>
   
   
 

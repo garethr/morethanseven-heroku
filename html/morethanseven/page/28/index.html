@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I have an admission to make; for personal projects, of which I have many, I haven&#8217;t been using source control until now. The reason? Probably &hellip;">
+  <meta name="description" content="A couple of people asked for the details of the virtualhost script I modified for use with MAMP in a previous post. Apologies for taking a bit of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,63 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/11/15/mac-virtualhost-follow-up/">Mac Virtualhost Follow Up</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-11-15T00:00:00+00:00" pubdate data-updated="true">Nov 15<span>th</span>, 2006</time>
+        
+         | <a href="/2006/11/15/mac-virtualhost-follow-up/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A couple of people asked for the details of the virtualhost script I modified for use with <span class="caps">MAMP</span> in a <a href="http://morethanseven.net/posts/virtualhosts-on-mac-os-x#comment">previous post</a>. Apologies for taking a bit of time.</p>
+ <p>First I had to make these changes to the original <a href="http://patrickgibson.com/utilities/virtualhost/">virtualhost script</a>:</p>
+<p><code>
+DOC_ROOT_PREFIX="/Applications/MAMP/htdocs" 
+</code></p>
+<p><code>
+&lt;pre&gt;APACHE_CONFIG="/Applications/MAMP/conf/apache" 
+APACHECTL="/Applications/MAMP/Library/bin/apachectl"&lt;/pre&gt;
+</code></p>
+ <p>I also made a few changes to httpd.conf in /Applications/<span class="caps">MAMP</span>/conf/apache. From memory first to allow local .htaccess files to override everything on a per directory basis.</p>
+<p><code>
+&lt;pre&gt;&amp;lt;Directory "/Applications/MAMP/htdocs"&amp;gt;
+oAllowOverride All
+&amp;lt;/Directory&amp;gt;&lt;/pre&gt;
+</code></p>
+ <p>and then to point to the virtual hosts directory.</p>
+<p><code>
+&lt;pre&gt;NameVirtualHost 127.0.0.1
+Include /Applications/MAMP/conf/apache/virtualhosts&lt;/pre&gt;
+</code></p>
+ <p>I keep meaning to do a screen capture tutorial of sorts, so maybe something like this would be a good starting point? We shall see as and when time permits. Probably this time next year. Any problems let me know and I&#8217;ll try and debug.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -894,48 +951,6 @@
  <p>I only heard about the Nintendo DS Lite getting a browser add on last week, but it peaked my interest. The spread of mass market devices with WiFi and a decent browser throw up interesting possibilities, so it was with a smile on my face that I discovered the browser was going to be <a href="http://opera.com">Opera</a>. Their is quite a bit of information over on their site on <a href="http://www.opera.com/pressreleases/en/2006/02/15/">press releases</a> and a special <a href="http://www.opera.com/products/devices/nintendo/">Nintendo section</a> and all looks good.</p>
  <p>I&#8217;d be interested to see how the two screens thing works for browsing, and how the device copes with the problems of content not being designed for the small screen very often, though <a href="http://www.opera.com/products/mobile/operamini/">Opera Mini</a> did a ridiculously good job. Also of note is that the upcoming Wii is going to use an Opera browser as well. The move from the desktop to focus on devices looks like being a very clever move.</p>
  <p>One minor let down is that the DS browser costs. This looks like it&#8217;s due to extra hardware being required but it&#8217;s still a shame after the <span class="caps">PSP</span> browser was added simply as a software upgrade. Hopefully that wont be a barrier to entry. If and when (ok, when) I get my hands on one (launch 6th of October) I might try and post some tests. The <span class="caps">PSP</span> browser does occasionally fall over on very large sites with a nasty memory error, and I&#8217;m interested in how complete the <span class="caps">CSS</span> and Javascript support are.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2006/09/18/6-hours-on-a-train-with-code-igniter/">6 Hours on a Train With Code Igniter</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2006-09-18T00:00:00+01:00" pubdate data-updated="true">Sep 18<span>th</span>, 2006</time>
-        
-         | <a href="/2006/09/18/6-hours-on-a-train-with-code-igniter/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;ve mentioned <a href="http://codeigniter.com">Code Igniter</a> <a href="http://morethanseven.net/posts/internet-check-media-check">before</a> but only now have I got round to really putting it through it&#8217;s paces by building something proper. I got the opportunity (if you could call it that) thanks to a six hour train journey from Oxford.</p>
- <p>I&#8217;ve been thinking about sprucing up this site for a while, and have a few other personal projects that I really should get round to sorting out. Something I&#8217;ve noted of late is a move, amongst some parties, back to bespoke personal content management systems. <a href="http://adactio.com">Jeremy</a> has been speaking about some of the <a href="http://adactio.com/journal/1162">feaures he has been adding</a> recently, <a href="http://christianmontoya.com">Christian</a> had a <a href="http://www.christianmontoya.com/2006/09/16/enjoying-cake/">few comments</a> too plus <a href="http://snook.ca">Jonathan</a> has been <a href="http://withcake.com/posts/view/snook_ca_using_cakephp">posting</a>  about his recent move to <a href="http://cakephp.org/">CakePHP</a> from <a href="http://www.movabletype.org">Movable Type</a>.</p>
- <p>I find this kind of interesting. Everyone started off with hand rolled solutions, seemed to move to the comfort of <a href="http://textpattern.com">Textpattern</a> or <a href="http://wordpress.org">Wordpress</a> and the more geekely inclined are on the move again. With such large user bases the big blogging platforms are (rightly) spending more time on bug fixes and user experience, rather than kick ass features. And us geeks want more <a href="http://microformats.org">Microformats</a> and mashups that we can shake a stick at. Only this time we get to stand on the shoulders of giants by using frameworks such as <a href="http://rubyonrails.org">Rails</a>, <a href="http://www.djangoproject.com/">Django</a> or <a href="http://codeigniter.com">Code Igniter</a> which means less time doing the boring stuff.</p>
- <p>Short sales pitch. <a href="http://codeigniter.com">Code Igniter</a> is cool, and more. The documentation is first rate and comes along with the download rather than just being available online (useful when your on the train.) It all makes sense as well which is nice, especially if you have some familiarity with the <span class="caps">MVC</span> pattern. It covers the basics so you dont have to &#8211; validation, database abstraction, session hanling. It&#8217;s also easily extensible through a nice plugin architecture and makes no assumpions about what you intend to build. I have a quick and dirty <a href="http://textism.com/tools/textile/">Textile</a> plugin that I need to package up and put out &#8211; some <a href="http://www.codeigniter.com/forums/viewthread/1105/P0/">discussion</a> of this over on the <a href="http://www.codeigniter.com/forums/">forums</a> which I may peruse.</p>
- <p>In short expect to see some minor additions and the like round these parts as I try to transition away from <a href="http://textpattern.com">Textpattern</a> and any problems caused are no doubt the fault of some poor coding somewhere.</p>
- <p>And I wonder what the next step will be? We have been through hand rolled to stable applications to frameworks to hand rolled based on frameworks. Any takers?</p></div>
   
   
 

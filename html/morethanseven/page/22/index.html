@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="As a wandering web designer cum developer and now occasional consultant I&#8217;m generally pretty technology agnostic. At some point or another I&# &hellip;">
+  <meta name="description" content="Alex from Twitter just got round to adding the ability to export your entire archive of tweets via the API. A few people on the mailing list had been &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,73 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/11/23/archiving-twitter-data-with-python/">Archiving Twitter Data With Python</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-11-23T00:00:00+00:00" pubdate data-updated="true">Nov 23<span>rd</span>, 2007</time>
+        
+         | <a href="/2007/11/23/archiving-twitter-data-with-python/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.al3x.net/">Alex</a> from <a href="http://twitter.com">Twitter</a> just got round to adding the ability to export your entire archive of tweets via the <a href="http://groups.google.com/group/twitter-development-talk/web/api-documentation"><span class="caps">API</span></a>. A few people on the mailing list had been asking for this for a while so good to see it get released.</p>
+<p>I couldn&#8217;t resist knocking together a very quick and simple Python script to go off and get all your tweets, presented here for anyone else to play around with. Note that simple, fast and works on my machine were watchwords here. Don&#8217;t expect fancy parameters, much error handling or artificial intelligence.</p>
+<% syntax_colorize :python, type=:coderay do %>
+import urllib2
+username = &#8217;<YOUR USERNAME>&#8217;
+password = &#8217;<YOUR PASSWORD>&#8217;
+format = &#8216;json&#8217; # json or xml
+filename = &#8216;archive.json&#8217; # filename of the archive
+tweets = 164 # number of tweets
+pages = (int(float(tweets)/float(80)))+1
+auth = urllib2.HTTPPasswordMgrWithDefaultRealm()
+auth.add_password(None, &#8216;http://twitter.com/account/&#8217;, username, password)
+authHandler = urllib2.HTTPBasicAuthHandler(auth)
+opener = urllib2.build_opener(authHandler)
+urllib2.install_opener(opener) 
+i = 1
+response = &#8221;
+print &#8216;Downloading tweets. Note that this may take some time&#8217;
+while i <= pages:
+    request = urllib2.Request('http://twitter.com/statuses/user_timeline/account.' \
+    + format + '?page=' + str(i))
+    response = response + urllib2.urlopen(request).read()
+    i = i + 1
+handle = open(filename,"w")
+handle.write(response)
+handle.close()
+print 'Archived ' + str(tweets) + ' of ' + username + \
+'\'s tweets to ' + filename
+<% end %>
+<p>The main thing to note here though is the ideal of <a href="http://www.dataportability.org/">data portability</a>. Let&#8217;s just say I wanted to move to Jaiku or Pownce instead of Twitter, but didn&#8217;t want to lose all that data. If I can knock up an export script in half an hour then all you need are import data <span class="caps">API</span> calls and a little more scripting.</p>
+<p>As it is, I&#8217;m more interesting in seeing what I can do with my data now I can get at it. <a href="http://suda.co.uk">Brian</a> just suggested a <a href="http://simile.mit.edu/timeline/">quick visualisation tool</a> (which already eats <span class="caps">JSON</span>) and I&#8217;d already been thinking about <a href="http://morethanseven.net/posts/pygunfog/">language analysis</a> and maybe having a look at <a href="http://www.apml.org/"><span class="caps">APML</span></a> some more. Open data is simply more fun.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -561,52 +628,6 @@ ORDER BY priority DESC, p.value, t.type, time&lt;/pre&gt;</code></p>
 <p>I didn&#8217;t make it into the entreprenuers stage as much as I should have done. <a href="http://donotremove.co.uk/">Mike Stenhouse</a> spent most of his time in there I think and had nice things to say about most of the talks. I caught <a href="http://www.disambiguity.com/">Leisa Reichelt</a> and Dick Costolo, both of whom gave particularly interesting talks to round off the second day of the conference. Although at least some people I spoke to don&#8217;t like having more than one track (the same topic of conversation cropped up at <a href="http://vivabit.com/atmedia2007">@media</a>) I much prefer the choice of sessions. Missing the odd clash is a small price to pay for the larger number of interesting talks.</p>
 <p>Overall; lots of <a href="http://www.slideshare.net/group/future-of-web-applications/slideshows">interesting content from lots of interesting speakers</a> &#8211; many of whom I hadn&#8217;t seen speak previously (always a good sign). As for constructive criticism I&#8217;d have to say that the half hour slots of the developer track were probably a little too short in some cases and the conference was lacking in real, hands on, practical tech sessions.</p>
 <p>One final thing that can&#8217;t go without mention; <a href="http://diggnation.com">Diggnation</a>. I had no idea what this was all about and quite frankly I&#8217;m not sure I do now. I&#8217;m still carrying the mental scars. I don&#8217;t think anyone can explain that in words so, here&#8217;s the <a href="http://revision3.com/diggnation/2007-10-04London">video</a>.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/10/19/mashup-demo/">Mashup Demo</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-10-19T00:00:00+01:00" pubdate data-updated="true">Oct 19<span>th</span>, 2007</time>
-        
-         | <a href="/2007/10/19/mashup-demo/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><em>Long time no post. Lots of excuses, time away (including a holiday) and work catching up with me. Hopefully expect a few quick fire posts to catch up and then back to normal.</em></p>
-<p>I was in London a couple of weeks back, mainly to help out at <a href="http://futureofwebapps.com"><span class="caps">FOWA</span></a> (which can get it&#8217;s own post) but also to generally catch up with lots of people about interesting stuff. After using my Monopoly knowledge of London to find the apple store (something some <a href="http://www.thecssdiv.co.uk/">Londers</a> <a href="http://twitter.com/rossbruniges/statuses/307080542">took issue with</a>) I heard about an event round the corner thanks to the magic of the internets (in this case <a href="http://twitter.com">Twitter</a>, <a href="http://upcoming.org">Upcoming</a> and <a href="http://www.builtbydave.co.uk/">Dave Stone</a>).</p>
-<p><a href="http://www.mashupevent.com/event/mashup-demo">Mashup Demo</a> was billed as &#8220;a simple and effective way for startups, growing businesses, enterprises and corporates to present themselves to an audience of professionals who would include:- investors, media journalists and bloggers, potential partners and industry influencers&#8221;. When first chatting with one of the exhibiting companies they looked me up and down and said &#8220;so, are you a blogger?&#8221;. Apparently I didn&#8217;t look much like a VC. Who knew?</p>
-<p>Fifteen lightning presentations made up the bulk of the event, with me taking notes using my handy N800 (another blog post probably), and then followed a good amount of time to wander about and chat with everyone, probably about 100 people all in all. The companies presenting represented lots of the <em>hot topics</em> at the moment shall we say. Anyone not mentioning mobile, or social networking (or both!) had come to the wrong party.</p>
-<p>Local Search had a strong showing from <a href="http://welovelocal.com">welovelocal.com</a>, <a href="http://www.rummble.com">Rumble</a>, and <a href="http://www.tipped.co.uk">tipped.co.uk</a>. The thorny problem of local was one of the really interesting discussion topics at the <a href="http://open.bbc.co.uk/labs/"><span class="caps">BBC</span> innovation labs</a> earlier in the year and it&#8217;s good to see interesting ideas of how to solve it. Although personally I don&#8217;t need <em>another</em> social network and also want to be able to define what I mean by local (not just be given a location, or have it based on a pool of friends, or whatever the latest looking glass is).</p>
-<p>Identity was suprisingly popular with both <a href="http://www.bondaii.com">Bondai</a> and <a href="http://www.meecard.com/">meecards</a> talking up their applications. Obviously with all the cool kids playing with <a href="http://openid.net/">OpenId</a> and the alpha geeks tinkering with <a href="http://oauth.net/">OAuth</a> identity is technologically interesting, but both these companies have spotted commercial opportunities as well. Be interesting to see how this all plays out. I&#8217;ve rambled on before about what I called Banks for Data (as apposed to money, which is just data anyhow when you think about it) but not really considered early movers and entrepreneurs in this sector.</p>
-<p>A couple of interesting takes on agregators dropped in as well.<br />
-<a href="http://fav.or.it/">fav.or.it</a> was pitched as trying to popularise feeds for everyone else, but looked to me to actually be more of a useful tool for the information hungry crowd. It&#8217;s innovative features (inline commenting looked nice) would likely not be that interesting to people with only a few feeds and a few minutes but for people with hundreds of feeds look interesting. <a href="http://www.magpie.net/brandwatch.html">Brandwatch</a> was similar to an idea a friend and me kicked around a while back, but never put together. Simply put it finds stories relating to your brand (company, product, whatever) and ascertains the importance and whether it&#8217;s positive or negative. You can then track all that over time with useful graphs and charts and the like. At the moment they are indexing about 500,000 sites and it still uses some manual filtering I think. Even so I know of clients past who would definately find the service offered interesting.</p>
-<p>A few others caught my eye; an ad network for bloggers based on their blog rolls called <a href="http://www.rollsense.com/">rollSense</a>, a service simliar to <a href="htp://slideshare.com">slideshare</a> but for business documents called &#8220;Edocr&#8221;:&quot;http://www.edocr.com/ and <a href="http://testcard.tv">testcard.tv</a>. Testcard.tv does some really pretty impressive agregation, stitching and searching of online video. Sort of a glimpse of the future, but probably not as pretty. Optimising that for the Wii or PS3 (or keyboard/remote control) would be awesome.</p>
-<p>After chatting with a few of the companies, and other people in the crowd, I popped for sushi with the aforementioned Dave for discussions of the freelance life I&#8217;ve got myself in to. The event was pretty darn interesting. That the companies presenting were, for the majority, proper startups was interesting. And the fact the whole event was geared around product centric companies and the surrounding eco-system interested me. I get to similar business events up and around newcastle, but these tend to be more service company orientated it seems. All in all Mashup Demo kicked my stay down in London off nicely.</p></div>
   
   
 

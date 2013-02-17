@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="Django settings files are pretty interesting. Rather than being written in some sort of purely declarative markup they just use Python. This brings &hellip;">
+  <meta name="description" content="The previous Django settings tip seemed to go down well so I thought I&#8217;d jot down a few more over the next few weeks. Most of these have come &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,61 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/15/let-you-sys-admin-override-your-django-settings/">Let You Sys Admin Override Your Django Settings</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-15T00:00:00+00:00" pubdate data-updated="true">Feb 15<span>th</span>, 2009</time>
+        
+         | <a href="/2009/02/15/let-you-sys-admin-override-your-django-settings/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The previous <a href="http://morethanseven.net/2009/02/11/django-settings-tip-setting-relative-paths/">Django settings tip</a> seemed to go down well so I thought I&#8217;d jot down a few more over the next few weeks. Most of these have come out of working with a decent sized Django team at <a href="http://thisisglobal.com">Global</a> so I can&#8217;t take credit for anything but writing them down for the most part. For this example I think <a href="http://alixandalex.com/obfuscated-signatures/">Alex Knowles</a> did the original version.</p>
+<p>I was talking with out friendly <a href="http://search.cpan.org/~rclamp/">sys</a> <a href="http://www.unixdaemon.net/">admins</a> on Friday about a new application and whether they were happy with some application specific logging (using the Python logging module) I&#8217;d build in. Nothing fancy, just application logging to a rotated log file for system events. Their answer was yes, as long as they could control where the log files ended up and the maximum file size, ideally without having to play around in the code or to redeploy the application if they wanted to move the files elsewhere.</p>
+<p>These things were already specified in the settings file rather than hardcode into the application but that only gets us half way. The standard Linux way of setting this sort of thing is with a configuration file stored in the /etc directory. So we ended up with the following snippet of code in our settings.py file.</p>
+<pre># we're going to allow overriding of settings via a yml file.
+# This makes live nicer for anyone managing the box
+# and means settings can be overloaded without redeploying the site
+SETTINGS_OVERIDE = "/etc/application_name.yml"
+try:
+    file = open(SETTINGS_OVERIDE)
+    for key, value in yaml.load(file).items():
+        globals()[key]=value
+except:
+    # we don't always have the file around or need the setting 
+    # defined so best to be quite if things go wrong
+    pass</pre>
+<p>Then in the yaml file you can simply clobber any of the settings using a simple name value pair approach.</p>
+<pre>LOG_FILE: "/var/log/application_name.log"</pre>
+<p>It lets us keep production paths that might change out of the developers code, at the same time as giving the sys admins a familiar way of managing the production environment.</p>
+<p>It does have one downside, if you&#8217;re not aware of it&#8217;s presence then it can make debugging settings related issues a pain. With that in mind you could wrap it so as to only work this way when <span class="caps">DEBUG</span> is False, or take the approach here which is to leave extensive comments.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -487,57 +542,6 @@ if __name__ == "__main__":
 
 
   <div class="entry-content"><p><a href="http://code.google.com/p/jsonpickle">Jsonpickle</a> is a Python library for serializing any arbitrary object graph into <span class="caps">JSON</span>. The advantage over something like simplejson is the <em>arbitrary</em> part, simplejson throws errors when you try and serialize some types of objects. I also prefer the jsonpickle <span class="caps">API</span> (encode, decode) over simplejson (dump, dumps, load, loads).</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/01/28/git-issue-tracking/">Git Issue Tracking</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-01-28T00:00:00+00:00" pubdate data-updated="true">Jan 28<span>th</span>, 2009</time>
-        
-         | <a href="/2009/01/28/git-issue-tracking/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://wiki.github.com/schacon/ticgit">TicGit</a> looks great. I love command line apps and have been looking for something like this for a while. It&#8217;s described as a:</p>
-<blockquote>
-<p>Git based distributed ticketing system, including a command line client and web viewer</p>
-</blockquote>
-<pre>#&gt;ti list
-     # TicId  Title                     State Date  Assgn    Tags                
---------------------------------------------------------------------------------
-*    1 9ebd07 add attachment to ticket  open  03/22 schacon  attach,feature      
-     2 6ca8be download attached file    open  03/22 schacon  attach,feature      
-     3 bec8e9 add a milestone           resol 03/22 schacon  feature,milestone,ne
-     4 9b83ea general tag management    open  03/22 schacon  feature,tags        
-     5 94f24e show expanded comments    open  03/22 schacon  feature,ticket      
-     6 f3dd9b remove a ticket           open  03/22 schacon  feature,ticket      
-     7 e1629e improved cli support      open  03/22 schacon  cli,feature   </pre>
-<p>Perfect for my pet projects or working with like minded folk.</p></div>
   
   
 
