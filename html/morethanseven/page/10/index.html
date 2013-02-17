@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="Asteroid is a simple web interface for running scripts and recording the results. It&#8217;s like a much simpler and more general purpose version of &hellip;">
+  <meta name="description" content="With the release candidate for Django 1.1 out the door I decided to have a quick look at what&#8217;s new. This isn&#8217;t a complete list, rather &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,64 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/23/whats-new-django-11/">What&#8217;s New in Django 1.1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-23T00:00:00+01:00" pubdate data-updated="true">Jul 23<span>rd</span>, 2009</time>
+        
+         | <a href="/2009/07/23/whats-new-django-11/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>With the <a href="http://www.djangoproject.com/weblog/2009/jul/21/rc/">release candidate for Django 1.1</a> out the door I decided to have a quick look at what&#8217;s new. This isn&#8217;t a complete list, rather the bits I found most interesting.</p>
+<h2><a href="http://docs.djangoproject.com/en/dev/topics/conditional-view-processing/">Conditional Views</a></h2>
+<blockquote>
+<p>Django now has much better support for conditional view processing using the standard ETag and Last-Modified <span class="caps">HTTP</span> headers. This means you can now easily short-circuit view processing by testing less-expensive conditions. For many views this can lead to a serious improvement in speed and reduction in bandwidth.</p>
+</blockquote>
+<p>A nice set of decorators for dealing with ETags and Last-Modified headers. Again very simple to use and set up, and a simple way of squeezing a little more performance out of you application.</p>
+<h2><a href="http://docs.djangoproject.com/en/dev/ref/contrib/admin/actions/#ref-contrib-admin-actions">Admin Actions</a></h2>
+<blockquote>
+<p>The basic workflow of Django’s admin is, in a nutshell, “select an object, then change it.” This works well for a majority of use cases. However, if you need to make the same change to many objects at once, this workflow can be quite tedious. In these cases, Django’s admin lets you write and register “actions” – simple functions that get called with a list of objects selected on the change list page.</p>
+</blockquote>
+<p>Anything that makes the admin a little more powerful and a little more flexible is a good idea in my book. Admin actions allow you to run code over multiple objects at once, simple select them with a checkbox then select an action to run. This is worth it for the delete action alone, but you can write your own actions simply enough as well (for instance for approving a batch of comments, or archiving a set or articles.)</p>
+<h2><a href="http://docs.djangoproject.com/en/dev/ref/contrib/admin/#admin-list-editable">Editable Admin List Items</a></h2>
+<blockquote>
+<p>You can now make fields editable on the admin list views via the new list_editable admin option. These fields will show up as form widgets on the list pages, and can be edited and saved in bulk.</p>
+</blockquote>
+<p>Another time saving admin addition, this time for making some fields editable from the change list rather than the object view. For quick changes, especially to boolean fields, I think this again is a nice addition.</p>
+<h2><a href="http://docs.djangoproject.com/en/dev/ref/models/options/#django.db.models.Options.managed">Unmanaged Models</a></h2>
+<blockquote>
+<p>You can now control whether or not Django creates database tables for a model using the managed model option. This defaults to True, meaning that Django will create the appropriate database tables in syncdb and remove them as part of reset command. That is, Django manages the database table’s lifecycle. If you set this to False, however, no database table creating or deletion will be automatically performed for this model. This is useful if the model represents an existing table or a database view that has been created by some other means.</p>
+</blockquote>
+<p>I particularly like this addition. One of the issues I had with Django was some of the built in assumptions, in particular that you&#8217;d be using a <span class="caps">SQL</span> database backend. Using unmanaged models looks like a great approach to using an alternative database like couchdb, tokyotyrant or mongodb or representing a webservice interface in your application.</p>
+<p>I&#8217;m sure I&#8217;ll have missed a few other interesting changes or additions. Anyone else have a favourite?</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -573,66 +631,6 @@ h2 {
 <p><object style="margin:0px" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=messagequeues-090611064000-phpapp01&stripped_title=message-queues-for-web-applications" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=messagequeues-090611064000-phpapp01&stripped_title=message-queues-for-web-applications" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object></p>
 <p>I got lots of good questions from interested people and by the sounds of things it had the desired effect &#8211; for people unfamiliar with using a message queue to go out and have a play with some of the cool software available to solve your problems.</p>
 <p>Overall the night was definitely a success. Suitably geeky conversations. A chance to meet new people as well as old friends. Good job <a href="http://www.thatcanadiangirl.co.uk/">Vero</a> and <a href="http://blog.fatbusinessman.com/">David</a> for organising the event and here&#8217;s to the next one.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/06/10/how-decide-your-next-programming-language/">How to Decide on Your Next Programming Language</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-06-10T00:00:00+01:00" pubdate data-updated="true">Jun 10<span>th</span>, 2009</time>
-        
-         | <a href="/2009/06/10/how-decide-your-next-programming-language/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://neilcrosby.com/">Neil Crosby</a> got me thinking yesterday about which language to learn/play with next by <a href="http://twitter.com/NeilCrosby/statuses/2090500164">tweeting</a></p>
-<blockquote>
-<p>so, lovely people of the interwebs. What webly language should I be spending my time learning then? Right now, I&#8217;m all about the <span class="caps">PHP</span>.</p>
-</blockquote>
-<p>Neil appears to have gone for Python, but more specifically I&#8217;m interested in how you decide what to learn next? And improving the likelihood of you seeing it through and being able to add it to you toolbox. Personally I&#8217;ve messed around with a wide range of languages but I would say I&#8217;m proficient in only a few of those.</p>
-<p>So here goes with a list of questions to ask yourself.</p>
-<ul>
-	<li>Do you have a small pet project you can use the new language on straight away?</li>
-	<li>Is the language increasing or decreasing in popularity?</li>
-	<li>Does the language overlap with what you already know in terms of applicability?</li>
-	<li>Is it a different style of programming to what you&#8217;re used to? Say a pure functional language if all you normally do is object orientated.</li>
-	<li>Is the language in demand in the jobs market? If not why not?</li>
-	<li>Could you use the language in your current job if you were allowed to?</li>
-	<li>What are the learning materials like? Are there books or websites that teach the language without passing on bad practices.</li>
-	<li>What is the community around a language like? Do they have an <span class="caps">IRC</span> room where beginners can ask questions without being mocked?</li>
-	<li>Does the language have an interactive mode? Sorry but I find anything without to be a chore to learn.</li>
-	<li>What is it going to cost you in terms of time? Remember some languages are bigger that others.</li>
-	<li>What is it going to cost you in terms of money? Do you need specialist software, or hardware, or licenses?</li>
-	<li>Do you have friends or acquaintances who use the language and who will help you out with pointing you in the right direction of resources or helping review your code?</li>
-	<li>Do you have somewhere you can go to meet other people who write the language. That might be a formal user group or it might just be a more general pub meetup that you know a few people attend.</li>
-	<li>How is the language represented on GitHub? Seeing what other people build and being able to read working code is hugely useful when learning anything.</li>
-</ul>
-<p>I don&#8217;t think all of these apply to everyone or apply all the time, but it&#8217;s worth considering and rejecting them when they don&#8217;t.</p>
-<p>Feel free to disagree in the comments or, even better, add extra ones. Or alternatively just cut to the chase and tell me what I should learn next.</p></div>
   
   
 

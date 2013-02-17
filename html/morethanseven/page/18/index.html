@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I&#8217;ve not written anything here for a good few weeks, my tweeting has slowed down some and I&#8217;m behind on my feed reading. I&#8217;m going &hellip;">
+  <meta name="description" content="A short break from blogging ends with a new site design. As with all these things their will no doubt be a few kinks still to work out and I&#8217;ll &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,45 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/08/31/django-powered/">Django Powered</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-31T00:00:00+01:00" pubdate data-updated="true">Aug 31<span>st</span>, 2008</time>
+        
+         | <a href="/2008/08/31/django-powered/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A short break from blogging ends with a new site design. As with all these things their will no doubt be a few kinks still to work out and I&#8217;ll be adding to the design a little over the coming months. The main reason for all this change? A move to a custom <span class="caps">CMS</span> build using Django. This was something of an excuse to play around with Django outside <a href="http://www.gcapmedia.com/">work</a> and I&#8217;m pretty happy with the results. I have all the bits of wordpress I actually used, plus a few bits I didn&#8217;t have before. More importantly I have something I want to hack on. Wordpress is a kick ass blogging tool, but keeping it updated or adding new features never seemed much like fun.</p>
+<p>It seems like it&#8217;s the week for Django related site launches in the UK. We released the <a href="http://www.capitalradio.co.uk/">new Capital Radio site</a> on the world last week and Nat beat me by a day or so with <a href="http://natbat.net/">her new Django powered site</a>. Look for more in the future too I would wager.</p>
+<p>I have a whole range of posts brewing about what I found out along the way, both building a personal blog and building a large site with a big team. Keeping up with the bleeding edge of Django ahead of the 1.0 release took some doing (I&#8217;m running the latest Trunk release here at the moment). Deciding to use a combination of <a href="http://pypi.python.org/pypi/Spawning/0.7">Spawning</a> and <a href="http://nginx.net/">Nginx</a> for serving is a nice break from Apache as well. But that is all for later when I have a little more time.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -529,47 +568,6 @@ end</code></pre>
 <p>At present haml is very much pitched at the Rails community from whence it came. Many of the examples demonstrate benefits compared to <span class="caps">ERB</span>, and haml is of course written in Ruby and available as a Rails plugin. Being perceived as part of that community has obvious benefits but also some subtle costs, in particular regarding those people that don&#8217;t like Rails very much.</p>
 <p>I&#8217;m not really convinced of the benefits in all fairness. The <em>something else to learn</em> barrier only gets magnified when working within a team environment. You now have to train new recruits of whatever skill level in another syntax. One that they might be able to write quickly enough but can they understand from the briefest of glances at a template? <span class="caps">HTML</span> might not be great here but it is familiar to everyone. Their is also the programmers abstraction. What if I can&#8217;t get the markup I want out the other side of the black box? Yes it&#8217;s open source so I can hack the box open but that causes even more problems. And while I quite like meaningful whitespace (for instance in Python), in templates which fail if it&#8217;s not quite right I see a major problem for those whom a text editor is not their best friend.</p>
 <p>I am however interested to see whether the problems people have with haml are with haml in particular or with the overall approach of alternative syntax&#8217;s for <span class="caps">HTML</span> and <span class="caps">CSS</span>. Are DSLs (Domain Specific Languages) needed for <span class="caps">CSS</span> and <span class="caps">HTML</span>? and if so is this a possible avenue for innovation on top of slow moving standards?</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/04/06/git-ditz-and-microformats/">Git, Ditz and Microformats</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-04-06T00:00:00+01:00" pubdate data-updated="true">Apr 6<span>th</span>, 2008</time>
-        
-         | <a href="/2008/04/06/git-ditz-and-microformats/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I finally got round to making use of <a href="http://git.or.cz/">Git</a>, the distributed source code management tools much loved by Open Source projects like the Linux Kernel and now Ruby on Rails. It had been on the long list of things to have a look at for quite a while but for the majority of my personal projects <span class="caps">SVN</span> is just fine. The reason that led me to finally run <em>sudo port install git-core</em> was the new <a href="http://ditz.rubyforge.org/">Ditz</a> command line issue tracking software release on <a href="http://gitorious.org/projects/ditz">Gitorious</a> by <a href="http://cs.stanford.edu/people/wmorgan/">William Morgan</a>.</p>
-<p>Now, a command line issue tracker is maybe kind of niche and a little geeky. But most desktop or web based issue trackers just seem to wind me up and I like small tools that fit in with my command line centric workflow. I managed to clone <a href="http://gitorious.org/projects/ditz/repos/ditz-microformats">my own copy</a> of Ditz to have a play with. I ran into a few initial problems but nothing a <a href="http://www.kernel.org/pub/software/scm/git/docs/tutorial.html">good tutorial</a> and a <a href="http://groups.google.com/group/gitorious">helpful mailing list</a> couldn&#8217;t fix.</p>
-<p>I&#8217;m not just playing around either; Ditz comes with the nice ability to generate a set of static <span class="caps">HTML</span> files representing your issue database. I&#8217;ve committed and pushed a few modifications and enhancements onto my clone &#8211; mainly validation, semantic markup improvements and a smattering of microformats (work in progress) in the templates and a couple of markup generation helpers in the Ruby code. I plan on working up the interface a little as well but like any good web designer I&#8217;m starting with the underlying markup structure.</p>
-<p>A few other enhancements I&#8217;d love to see in Ditz or a clone I could pull from include the ability to use  <a href="http://www.sqlite.org/">SQLite</a> rather than the default <span class="caps">YAML</span> for larger projects, automatic generation of <span class="caps">RSS</span> feeds alongside the <span class="caps">HTML</span> (although I&#8217;ve started implementing hAtom) and maybe automated deployment to a remote host over <span class="caps">FTP</span> or <span class="caps">SSH</span>.</p>
-<p>The distributed nature of Git appears to be pushed as the main advantage to those developers taking a look. But I think this is, in many cases, is not <em>that</em> important compared to the familiarity that comes from having used <span class="caps">SVN</span> or similar for a while. What I think just might be it&#8217;s real strength is that Git is a <strong>social source control system</strong>. For Open Source projects like Ditz this is a potentially game changing move. The ease with which anyone can contribute and take things in strange directions without affecting the overall effort is fantastic. It removes barriers to entry for contributors and means making small quick changes is much easier and more immediate. With both Gitorious and <a href="http://github.com/">Github</a> wrapping Git in a shiny web based interface that focuses on these social aspects it will be interesting to see if this leads to more or faster Open Source collaboration efforts.</p></div>
   
   
 

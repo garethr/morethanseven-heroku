@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="This blog post is mainly an excuse to use the pun in the title. It&#8217;s also an opportunity to tell folks that don&#8217;t already know I&#8217;ll &hellip;">
+  <meta name="description" content="I&#8217;ve been playing with Rundeck recently. For those that haven&#8217;t seen it yet it&#8217;s an application for running commands across a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,51 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/09/11/Rundeck-and-nagios-nrpe-checks/">Rundeck and Nagios Nrpe Checks</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-11T00:00:00+01:00" pubdate data-updated="true">Sep 11<span>th</span>, 2011</time>
+        
+         | <a href="/2011/09/11/Rundeck-and-nagios-nrpe-checks/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve been playing with <a href="http://rundeck.org/">Rundeck</a> recently. For those that haven&#8217;t seen it yet it&#8217;s an application for running commands across a cluster of machines and recording the results. It has both a command line client and a very rich web interface which boths allows you to trigger commands and shows the results.</p>
+<p>I&#8217;ve played with a few different jobs so far, including triggering Puppet runs across machines triggered by a Jenkins plugin. I&#8217;ve also been looking at running all my monitoring tasks at the click of a button (or again as part of a smoke test triggered by Jenkins) and I thought that might make a nice simple example.</p>
+<p>My checks are written as Nagios plugins, and run periodically by Nagios. I also trigger them manually, using Dean&#8217;s <a href="http://www.unixdaemon.net/tools/commandline/introducing-nrpe-runner.html"><span class="caps">NRPE</span> runner script</a>.</p>
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRiJoQIM" alt="Rundeck showing a job output"/></p>
+<p>The above shows a successful run across a few machines I use for experimenting with tools. Hopefully you can see the summary of the run on each of the four machines, each ran five <span class="caps">NRPE</span> checks and all passed. On failure we&#8217;d see the results as well as different symbols and colous. We can easily save the output to a file if we need to, rerun or duplicate the job (maybe to have it run against a different group of machines) or we can export the job definition file to load into another instance.</p>
+<p>The same job can also be run on the command line (which makes use the of Rundeck <span class="caps">API</span>)</p>
+<pre>./run -j "Run NRPE checks" -p PRGMR</pre>
+<p>This example shows running a specific pre-defined job, but it&#8217;s also equally possible to fire of adhoc commands to some or all of the machines rundeck knows about.</p>
+<p>One thing in particular that I prefer about this approach to say using Capistrano or Fabric for remote execution tasks is that you have a centralised authentication and logging capability. It would be easy enough to encapsulate the jobs into cap or fabric tasks (and manage that in source control) which means you&#8217;re not stuck if Rundeck isn&#8217;t available.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -606,52 +651,6 @@ LOGGING = {
 <pre>add_header Vary Accept-Encoding;</pre>
 <p>I&#8217;d assumed that enabling gzip compression with gzip_vary would have set this automatically and never checked. The way RedBot provides a checklist of recommendations is very handy.</p>
 <p>As well as checking the page itself you can also check all the assets associated with a page by adding a query string argument. For instance here is the <a href="http://redbot.org/?descend=True&amp;uri=http://www.vagrantbox.es">assets view for Vagrantbox.es</a>. RedBot also provides a <a href="http://redbot.org/?id=o5GXZe&amp;descend=True&amp;format=har"><span class="caps">JSON</span> encoded version of the result</a> which might be useful in a CI system. If you&#8217;d rather run your own instance of the software you can, the code can be found on github at <a href="http://mnot.github.com/redbot/">mnot.github.com/redbot/</a>. It currently doesn&#8217;t work with <span class="caps">HTTPS</span> resources but that&#8217;s about the only thing I&#8217;d like to see added.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2011/05/15/Python-on-cloudfoundry/">Python on Cloudfoundry</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-05-15T00:00:00+01:00" pubdate data-updated="true">May 15<span>th</span>, 2011</time>
-        
-         | <a href="/2011/05/15/Python-on-cloudfoundry/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>For those that haven&#8217;t yet had a look <a href="http://cloudfoundry.com/">Cloudfoundry</a> from VMware is two things, one of which is nice, one of which is very cool indeed:</p>
-<ul>
-	<li>On one hand it&#8217;s a platform as a service, allowing you to easily deploy Ruby, Java and Node.js applications to <a href="http://cloudfoundry.com/">cloudfoundry.com</a>.</li>
-	<li>On the other hand it&#8217;s an <a href="http://cloudfoundry.org/">open source project</a> with all the code on <a href="http://github.com/cloudfoundry">Github</a> allowing you to run the entire stack wherever you like.</li>
-</ul>
-<p>I&#8217;m pretty interested in the latter. Its <span class="caps">API</span> could in theory become a defacto standard for application and service buildouts, in the same way as we&#8217;re seeing the EC2 <span class="caps">API</span> expand outside <span class="caps">AWS</span> for managing infrastructure (and arguably how we&#8217;re using Chef and Puppet for managing the things installed on that infrastructure). The really interesting bit is the fact it&#8217;s all open source. Not only does that mean you can run it on your own infrastructure (including as I&#8217;m doing on a virtual machine on my laptop), but it&#8217;s also designed so new services (like Redis, MySQL, RabbitMQ), new runtimes (like Ruby 1.8, RUby 1.9, Java) and new frameworks (like Rails, Sinatra, Spring) can be added easily.</p>
-<p>I&#8217;m running vcap on a <a href="http://vagrantup.com">vagrant</a> managed VirtualBox instance, but you could install it anywhere you like. I used <a href="https://github.com/auser/cloudfoundry-quickstart">these chef recipes</a> to get everything installed. I ran into an issue with the mysql service not starting correctly that <a href="https://github.com/auser/cloudfoundry-quickstart/pull/2">I fixed</a> and I needed to manually install chef into the rvm gemset part way through the install, but the recipes pretty much just worked.</p>
-<p>Looking for an excuse to have a route through the vcap code I decided to see if I could add rudimentary support for Python applications. After a day of noodling around I&#8217;ve forked the code and sent a few pull requests back with it basically working. This required changes to the <a href="https://github.com/cloudfoundry/vmc/pull/18">vmc client</a>, to the <a href="https://github.com/cloudfoundry/vcap/pull/57">vcap service</a> and like all good open source contributions to the <a href="https://github.com/cloudfoundry/vcap-tests/pull/4">test suite</a>.</p>
-<p>Thanks hugely to existing pull requests (mainly the one&#8217;s for <a href="https://github.com/cloudfoundry/vcap/pull/25">adding <span class="caps">PHP</span> support</a>) it&#8217;s not taken long at all. The Sinatra and Rails support which shipped with the first release from VMWare supports using Bundler to define gem dependencies that can be pulled in at deploy time. It shouldn&#8217;t be too much effort I&#8217;m hoping to do the same for using pip and virtualenv for each deployed python application. I think I can also see how to support python3 and how to add django as a supported framework.</p>
-<p>I had huge fun, but you might not at this early stage in the project. I&#8217;m relatively happy with reading and writing Ruby, futzing with rvm, debugging installation woes and hunting down service configuration problems. The best tool for working out what was happening was generally tailing the logs in /tmp/vcap-run/ and finding the code that wrote a given message. If you just want something to work I&#8217;d wait a little while, if you like the sound of the above it&#8217;s a pretty nice codebase to play around in. I&#8217;d love to eventually see some official contributor documentation and some hints and tips on things like running the tests. At the moment flicking through reported issues and pull requests on GitHub is the best place to start.</p></div>
   
   
 

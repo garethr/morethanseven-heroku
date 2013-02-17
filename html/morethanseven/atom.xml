@@ -4,7 +4,7 @@
   <title><![CDATA[Morethanseven]]></title>
   <link href="http://www.morethanseven.net/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2013-02-17T17:15:21+00:00</updated>
+  <updated>2013-02-17T17:23:57+00:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -12,6 +12,20 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[March madness]]></title>
+    <link href="http://www.morethanseven.net/2013/02/17/march-madness/"/>
+    <updated>2013-02-17T17:17:00+00:00</updated>
+    <id>http://www.morethanseven.net/2013/02/17/march-madness</id>
+    <content type="html"><![CDATA[<p>With only a week or so to go before the end of February, it&#8217;s looking like March might be a little busy.</p>
+<ul>
+	<li>I&#8217;m speaking at QCon, in London on Wednesday 6th on <a href="http://qconlondon.com/london-2013/presentation/Clouds%20in%20Government%20-%20Perils%20of%20Portability">Clouds in Government &#8211; Perils of Portability</a> (which in hindsight is probably the silliest title for a talk I&#8217;ve ever used)</li>
+	<li>On the 15th and 16th of March I&#8217;ll be at <a href="http://devopsdays.org/events/2013-london/">Devopsdays</a>, again in London. I&#8217;ve been helping out with organising the event and I&#8217;m very much looking forward to going along after seeing all the work being put in.</li>
+	<li>And last but not least I&#8217;m heading to Boston for the rather exciting <a href="http://monitorama.com/">Monitorama</a> from the 26th until the 30th. Looking forward to meeting up in person with quite a few folks I&#8217;ve spoken to over the last year or two.</li>
+</ul>
+<p>If you&#8217;re going to be at any of these events (QCon and Devopsdays still have tickets available I think) then let me know.</p>]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Going fast in government]]></title>
@@ -499,22 +513,6 @@ end
 {"_id"=&gt;"LongerPublication", "value"=&gt;{"type"=&gt;"LongerPublication", "count"=&gt;12.0, "published"=&gt;10.0}}]
 </pre>
 <p>I&#8217;ve been pretty impressed with both Mongo and Mongoid here. I like the feel of mapreduce jobs for this sort of reporting task. In particular it&#8217;s suprising how writing two languages mixed together like this doesn&#8217;t really affect the readability of the code in my view. Given that with a relational database you&#8217;d probably be writing <span class="caps">SQL</span> anyway maybe that&#8217;s not that suprising &#8211; the syntactic differences between Javascript and Ruby are much smaller than pretty much anything and <span class="caps">SQL</span>. Lots of folks have written about the increase of polyglot programming, but I wonder if we&#8217;ll see an increase in the embedding of one language in another?</p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rundeck And Nagios Nrpe Checks]]></title>
-    <link href="http://www.morethanseven.net/2011/09/11/Rundeck-and-nagios-nrpe-checks/"/>
-    <updated>2011-09-11T00:00:00+01:00</updated>
-    <id>http://www.morethanseven.net/2011/09/11/Rundeck-and-nagios-nrpe-checks</id>
-    <content type="html"><![CDATA[<p>I&#8217;ve been playing with <a href="http://rundeck.org/">Rundeck</a> recently. For those that haven&#8217;t seen it yet it&#8217;s an application for running commands across a cluster of machines and recording the results. It has both a command line client and a very rich web interface which boths allows you to trigger commands and shows the results.</p>
-<p>I&#8217;ve played with a few different jobs so far, including triggering Puppet runs across machines triggered by a Jenkins plugin. I&#8217;ve also been looking at running all my monitoring tasks at the click of a button (or again as part of a smoke test triggered by Jenkins) and I thought that might make a nice simple example.</p>
-<p>My checks are written as Nagios plugins, and run periodically by Nagios. I also trigger them manually, using Dean&#8217;s <a href="http://www.unixdaemon.net/tools/commandline/introducing-nrpe-runner.html"><span class="caps">NRPE</span> runner script</a>.</p>
-<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRiJoQIM" alt="Rundeck showing a job output"/></p>
-<p>The above shows a successful run across a few machines I use for experimenting with tools. Hopefully you can see the summary of the run on each of the four machines, each ran five <span class="caps">NRPE</span> checks and all passed. On failure we&#8217;d see the results as well as different symbols and colous. We can easily save the output to a file if we need to, rerun or duplicate the job (maybe to have it run against a different group of machines) or we can export the job definition file to load into another instance.</p>
-<p>The same job can also be run on the command line (which makes use the of Rundeck <span class="caps">API</span>)</p>
-<pre>./run -j "Run NRPE checks" -p PRGMR</pre>
-<p>This example shows running a specific pre-defined job, but it&#8217;s also equally possible to fire of adhoc commands to some or all of the machines rundeck knows about.</p>
-<p>One thing in particular that I prefer about this approach to say using Capistrano or Fabric for remote execution tasks is that you have a centralised authentication and logging capability. It would be easy enough to encapsulate the jobs into cap or fabric tasks (and manage that in source control) which means you&#8217;re not stuck if Rundeck isn&#8217;t available.</p>]]></content>
   </entry>
   
 </feed>

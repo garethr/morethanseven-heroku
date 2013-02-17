@@ -9,8 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="Ok, so I&#8217;ve been shopping again but I&#8217;ll try and make this post a little more useful that oh, look at my shiny new toy.
-I decided that &hellip;">
+  <meta name="description" content="Drew posted a while ago asking can-your-website-be-your-api. The simple idea is that you just might be able to live without a dedicated API in favour &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +80,60 @@ I decided that &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/04/07/working-example-of-microformats-as-an-api/">Working Example of Microformats as an API</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-07T00:00:00+01:00" pubdate data-updated="true">Apr 7<span>th</span>, 2007</time>
+        
+         | <a href="/2007/04/07/working-example-of-microformats-as-an-api/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://allinthehead.com/">Drew</a> posted a while ago asking <a href="http://allinthehead.com/retro/301/can-your-website-be-your-api">can-your-website-be-your-api</a>. The simple idea is that you just might be able to live without a dedicated <span class="caps">API</span> in favour of good use of microformats.</p>
+<p>It also turns out <a href="http://tantek.com/">Tantek</a> has also been on the case with his presentation <a href="http://tantek.com/presentations/20040928sdforumws/semantic-xhtml.html">Can your website be your <span class="caps">API</span>? &#8211; Using semantic <span class="caps">XHTML</span> to show what you mean</a> and</p>
+<p><a href="http://www.glennjones.net">Glenn</a> has <a href="http://www.webdd.org.uk/ViewSession.aspx?SessionID=60">spoken on the subject too</a> at <a href="http://www.webdd.org.uk">WebDD</a> and <a href="http://barcamp.org/BarCampLondon2">BarCamp</a>.</p>
+<p>This has interested me for a while and I&#8217;ve finally gotten around to writing some code, in fact I wrote the bulk of it during <a href="http://thehighlandfling.com/2007/">The Highand Fling</a> and then the rest before the <a href="http://refreshedinburgh.com/">Refresh</a> event after I got to te venue an hour early.</p>
+<p>I used Drew&#8217;s <a href="http://allinthehead.com/hkit">hKit</a> for the microformat parsing so everything that follows is PHP5 only I&#8217;m afraid. The also means I dont have a working example on this server at the moment but you can <a href="http://morethanseven.net/_assets/downloads/microformatsapi/microformatsapi.zip">grab the code</a> and try it out yourself. It also makes use of a couple of <a href="http://pear.php.net"><span class="caps">PEAR</span></a> modules; <span class="caps">PEAR</span> <a href="http://pear.php.net/package/Validate">Validate</a> and <span class="caps">PEAR</span> <a href="http://pear.php.net/package/HTTP_Request">HTTP_Request</a>.</p>
+<p>At the moment I&#8217;ve worked on a simple hCard example. It demonstrates the idea of a website exposing methods based on the presense of microformats, plus using that exposed method to extract the information we&#8217;re looking for.</p>
+<p>First we create objects for the parser and the website:</p>
+<pre><code>$parser = new hKit;
+$website = new Website('http://morethanseven.net',$parser);</code></pre>
+<p>Then we&#8217;ll ask what methods the website exposes:</p>
+<pre><code>$website-&gt;expose();</code></pre>
+<p>In this example we get back an array of the available methods, in this case <em>getContacts</em>. Then just as an example lets print out some contact details:</p>
+<pre><code>foreach ($website-&gt;getContacts() as $contact) {
+   echo $contact-&gt;getFN();
+}</code></pre>
+<p>This is a very early release, more of a proof of concept and as such their is no documentation and only a portion of hCard is supported. Hell, their&#8217;s not even a name beginning with h! Having said that I have a plan for a little project to kick the tyres and so I&#8217;l l be adding to it and hopfully have a proper release at some point.</p>
+<p>The plan is to introduce methods like getReviews, getEvents, etc. which allow for the extraction of the relevant details. The part I find most interesting however is the idea of the expose method &#8211; asking a web page if it has an <span class="caps">API</span>, and if it does then what information you can extract automagically. If you&#8217;re interested let me know what you think.</p>
+<p><a href="http://morethanseven.net/_assets/downloads/microformatsapi/microformatsapi.zip">Download example</a></p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -553,44 +606,6 @@ I decided that &hellip;">
 <p>Between them they now have me interested in doing more with mobile messaging (<span class="caps">SMS</span>, <span class="caps">MMS</span>, Jabber), finding our more about eRDF, playing with Pipes, organising a Barcamp, getting some Moo cards, playing more with the flickr machine tags api and, oh, about a hundred and one other things including drinking beer (ok, that one was Ben). Consider that a partial list of the sorts of things I&#8217;m likely to post on over the next month or so.</p>
 <p>If their is anyone I have yet to add to <a href="http://flickr.com">Flickr</a>, <a href="http://upcoming.org">Upcoming</a> or <a href="http://twitter.com">Twitter</a> hopefully I&#8217;ll find you soon or feel free to drop me a line. If I missed someone sorry, probably all the sleep I&#8217;ve been trying to catch up on.</p>
 <p>This post brought to you by some of <span class="caps">XFN</span>.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/02/24/content-management-systems-a-go-go/">Content Management Systems a Go-go</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-02-24T00:00:00+00:00" pubdate data-updated="true">Feb 24<span>th</span>, 2007</time>
-        
-         | <a href="/2007/02/24/content-management-systems-a-go-go/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Well, I&#8217;m now running <a href="http://wordpress.org">WordPress</a>. I know I appear to be aimlessly flitting between content management systems on this site but it&#8217;s more of a little research project I swear. Hopefully it&#8217;s all happening pretty seemlessly for everyone reading my ramblings. This time <span class="caps">RSS</span> came to the fore, allowing me to simply export a feed of all my previous posts and import them straight into WordPress. This sort of portability is very very nice for the user. I&#8217;d love to see this sort of functionality for hierachically structured data in larger enterprise systems.</p>
-<p>I&#8217;ve got Wordpress up and running with a few choice plugins and a new theme in a couple of days which is nice. Hopefully any minor issues will be ironed out as I find them. An added bonus is comments are now back, I&#8217;ve got so many things to rave about after getting back from <a href="http://barcamp.org/BarCampLondon2">BarCamp</a> and <a href="http://futureofwebapps.com">Future of Web Apps</a> that letting anyone else point out the errors is only fair.</p></div>
   
   
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: devops | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/devops/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2013-02-17T17:15:21+00:00</updated>
+  <updated>2013-02-17T17:23:57+00:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -12,6 +12,24 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[March madness]]></title>
+    <link href="http://www.morethanseven.net/2013/02/17/march-madness/"/>
+    <updated>2013-02-17T17:17:00+00:00</updated>
+    <id>http://www.morethanseven.net/2013/02/17/march-madness</id>
+    <content type="html"><![CDATA[<p>With only a week or so to go before the end of February, it's looking like March might be a little busy.</p>
+
+<ul>
+<li>I'm speaking at QCon, in London on Wednesday 6th on "Clouds in Government - Perils of Portability":http://qconlondon.com/london-2013/presentation/Clouds%20in%20Government%20-%20Perils%20of%20Portability (which in hindsight is probably the silliest title for a talk I've ever used)</li>
+<li>On the 15th and 16th of March I'll be at "Devopsdays":http://devopsdays.org/events/2013-london/, again in London. I've been helping out with organising the event and I'm very much looking forward to going along after seeing all the work being put in.</li>
+<li>And last but not least I'm heading to Boston for the rather exciting "Monitorama":http://monitorama.com/ from the 26th until the 30th. Looking forward to meeting up in person with quite a few folks I've spoken to over the last year or two.</li>
+</ul>
+
+
+<p>If you're going to be at any of these events (QCon and Devopsdays still have tickets available I think) then let me know.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Devops Isn't A Methodology]]></title>
@@ -308,23 +326,6 @@ The following packages are currently pending an upgrade:
 <p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjxqwEM"/></p>
 
 <p>So head over to "devopsweekly.com":http://devopsweekly.com to sign up. I'm not 100% sure yet when the first issue will go out but expect it in the next few weeks, and after that I'll try and get one issue out each week. Any ideas are more than welcome, as are any news or articles that you think should go in.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Books For People Interested In Devops]]></title>
-    <link href="http://www.morethanseven.net/2010/11/07/Books-for-people-interested-in-devops/"/>
-    <updated>2010-11-07T00:00:00+00:00</updated>
-    <id>http://www.morethanseven.net/2010/11/07/Books-for-people-interested-in-devops</id>
-    <content type="html"><![CDATA[<p>Before starting with FreeAgent I decided I should spend a bit more time with Ruby and set about building something I'd been thinking about for a while. I've just launched the first one of my related pet projects so thought I better link to it from here.</p>
-
-<p><a href="http://devopsbooks.com"><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRihnAEM"/></a></p>
-
-<p>"Devops Books":http://devopsbooks.com is exactly what it sounds like; a list of books that people interested in the whole devops concept should read. It's not a complete list just yet and I'll try and keep it up to date as new interesting books get released. Any suggestions to add to the list most welcome.</p>
-
-<p>It gave me a proper excuse to use "Heroku":http://heroku.com which has been very pleasant. Under the hood it's a very simple sinatra application using the Mustache template language. The majority of the code is a build script that pulls down information from the Amazon API and mixes it with my own content. It then creates a JSON document that is used as the basis for generating the pages. I love static generators and hand rolling your own for a particular domain is often worthwhile. It means I have the json already lying around if I want to make a JSONP style badge for instance.</p>
-
-<p>I plan on using the code as a bit of learning tool. Try out some different testing approaches, maybe add in GEOIP detection, make some of the commands I'm running into Rake tasks, that sort of thing. Given how easy it will be to throw up little sites like this using the generator I have a few other similar things in mind too.</p>
 ]]></content>
   </entry>
   

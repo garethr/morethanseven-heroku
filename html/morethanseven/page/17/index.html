@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I think it&#8217;s an epic failure of web standards that CSS is the only essentially untestable technology invented in last decade &#8211; Tomasz &hellip;">
+  <meta name="description" content="I was always a fan of Rail environments and as part of some work upgrading this site to the latest version of Django I decided to clean up my whole &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/11/01/simulating-rails-environments-django/">Simulating Rails Like Environments in Django</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-01T00:00:00+00:00" pubdate data-updated="true">Nov 1<span>st</span>, 2008</time>
+        
+         | <a href="/2008/11/01/simulating-rails-environments-django/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I was always a fan of <a href="http://wiki.rubyonrails.org/rails/pages/Environments">Rail environments</a> and as part of some work upgrading this site to the latest version of Django I decided to clean up my whole deployment process. Part of that involved replacing everything in settings.py with the following snippet of code:</p>
+<pre>ENV = "development"
+try:
+    exec "from environments." + ENV + " import *"
+except ImportError:
+    print "You must specify a valid environment"
+    exit()</pre>
+<p>I now have two settings files stored in an environments module containing all the usual django settings; one for my development environment and one suitable for live. The settings.py above is for my local development environment, with only one small change for live (this file doesn&#8217;t get deployed along with the source code for the site, so doesn&#8217;t get overwritten).</p>
+<pre>ENV = 'live'</pre>
+<p>This isn&#8217;t quite the same as the Rails implementation obviously. I run completely different server setups so I&#8217;m not too bothered about a flag on the runserver command like the -e flag for mongel. I could also probably do something to autodetect the environment but this works fine for me.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -643,45 +689,6 @@ while not connected:
 
 
   <div class="entry-content"><p><a href="http://new.imified.com/developers">Imified</a> looks like an interesting way of getting started with using instant messaging bots in your applications. (<a href="http://digg.com/programming">Via</a>)</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/08/31/django-powered/">Django Powered</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-08-31T00:00:00+01:00" pubdate data-updated="true">Aug 31<span>st</span>, 2008</time>
-        
-         | <a href="/2008/08/31/django-powered/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>A short break from blogging ends with a new site design. As with all these things their will no doubt be a few kinks still to work out and I&#8217;ll be adding to the design a little over the coming months. The main reason for all this change? A move to a custom <span class="caps">CMS</span> build using Django. This was something of an excuse to play around with Django outside <a href="http://www.gcapmedia.com/">work</a> and I&#8217;m pretty happy with the results. I have all the bits of wordpress I actually used, plus a few bits I didn&#8217;t have before. More importantly I have something I want to hack on. Wordpress is a kick ass blogging tool, but keeping it updated or adding new features never seemed much like fun.</p>
-<p>It seems like it&#8217;s the week for Django related site launches in the UK. We released the <a href="http://www.capitalradio.co.uk/">new Capital Radio site</a> on the world last week and Nat beat me by a day or so with <a href="http://natbat.net/">her new Django powered site</a>. Look for more in the future too I would wager.</p>
-<p>I have a whole range of posts brewing about what I found out along the way, both building a personal blog and building a large site with a big team. Keeping up with the bleeding edge of Django ahead of the 1.0 release took some doing (I&#8217;m running the latest Trunk release here at the moment). Deciding to use a combination of <a href="http://pypi.python.org/pypi/Spawning/0.7">Spawning</a> and <a href="http://nginx.net/">Nginx</a> for serving is a nice break from Apache as well. But that is all for later when I have a little more time.</p></div>
   
   
 
