@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I&#8217;m something of a gadget fan when I think about it, and the growing ubiquity of the internet makes my life easier, as well as posing &hellip;">
+  <meta name="description" content="The growth of niche job boards took another jump today with the launch of Authentic Jobs by Cameron Moll, following on from the job boards over on &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,63 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/09/26/niche-job-boards-and-hot-skills/">Niche Job Boards and Hot Skills</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-09-26T00:00:00+01:00" pubdate data-updated="true">Sep 26<span>th</span>, 2006</time>
+        
+         | <a href="/2006/09/26/niche-job-boards-and-hot-skills/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The growth of niche job boards took another jump today with the launch of <a href="http://authenticjobs.com/">Authentic Jobs</a> by <a href="http://www.cameronmoll.com/">Cameron Moll</a>, following on from the job boards over on <a href="http://jobs.37signals.com">37signals</a> and <a href="http://jobs.joelonsoftware.com">Joel on Software</a>.</p>
+ <p>I find all this pretty interesting, not because I&#8217;m looking for job (I&#8217;m not), but more from a social research point of view. It&#8217;s the whole <a href="http://www.wired.com/wired/archive/12.10/tail.html">long tail</a> thing again, and it will be intersting to see if these things take off in other, shall we say, less geeky circumstances. Niche job boards for the building industry for instance? or insurance?</p>
+ <p>This source of focused data also gave me a chance to play with Python as a data mining tool, something I&#8217;m finding it amazingly well suited to. My background was in experimental design and analysis so I&#8217;m something of a number crunching fan deep down.</p>
+ <p>The scripts are simple and have no niceties like error handling or comments so I&#8217;m not going to post them unless someone really wants them or I get chance to clean them up. Safe to say I used the outstanding <a href="http://www.feedparser.org/">Universal Feedparser</a> module from <a href="http://diveintomark.org">Mark</a> for most of the heavy lifting.</p>
+ <p>Brief methodology was to grab the complete feeds from the three sites mentioned and dump all the contents to a file, sans markup and lowercased. I then parsed them for a short list of words &#8211; in this case programming languages and counted the results.</p>
+ <p>Well, here are a few of the tidbits of info I pulled out. This is only the start obviously, more time may mean more detailed (and accurate) research ideally with a time element thrown in.</p>
+<ul>
+ <li>C++ &#8211; 137</li>
+  <li>Java &#8211; 128</li>
+  <li><span class="caps">PHP</span> &#8211; 110</li>
+  <li>Javascript &#8211; 90</li>
+  <li>C# &#8211; 74</li>
+  <li>Flash &#8211; 52</li>
+  <li>Ruby &#8211; 43</li>
+  <li>Python &#8211; 40</li>
+  <li>Rails &#8211; 32</li>
+  <li>Actionscript &#8211; 11</li>
+</ul>
+ <p>This I found interesting. The old school (C++ and Java) might not be <em>hot</em> but their certainly seems to be a need for good programmers. Javascript being up their is <a href="http://www.quirksmode.org/blog/archives/2006/09/sxsw_panel_java.html">probably to be expected</a> but strange non the less, given where it would have been a year ago.</p>
+ <p>This obviously has myriad problems; your unlikely to use the <em>word</em> C# in a description unless your talking about programming, but you might use the word flash) and was weighted towards the <a href="http://jobs.joelonsoftware.com">Joel on Software</a> site as that both had much longer descriptions and lots more elements in the feed. Nothing about density either, so someone writing Java, Java, Java would skew the results. If I do some proper research and write it up you could get around most of these easily enough.</p>
+ <p>Anyone know of other niche job boards around so far? I&#8217;d be interested to have a look. I have a feeling recruitment is heading towards the same fate as advertising; where online advertising models are increasingly making the the old <em>do work for free and charge a percentage on the backend</em> ways nearly unworkable.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -502,47 +559,6 @@ function init() {
    YAHOO.util.Event.addListener(links, "click", clickCallback);
 }&lt;/pre&gt;</code></div>
  <p>Again you just throw in whatever you happen to be working with (in this case an array returned by <em>getElementsByTagName</em>) and everything just gets dealt with. I originally had a <em>for</em> loop, iterating over the links and adding events, then I worked out <span class="caps">YUI</span> just did it all for me if I let it. I like that. I <strong>could</strong> have done it myself. <span class="caps">YUI</span> would have let me and not complained. But if I want to delve a bit I can find cool, quick, clean ways of doing the same thing. I refactored my code, with the help of <span class="caps">YUI</span> in ten minutes. I like that, but I think I said that.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2006/07/19/more-dconstruct-craziness/">More dConstruct Craziness</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2006-07-19T00:00:00+01:00" pubdate data-updated="true">Jul 19<span>th</span>, 2006</time>
-        
-         | <a href="/2006/07/19/more-dconstruct-craziness/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Last year I missed out on <a href="http://2006.dconstruct.org/">dconstruct</a>, this year I sat and watched the timer tick down. Which didn&#8217;t help hugely as a fair few other people were doing the same thing and the site went into what appeared to be a javascript induced page request meltdown. Oh well. Everything worked out in the end, I paid my money for myself and a <a href="http://sarat.xcelens.co.uk/">colleague</a> to attend and so did 348 or so other people and it&#8217;s now sold out. Why do I get a feeling I could name half the people attending? and be about right?</p>
- <p>Their will again I&#8217;m sure be more <em>web conference as trendy holiday for web geeks and nothing else</em> conversations, but again I dont care. I haven&#8217;t had the chance to do any holidays at all for ages unless you count <a href="http://carsonworkshops.com/summit">Carson</a> and <a href="http://vivabit.com/atmedia2006">@media</a>, and I learn lots again as well.</p>
- <p>Well, I&#8217;ve fired up the <a href="http://morethanseven.net/dconstruct/">dConstruct feed thing</a> again, although I need to update the codebase with the latest version as it lacks the bits I added (like new post indicators and the stats) more recently. Give me a week or so.</p>
- <p>Much more interestingly, and entertainingly, I have to recommend the <a href="http://2006.dconstruct.org/podcast/">dConstruct Podcast</a>. I listen to podcasts on occasion, always grab talks from conferences and the like and subscribed because it was their. I didn&#8217;t expect it to be a <strong>rock and roll fourteen minutes of comedy genius</strong>. Everyone who&#8217;s been to one of <a href="http://adactio.com">Jeremy&#8217;s</a> talks or sessions will know he&#8217;s an enthusiastic and engaging presenter, but little did we know about the comic inside. Ok, so you need to know everyone, so maybe it&#8217;s a bit incestuous, but it&#8217;s still funny. Through in some more info about the upcoming event and everyone will be laughing. More of the same please.</p>
- <p>On the web design podcast front; anyone know of any good magazine style programmes on web design and development? or even better a weekly comic look at the industry?</p></div>
   
   
 

@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="Well, the year is ever so nearly over. Again. I&#8217;m sure their will be a good few round ups, I&#8217;ll probably even partake again, but thought &hellip;">
+  <meta name="description" content="Whatever you might think about image rich emails you have to admit clients are a fan, and sometimes needs must. The web, as always, comes to the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,57 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/12/06/background-images-in-email/">Background Images in Email</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-12-06T00:00:00+00:00" pubdate data-updated="true">Dec 6<span>th</span>, 2006</time>
+        
+         | <a href="/2006/12/06/background-images-in-email/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Whatever you might think about image rich emails you have to admit clients are a fan, and sometimes needs must.</p>
+ <p>The web, as always, comes to the rescue and their are a few good articles around &#8211; many of them over on <a href="http://campaignmonitor.com">campaignmonitor.com</a> including a set of <a href="http://www.campaignmonitor.com/blog/archives/2005/11/html_email_desi.html">Email Design Guidelines for 2006</a>, <a href="http://www.campaignmonitor.com/blog/archives/2005/08/optimizing_css_1.html">Optimizing <span class="caps">CSS</span> presentation in <span class="caps">HTML</span> emails</a> and the excellent <a href="http://www.campaignmonitor.com/blog/archives/2006/03/a_guide_to_css_1.html">A Guide to <span class="caps">CSS</span> Support in Email</a></p>
+ <p><a href="http://alistapart.com/">A List Apart</a> also has an <a href="http://www.alistapart.com/articles/cssemail/">older article</a> and their is some good infmation over on <a href="http://www.xavierfrenette.com">xavierfrenette.com</a> about the <a href="http://www.xavierfrenette.com/articles/css-support-in-webmail/">support in web mail clients</a>.</p>
+ <p>Another little bit of useful info I thought worth posting, after a quick conversation with a colleague, concerns the use of background images in emails.</p>
+ <p>Assuming your going down the inline styles route you might want to have something like this:</p>
+<p><code>
+&amp;lt;div style="background: url(image.jpg) top left no-repeat; width: 500px;"&amp;gt;&amp;lt;/div&amp;gt;;
+</code></p>
+ <p>But this just doesn&#8217;t work. The image doesn&#8217;t appear when the email is sent. A quick fix is to include the image inline, but hide it as much as possible with a height and width of 1px and a style of display: none.</p>
+<p><code>
+&amp;lt;img src="image.jpg" width="1px" height="1px" style="display: none;"/&amp;gt;
+</code></p>
+ <p>This throws up one of those interesting annoyances in Outlook. If you&#8217;re sending the email using Outlook the image appears twice in the editing pane, hence the 1px trick as well as the style display: none. When it&#8217;s received the style rule gets applied.</p>
+ <p>This assumes you are sending the images along with the email, rather than simply linking to them online were you dont have this problem &#8211; but do have a host of other issues with blocked images and the like.</p>
+ <p>I haven&#8217;t admittedly tested this extensively, however I&#8217;ve had a lot of luck with Outlook, which for business to business emails accouts for something like 75% of the audience according to Campaign Monitor (and probably around what I&#8217;d expect based on my experience).</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -897,63 +948,6 @@ Include /Applications/MAMP/conf/apache/virtualhosts&lt;/pre&gt;
 </table>
  <p>A few interesting things to note. I&#8217;m sure some parsing error or such has Juicy Studio scoring so highly!</p>
  <p>I&#8217;ll hopefully get round to releasing the scripts once I finish a couple of other things off.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2006/09/26/niche-job-boards-and-hot-skills/">Niche Job Boards and Hot Skills</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2006-09-26T00:00:00+01:00" pubdate data-updated="true">Sep 26<span>th</span>, 2006</time>
-        
-         | <a href="/2006/09/26/niche-job-boards-and-hot-skills/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The growth of niche job boards took another jump today with the launch of <a href="http://authenticjobs.com/">Authentic Jobs</a> by <a href="http://www.cameronmoll.com/">Cameron Moll</a>, following on from the job boards over on <a href="http://jobs.37signals.com">37signals</a> and <a href="http://jobs.joelonsoftware.com">Joel on Software</a>.</p>
- <p>I find all this pretty interesting, not because I&#8217;m looking for job (I&#8217;m not), but more from a social research point of view. It&#8217;s the whole <a href="http://www.wired.com/wired/archive/12.10/tail.html">long tail</a> thing again, and it will be intersting to see if these things take off in other, shall we say, less geeky circumstances. Niche job boards for the building industry for instance? or insurance?</p>
- <p>This source of focused data also gave me a chance to play with Python as a data mining tool, something I&#8217;m finding it amazingly well suited to. My background was in experimental design and analysis so I&#8217;m something of a number crunching fan deep down.</p>
- <p>The scripts are simple and have no niceties like error handling or comments so I&#8217;m not going to post them unless someone really wants them or I get chance to clean them up. Safe to say I used the outstanding <a href="http://www.feedparser.org/">Universal Feedparser</a> module from <a href="http://diveintomark.org">Mark</a> for most of the heavy lifting.</p>
- <p>Brief methodology was to grab the complete feeds from the three sites mentioned and dump all the contents to a file, sans markup and lowercased. I then parsed them for a short list of words &#8211; in this case programming languages and counted the results.</p>
- <p>Well, here are a few of the tidbits of info I pulled out. This is only the start obviously, more time may mean more detailed (and accurate) research ideally with a time element thrown in.</p>
-<ul>
- <li>C++ &#8211; 137</li>
-  <li>Java &#8211; 128</li>
-  <li><span class="caps">PHP</span> &#8211; 110</li>
-  <li>Javascript &#8211; 90</li>
-  <li>C# &#8211; 74</li>
-  <li>Flash &#8211; 52</li>
-  <li>Ruby &#8211; 43</li>
-  <li>Python &#8211; 40</li>
-  <li>Rails &#8211; 32</li>
-  <li>Actionscript &#8211; 11</li>
-</ul>
- <p>This I found interesting. The old school (C++ and Java) might not be <em>hot</em> but their certainly seems to be a need for good programmers. Javascript being up their is <a href="http://www.quirksmode.org/blog/archives/2006/09/sxsw_panel_java.html">probably to be expected</a> but strange non the less, given where it would have been a year ago.</p>
- <p>This obviously has myriad problems; your unlikely to use the <em>word</em> C# in a description unless your talking about programming, but you might use the word flash) and was weighted towards the <a href="http://jobs.joelonsoftware.com">Joel on Software</a> site as that both had much longer descriptions and lots more elements in the feed. Nothing about density either, so someone writing Java, Java, Java would skew the results. If I do some proper research and write it up you could get around most of these easily enough.</p>
- <p>Anyone know of other niche job boards around so far? I&#8217;d be interested to have a look. I have a feeling recruitment is heading towards the same fate as advertising; where online advertising models are increasingly making the the old <em>do work for free and charge a percentage on the backend</em> ways nearly unworkable.</p></div>
   
   
 

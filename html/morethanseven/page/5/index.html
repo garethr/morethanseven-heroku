@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I&#8217;ve just found my notes from James Turnbull&#8217;s talk at FOSDEM. I found the talk excellent, and I&#8217;m already part of the choir. But &hellip;">
+  <meta name="description" content="A brief conversation with Matt Keating on Twitter finally pushed me over the edge and I&#8217;ve built a site I&#8217;d been meaning to do for a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/03/12/Site-for-vagrant-base-boxes/">Site for Vagrant Base Boxes</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-12T00:00:00+00:00" pubdate data-updated="true">Mar 12<span>th</span>, 2011</time>
+        
+         | <a href="/2011/03/12/Site-for-vagrant-base-boxes/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A brief <a href="https://twitter.com/#!/garethr/status/40785392445685760">conversation with Matt Keating</a> on Twitter finally pushed me over the edge and I&#8217;ve built a site I&#8217;d been meaning to do for a while.</p>
+<p>I&#8217;m a huge <a href="http://vagrantup.com">Vagrant</a> fan, but one thing that often comes up is where to find base boxes. My newly launched site <a href="http://vagrantbox.es">Vagranbox.es</a> provides just that. At the moment that just means user submitted boxes being checked and then posted. I&#8217;ll likely add comments and ratings and the like if things become popular but that&#8217;s for later.</p>
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjBuwEM" alt="vargrantbox.es homepage"/></p>
+<p>So, if you know of or host a useful box please let me know. I&#8217;ll try to keep up with any submissions.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -704,73 +744,6 @@ vagrant config chef.recipe_url=http://cloud.github.com/downloads/garethr/chef-re
 
 
   <div class="entry-content"><p>I wrote a quick article last week for the excellent <a href="http://sysadvent.blogspot.com">sysadvent</a> advent calendar, <a href="http://sysadvent.blogspot.com/2010/12/day-17-smoke-testing-deployments-using.html">Smoke Testing Deployments with Cucumber</a> talks a bit more about using a few of my favourite tools to check whether a deployment just broke anything important.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010/11/28/Sinatra-on-glassfish-example/">Sinatra on Glassfish Example</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-11-28T00:00:00+00:00" pubdate data-updated="true">Nov 28<span>th</span>, 2010</time>
-        
-         | <a href="/2010/11/28/Sinatra-on-glassfish-example/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I magically turned into a Java developer last week for a bit when I had to do some integration with a <span class="caps">SOAP</span> based <span class="caps">API</span> that really really wanted me to write Java on client as well. That led me down the route of having a good look at Jruby (which I&#8217;ve used before, mainly for testing using celerity) and in particular how easy it was to use native Java classes in Jruby (very, very easy as it turns out).</p>
-<p>All that meant I&#8217;ll probably end up writing a nice Jruby application in the not too distant future, and not knowing too much about running such a thing in a production environment I thought I&#8217;d take a quick look. I went with Glassfish as the application server for no other reason that it took my fancy. I&#8217;d definately be interested in hearing about any positive or negative experiences people may have with it or other similar servers. My quick look turned into running a tiny Sinatra application.</p>
-<p>First install the required gems for our little experiment. You&#8217;ll obviously need jruby which is sort of the point, I&#8217;d recommend using <span class="caps">RVM</span> for that.</p>
-<pre><code>gem install sinatra warbler</pre><p></code></p>
-<p>Now create a sinatra app. OK, it could be any Ruby rack based application but I like Sinatra. First we need a rackup file.</p>
-<pre><code># config.ru
-require 'init'
-
-set :run, false
-set :environment, :production
-
-run Sinatra::Application</pre><p></code></p>
-<p>Now for our application itself.</p>
-<pre><code># init.rb
-require 'rubygems'
-require 'sinatra'
-get '/' do
-  "Hello World!"
-end</pre><p></code></p>
-<p>Warble is the gem we&#8217;re going to use to create a <span class="caps">WAR</span> file, which is basically an all in one bundle of our application and it&#8217;s dependencies which we can deploy to a java application server.</p>
-<pre><code># config/warble.rb
-Warbler::Config.new do |config|
-  config.dirs = %w(config)
-  config.includes = FileList["init.rb"]
-  config.gems += ["sinatra"]
-  config.gems -= ["rails"]
-  config.gem_dependencies = true
-end</pre><p></code></p>
-<p>Now we&#8217;re ready to generate our <span class="caps">WAR</span> file.</p>
-<pre><code>warble</pre><p></code></p>
-<p>This should create a file called sample.war or similar. Then just deploy that to your application server and away you go. I got this working very easily with Glassfish which seemed to be the recommended tool for such things. Installing Glassfish was time consuming but <a href="http://www.nabisoft.com/tutorials/glassfish/installing-glassfish-301-on-ubuntu">well documented here</a>. Uploading to Glassfish was done via the web interface for the moment. I just selected a Ruby project from the deployment drop down and uploaded the war file.</p></div>
   
   
 

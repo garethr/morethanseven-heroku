@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="RewiredState was awesome. 100 or so geeks plus a smattering of government types gathered in the shiny new Guardian offices in Kings Cross on Saturday &hellip;">
+  <meta name="description" content="Not sure how I missed this but apparently App Engine (as of 1.1.9) supports remote access to your live data store. This means you can create &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,43 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/03/13/app-engine-remote-api-calls/">App Engine Remote API Calls</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-13T00:00:00+00:00" pubdate data-updated="true">Mar 13<span>th</span>, 2009</time>
+        
+         | <a href="/2009/03/13/app-engine-remote-api-calls/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Not sure how I missed this but apparently App Engine (as of 1.1.9) supports <a href="http://code.google.com/appengine/articles/remote_api.html">remote access to your live data store</a>. This means you can create administration applications more easily by running them locally, rather than within the limitations of the live platform. You can even run a local python prompt with access to your live datastore which is pretty neat.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -506,51 +543,6 @@
             self.response.out.write('An error ocured, message not saved')</pre>
 <p>IMified can obviously be used outside App Engine as well, and in fact it&#8217;s not just about working around limitations in existing systems. Running the long running processes required for bots, and potentially even running your own <span class="caps">XMPP</span> server, is fiddly at times and requires at least some setup, monitoring and configuration to get working. Not having that as a barrier for entry for simple experiments or applications is a good thing.</p>
 <p><a href="http://aralbalkan.com/">Aral</a> spoke at the last <a href="http://groups.google.com/group/django-london"><span class="caps">DJUGL</span></a> about App Engine and mentioned a wide range of third party services that you can use to get around current limitations. IMified definitely fits into this group of support services very nicely indeed. I&#8217;d love to see them do really well as it really makes it much easier to get started with <span class="caps">XMPP</span> applications, even if what you can do is limited to a few simple APIs. I&#8217;d love to hear about other services that people are using in this way to build these distributed applications.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/02/18/python-rest-client/">Python REST Client</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-02-18T00:00:00+00:00" pubdate data-updated="true">Feb 18<span>th</span>, 2009</time>
-        
-         | <a href="/2009/02/18/python-rest-client/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;m working on a small project involving using RESTful APIs and wanted a simple <span class="caps">HTTP</span> client, something that sat a little higher in the stack than <a href="http://code.google.com/p/httplib2/">httplib2</a> or similar. I turned initially to the <a href="http://www.djangoproject.com/documentation/models/test_client/">Django Test Client</a> which now <a href="http://code.google.com/p/python-rest-client/">supports all the required methods</a> but it turned out that I&#8217;d have to unpick it from django a little.</p>
-<p>With a little bit of looking around I found the <a href="http://code.google.com/p/python-rest-client/">python-rest-client</a> which certainly sounded like it would do what I wanted. It lets you make <span class="caps">HTTP</span> requests in as straight forward a manner as possible and fitted the bill perfectly.</p>
-<pre>from restful_lib import Connection
-conn = Connection("http://morethanseven.net")
-response = conn.request_get("/")</pre>
-<p>It supports authentication, nice helper methods and gives you the response in a nice format.</p>
-<pre>conn = Connection("http://example.org", username="XXX", password="XXX")
-conn.request_delete('/items/11232344')</pre>
-<p>As an added benefit it also comes with a Google App Engine compatible version.</p></div>
   
   
 

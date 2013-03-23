@@ -9,8 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="It&#8217;s taken longer than I would have liked but I&#8217;ve finally gotten around to relaunching this site on nanoc.
-After looking through lots of &hellip;">
+  <meta name="description" content="I&#8217;m a big fan of Piston, the django app for creating RESTful web services. As part of a project at work I ended up looking through the source &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +80,63 @@ After looking through lots of &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/03/08/Piston-and-sanitising-json-callbacks/">Piston and Sanitising Json Callbacks</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-08T00:00:00+00:00" pubdate data-updated="true">Mar 8<span>th</span>, 2010</time>
+        
+         | <a href="/2010/03/08/Piston-and-sanitising-json-callbacks/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m a big fan of <a href="http://bitbucket.org/jespern/django-piston">Piston</a>, the django app for creating RESTful web services. As part of a project at work I ended up looking through the source code, mainly at some of the neat tricks of serialisation of objects. While poking around I came across something in my mind that wanted fixing. This being open source rather than just file a bug report I setup a <a href="http://bitbucket.org">bitbucket</a> account and got hacking.</p>
+<% syntax_colorize :python, type=:coderay do %>
+def render(self, request):
+	cb = request.GET.get(&#8216;callback&#8217;)
+        seria = simplejson.dumps(self.construct(),
+		cls=DateTimeAwareJSONEncoder,
+		ensure_ascii=False, indent=4)
+
+        # Callback
+        if cb:
+            return &#8216;%s(%s)&#8217; % (cb, seria)
+
+        return seria
+<% end %>
+<p>Can you spot the problem? Note the use of the callback passed in the query string arguments and then used <em>without any checking</em> in the output.</p>
+<p>What we really want to do is something like this:</p>
+<% syntax_colorize :python, type=:coderay do %>
+if is_valid_jsonp_callback_value(cb):
+<% end %>
+<p>Which is exactly what has just <a href="http://bitbucket.org/jespern/django-piston/changeset/f558b2c66dcc/">gone into the code for Piston</a>. <a href="http://tav.espians.com/sanitising-jsonp-callback-identifiers-for-security.html">This article</a> contains lots of background information about why <span class="caps">JSONP</span> callbacks can be a security hole, and helpfully provides a <a href="http://github.com/tav/scripts/blob/master/validate_jsonp.py">nice Python module</a> to help with the sanitisation. Nice to be on the authors list for something I&#8217;m using actively.</p>
+<p>Thanks to <a href="http://twitter.com/jespern">Jesper Noehr</a> for Piston, for some pointers on bitbucket and for quickly taking the patch. If you&#8217;re accepting a callback on your site or application, especially if it&#8217;s a public service, you really want to do something like this or you just might have an exploitable security hole.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -482,44 +538,6 @@ dreque.enqueue("queue", some_job, argument="foo")</code></pre>
 <pre><code>from dreque import DrequeWorker
 worker = DrequeWorker(["queue"], "127.0.0.1")
 worker.work()</code></pre></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/11/05/djugl-december/">DJUGL December</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-11-05T00:00:00+00:00" pubdate data-updated="true">Nov 5<span>th</span>, 2009</time>
-        
-         | <a href="/2009/11/05/djugl-december/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As mentioned at the last event I&#8217;ve taken over organising the Django User Group London event from Rob. Tickets are now available for the next event which is going to be on the 3rd of December at The Guardian offices in Kings Cross.</p>
-<p>You can sign up on <a href="http://londonpython.eventwax.com/djugl-december">eventwax</a></p></div>
   
   
 

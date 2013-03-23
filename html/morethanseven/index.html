@@ -9,7 +9,8 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="With only a week or so to go before the end of February, it&#8217;s looking like March might be a little busy. I&#8217;m speaking at QCon, in London &hellip;">
+  <meta name="description" content="I had fun speaking at QCon in London earlier this month with a talk on the Cloud track entitled the Perils of Portability.
+This had some Governmenty &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +81,45 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/03/23/perils-of-portability/">Perils of Portability</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-23T16:36:00+00:00" pubdate data-updated="true">Mar 23<span>rd</span>, 2013</time>
+        
+         | <a href="/2013/03/23/perils-of-portability/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I had fun speaking at <a href="http://qconlondon.com/">QCon</a> in London earlier this month with a talk on the Cloud track entitled the Perils of Portability.</p>
+<p>This had some Governmenty stuff in but was mainly part rant, part hope for the future of cloud infrastructure. I had some great conversations with people afterwards who felt some of the similar pain which was nice to know. I also somehow managed to get 120 slides into a 40 minute presentation which I think is a personal records.</p>
+<script async class="speakerdeck-embed" data-id="52f90c206ae90130747512313d140c86" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script><p>The videos will be available at some point in the not too distant future too.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -500,48 +540,6 @@ Finished in 0.01472 seconds
 <p>I threw a flat version of the site up on <a href="https://github.com/garethr/vagrantboxes-heroku">GitHub</a>, served it using Nginx on <a href="http://www.heroku.com/">Heroku</a> and added a quick <em>Fork me on GitHub</em> badge to the top. Suggest a box moved from being a web form to a pull request. It&#8217;s fair to say I did this pretty quickly and made a good few typos on the way. But within a couple of weeks I&#8217;ve had 8 pull requests either fixing my bugs, removing dead boxes and adding new ones.</p>
 <p>What I&#8217;m going to take from this is, if you&#8217;re building a community project that&#8217;s aimed at developers, then throw the content on GitHub. In my case I have the entire site on there too but I think that&#8217;s secondary. Pull requests are much better than any content management system or workflow you&#8217;re likely to build, and even more importantly the time to implement something drops hugely.</p>
 <p>With all the spare time I don&#8217;t have I&#8217;ll be thinking about a content management model using GitHub for content, pull requests for workflow and post commit hooks for loading that content into a site or service somewhere.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/06/05/Static-sites-with-nginx-on-heroku/">Static Sites With Nginx on Heroku</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-05T00:00:00+01:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time>
-        
-         | <a href="/2012/06/05/Static-sites-with-nginx-on-heroku/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I have a few static sites on Heroku but in one case in particular I already had quite an involved nginx configuration &#8211; mainly 410s for some previous content and a series of redirects from older versions of the site. The common way of having static sites on Heroku appears to be to use a simple Rack middleware, but that would have meant reimplementing lots of boring redirect logic.</p>
-<p>Heroku <a href="https://devcenter.heroku.com/articles/buildpacks">buildpacks</a> are great. The newer cedar stack is no longer tied to a particular language or framework, instead all of the discovery and knowledge about particular software is put into a buildpack. As well as the Heroku provided list it&#8217;s possible to write you&#8217;re own. Or in this case use one someone has <a href="https://github.com/essh/heroku-buildpack-nginx">created earlier</a>.</p>
-<p>I&#8217;ve just moved <a href="http://www.vagrantbox.es/">Vagrantbox.es</a> over to Heroku due to the closure of a previous service. In doing that, instead of the simple database backed app, I&#8217;ve simply thrown all the content onto <a href="https://github.com/garethr/vagrantboxes-heroku">GitHub</a>. This means anyone can fork the content and send pull requests. Hopefully this should mean I pay a bit more attention to suggestions and new boxes.</p>
-<p>The repository is a nice simple example of using the mentioned Heroku Nginx buildpack too. You just run the following command to create a new Heroku application.</p>
-<pre>heroku create --stack cedar --buildpack http://github.com/essh/heroku-buildpack-nginx.git</pre>
-<p>And then in typical Heroku fashion use a git remote to deploy changes and updates. The repository is split into a <em>www</em> folder with the site content and a <em>conf</em> folder with the nginx configuration. The only clever parts involve the use of an <span class="caps">ERB</span> template for the nginx configuration file so we can pickup the correct port. We also use 1 worker process and don&#8217;t automatically daemonize the process &#8211; Heroku deals with this itself.</p></div>
   
   
 

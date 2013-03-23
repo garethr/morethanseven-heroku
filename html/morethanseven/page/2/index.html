@@ -9,8 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="Several things seemed to come together at once to make me want to hack on this particular project. In no particular order:
-The Thoughtworks &hellip;">
+  <meta name="description" content="I have a few static sites on Heroku but in one case in particular I already had quite an involved nginx configuration &#8211; mainly 410s for some &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +80,48 @@ The Thoughtworks &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/06/05/Static-sites-with-nginx-on-heroku/">Static Sites With Nginx on Heroku</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-05T00:00:00+01:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time>
+        
+         | <a href="/2012/06/05/Static-sites-with-nginx-on-heroku/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have a few static sites on Heroku but in one case in particular I already had quite an involved nginx configuration &#8211; mainly 410s for some previous content and a series of redirects from older versions of the site. The common way of having static sites on Heroku appears to be to use a simple Rack middleware, but that would have meant reimplementing lots of boring redirect logic.</p>
+<p>Heroku <a href="https://devcenter.heroku.com/articles/buildpacks">buildpacks</a> are great. The newer cedar stack is no longer tied to a particular language or framework, instead all of the discovery and knowledge about particular software is put into a buildpack. As well as the Heroku provided list it&#8217;s possible to write you&#8217;re own. Or in this case use one someone has <a href="https://github.com/essh/heroku-buildpack-nginx">created earlier</a>.</p>
+<p>I&#8217;ve just moved <a href="http://www.vagrantbox.es/">Vagrantbox.es</a> over to Heroku due to the closure of a previous service. In doing that, instead of the simple database backed app, I&#8217;ve simply thrown all the content onto <a href="https://github.com/garethr/vagrantboxes-heroku">GitHub</a>. This means anyone can fork the content and send pull requests. Hopefully this should mean I pay a bit more attention to suggestions and new boxes.</p>
+<p>The repository is a nice simple example of using the mentioned Heroku Nginx buildpack too. You just run the following command to create a new Heroku application.</p>
+<pre>heroku create --stack cedar --buildpack http://github.com/essh/heroku-buildpack-nginx.git</pre>
+<p>And then in typical Heroku fashion use a git remote to deploy changes and updates. The repository is split into a <em>www</em> folder with the site content and a <em>conf</em> folder with the nginx configuration. The only clever parts involve the use of an <span class="caps">ERB</span> template for the nginx configuration file so we can pickup the correct port. We also use 1 worker process and don&#8217;t automatically daemonize the process &#8211; Heroku deals with this itself.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -604,93 +645,6 @@ Puppet has the concept of an external node classifier which can be used to solve
 <p><a href="https://github.com/garethr/web-puppet">Web Facter</a> is a gem which takes the output from <a href="https://github.com/puppetlabs/facter">Facter</a> and exposes this as <span class="caps">JSON</span> over <span class="caps">HTTP</span>. In theory you could run this on a configurable port on each of your machines and have a <span class="caps">URL</span> you can hit to get information on uptime, networking setup, hostnames or anything else exposed by Facter. It comes with a simple built-in web server and optional http basic authentication if you&#8217;re not going to do this via a proxy. The <span class="caps">JSON</span> display should be both human and machine readable, and I have a few ideas for projects which needed this information.</p>
 <p>The other project is very similar, and even has a similar name, <a href="https://github.com/garethr/web-facter">Web Puppet</a>. You can run this on your puppet master and it exposes the node information (currently including the facts and tags) again as <span class="caps">JSON</span> over <span class="caps">HTTP</span>. I&#8217;m still working on this to make it a little more usable. At the moment it just shows you all nodes and all information, if you&#8217;re working with a larger cluster this isn&#8217;t really sensible. Recent versions of Puppet do have an <a href="http://docs.puppetlabs.com/guides/rest_api.html"><span class="caps">HTTP</span> based <span class="caps">API</span></a> but it requires some hoops to be jumped through and I&#8217;m not quite sure from the docs it lets me do what I want (I have a specific usecase, of which more soon all being well).</p>
 <p>Both projects have had me reading the source code of Puppet and Facter, which for the most part has been enjoyable and informative. Puppet in particular has some great comments lying around :) Both of the above projects are available as gems for anyone else to play around with and build on, but my main aim is a little more high level. All being well I&#8217;ll have a couple of projects built atop these APIs shortly.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2011/10/10/Javascript-in-your-ruby-mongoid-map-reduce/">Javascript in Your Ruby: Mongoid Map Reduce</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-10-10T00:00:00+01:00" pubdate data-updated="true">Oct 10<span>th</span>, 2011</time>
-        
-         | <a href="/2011/10/10/Javascript-in-your-ruby-mongoid-map-reduce/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We&#8217;re pretty fond of <a href="http://mongodb.org/">Mongodb</a> at work and I&#8217;ve been getting an opportunity to kick some of the more interesting tyres recently. I thought I&#8217;d document something I found myself doing here, half hoping it might be useful for anyone else with a similar problem and also to see if anyone else has a much neater approach. The examples are obviously pretty trivial, but hopefully you get the idea.</p>
-<p>So, we&#8217;re making using of the rather nice <a href="http://mongoid.org/">Mongoid</a> Ruby library for defining our models as Ruby classes. Here&#8217;s a couple of very simple classes. Anyone familiar with DataMapper or Django&#8217;s <span class="caps">ORM</span> should be right at home here.</p>
-<pre>class Publication
-  include Mongoid::Document
-
-  field :name,            :type =&gt; String
-  field :section,         :type =&gt; String
-  field :body,            :type =&gt; String
-  field :is_published,    :type =&gt; Boolean
-end
-
-class LongerPublication &lt; Publication
-  field :extra_body,      :type =&gt; String
-end
-</pre>
-<p>So we now have a good few publications and longer publications in our system. And folks have been creating sections with wild amandon. What I&#8217;d like to do now is do some reporting, specifically I want to know the numbers of Publications by type and publication status. And lets allow a breakdown by section while we&#8217;re at it.</p>
-<p>One approach to this is using Mongo&#8217;s built in map-reduce capability. Mongoid exposes this pretty cleanly in my view, by allowing you to write the required javascript functions (a mapper and a reducer) inline in the Ruby code. This might feel evil, but seems the best of the available options. I can see for much larger functions that splitting this out into separate javascript files for ease of testing might be nice, but were you can just test the input/output of the whole job this works for me.</p>
-<pre>KLASS = "this._type"
-SECTION = "this.section"
-
-def self.count_by(type)
-  map = &lt;&lt;EOF
-    function() {
-      function truthy(value) {
-        return (value == true) ? 1 : 0;
-      }
-      emit(#{type}, {type: #{type}, count: 1, published: truthy(this.is_published)})
-    }
-EOF
-
-  reduce = &lt;&lt;EOF
-    function(key, values) {
-      var count = 0; published = 0;
-      values.forEach(function(doc) {
-        count += parseInt(doc.count);
-        published += parseInt(doc.published);
-        type = doc.type
-      );
-      return {type: type, count: count, published: published}
-    }
-EOF
-
-  collection.mapreduce(map, reduce).find()
-
-end
-</pre>
-<p>In our case that will return something like the following, or rather more specifically it will return a Mongo::Cursor that allows you to get at the following data.</p>
-<pre>[{"_id"=&gt;"Publication", "value"=&gt;{"type"=&gt;"Publication", "count"=&gt;42.0, "published"=&gt;29.0}},
-{"_id"=&gt;"LongerPublication", "value"=&gt;{"type"=&gt;"LongerPublication", "count"=&gt;12.0, "published"=&gt;10.0}}]
-</pre>
-<p>I&#8217;ve been pretty impressed with both Mongo and Mongoid here. I like the feel of mapreduce jobs for this sort of reporting task. In particular it&#8217;s suprising how writing two languages mixed together like this doesn&#8217;t really affect the readability of the code in my view. Given that with a relational database you&#8217;d probably be writing <span class="caps">SQL</span> anyway maybe that&#8217;s not that suprising &#8211; the syntactic differences between Javascript and Ruby are much smaller than pretty much anything and <span class="caps">SQL</span>. Lots of folks have written about the increase of polyglot programming, but I wonder if we&#8217;ll see an increase in the embedding of one language in another?</p></div>
   
   
 

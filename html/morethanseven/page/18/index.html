@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="A short break from blogging ends with a new site design. As with all these things their will no doubt be a few kinks still to work out and I&#8217;ll &hellip;">
+  <meta name="description" content="Imified looks like an interesting way of getting started with using instant messaging bots in your applications. (Via)">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,43 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/09/14/imified/">Imified</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-14T00:00:00+01:00" pubdate data-updated="true">Sep 14<span>th</span>, 2008</time>
+        
+         | <a href="/2008/09/14/imified/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://new.imified.com/developers">Imified</a> looks like an interesting way of getting started with using instant messaging bots in your applications. (<a href="http://digg.com/programming">Via</a>)</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -480,94 +517,6 @@ end</code></pre>
 <pre><code>http://uk.tv.yahoo.com/listings/itv1/2008-04-17/21-00/</code></pre>
 <p>Again this is really a search query, or at least specifying the time and date is. In some ways it&#8217;s the return of the command line &#8211; allowing searches to be run very quickly from a textual interface.</p>
 <p>Now, both these approaches treat URLs with the respect they deserve. But they do have the potential to clash somewhere in the middle if care isn&#8217;t taken. The Accessible Train Times site is a single purpose site which just does searches while <span class="caps">BBC</span> Programmes does feature a search engine but it&#8217;s just the global <span class="caps">BBC</span> search which takes you off site. And if that wasn&#8217;t enough potential competition then a question raised by <a href="http://simonwillison.net">Simon</a> at The Highland Fling regarding <span class="caps">URL</span> design and the search engine optimisation crowd go me thinking too. From being a somewhat niche area of interest URLs might just become a sort after part of a good website design &#8211; fought over by the varying disciplines of modern web design and development.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/04/11/dsls-for-html-and-css-the-future-or-just-plain-wro/">DSLs for HTML and CSS - the Future, or Just Plain Wrong?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-04-11T00:00:00+01:00" pubdate data-updated="true">Apr 11<span>th</span>, 2008</time>
-        
-         | <a href="/2008/04/11/dsls-for-html-and-css-the-future-or-just-plain-wro/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>After my previous post about <a href="http://morethanseven.net/posts/why-the-webstandards-world-appears-to-be-choosing-django/">Django and the web standards community</a> a number of the comments picked up on the fact I mentioned <a href="http://haml.hamptoncatlin.com/">haml</a> under the title <em>Other Craziness</em>. Ok, so I was being a little over-poetic but I decided this warranted a closer look.</p>
-<p>Haml is a markup language that&#8217;s used to cleanly and simply describe the <span class="caps">XHTML</span> of any web document without the use of inline code. Haml functions as a replacement for inline page templating systems such as <span class="caps">PHP</span>, <span class="caps">ASP</span>, and <span class="caps">ERB</span>, the templating language used in most Ruby on Rails applications.</p>
-<p>A quick example should help. The following haml code&#8230;</p>
-<pre><code>%div.special#primary Hello, World!</code></pre>
-<p>&#8230;is compiled to the following <span class="caps">HTML</span>:</p>
-<pre><code>&lt;div class="special" id="primary"&gt;
-  Hello, World!
-&lt;/div&gt;</code></pre>
-<p>Depending on your application this could be at runtime or as part of a build step. Although primarily associated with Rails because haml is also available as a command line utility you could in theory use it with any framework or language.</p>
-<p>My initial take on this was to call haml an abstraction of <span class="caps">HTML</span> but <a href="http://nex-3.com/">Nathan Weizenbaum</a>, one of haml&#8217;s developers, put me straight:</p>
-<blockquote>
-<p>Haml doesn&#8217;t really abstract <span class="caps">HTML</span>. Not in the same sense that, say, Rails helpers do. Since Haml has a one-to-one mapping to <span class="caps">HTML</span>, I view it more as an alternate syntax for <span class="caps">HTML</span> than an abstraction.</p>
-</blockquote>
-<p>Lots more examples for anyone interested can be found on <a href="http://haml.hamptoncatlin.com/docs/">the haml documentation site</a>.</p>
-<p>After some research and some playing around with the command line version of the haml engine I decided to see what Twitter thought about the situation. Little did I realise what I was letting myself in for:</p>
-<p><a href="http://tommorris.org/">Tom Morris</a> kicked things off:</p>
-<blockquote cite="http://twitter.com/tommorris/statuses/784959480">
-<p>I&#8217;m not sure why everyone insists on clumsily reinventing <span class="caps">HTML</span> every few weeks (eg. wiki syntaxes, of which there are hundreds)</p>
-</blockquote>
-<p><a href="http://intranation.com/">Brad Wright</a> thought:</p>
-<blockquote cite="http://twitter.com/intranation/statuses/784963589">
-<p>Sass is just stupid, since you&#8217;re basically writing <strong>exactly</strong> the same <span class="caps">CSS</span> just in shitty <span class="caps">YAML</span> style.</p>
-</blockquote>
-<p>And followed with:</p>
-<blockquote>
-<p>What&#8217;s the point of abstracting <span class="caps">HTML</span>? It&#8217;s not that hard</p>
-</blockquote>
-<p>And <a href="http://cackhanded.net">Mark Norman Francis</a> chipped in with:</p>
-<blockquote>
-<p><span class="caps">EVIL</span>. And not in a good, kittenish way.</p>
-</blockquote>
-<p>A few people echoed <a href="http://thecssdiv.co.uk/">Ross Bruniges</a> sentiment that haml and sass are just:</p>
-<blockquote cite="http://twitter.com/rossbruniges/statuses/784954916">
-<p>front-end code for those who don&#8217;t really care all that much about it and would rather create databases</p>
-</blockquote>
-<p>I have to admit to this being my initial reaction on hearing about and looking at haml, hence the remark from the previous post. But that&#8217;s not to say everyone was negative.</p>
-<p><a href="http://donotremove.co.uk/">Mike Stenhouse</a> stepped in and said:</p>
-<blockquote cite="http://twitter.com/mikesten/statuses/784952890">
-<p>Love haml &#8211; it&#8217;s all I use these days. More readable, dynamic and hackable. Took me a while to come around to it though&#8230;</p>
-</blockquote>
-<p>Some of the comments were about how the use of haml might alter the dynamic of a team, to either positive or negative effect &#8211; depending on your point of view.</p>
-<p><a href="http://www.markng.co.uk/">Mark Ng</a> saw it as a cunning way of getting rid of the front-end guy.</p>
-<blockquote cite="http://twitter.com/markng/statuses/784952935">
-<p>at first, they look elegant. Then it becomes obvious how they remove designers from the process of making markup.</p>
-</blockquote>
-<p>Where as <a href="http://thinkdrastic.net/">Olly Hodgson</a> say it maybe as a route to get the dyed in the wool back-end writing decent markup.</p>
-<blockquote cite="http://twitter.com/OllyHodgson/statuses/784957324">
-<p>They look interesting. With proper training it might be a good way to get back-end programmers creating decent <span class="caps">HTML</span> (shock horror!)</p>
-</blockquote>
-<p>At present haml is very much pitched at the Rails community from whence it came. Many of the examples demonstrate benefits compared to <span class="caps">ERB</span>, and haml is of course written in Ruby and available as a Rails plugin. Being perceived as part of that community has obvious benefits but also some subtle costs, in particular regarding those people that don&#8217;t like Rails very much.</p>
-<p>I&#8217;m not really convinced of the benefits in all fairness. The <em>something else to learn</em> barrier only gets magnified when working within a team environment. You now have to train new recruits of whatever skill level in another syntax. One that they might be able to write quickly enough but can they understand from the briefest of glances at a template? <span class="caps">HTML</span> might not be great here but it is familiar to everyone. Their is also the programmers abstraction. What if I can&#8217;t get the markup I want out the other side of the black box? Yes it&#8217;s open source so I can hack the box open but that causes even more problems. And while I quite like meaningful whitespace (for instance in Python), in templates which fail if it&#8217;s not quite right I see a major problem for those whom a text editor is not their best friend.</p>
-<p>I am however interested to see whether the problems people have with haml are with haml in particular or with the overall approach of alternative syntax&#8217;s for <span class="caps">HTML</span> and <span class="caps">CSS</span>. Are DSLs (Domain Specific Languages) needed for <span class="caps">CSS</span> and <span class="caps">HTML</span>? and if so is this a possible avenue for innovation on top of slow moving standards?</p></div>
   
   
 

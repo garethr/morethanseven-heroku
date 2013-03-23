@@ -9,8 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="Continuing the catch up, as mentioned, here&#8217;s some thoughts on the recent Future of Web Apps Expo conference.
-It&#8217;s fair to say the last &hellip;">
+  <meta name="description" content="I&#8217;ve been busy really getting to grips with Trac recently and thought I&#8217;d post up a few details. Trac for those that haven&#8217;t come &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +80,110 @@ It&#8217;s fair to say the last &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/10/23/my-trac-ticket-setup/">My Trac Ticket Setup</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-10-23T00:00:00+01:00" pubdate data-updated="true">Oct 23<span>rd</span>, 2007</time>
+        
+         | <a href="/2007/10/23/my-trac-ticket-setup/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve been busy really getting to grips with <a href="http://trac.edgewall.org/">Trac</a> recently and thought I&#8217;d post up a few details. Trac for those that haven&#8217;t come across it is a wiki, issue tracking systems and source code browser all rolled into one. It&#8217;s open source and written in Python.</p>
+<p>I&#8217;ll start off describing my current ticket setup, along with the code I use for reports. In future posts I&#8217;ll hopefully describe thinks like setting up users and permissions in a flexible way. I&#8217;ll leave describing <a href="http://trac.edgewall.org/wiki/TracOnUbuntu">installation</a> to <a href="https://svn.geophysik.uni-muenchen.de/trac/tracmods/wiki/InstallationGuide">others</a>, mainly because it&#8217;s a pain. I&#8217;ll also assume you&#8217;ve installed the <a href="http://trac.edgewall.org/wiki/WebAdmin">WebAdmin</a> plugin, or are familiar with trac-admin.</p>
+<h2>Create a new Ticket</h2>
+<p>By default Trac comes set up with severity, milestones, ticket types, priority and components and a few default options in each. The problem with all these options is that it takes more time and effort to add and manage issues &#8211; so they don&#8217;t get logged. Unless you know you absolutely need them I find it easier to remove most of these options in the first instance.</p>
+<p><img src="http://morethanseven.net/_assets/media/imgTracTicket.png" title="Trac new ticket" alt="Trac new ticket" /></p>
+<p>I prefer using Trac soley for issue tracking. It suffers badly in my opinion if used for more project management related activity. <a href="http://basecamphq.com">Other tools</a> do that job better (and also do bug tracking poorly).</p>
+<p>I keep priority in, but by default it&#8217;s blank and only has one other options &#8211; High. I only assign High priority to issues which are causing major problems, either preventing a successful build or stopping something happening that&#8217;s meant to.</p>
+<h2>Available reports</h2>
+<p><img src="http://morethanseven.net/_assets/media/imgTracReports.png" title="Trac reports list" alt="Trac reports list" /></p>
+<p>Trac reports are simple (or not so simple) <span class="caps">SQL</span> queries with a few bits of special syntax. I have four reports set up; Open, Closed, Important and My Issues:</p>
+<p>Open, not too suprisingly, displays all the open issues. As mixing different components here would be confusing we divide the list with headers for each components</p>
+<p><code>&lt;pre&gt;SELECT
+  component AS &amp;#95;&amp;#95;group&amp;#95;&amp;#95;,
+  (CASE priority WHEN 'High' THEN '1' ELSE '' END) AS &amp;#95;&amp;#95;color&amp;#95;&amp;#95;,
+  id, summary, owner,
+  time AS created,
+  component AS &amp;#95;component, 
+  priority AS &amp;#95;priority,
+  changetime AS &amp;#95;changetime,
+  description AS &amp;#95;description
+FROM ticket t
+LEFT JOIN enum p ON p.name = t.priority AND p.type = 'priority'
+WHERE status IN ('new', 'assigned', 'reopened') 
+ORDER BY priority DESC, p.value, t.type, time&lt;/pre&gt;</code></p>
+<p>Closed is the reverse of Open (I&#8217;m starting to state the obvious here) but with a few differences in terms of the listing. I&#8217;m more bothered here about seeing a timeline of closed issues. Good for keeping a eye (or a feed) on to see progress.</p>
+<p><code>&lt;pre&gt;SELECT
+  (CASE priority WHEN 'High' THEN '1' ELSE '' END) AS &amp;#95;&amp;#95;color&amp;#95;&amp;#95;,
+  id, summary, owner, component, resolution,
+  priority AS &amp;#95;priority, 
+  changetime AS modified,
+  description AS &amp;#95;description
+FROM ticket t
+LEFT JOIN enum p ON p.name = t.priority AND p.type = 'priority'
+WHERE status NOT IN ('new', 'assigned', 'reopened') 
+ORDER BY changetime DESC&lt;/pre&gt;</code></p>
+<p>My Issues lists only those issues which are assigned to me (or the currently logged in user) and open.</p>
+<p><code>&lt;pre&gt;SELECT
+  component AS &amp;#95;&amp;#95;group&amp;#95;&amp;#95;,
+  (CASE priority WHEN 'High' THEN '1' ELSE '' END) AS &amp;#95;&amp;#95;color&amp;#95;&amp;#95;,
+  id, summary,
+  time AS created,
+  component AS &amp;#95;component,
+  priority AS &amp;#95;priority, 
+  changetime AS &amp;#95;changetime,
+  description AS &amp;#95;description
+FROM ticket t
+LEFT JOIN enum p ON p.name = t.priority AND p.type = 'priority'
+WHERE status IN ('new', 'assigned', 'reopened') AND owner = '$USER'
+ORDER BY priority DESC, p.value, t.type, time&lt;/pre&gt;</code></p>
+<p>Important is an overview of critical issues. Software can have small bugs and be perfectly usable in the vast majority of cases. But some issues either effect lots of users or prevent the system working at all. These High priority issues need addressing first, before anything else.</p>
+<p><code>&lt;pre&gt;SELECT
+  component AS &amp;#95;group&amp;#95;&amp;#95;,
+  (CASE priority WHEN 'High' THEN '1' ELSE '' END) AS &amp;#95;&amp;#95;color&amp;#95;&amp;#95;,
+  id, summary, owner,
+  time AS created,
+  component AS &amp;#95;component,
+  priority AS &amp;#95;priority, 
+  changetime AS &amp;#95;changetime,
+  description AS &amp;#95;description
+FROM ticket t
+LEFT JOIN enum p ON p.name = t.priority AND p.type = 'priority'
+WHERE status IN ('new', 'assigned', 'reopened') AND priority = 'High'
+ORDER BY priority DESC, p.value, t.type, time&lt;/pre&gt;</code></p>
+<p>Interesting bits here include the following line which makes all High priority tasks have a red border:</p>
+<p><code>&lt;pre&gt;(CASE priority WHEN 'High' THEN '1' ELSE '' END) AS &amp;#95;&amp;#95;color&amp;#95;&amp;#95;,&lt;/pre&gt;</code></p>
+<p>As a side note, I hadn&#8217;t written proper <span class="caps">SQL</span> for a while (all that <a href="www.digital-web.com/articles/hacking_open_apis/">hacking on APIs</a>). Suprisingly good fun as it turns out.</p>
+<h2>Conclusions</h2>
+<p>The main benefit of this setup is simplicity. Too many bug tracking systems are either way too complicated, or come with defaults which are on the complex side (I include Trac in this last category). <a href="http://garrettdimon.com">Garret Dimon</a> has been <a href="http://garrettdimon.com/archives/tags/tracker">writing</a> about the development of a new bug tracking system with a focus on simplicity. <a href="http://fixxbugs.com/">Fixx</a> and <a href="http://lighthouseapp.com/">Lighthouse</a> are other products looking to fill this niche. That&#8217;s not to say larger teams don&#8217;t need to store more information than this, just that by starting small you can actually find out what you&#8217;re missing &#8211; rather than guessing and making the whole process of adding and fixing bugs a particularly painful one.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -516,48 +619,6 @@ symfony propel-generate-crud backend items Item&lt;/pre&gt;</code></p>
 
 <pre><code>curl -X 'POST' -d "message" http://morethanseven.net/presents/nabaztag/mouth</code></pre>
 <p>Their&#8217;s a litte documentation in the source. I&#8217;ll add more methods, more documentation and maybe make an <span class="caps">API</span> anyone with a Nabaztag can use by authenticating either as I need it or if people actually want it. Let me know what you think (via the rabbit obviously!)</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/07/15/ruby-on-rails-on-nokia-n800/">Ruby on Rails on Nokia N800</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-07-15T00:00:00+01:00" pubdate data-updated="true">Jul 15<span>th</span>, 2007</time>
-        
-         | <a href="/2007/07/15/ruby-on-rails-on-nokia-n800/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>My latest job has allowed me to get back into playing with <a href="http://rubyonrails.com">Rails</a>, something I&#8217;ve been meaning to do for a year or so. Having got everything up to date and installed on my virtual server and on my laptop I couldn&#8217;t resist seeing if I could get it going on my <a href="http://www.nseries.com/products/n800">N800</a>.</p>
-<p>The reasons for this are mainly that the idea of a wireless web server in my pocket is pretty intriguing. Think about it. If you&#8217;re at an event with Wi-Fi you can just point people to an IP address and hey presto they have access to your details, or a set of photos, or whatever you want to show them. I&#8217;ve also got nginx installed, but I&#8217;m not as yet that up on running python or <span class="caps">PHP</span> behind it on the N800. So, no need to carry around the laptop. OK, maybe it&#8217;s just me and all this going to web conferences? We&#8217;ll have to see if I actually knock up anything useful for the next conference and see. Saving that I&#8217;ve been travelling quite a bit recently and it&#8217;s handy when reading a Rails book to be able to try out the examples.</p>
-<p>Anyway, it turns out that you can indeed <a href="http://flickr.com/photos/kwe/484269853/">install Ruby and Rails on the N800</a>, although their isn&#8217;t much information around and non of it worked exactly as stated for me &#8211; hence this post.</p>
-<p>I followed along with a <a href="http://www.digitalknk.com/2007/05/27/howto-ruby-on-rails-on-your-nokia-n800/">pretty good tutorial</a>, although I already had Red Pill Mode, XTerm and <span class="caps">SSH</span> installed. Ruby is also now available in the <a href="https://garage.maemo.org/projects/ruby185/">Garage</a>.</p>
-<p>The crux of the post is that you can find the required packages, in particular for Gem, <a href="http://pierre.droids-corp.org/maemo/">here</a>. But unfortunately that is were the problems start. I ran into exactly the same problem as described in the comments in the above post, on <a href="http://railsgrunt.com/2007/5/14/installing-ruby-on-rails-on-the-n800">this blog post</a> and on this <a href="http://www.internettablettalk.com/">Internet Tablet Talk</a> <a href="http://www.internettablettalk.com/forums/showthread.php?t=5442&amp;page=2">forum thread</a>. Specifically, Gem hanging, crashing or returning a segmentation fault in the yaml.rb file on line 133.</p>
-<p>The problem appears to be (this is me guessing here) with gem and the N800 being able download all the info for Gem to update it&#8217;s package list. The solution, or rather a suitable workaround, is to download the individual gems yourself to the local file system or a memory card and then install them from there. You can get all the Rails gems <a href="http://pierre.droids-corp.org/maemo/gems/">here</a>. A quick script/server later and I had the familiar Rails welcome screen on port 3000. This should in theory work for oher gems as well. You can either download them directly or use Gem on a local machine and them move the files across via bluetooth or <span class="caps">USB</span>.</p></div>
   
   
 

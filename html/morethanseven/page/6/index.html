@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I&#8217;ve really been enjoying Ruby Weekly recently, it&#8217;s an email newsletter by Peter Cooper which brings the latest Ruby related news and &hellip;">
+  <meta name="description" content="I magically turned into a Java developer last week for a bit when I had to do some integration with a SOAP based API that really really wanted me to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,73 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/11/28/Sinatra-on-glassfish-example/">Sinatra on Glassfish Example</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-11-28T00:00:00+00:00" pubdate data-updated="true">Nov 28<span>th</span>, 2010</time>
+        
+         | <a href="/2010/11/28/Sinatra-on-glassfish-example/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I magically turned into a Java developer last week for a bit when I had to do some integration with a <span class="caps">SOAP</span> based <span class="caps">API</span> that really really wanted me to write Java on client as well. That led me down the route of having a good look at Jruby (which I&#8217;ve used before, mainly for testing using celerity) and in particular how easy it was to use native Java classes in Jruby (very, very easy as it turns out).</p>
+<p>All that meant I&#8217;ll probably end up writing a nice Jruby application in the not too distant future, and not knowing too much about running such a thing in a production environment I thought I&#8217;d take a quick look. I went with Glassfish as the application server for no other reason that it took my fancy. I&#8217;d definately be interested in hearing about any positive or negative experiences people may have with it or other similar servers. My quick look turned into running a tiny Sinatra application.</p>
+<p>First install the required gems for our little experiment. You&#8217;ll obviously need jruby which is sort of the point, I&#8217;d recommend using <span class="caps">RVM</span> for that.</p>
+<pre><code>gem install sinatra warbler</pre><p></code></p>
+<p>Now create a sinatra app. OK, it could be any Ruby rack based application but I like Sinatra. First we need a rackup file.</p>
+<pre><code># config.ru
+require 'init'
+
+set :run, false
+set :environment, :production
+
+run Sinatra::Application</pre><p></code></p>
+<p>Now for our application itself.</p>
+<pre><code># init.rb
+require 'rubygems'
+require 'sinatra'
+get '/' do
+  "Hello World!"
+end</pre><p></code></p>
+<p>Warble is the gem we&#8217;re going to use to create a <span class="caps">WAR</span> file, which is basically an all in one bundle of our application and it&#8217;s dependencies which we can deploy to a java application server.</p>
+<pre><code># config/warble.rb
+Warbler::Config.new do |config|
+  config.dirs = %w(config)
+  config.includes = FileList["init.rb"]
+  config.gems += ["sinatra"]
+  config.gems -= ["rails"]
+  config.gem_dependencies = true
+end</pre><p></code></p>
+<p>Now we&#8217;re ready to generate our <span class="caps">WAR</span> file.</p>
+<pre><code>warble</pre><p></code></p>
+<p>This should create a file called sample.war or similar. Then just deploy that to your application server and away you go. I got this working very easily with Glassfish which seemed to be the recommended tool for such things. Installing Glassfish was time consuming but <a href="http://www.nabisoft.com/tutorials/glassfish/installing-glassfish-301-on-ubuntu">well documented here</a>. Uploading to Glassfish was done via the web interface for the moment. I just selected a Ruby project from the deployment drop down and uploaded the war file.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -541,57 +608,6 @@ vagrant up</pre>
 
   <div class="entry-content"><p><object width="400" height="225"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=12613643&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=0&amp;show_portrait=0&amp;color=&amp;fullscreen=1" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=12613643&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=0&amp;show_portrait=0&amp;color=&amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="400" height="225"></embed></object></p>
 <p>The videos from the <a href="http://www.dibiconference.com/"><span class="caps">DIBI</span></a> conference are now up on <a href="http://vimeo.com/groups/48480/videos">Vimeo</a>. Lots of good stuff and more to come. The one disadvantage of a a two track conference is you miss half the talks so when I get a chance I&#8217;ll be catching up with those talks I didn&#8217;t get chance to see.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010/06/01/Very-simple-custom-ganglia-metrics/">Very Simple Custom Ganglia Metrics</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-06-01T00:00:00+01:00" pubdate data-updated="true">Jun 1<span>st</span>, 2010</time>
-        
-         | <a href="/2010/06/01/Very-simple-custom-ganglia-metrics/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Logging useful information from running systems for monitoring purposes is pretty important if you want to see how your software is behaving in the real world. It&#8217;s one thing to test something locally, another to test something under load on a testing environment and quite something else to watch production code while running.</p>
-<p>The numbers can be useful for checking newly released code isn&#8217;t having a detrimental effect on performance, observing what changes in load are doing to systems over time and planning for future capacity growth.</p>
-<p>Creating log files, agregating files from multiple machines and then analysing the results is one approach. Another is using something like <a href="http://ganglia.sourceforge.net/">Ganglia</a>. Ganglia is great for trending data over time, and ties in nicely to Nagios for reporting. Installing the monitoring daemon on machines and generally getting the default checks (memory, disk, network, etc.) up and running is nice and easy. From there using the gmetric command line to create custom metrics (say checking some mysql statistics) is again straight forward.</p>
-<p>So far, so good. The only issue I&#8217;ve run into was creating custom metrics on the fly from a machine outside the network. For bonus points these metrics were nothing to do with the machine on which they were collected, but to do with the system overall. More specifically the metrics were web site performance data gathered via some cucumber and <a href="http://celerity.rubyforge.org/">celerity</a> scripts.</p>
-<p>For this I knocked up a tiny web service wrapper around the gmetric command line. It&#8217;s very feature light at the moment (I only needed it to collect time based stats at regular intervals) but it could be made more featureful and expose the rest of the gmetric <span class="caps">API</span> if needs be. It does it using a very simple <span class="caps">URL</span> scheme:</p>
-<% syntax_colorize :bash, type=:coderay do %>
-/{metric-name}/{metric-value}/ 
-<% end %>
-<p>So for example I can create metrics on the fly simply using an <span class="caps">HTTP</span> client or a web browser.</p>
-<% syntax_colorize :bash, type=:coderay do %>
-/GarethsCommuteTime/3600/
-/ExternalPageLoad/2.005/
-<% end %>
-<p>The <a href="http://github.com/garethr/gmetric-web">code is up on GitHub</a> and is completely self contained. I&#8217;ve been running it mainly using spawning but any small <span class="caps">WSGI</span> server could surfice. I looked very briefly at the <span class="caps">API</span> for Ganglia but found the gmetric approach to be much simpler.</p>
-<p>And if you&#8217;re a Ganglia expert and know a much better way of doing this then let me know. Ganglia is awesome, and collecting metrics is both useful and fun (for me at least) but it&#8217;s not always obvious how to get into creating simple custom metrics which tell you something about your own appliction code.</p></div>
   
   
 

@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I&#8217;m pretty interested in computer games. Building them represented a big technical challenge and with that comes interesting parallels with &hellip;">
+  <meta name="description" content="Integrity is ace. I&#8217;m a huge fan of working under the ever watchful eye of a Continuous Integration server. I&#8217;m also becoming more and &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,53 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/12/28/local-continuous-integration-integrity/">Local Continuous Integration With Integrity</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-12-28T00:00:00+00:00" pubdate data-updated="true">Dec 28<span>th</span>, 2008</time>
+        
+         | <a href="/2008/12/28/local-continuous-integration-integrity/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://integrityapp.com/">Integrity</a> is ace. I&#8217;m a huge fan of working under the ever watchful eye of a <a href="http://en.wikipedia.org/wiki/Continuous_integration">Continuous Integration</a> server. I&#8217;m also becoming more and more of a fan of Git, and <a href="http://github.com">GitHub</a>, for my <a href="http://github.com/garethr">personal projects</a>. At work we run <a href="http://cruisecontrol.sourceforge.net/">CruiseControl</a> and it does it&#8217;s job well, but locally I only use it for larger projects. It comes with a little overhead and if I&#8217;m just hacking on the train I rarely check on it&#8217;s status.</p>
+<p>Integrity is an unashamedly lightweight and straightforward continuous integration server written in Ruby. It comes with Git integration as well as a nifty notifications framework. There are already notification plugins available for jabber, <span class="caps">IRC</span> and email. If I get time and inclination I&#8217;d love to hack together a webhooks plugin too. It&#8217;s a simple app to get up and running with and you can always <a href="http://github.com/foca/integrity/tree/master">browse the code</a> if something isn&#8217;t clear. All in all it&#8217;s perfect for my type of smaller project.</p>
+<p>So, with a local <em>CI</em> server up and running you&#8217;re left with one problem; having to click the _Manual Build&quot; button whenever you want a build. Now Integrity comes with a mechanism to allow pushes to GitHub to trigger a build. But this only works when you have an internet connection and are using GitHub and are pushing frequently. Personally I often make lots of local commits and then push at a later date. Also not all of my projects are on GitHub for various reasons.</p>
+<p>Well it turns out that all the build button does is sent an empty HTTPpost request to a <span class="caps">URL</span> of the following format:</p>
+<pre>http://{integrity-url}:8910/{project-name}/builds</pre>
+<p>That means with a little bit of Git magic we can have our integration server run a new build whenever we commit our code. All we need to do is write a very simple post-commit git hook script. I&#8217;ve written the script in Python but you could write it in anything. This script is from a real project so adjust the server address and path as needed.</p>
+<pre>#! /usr/bin/env python
+import httplib
+conn = httplib.HTTPConnection("localhost:8910")
+conn.request("POST", "/appengine-books/builds")</pre>
+<p>All you need to do is drop this script in your .git/hooks folder as <em>post-commit</em>. Make sure you set the executable bit with <em>chmod +x</em> as well, otherwise you&#8217;ll be wondering why it&#8217;s not working and probably blaming me.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -446,71 +493,6 @@ crawler.run(URL)</pre>
 <blockquote>
 <p><span class="caps">CSSDOC</span> is a convention to comment Cascading Style Sheets (<span class="caps">CSS</span>) to help individuals and teams to improve writing/coding/styling/managing <span class="caps">CSS</span> files. It is an adoption of the well known JavaDoc / DocBlock based way of commenting source-code. That&#8217;s putting style, docblocks and tags together.</p>
 </blockquote></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/11/09/django-performance-tip-profile-your-filters/">Django Performance Tip - Profile Your Filters</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-11-09T00:00:00+00:00" pubdate data-updated="true">Nov 9<span>th</span>, 2008</time>
-        
-         | <a href="/2008/11/09/django-performance-tip-profile-your-filters/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;ve been doing some performance profiling of this here blog. Not because I really need to due to huge amounts of traffic unfortunately, more because I&#8217;m planning on releasing the code and wanted to give it a good once over before I do.</p>
-<pre>69396 function calls (67324 primitive calls) in 0.479 CPU seconds
-Ordered by: internal time, call count
-   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-      123    0.138    0.001    0.154    0.001 build/bdist.macosx-10.5-i386/egg/textile.py:2478(qtags)
-     6300    0.058    0.000    0.079    0.000 build/bdist.macosx-10.5-i386/egg/textile.py:453(preg_replace)
-    15705    0.045    0.000    0.059    0.000 /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/re.py:219(_compile)
-       20    0.025    0.001    0.026    0.001 /Users/gareth.rushgrove/Documents/www/django/django/db/backends/sqlite3/base.py:165(execute)
-     1087    0.021    0.000    0.026    0.000 /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/re.py:136(sub)
-      123    0.014    0.000    0.017    0.000 build/bdist.macosx-10.5-i386/egg/textile.py:2701(links)
-       18    0.012    0.001    0.030    0.002 build/bdist.macosx-10.5-i386/egg/textile.py:892(split_text)
-    12719    0.011    0.000    0.063    0.000 /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/re.py:178(compile)
-      123    0.011    0.000    0.104    0.001 build/bdist.macosx-10.5-i386/egg/textile.py:2372(glyphs)
-      123    0.009    0.000    0.009    0.000 /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/re.py:159(findall)
-      191    0.008    0.000    0.008    0.000 /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/re.py:154(split)
-       18    0.005    0.000    0.005    0.000 build/bdist.macosx-10.5-i386/egg/textile.py:803(grab_links)
-       11    0.005    0.000    0.005    0.000 /Users/gareth.rushgrove/Documents/www/django/django/utils/text.py:52(truncate_html_words)</pre>
-<p>The above profile is from the home page which seemed a good starting point. The majority of the other pages are more straightforward, generally displaying just one article with a few related bits and pieces.</p>
-<p>What jumped out was that the majority of the slow traces (the list is ordered with the slowest calls first) were to do with the use of the textile filter packaged with Django. Textile is a simple markup language which converts to <span class="caps">HTML</span>, I&#8217;ve used it for all my writing activities since I used Textpattern on this blog many moons ago. It&#8217;s not just the traces that explicitly mentioned textile either &#8211; the regular expression calls are also to do with template filters.</p>
-<p>I quickly added a hidden html field to my model and a custom save method. On saving an article I now automatically transform the textile version of the content and save it in the html field. In the template where I used to have <code>article.content|textile</code> I now have <code>article.html</code>. A quick check of the profile on the same page showed a dramatic increase in performance:</p>
-<pre>15054 function calls (13248 primitive calls) in 0.081 CPU seconds
-Ordered by: internal time, call count
-   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-       20    0.017    0.001    0.018    0.001 /Users/gareth.rushgrove/Documents/www/django/django/db/backends/sqlite3/base.py:165(execute)
-   978/54    0.003    0.000    0.006    0.000 /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/copy.py:144(deepcopy)
-     82/1    0.003    0.000    0.069    0.069</pre>
-<p>From nearly half a second (0.479 <span class="caps">CPU</span> seconds) to 0.081 <span class="caps">CPU</span> seconds &#8211; roughly a 500% improvement in performance!</p>
-<p>If you are using text transforming filters in Django that make use of regular expressions I would look to try and get rid of them and move the conversion into a save method. You might not see quite as much of a performance gain as I did here but I&#8217;d be surprised if it&#8217;s not taking an awful lot longer than you might thing.</p>
-<p>Their are a few tools that are handy to have around if you&#8217;re wanting to profile your own applications. Django Snippets has a handy <a href="http://www.djangosnippets.org/snippets/70/">profiling middleware</a> and the really rather nice <a href="http://code.google.com/p/django-command-extensions/">Command Extensions</a> provides a few more tools including profile graph generation.</p></div>
   
   
 
