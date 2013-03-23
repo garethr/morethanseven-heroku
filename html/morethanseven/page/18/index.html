@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="Imified looks like an interesting way of getting started with using instant messaging bots in your applications. (Via)">
+  <meta name="description" content="Message Queues are cool. It&#8217;s official. Now, banks and financial institutions have been using big Enterprise Java message systems for years. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,135 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/09/14/using-python-and-stompserver-get-started-message-q/">Using Python and Stompserver to Get Started With Message Queues</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-14T00:00:00+01:00" pubdate data-updated="true">Sep 14<span>th</span>, 2008</time>
+        
+         | <a href="/2008/09/14/using-python-and-stompserver-get-started-message-q/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Message Queues are cool. It&#8217;s official. Now, banks and financial institutions have been using big Enterprise Java message systems for years. But it&#8217;s only really over the last year or two that the web community at large have got interested. Wonder what all the interest is in Erlang, Scala or Haskell? Distributed systems and a lack of shared state &#8211; hopefully leading to some sort of scalability nirvana &#8211; that&#8217;s what.</p>
+<p>Matt Biddulph of Dopplr has spoken at varying levels of technical detail on the subject over the last year or so. At <a href="http://adamcohenrose.blogspot.com/2007/11/messaging-scales-matt-biddulph.html">barcamps</a> and more recently at <a href="http://2008.dconstruct.org/">dconstruct</a>. But you still don&#8217;t find that many people actually starting to use any of this stuff. Looking around the internet I couldn&#8217;t find that many examples of how to get started. Their are some pretty mature standards, good libraries, server interoperability, but few tutorials aimed at people who don&#8217;t know all about it.</p>
+<p>The first problem is looking for a simple use case that most developers will have experienced problems with. The example I like to give is sending email. If you have a simple form on your site that sends email you probably just submit the request to the backend, it sends the email and then renders the success page back to the user. The problem here comes with scale. How many connections can your mailserver sustain? How many emails can you send from it before you start looking like you&#8217;ve been turned into a spam factory? At what point does the time taken for the mail server to respond to the web server cause the web server to time out or respond so slowly the user left or pressed refresh? If you&#8217;re sending lots of emails you need to think about this sort of stuff. For your average site this might not be a problem, but for the newer breed of applications or social networks this might bite you sooner than you think. You can gain more control over this process by introducing a message queue. Submitting the form simply adds a work task to the queue. A listener reads from the queue and sends the email. The advantage comes when you realise by removing the rendering of the page form the same process as sending the email you can throttle the system without affecting page rendering time.</p>
+<p>So onto a simple working example. I&#8217;ve decided to use Python as that&#8217;s my language of choice at the moment. It&#8217;s also easy to read in a -sudo-<ins>pseudo</ins> code sort of way. Writing these examples using equivalent libraries in Ruby or <span class="caps">PHP</span> should be straightforward enough. As for the message queue itself I&#8217;ve opted for <a href="http://stompserver.rubyforge.org/">stompserver</a> which is available as a Ruby gem. So assuming you have Ruby and gem installed (good instructions for this on the <a href="http://wiki.rubyonrails.com/rails/pages/GettingStartedWithRails">Rails wiki</a>) you can just run:</p>
+<pre><code>sudo gem install stompserver</code></pre>
+<p>Starting the queue is as simple as running:</p>
+<pre><code>stompserver</code></pre>
+<p>This will get you up and running quickly. Stompserver has a number of arguments you can pass in to use different ports or backends but for the purposes of getting started it&#8217;s enough to just run it. This ease of use is the thing I love about stompserver. ApacheMQ is something of a tricky beast to setup, though you might want to use that in a production environment.</p>
+<p>So now we have the server up and running we can get on with talking to it. I used the Python <a href="http://www.briggs.net.nz/log/projects/stomppy/">stomp.py</a> library to deal with the heavy lifting. All the other modules are in the standard library. Their are equivalents for <a href="http://stomp.codehaus.org/PHP"><span class="caps">PHP</span></a> and <a href="http://stomp.codehaus.org/Ruby+Client">Ruby</a> available as well.</p>
+<p>The first script is a listener. Its job is to listen for activity on the queue and then act upon it. You pass the script an argument of the name of the queue to listen to.</p>
+<pre><code>./stomp_listen.py /queue/test</code></pre>
+<p>This example simply prints the messages from the queue to the console, but in reality the on_message handler would be were you act upon the message received. In our email example above it would be were you parse out the email address, subject line and message and actually send the email.</p>
+<p>Stompserver currently exposes a queue for monitoring the queue server at <em>/queue/monitor</em>. You can use this script to subscribe to that queue and get information about the current state of the server. It will tell you which queues currently have items in them and if these are currently being processed.</p>
+<p>You can run multiple instances of this script subscribing to a single queue. This is one of the real advantage of message based systems, two listeners should clear a queue in half the time. This sort of horizontal scaling is hugely useful as you grow a site or application.</p>
+<pre>#!/usr/bin/python
+import time
+import sys
+import logging
+import socket
+import stomp
+# the stomp module uses logging so to stop it complaining
+# we initialise the logger to log to the console
+logging.basicConfig()
+# first argument is the que path
+queue = sys.argv[1]
+# defaults for local stompserver instance
+hosts=[('localhost', 61613)]
+# we want the script to keep running
+def run_server():
+    while 1:
+        time.sleep(20)
+class listener(object):
+    '''define the event handlers'''
+    # if we recieve an error from the server
+    def on_error(self, headers, message):
+        print 'received an error %s' % message
+    # if we retrieve a message from the server
+    def on_message(self, headers, message):
+        print 'received a message %s' % message
+# do we have a connection to the server?
+connected = False
+while not connected:
+    # try and connect to the stomp server
+    # sometimes this takes a few goes so we try until we succeed
+    try:
+        conn = stomp.Connection(host_and_ports=hosts)
+        # register out event hander above
+        conn.add_listener(listener())
+        conn.start()
+        conn.connect()
+        # subscribe to the names que
+        conn.subscribe(destination=queue, ack='auto')
+        connected = True
+    except socket.error:
+        pass
+# we have a connection so keep the script running
+if connected:
+    run_server()</pre>
+<p>The second script allows us to send messages to the queue:</p>
+<pre><code>./stomp_send.py /queue/test "test message 1"</code></pre>
+<p>The script takes a couple of arguments, the first one is the name of the queue, the second is the message you want to send.</p>
+<pre>#!/usr/bin/python
+import time
+import sys
+import logging
+import socket
+import stomp
+# the stomp module uses logging so to stop it complaining
+# we initialise the logger to log to the console
+logging.basicConfig()
+# first argument is the queue
+queue = sys.argv[1]
+# second argument is the message to send
+message = sys.argv[2]
+# defaults for local stompserver instance
+hosts=[('localhost', 61613)]
+# do we have a connection to the server?
+connected = False
+while not connected:
+    try:
+        # connect to the stompserver
+        conn = stomp.Connection(host_and_ports=hosts)
+        conn.start()
+        conn.connect()
+        # send the message
+        conn.send(message,destination=queue)    
+        # disconnect from the stomp server
+        conn.disconnect()
+        connected = True
+    except socket.error:
+        pass</pre>
+<p>Both these scripts are pretty simple examples. In the real world you would probably want to make them a little more robust and user friendly. Both could probably do with checking they have the relevant arguments and providing help information if you run them without. I&#8217;d also probably move the hosts into a config file as it&#8217;s currently hardcoded into the scripts. I&#8217;ve also not tested them with other stomp compatible servers like ApacheMQ. In theory they should work fine assuming stomp.py works as advertised.</p>
+<p>Overall, it&#8217;s surprisingly easy to get started with message queues. If you&#8217;ve been hearing about the advantages of distributed message based architectures but assumed you had to be <a href="http://www.hackdiary.com/">Matt Biddulph</a> to use them, think again.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -460,63 +589,6 @@ end</code></pre>
 <p>After prompting for a password to access the remote machine this should display the output from the commands being run. Depending on the size of the repository you&#8217;re checking out</p>
 <p>Of course for most projects you would want to expand this basic recipe. Maybe you have database updates to run or need to deploy to multiple machines at once? You&#8217;ll might have machine specific configuration files which aren&#8217;t in the source control system. You will also probably want to be able to revert back if something goes wrong and you might want to only change files that have been altered. Capistrano has lots of powerful features built in that will let you do just that, and once you get started with this sort of build scripting you&#8217;ll find lots of areas to improve. And you&#8217;ll find lots of good tutorials online that will take you further.</p>
 <p>The difficult part with project automation and build scripts is often the <em>getting started</em> in the first place; especially if you&#8217;re not the server admin type. Unfortunately the documentation and articles written on the subject tend to be somewhat arcane and aimed at the more hardcore developer. Hopefully this simple, usable, example convinces someone else to give it a try.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/04/18/resourceful-vs-hackable-search-urls/">Resourceful vs Hackable Search URLs</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-04-18T00:00:00+01:00" pubdate data-updated="true">Apr 18<span>th</span>, 2008</time>
-        
-         | <a href="/2008/04/18/resourceful-vs-hackable-search-urls/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I often end up pondering <span class="caps">URL</span> design given a moment and something that keeps coming up is hackable search queries. But first a very quick primer on the idea of resourceful design.</p>
-<p><a href="http://en.wikipedia.org/wiki/Representational_State_Transfer"><span class="caps">REST</span></a> is a series of architectural principals more than a defined architecture. The <a href="http://en.wikipedia.org/wiki/Resource_oriented_architecture">Resource Orientated Architecture</a> builds on those ideas with a series of concrete guidelines put down by <a href="http://intertwingly.net">Sam Ruby</a> for designing RESTful systems. The simple version is that you try to design your system around <a href="http://en.wikipedia.org/wiki/Resource_%28Web%29">resources</a> represented by URLs.</p>
-<p>I&#8217;d thoroughly recommend reading <a href="http://www.amazon.co.uk/RESTful-Web-Services-Leonard-Richardson/dp/0596529260">RESTful web services</a> whenever you get a moment as this subject is covered in detail.</p>
-<p>Flickr isn&#8217;t a truly resourceful design but it does have many of the hallmarks. For example the <span class="caps">URL</span> that describes me is at:</p>
-<pre><code>http://flickr.com/people/garethr</code></pre>
-<p>When it comes to searching on flickr we have:</p>
-<pre><code>http://flickr.com/search/?w=all&amp;q=pubstandards&amp;m=text</code></pre>
-<p>The pattern of using a query string argument named <em>q</em> to pass a search string is pretty common. One of the guidelines mentioned as part of the <span class="caps">ROA</span> discussed query strings:</p>
-<blockquote>
-<p>Query string parameters are appropriate if they are inputs to a Resource which is an algorithm. Otherwise, these values should be moved into the <span class="caps">URI</span>.</p>
-</blockquote>
-<p>Search is definitely algorithmic. Now you could maybe argue that a global search should be done on the root of a site, with specific resource searches on the resource in questions. eg. <em>/people/?q=</em>. This would likely work fine but require some behind the scenes complexity as well as probably not being as obvious to the end user. Global searches are in many cases much more common that restricted searches and even in resourceful designs the root of the site (ie. the home page) might not act as a list of available site resources. A notable exception might would have to be the excellent <a href="http://www.bbc.co.uk/programmes"><span class="caps">BBC</span> Programmes</a> site which is basically one big semantic catalogue.</p>
-<p>But we have another kind of <span class="caps">URL</span> that&#8217;s cropping up for search results, one that treats the <span class="caps">URL</span> much more like a fundamental part of the user interface for search. An example from a site I use all the time is <a href="http://traintimes.org.uk/">The Accessible UK Train Timetable</a> which allows for URLs like the following:</p>
-<pre><code>http://traintimes.org.uk/newcastle/london</code></pre>
-<p>You can basically squash all the search parameters from the form into the <span class="caps">URL</span>, meaning you can easily bookmark search results. Note however the actual content is likely to change. The above example for instance would use the current time to get a list of trains from Newcastle to London. In an hours time the results will be different.</p>
-<p>Another good example would be the new Yahoo! UK TV listings which has URLs like these:</p>
-<pre><code>http://uk.tv.yahoo.com/listings/bbc-two/2008-04-17/</code></pre>
-
-<pre><code>http://uk.tv.yahoo.com/listings/itv1/2008-04-17/21-00/</code></pre>
-<p>Again this is really a search query, or at least specifying the time and date is. In some ways it&#8217;s the return of the command line &#8211; allowing searches to be run very quickly from a textual interface.</p>
-<p>Now, both these approaches treat URLs with the respect they deserve. But they do have the potential to clash somewhere in the middle if care isn&#8217;t taken. The Accessible Train Times site is a single purpose site which just does searches while <span class="caps">BBC</span> Programmes does feature a search engine but it&#8217;s just the global <span class="caps">BBC</span> search which takes you off site. And if that wasn&#8217;t enough potential competition then a question raised by <a href="http://simonwillison.net">Simon</a> at The Highland Fling regarding <span class="caps">URL</span> design and the search engine optimisation crowd go me thinking too. From being a somewhat niche area of interest URLs might just become a sort after part of a good website design &#8211; fought over by the varying disciplines of modern web design and development.</p></div>
   
   
 

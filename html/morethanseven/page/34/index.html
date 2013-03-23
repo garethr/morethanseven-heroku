@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="Well, that&#8217;s nearly 2005 over and done with. Quite an eventful year all told and I couldn&#8217;t let it end without the obligatory next year &hellip;">
+  <meta name="description" content="Since the brief discussion based around ben&#8217;s original idea for using del.icio.us to track comments you have made on other blogs I&#8217;ve &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,66 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/01/02/commented-on-follow-up/">@Commented-on Follow Up</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-01-02T00:00:00+00:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2006</time>
+        
+         | <a href="/2006/01/02/commented-on-follow-up/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Since the <a href="http://morethanseven.net/posts/commented-on">brief discussion</a> based around <a href="http://www.ben-ward.co.uk">ben&#8217;s</a> original idea for using <a href="http://del.icio.us">del.icio.us</a> to track comments you have made on other blogs I&#8217;ve been having a play.</p>
+ <p>The main issue that people saw was simplicity, which I see falling under two headings:</p>
+<ul>
+ <li>Ideally it should just happen. If you comment somewhere (and opt in, obviously) you browser or online service should keep a track and give you access to this data. This would require changes to existing blogs and in particular the common software like <a href="http://www.textpattern.com">textpattern</a> or <a href="http://wordpress.org">the other one</a></li>
+  <li>Saving that for later, a simple one click service which does not get in the way and achieves the same thing should be suitable.</li>
+</ul>
+ <p>It&#8217;s the later that I&#8217;ve been playing with and thought I&#8217;d present here in it&#8217;s early stages. The plan is as follows:</p>
+<ul>
+ <li>A <a href="http://en.wikipedia.org/wiki/Bookmarklet">bookmarklet</a> collects the data from the page (title and url) and sends it to an intermediary page, rather than del.icio.us.</li>
+  <li>The intermediary page prompts for a username and password (<span class="caps">HTTP</span> authentication) and adds the post to del.icio.us automatically.</li>
+  <li>The page is then either closed or redirected back to the page from whence the request came.</li>
+</ul>
+ <h3>The bookmarklet</h3>
+ <p>The bookmarklet section is simple enought modifications of the existing del.icio.us bookmarklets. See the download at the end of this post for details.</p>
+ <h3>Intermediary</h3>
+ <p>The intermediary page uses <span class="caps">HTTP</span> authentication to ask for a del.icio.us username and password (note that I&#8217;m not storing these at all, or for that matter at present checking if they are correct.) This needs only happen the first time you use the page if you use your browser to store the details or once per browser session otherwise.</p>
+ <p>The page then makes a request to the <a href="http://del.icio.us/help/api/">del.icio.us <span class="caps">API</span></a> using the lovely <span class="caps">PHP</span> library from <a href="http://dietrich.ganx4.com/delicious/">dietrich.ganx4.com/delicious/</a></p>
+ <h3>Return</h3>
+ <p>On a failed request the page reports that an error has occured (I&#8217;ll expand on this with more pertinent error messages as time permits.)</p>
+ <p>On success however we have two options, depending on the bookmarklet used. The default is to close the page down, with an alternative beiong to redirect back to the refering page. We do however run into a slight problem here with Firefox. Our favourite browser will only allow windows to be closed via javascript if they where opening by a script (<span class="caps">NOT</span> including our bookmarket). Internet Explorer has a similar set up where it prompts the user for an action, although a <a href="http://www.guyfromchennai.com/?p=18">simple fudge</a> get&#8217;s us around that one. At the moment therefore the close window bookmarklet is of limited usage for Firefox users.</p>
+ <h3>Future</h3>
+ <p>This could quite easily be expanded for use on a blog as the requests are simple <span class="caps">HTTP</span> requests with query string parameters. However the security implications of giving out your username and password would likely limit this approach. I&#8217;m going to look into the sending of bookmarks to others that ben mentioned and see if that can be used here &#8211; as hopefully that may only require you to give out your username. A service like <a href="http://www.gravatar.com/">gravatar</a> could then be used to do lookups between email addresses and del.icio.us usernames and away we go.</p>
+ <p>Any thoughts, comments or suggestions welcome. And feel free to try out the bookmarklets. I&#8217;ve included a handy download below including a quick readme and the bookmarklets.</p>
+ <p><a href="http://morethanseven.net/commented-on/commented-on.zip">download @Commented-on pack</a></p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -478,47 +538,6 @@
   <div class="entry-content"><p>I&#8217;m not going to prattle on but something that&#8217;s bugged me for an age. The usage of the word &#8220;Creatives&#8221;. And lo and behold it bugs <a href="http://37signals.com/svn/archives2/creatives.php">other people</a> too.</p>
  <p>I like knowing that it&#8217;s not just me!</p>
  <p>Just to say as well that anyone reading this and going along to the <a href="http://www.accessify.com">Accessify</a> <a href="http://www.accessifyforum.com/viewtopic.php?t=3770&#38;postdays=0&#38;postorder=asc&#38;highlight=meetup&#38;start=120">Meetup</a> in Manchester this weekend let me know. Leave a comment. Be good to put names and faces to email addresses and web sites!</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2005/11/12/dconstruct/">d.Construct?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-11-12T00:00:00+00:00" pubdate data-updated="true">Nov 12<span>th</span>, 2005</time>
-        
-         | <a href="/2005/11/12/dconstruct/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Right. I wasn&#8217;t at <a href="http://www.dconstruct.org">d.Construct</a> I&#8217;m still a bit gutted really as it sounded like a hoot and lots of it was up my street and would have been good to meet up with &#8216;people&#8217;. But hey, I can still watch the feeds pour in right?</p>
- <p>With that in mind, to again make my life easier and hopefully be of some use I&#8217;ve set up another (the first one was for <a href="http://www.atmedia2005.co.uk">@media</a>) feed syndicator.</p>
- <p><a href="http://morethanseven.net/dconstruct">morethanseven.net/dconstruct</a></p>
- <p>All I&#8217;m doing is parsing, storing and displaying all the feeds. On first run I picked up 27 and hopefully by the time you read this more will have been said. The collection of feeds are a combination of people I&#8217;ve met and people who where blogging about <code>media. If you have a feed and want it adding just leave a comment on here or drop me an &lt;a href="mailto:gareth</code>morethanseven.net&quot;&gt;email</a> and I&#8217;ll add it to the rest.</p>
- <p>I&#8217;ll just say a big shout for everyone at <a href="http://www.clearleft.com">Clearleft</a> for organising it on such short notice. I&#8217;d rather thinks like this happen and me not be there than they not happen at all because of problems with size or cost or admin. Maybe next year?</p></div>
   
   
 

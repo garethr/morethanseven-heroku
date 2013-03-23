@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="My latest job has allowed me to get back into playing with Rails, something I&#8217;ve been meaning to do for a year or so. Having got everything up &hellip;">
+  <meta name="description" content="I&#8217;m having quite a bit of fun with my rabbit, cambridge, at the moment. Their were a number of projects at Hackday involving the ever so cute &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,56 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/07/18/nabaztag-rest-api/">Nabaztag REST API</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-07-18T00:00:00+01:00" pubdate data-updated="true">Jul 18<span>th</span>, 2007</time>
+        
+         | <a href="/2007/07/18/nabaztag-rest-api/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m having quite a bit of fun with my rabbit, <em>cambridge</em>, at the moment. Their were a number of projects at <a href="http://hackday.org">Hackday</a> involving the ever so cute <a href="http://nabaztag.com">Nabaztag</a> and I had a feeling I&#8217;d probably go home and adopt one. The idea of a rabbit with APIs was simple too much fun.</p>
+<p><img src="http://morethanseven.net/_assets/media/imgNabaztag.jpg" title="Nabaztag" alt="Nabaztag" /></p>
+<p>The Nabaztag <span class="caps">API</span> docs can be found in two places (the rest of the site unfortunately has a number of issues when it comes to finding information easily); in the <a href="http://help.nabaztag.com/fiche.php?langue=3&amp;fiche=29#none">help section</a> and on the <a href="http://api.nabaztag.com/docs/home.html"><span class="caps">API</span> site</a>. The latter are much better than the former by the way.</p>
+<p>Lots of people have already been hacking on the wireless rabbit. Their are some good tools over on the <a href="http://nabaztools.sourceforge.net/">Nabaztag Sourceforge project</a>, a handy <a href="http://rubyforge.org/projects/nabaztag/">Ruby module</a> and a <a href="http://pear.php.net/pepr/pepr-proposal-show.php?id=463">prospective</a> <a href="http://tmp.lfms.nl/nabaztag/"><span class="caps">PEAR</span> module</a> for <span class="caps">PHP</span>.</p>
+<p>I&#8217;ve been getting more and more into the ideas behind <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer"><span class="caps">REST</span></a> recently and one thing that disappointed me a litte was the <span class="caps">HTTP</span> <span class="caps">RPC</span> style Nabaztag <span class="caps">API</span> (note to anyone thinking <span class="caps">REST</span> simply means using a <span class="caps">GET</span> request rather than something like <span class="caps">SOAP</span> or <span class="caps">XML</span>-<span class="caps">RPC</span>, it doesn&#8217;t). I couldn&#8217;t help seeing PUTs to ears and POSTs to the mouth.</p>
+<p>Inspired a little by <a href="http://www.aralbalkan.com/">Arals</a> <a href="http://aralbalkan.com/994">Bunny Talk</a> I&#8217;ve started implementing parts of the <span class="caps">API</span> in a RESTful manner, and used my <span class="caps">API</span> abstraction layer to build a similar application.</p>
+<p>Head over to <a href="http://morethanseven.net/presents/nabaztag/">morethanseven.net/presents/nabaztag/</a> and send me a message (via my rabbit obviously) or, er, play with <em>cambridges</em> ears (he likes that). At the moment the <span class="caps">API</span> is configured only for my rabbit, although you can download the source code and run it yourself if you like. It requires PHP5 at the moment as one of the required modules is PHP5 only. But you are using <a href="http://gophp5.org/">PHP5 now</a> aren&#8217;t you?</p>
+<p>If you don&#8217;t want to use the form you can access the <span class="caps">API</span> directly. Here are a couple of examples using curl:</p>
+<pre><code>curl http://morethanseven.net/presents/nabaztag/ears/left</code></pre>
+
+<pre><code>curl -X 'PUT' http://morethanseven.net/presents/nabaztag/ears/left/13</code></pre>
+
+<pre><code>curl -X 'POST' -d "message" http://morethanseven.net/presents/nabaztag/mouth</code></pre>
+<p>Their&#8217;s a litte documentation in the source. I&#8217;ll add more methods, more documentation and maybe make an <span class="caps">API</span> anyone with a Nabaztag can use by authenticating either as I need it or if people actually want it. Let me know what you think (via the rabbit obviously!)</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -549,69 +599,6 @@
 <p>Andy&#8217;s suggestion of an interim step (or steps) between now and CSS3 modules raises a problem. If the working group do the work then it takes their eye further off getting CSS3 modules out. If they don&#8217;t, will they accept suggestions from outside? Will outsiders be able to grok the whole standardisation process?</p>
 <p>What we need is a commercial company with lots of smart people and lots of cash &#8211; with a track record of working with standards. A member of the W3C would be a plus. Ideally they should have something invested in the web as a platform, maybe even in a smarter, cleverer, semantic web.</p>
 <p>Google to the rescue maybe? If you&#8217;re really cynical you could see Silverlight as an end run around Google&#8217;s apparent dominance of the web as a platform. Lock content away in proprietary silos and traditional search becomes less appealing? And surely Google has lots to gain from the long term adoption of anything that increases the semantic nature of the web. If <span class="caps">CSS</span> is a battleground then maybe they need to come out and make a stand(ard)?</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/04/28/if-computer-scientists-managed-birth-certificates/">If Computer Scientists Managed Birth Certificates</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-04-28T00:00:00+01:00" pubdate data-updated="true">Apr 28<span>th</span>, 2007</time>
-        
-         | <a href="/2007/04/28/if-computer-scientists-managed-birth-certificates/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;ve been pondering <a href="http://morethanseven.net/posts/authoritative-hcards-authority-in-microformats/">authority in microformats</a> and as a result been taking a closer look at <a href="http://microid.org">microID</a>.</p>
-<p>The situation I want to find a solution for is; If their are lots of published hcards for a given person they might be different, either out of date or more sinisterly fraudulent. If I do a search for contact details, lets say using the <a href="http://kitchen.technorati.com/contact/search/">technorati hcard search engine</a>, how do I know which one is to be trusted?</p>
-<p>If I publish an hcard on <a href="http://morethanseven.net">my site</a> using the following markup, including a microID using the included email and url details to form the hash.</p>
-<pre><code>&lt;div 
-   class="vcard microid-mailto+http:sha1:a52b4f86cfa4190b53634d99198c0f56970c8d83"&gt;
-   &lt;h2 class="fn"&gt;gareth rushgrove&lt;/h2&gt;
-   &lt;a href="http://morethanseven.net" class="url" rel="me"&gt;
-      morethanseven.net
-   &lt;/a&gt;
-   &lt;a href="mailto:gareth@morethanseven.net" class="email"&gt;
-      gareth@morethanseven.net
-   &lt;/a&gt;
-&lt;/div&gt;</code></pre>
-<p>If the hcard search engine reads that hcard on the morethanseven.net domain it could check the hash in the vcard against doings it&#8217;s own hash with the specified email address and url (checking the url is the same as the one on which the vcard lives). &#8220;Ah ha&#8221;. It can say. This looks like an authoritive hcard.</p>
-<p>This does however raise a couple of issues. In order for the search engine or external reader to be able to create its hash you have to include the email in your hcard. I&#8217;m also not sure it does solve the issue of evil me:</p>
-<pre><code>&lt;div 
-   class="vcard microid-mailto+http:sha1:40b46e5c349453bddd0dbd022fb33488494699cb"&gt;
-   &lt;h2 class="fn"&gt;evil gareth rushgrove&lt;/h2&gt;
-   &lt;a href="http://spammer.com" class="url" rel="me"&gt;
-      spammer.com
-   &lt;/a&gt;
-   &lt;a href="mailto:gareth@spammer.com" class="email"&gt;
-      gareth@spammer.com
-   &lt;/a&gt;
-&lt;/div&gt;</code></pre>
-<p>Assuming the above is published on spammer.com then I&#8217;m sunk. It&#8217;s another authorative hcard with the same name, in this case <em>my</em> name. Of course therein lies another problem, when we name our children we tend to just do it on a whim, we even copy names we like from other people! And we change or subvert these names when we dont like them with nick names and the like. Domain names are unique so we avoid this problem.</p>
-<p>So, a possible solution does present itself; using the uniqueness of domain names combined with the fact that most people aren&#8217;t evil spammers. Lets postulate a search engine finds lots of hcards for a given name. Most of these hcards probably point back to the url of the entity they are describing (so most hcards on the web describing me point back to this site). We can then check if one of the hcards is from that domain, and if it has a valid microID. In other words we use the lazy web to identify the most likely location of an authorative hcard.</p></div>
   
   
 

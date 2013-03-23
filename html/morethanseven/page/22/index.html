@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I have a new toy I&#8217;m quite enamoured with. After a double helping of jQuery first from Jon Resig at @media Ajax and then from Simon Willison at &hellip;">
+  <meta name="description" content="I&#8217;ve talked about having fun with jQuery using Jash and Firebug before after seeing Simon throw the Google homepage around at barcamp. I&#8217; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,58 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/12/08/insert-dojo-and-yui-bookmarklets/">Insert Dojo and YUI Bookmarklets</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-08T00:00:00+00:00" pubdate data-updated="true">Dec 8<span>th</span>, 2007</time>
+        
+         | <a href="/2007/12/08/insert-dojo-and-yui-bookmarklets/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve talked about <a href="http://morethanseven.net/posts/debug-web-pages-with-jquery-and-jash/">having fun with jQuery</a> using <a href="http://www.billyreisinger.com/jash/">Jash</a> and Firebug before after seeing <a href="http://simonwillison.net">Simon</a> throw the Google homepage around at barcamp. I&#8217;m no more a one javascript framework person than a one programming language person and recently I&#8217;ve seen cool things I want to play with in lots of the main contenders.</p>
+<p>I&#8217;ve put together a couple of bookmarklets which load <a href="http://developer.yahoo.com/yui/"><span class="caps">YUI</span></a> or <a href="http://dojotoolkit.org/">Dojo</a> from their respective content delivery networks and insert them into your current browser context. You can then play around with them in Jash or Firebug or any other Javascript console.</p>
+<p>Dojo is particularly interesting here due to it&#8217;s cunning loading mechanism for additional parts of the framework. Basically you can gain access to the entire (huge) framework simply by using the bookmarklet and then dynamically loading the rest via the command line.</p>
+<p><a href="javascript:void(function(){var%20s=document.createElement('script');s.src='http://o.aolcdn.com/dojo/1.0.0/dojo/dojo.xd.js';document.getElementsByTagName('head')[0].appendChild(s);}())">Insert Dojo</a></p>
+<pre><code>javascript:void(function(){
+ var%20s=document.createElement('script');
+ s.src='http://o.aolcdn.com/dojo/1.0.0/dojo/dojo.xd.js';
+ document.getElementsByTagName('head')[0].appendChild(s);
+}())</code></pre>
+<p><a href="javascript:void(function(){var%20s=document.createElement('script');s.src='http://yui.yahooapis.com/2.4.0/build/yahoo-dom-event/yahoo-dom-event.js';document.getElementsByTagName('head')[0].appendChild(s);}())">Insert <span class="caps">YUI</span></a></p>
+<pre><code>javascript:void(function(){
+ var%20s=document.createElement('script');
+ s.src='http://yui.yahooapis.com/2.4.0/build/yahoo-dom-event/yahoo-dom-event.js';
+ document.getElementsByTagName('head')[0].appendChild(s);
+}())</code></pre>
+<p>The code simply inserts a script element into the page which loads the relevant framework. I&#8217;ve shown the code on multiple lines for the sake of the example, but your bookmarklet should be on one line. Alternatively you can drag the <a href="javascript:void(function(){var%20s=document.createElement('script');s.src='http://yui.yahooapis.com/2.4.0/build/yahoo-dom-event/yahoo-dom-event.js';document.getElementsByTagName('head')[0].appendChild(s);}())">Insert <span class="caps">YUI</span></a> or <a href="javascript:void(function(){var%20s=document.createElement('script');s.src='http://o.aolcdn.com/dojo/1.0.0/dojo/dojo.xd.js';document.getElementsByTagName('head')[0].appendChild(s);}())">Insert Dojo</a> links to your bookmark bar.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -505,64 +557,6 @@ print 'Archived ' + str(tweets) + ' of ' + username + \
 <p><img src="http://morethanseven.net/_assets/media/imgLabs3.jpg" title="Matt takes a shot" alt="Matt takes a shot" /></p>
 <p>The <a href="http://open.bbc.co.uk/labs/2008_the_brief.php">briefs</a> are already up that will form the core of the submission process in order to get on one of the labs. I&#8217;d recommend having a good read, picking a few you think are interesting and tie in with whatever your interests are at the moment and go from their.</p>
 <p>With all that in mind I&#8217;m looking for people who fancy partnering up to brainstorm ideas, put together a few submissions and see if we get anywhere. I&#8217;m now working full time on freelance and consultancy gigs but the nature of the labs was that you need a team of at least two people. And anyway, ideas flow more freely with a few smart people sat around. So, if anyone fancies sitting around talking through a few of the briefs (and who knows, maybe drinking a glass of wine?) at some point over the next few months before the deadline let me know.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/10/28/php-asset-packager/">PHP Asset Packager</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-10-28T00:00:00+01:00" pubdate data-updated="true">Oct 28<span>th</span>, 2007</time>
-        
-         | <a href="/2007/10/28/php-asset-packager/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Performance used to be something other people thought about. If you were working on a high traffic site for a large company, chances are they would throw inordinate amounts of expensive hardware at the problem. If you had a personal site only if you got really popular would you need more than a shared host. But the number of web applications being launched by small companies or individuals from their bedrooms is raising the awareness of the importance of performant websites.</p>
-<p>Credit to <span class="caps">YAHOO</span>! here. Google and Amazon might be the first companies that spring to mine when it comes to thinking about infrastructure but <span class="caps">YAHOO</span>! have been publishing lots of useful, practical and interesting information in this area. <a href="http://stevesouders.com/">Steve Souders</a>, the Chief Performance <span class="caps">YAHOO</span>! has a <a href="http://www.amazon.co.uk/o/ASIN/0596529309/">new book</a> going into detail about <a href="http://developer.yahoo.com/performance/rules.html"><span class="caps">YAHOO</span>!s performance rules</a>. The recent release of the <a href="http://developer.yahoo.com/yslow/">YSlow</a> extension and another <a href="http://website-performance.org/">upcoming book</a> from <a href="http://muffinresearch.co.uk/archives/2007/09/27/css-sprite-generator-tool/">Stuart Colville</a> and <a href="http://www.ejeliot.com/">Ed Eliot</a> cap things off nicely.</p>
-<p>According to <a href="http://developer.yahoo.com/performance/rules.html#num_http"><span class="caps">YAHOO</span>!</a></p>
-<blockquote>
-<p>Combined files are a way to reduce the number of <span class="caps">HTTP</span> requests by combining all scripts into a single script, and similarly combining all stylesheets into a single stylesheet. It&#8217;s a simple idea that hasn&#8217;t seen wide adoption. The ten top U.S. web sites average 7 scripts and 2 stylesheets per page. Combining files is more challenging when the scripts and stylesheets vary from page to page, but making this part of your release process improves response times.</p>
-</blockquote>
-<p>While all that has been going on I&#8217;ve been working with a <a href="http://rbd.shiftnetwork.co.uk/">few</a> <a href="http://www.bofh.org.uk/">people</a> on a Rails project and come across a great plugin; <a href="http://synthesis.sbecker.net/pages/asset_packager">asset_packager</a> from <a href="http://synthesis.sbecker.net/">Scott Becker</a>. Inspired by the <a href="http://www.thinkvitamin.com/features/webapps/serving-javascript-fast">Vitamin article</a> by <a href="http://www.iamcal.com/">Cal Henderson</a> (of Flickr and <a href="http://www.amazon.co.uk/Building-Scalable-Web-Sites-Henderson/dp/0596102356">another good book</a> fame), asset_packager compresses and merges <span class="caps">CSS</span> and Javascript based on a prescribed configuration.</p>
-<p>I&#8217;m also working on a few <span class="caps">PHP</span> projects and wanted the same experience in these as well, so  I&#8217;ve gone a put together a quick release of <a href="http://code.google.com/p/php-asset-packager/">php asset packager</a>. At the moment this is a <span class="caps">CSS</span> only release, with Javascript features coming later, along with all the rest of the features of the Rails plugin and anything else I can think of or need.</p>
-<p>First off you define your stylesheet setup. I used <a href="http://www.yaml.org/"><span class="caps">YAML</span></a> as my goal was to stick as close as possible to the Rails plugin.</p>
-<p><code>&lt;pre&gt;stylesheets:
-- base:
-  - screen
-  - header
-- secondary:
-  - foo
-  - bar&lt;/pre&gt;</code></p>
-<p>The above simply states that you want to merge screen and header <span class="caps">CSS</span> files together to form a base stylesheet, and merge foo and bar together to create a secondary <span class="caps">CSS</span> file.</p>
-<p>All you then have to do is include the following:</p>
-<p><code>&lt;pre&gt;// define("ENVIRONMENT", "production");</p>
-<p>echo Asset_packager::stylesheet_link_merged();</pre></code></p>
-<p>If the <span class="caps">ENVIRONMENT</span> constant is set to <em>production</em> the line includes the merged stylesheet links, otherwise each file is included seperately. This again mirrors the behaviour of the Rails plugin. A command line script is also included in the <a href="http://code.google.com/p/php-asset-packager/source">source</a> to actually merge (and <a href="http://csstidy.sourceforge.net/">tidy</a>) the <span class="caps">CSS</span> files.</p>
-<p>The vague plan is to add the rest of the features and then maybe package up as a plugin for whatever software or frameworks I&#8217;m working with at the time. At the moment that probably means wordpress, <a href="http://www.symfony-project.com/">symfony</a> and <a href="http://codeigniter.com/">code igniter</a>. Everything is open source and available from svn over on the <a href="http://code.google.com/p/php-asset-packager">Google Code site</a>. Contributions, in the way of code, bugs, documentation or thoughts welcome.</p></div>
   
   
 

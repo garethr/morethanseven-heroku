@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="As mentioned at the last event I&#8217;ve taken over organising the Django User Group London event from Rob. Tickets are now available for the next &hellip;">
+  <meta name="description" content="I&#8217;ve just found Dreque from Samuel Stauffer on GitHub. It&#8217;s yet another take on the whole messaging things which is definitely seeing a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,53 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/11/28/dreque/">Dreque</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-11-28T00:00:00+00:00" pubdate data-updated="true">Nov 28<span>th</span>, 2009</time>
+        
+         | <a href="/2009/11/28/dreque/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve just found <a href="http://github.com/samuel/dreque">Dreque</a> from <a href="http://samuelks.com/">Samuel Stauffer</a> on GitHub. It&#8217;s yet another take on the whole messaging things which is definitely seeing a lot of activity at the back end of this year. It&#8217;s using <a href="http://code.google.com/p/redis/">Redis</a> on the backend and looks really rather nice:</p>
+<p>Submitting jobs:</p>
+<pre><code>from dreque import Dreque
+def some_job(argument):
+    pass
+dreque = Dreque("127.0.0.1")
+dreque.enqueue("queue", some_job, argument="foo")</code></pre>
+<p>Worker:</p>
+<pre><code>from dreque import DrequeWorker
+worker = DrequeWorker(["queue"], "127.0.0.1")
+worker.work()</code></pre></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -504,50 +551,6 @@ svcadm enable memcached</pre>
 	<li>http://blog.hendrikvolkmer.de/2009/1/29/deploying-a-rails-application-on-opensolaris-with-passenger-aka-modrails/</li>
 </ul>
 <p>I&#8217;m not a Solaris admin. I&#8217;m not really a sysadmin at all, I just end up pretending to be one of late. Any experienced Solaris people with experience of these tools reading this I&#8217;d be grateful for any hints and tips. Hopefully this saves a few people from the head scratching I&#8217;ve been doing for the last few days.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/08/15/your-own-pypi-server/">Your Own PyPi Server</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-08-15T00:00:00+01:00" pubdate data-updated="true">Aug 15<span>th</span>, 2009</time>
-        
-         | <a href="/2009/08/15/your-own-pypi-server/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>So one of the problems with using pip or easy_install as part of an automated deployment process is they rely on an internet connection. More than that, they rely on PyPi being up as it&#8217;s a centralised system, unlike all the apt package mirrors.</p>
-<p>The best solution seems to be to host your own PyPi compliant server. Not only can you load all the third party modules you use onto it, but you could also upload any internal applications or libraries that you like. By running this on your local network you ensure your not dependent on pypi or an internet connection.</p>
-<p>At the moment I&#8217;m playing with <a href="http://github.com/ask/chishop/tree/master">Chishop</a> which is a django application for maintaining a PyPi compatible server. Another alternative if that doesn&#8217;t work out is <a href="http://pypi.python.org/pypi/EggBasket/">EggBasket</a></p>
-<p>To install from your own PyPi server you can specify the location of your Chishop instance with the -i flag.</p>
-<pre>easy_install -i http://localhost:8000/ PACKAGE_NAME</pre>
-<p>This will fall back to the PyPi server if it doesn&#8217;t find the relevant package. If you want to stop that behaviour and make sure you have a local package then you can limit the hosts with the -H flag like so.</p>
-<pre>easy_install -H localhost:8000 -i http::/localhost:8000/ PACKAGE_NAME</pre>
-<p>I&#8217;m not yet sure how to do this with pip, if someone wants to enlighten me in the comments then I&#8217;d be most grateful.</p></div>
   
   
 

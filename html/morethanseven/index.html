@@ -9,8 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I had fun speaking at QCon in London earlier this month with a talk on the Cloud track entitled the Perils of Portability.
-This had some Governmenty &hellip;">
+  <meta name="description" content="I&#8217;ve not been writing many blog posts lately, but I have been doing quite a bit of writing elsewhere. One of the things I&#8217;ve had a hand &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +80,58 @@ This had some Governmenty &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/03/23/government-service-design-manual/">Government Service Design Manual</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-23T17:04:00+00:00" pubdate data-updated="true">Mar 23<span>rd</span>, 2013</time>
+        
+         | <a href="/2013/03/23/government-service-design-manual/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve not been writing many blog posts lately, but I have been doing quite a bit of writing elsewhere. One of the things I&#8217;ve had a hand in at work is the new <a href="https://www.gov.uk/service-manual">Government Service Design Manual</a>. This is the work of many people I work with as well as further afield. It&#8217;s intended to be a good starting place to find information about building high quality digital services.</p>
+<p>The manual is in beta and we&#8217;re looking for as much feedback as possible on the whole thing. It&#8217;s already proving useful and a good way of framing the scope of discussions, but it has lots of room for improvement.</p>
+<p>If you&#8217;re reading this post I&#8217;m going to wager you&#8217;re interest lies in or around devops flavoured content. The following are guides I&#8217;ve written in this area that I&#8217;d love any and all feedback on.</p>
+<ul>
+	<li><a href="https://www.gov.uk/service-manual/the-team/web-operations.html">Web Operations</a></li>
+	<li><a href="https://www.gov.uk/service-manual/making-software/configuration-management.html">Configuration Management</a></li>
+	<li><a href="https://www.gov.uk/service-manual/operations/hosting.html">Hosting</a></li>
+	<li><a href="https://www.gov.uk/service-manual/making-software/information-security.html">Information Security</a></li>
+	<li><a href="https://www.gov.uk/service-manual/operations/monitoring.html">Monitoring</a></li>
+	<li><a href="https://www.gov.uk/service-manual/operations/load-and-performance-testing.html">Load and Performance Testing</a></li>
+	<li><a href="https://www.gov.uk/service-manual/making-software/release-strategies.html">Releasing Software</a></li>
+	<li><a href="https://www.gov.uk/service-manual/operations/penetration-testing.html">Vulnerability and Penetration Testing</a></li>
+	<li><a href="https://www.gov.uk/service-manual/making-software/choosing-technology.html">Choosing Technology</a></li>
+</ul>
+<p>If you&#8217;re interested in the background to this endeavour then a couple of blog posts from some of my colleagues might be of interest too. First Richard Pope talks about <a href="http://digital.cabinetoffice.gov.uk/2013/03/21/building-the-standard/">how the manual came about</a> and here&#8217;s a post from Andrew Greenway about this <a href="http://digital.cabinetoffice.gov.uk/2013/03/21/building-the-standard/">beta testing of the service standard</a>.</p>
+<p>The source for all this is on <a href="https://github.com/alphagov/government-service-design-manual">GitHub</a> so if you prefer you can just sent a pull request. Or I&#8217;m happy to get emails or comments on this post. In particular if people have good references or next steps for these guides then let me know as several of them in particular are lacking in that area.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -499,47 +550,6 @@ Finished in 0.01472 seconds
 	<li><a href="https://github.com/garethr/riemann-vagrant">riemann-vagrant</a> is a Vagrantfile and other code which uses above puppet module to setup a local testing environment.</li>
 </ul>
 <p>I like this combination, a separate Puppet module along with a vagrant powered test bed. I&#8217;ve written a reasonable rspec based test suite to check the module but it&#8217;s always easier to be able to run <em>vagrant provision</em> as well to check everything is working. This also turned out to be the perfect opportunity to use <a href="https://github.com/rodjek/librarian-puppet">Librarian-Puppet</a> to manage the dependencies and eventually to ship the module to the <a href="https://forge.puppetlabs.com/garethr/riemann">Puppet Forge</a>.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/07/01/The-vagrantbox.es-story/">The Vagrantbox.es Story</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-01T00:00:00+01:00" pubdate data-updated="true">Jul 1<span>st</span>, 2012</time>
-        
-         | <a href="/2012/07/01/The-vagrantbox.es-story/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>A few weeks ago now <a href="http://www.vagrantbox.es/">Vagrantbox.es</a> (a website I maintain for third party hosted <a href="http://vagrantup.com/">Vagrant</a> base boxes) dissapeared from the internet for a few days. This was completely my fault, the (lovely) hosting people <a href="https://www.ep.io/">ep.io</a> had unfortunately closed down the service they had in beta and I&#8217;d been so busy that I hadn&#8217;t had chance to move it elsewhere.</p>
-<p>The original version of the site (I had the code and good backups of the data) was a pretty simple Django application, but I&#8217;d used it to experiment (read over-engineer) with various bits of tech including Varnish, Solr, some <span class="caps">ORM</span> caching and lots more. This had been great, but it made it less portable. I had everything described in Puppet, but with virtually no spare time I decided to go a different route.</p>
-<p>I threw a flat version of the site up on <a href="https://github.com/garethr/vagrantboxes-heroku">GitHub</a>, served it using Nginx on <a href="http://www.heroku.com/">Heroku</a> and added a quick <em>Fork me on GitHub</em> badge to the top. Suggest a box moved from being a web form to a pull request. It&#8217;s fair to say I did this pretty quickly and made a good few typos on the way. But within a couple of weeks I&#8217;ve had 8 pull requests either fixing my bugs, removing dead boxes and adding new ones.</p>
-<p>What I&#8217;m going to take from this is, if you&#8217;re building a community project that&#8217;s aimed at developers, then throw the content on GitHub. In my case I have the entire site on there too but I think that&#8217;s secondary. Pull requests are much better than any content management system or workflow you&#8217;re likely to build, and even more importantly the time to implement something drops hugely.</p>
-<p>With all the spare time I don&#8217;t have I&#8217;ll be thinking about a content management model using GitHub for content, pull requests for workflow and post commit hooks for loading that content into a site or service somewhere.</p></div>
   
   
 

@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I&#8217;ve been busy really getting to grips with Trac recently and thought I&#8217;d post up a few details. Trac for those that haven&#8217;t come &hellip;">
+  <meta name="description" content="Performance used to be something other people thought about. If you were working on a high traffic site for a large company, chances are they would &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,64 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/10/28/php-asset-packager/">PHP Asset Packager</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-10-28T00:00:00+01:00" pubdate data-updated="true">Oct 28<span>th</span>, 2007</time>
+        
+         | <a href="/2007/10/28/php-asset-packager/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Performance used to be something other people thought about. If you were working on a high traffic site for a large company, chances are they would throw inordinate amounts of expensive hardware at the problem. If you had a personal site only if you got really popular would you need more than a shared host. But the number of web applications being launched by small companies or individuals from their bedrooms is raising the awareness of the importance of performant websites.</p>
+<p>Credit to <span class="caps">YAHOO</span>! here. Google and Amazon might be the first companies that spring to mine when it comes to thinking about infrastructure but <span class="caps">YAHOO</span>! have been publishing lots of useful, practical and interesting information in this area. <a href="http://stevesouders.com/">Steve Souders</a>, the Chief Performance <span class="caps">YAHOO</span>! has a <a href="http://www.amazon.co.uk/o/ASIN/0596529309/">new book</a> going into detail about <a href="http://developer.yahoo.com/performance/rules.html"><span class="caps">YAHOO</span>!s performance rules</a>. The recent release of the <a href="http://developer.yahoo.com/yslow/">YSlow</a> extension and another <a href="http://website-performance.org/">upcoming book</a> from <a href="http://muffinresearch.co.uk/archives/2007/09/27/css-sprite-generator-tool/">Stuart Colville</a> and <a href="http://www.ejeliot.com/">Ed Eliot</a> cap things off nicely.</p>
+<p>According to <a href="http://developer.yahoo.com/performance/rules.html#num_http"><span class="caps">YAHOO</span>!</a></p>
+<blockquote>
+<p>Combined files are a way to reduce the number of <span class="caps">HTTP</span> requests by combining all scripts into a single script, and similarly combining all stylesheets into a single stylesheet. It&#8217;s a simple idea that hasn&#8217;t seen wide adoption. The ten top U.S. web sites average 7 scripts and 2 stylesheets per page. Combining files is more challenging when the scripts and stylesheets vary from page to page, but making this part of your release process improves response times.</p>
+</blockquote>
+<p>While all that has been going on I&#8217;ve been working with a <a href="http://rbd.shiftnetwork.co.uk/">few</a> <a href="http://www.bofh.org.uk/">people</a> on a Rails project and come across a great plugin; <a href="http://synthesis.sbecker.net/pages/asset_packager">asset_packager</a> from <a href="http://synthesis.sbecker.net/">Scott Becker</a>. Inspired by the <a href="http://www.thinkvitamin.com/features/webapps/serving-javascript-fast">Vitamin article</a> by <a href="http://www.iamcal.com/">Cal Henderson</a> (of Flickr and <a href="http://www.amazon.co.uk/Building-Scalable-Web-Sites-Henderson/dp/0596102356">another good book</a> fame), asset_packager compresses and merges <span class="caps">CSS</span> and Javascript based on a prescribed configuration.</p>
+<p>I&#8217;m also working on a few <span class="caps">PHP</span> projects and wanted the same experience in these as well, so  I&#8217;ve gone a put together a quick release of <a href="http://code.google.com/p/php-asset-packager/">php asset packager</a>. At the moment this is a <span class="caps">CSS</span> only release, with Javascript features coming later, along with all the rest of the features of the Rails plugin and anything else I can think of or need.</p>
+<p>First off you define your stylesheet setup. I used <a href="http://www.yaml.org/"><span class="caps">YAML</span></a> as my goal was to stick as close as possible to the Rails plugin.</p>
+<p><code>&lt;pre&gt;stylesheets:
+- base:
+  - screen
+  - header
+- secondary:
+  - foo
+  - bar&lt;/pre&gt;</code></p>
+<p>The above simply states that you want to merge screen and header <span class="caps">CSS</span> files together to form a base stylesheet, and merge foo and bar together to create a secondary <span class="caps">CSS</span> file.</p>
+<p>All you then have to do is include the following:</p>
+<p><code>&lt;pre&gt;// define("ENVIRONMENT", "production");</p>
+<p>echo Asset_packager::stylesheet_link_merged();</pre></code></p>
+<p>If the <span class="caps">ENVIRONMENT</span> constant is set to <em>production</em> the line includes the merged stylesheet links, otherwise each file is included seperately. This again mirrors the behaviour of the Rails plugin. A command line script is also included in the <a href="http://code.google.com/p/php-asset-packager/source">source</a> to actually merge (and <a href="http://csstidy.sourceforge.net/">tidy</a>) the <span class="caps">CSS</span> files.</p>
+<p>The vague plan is to add the rest of the features and then maybe package up as a plugin for whatever software or frameworks I&#8217;m working with at the time. At the moment that probably means wordpress, <a href="http://www.symfony-project.com/">symfony</a> and <a href="http://codeigniter.com/">code igniter</a>. Everything is open source and available from svn over on the <a href="http://code.google.com/p/php-asset-packager">Google Code site</a>. Contributions, in the way of code, bugs, documentation or thoughts welcome.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -569,56 +627,6 @@ symfony propel-generate-crud backend items Item&lt;/pre&gt;</code></p>
 <p>@media is still the daddy of the UK web standards scene. Personally I want more advanced materials and I&#8217;d love to see more audience interaction, but the scale of it makes that a little difficult I acknowledge. I&#8217;ll keep going as long as I learn something new and come away feeling a little bit inspired. I&#8217;ll be going next year. Maybe it&#8217;s not going to hit the heights of the very first @media a couple of years back but that was my first trip out into the world. Oh, and <a href="http://www.htmldog.com/">patrick</a> throws good parties in pubs with beer.</p>
 <p>I think dConstruct is basically a grown up Highland Fling. It was great fun last year so here&#8217;s hoping it&#8217;s as much fun this year. Again, the idea of a particular topic is in place. I&#8217;m still thinking about <a href="http://vivabit.com/atmediaAjax/">@media Ajax</a> if I can get enough work together to pay for it (note to people trying to keep up &#8211; I now <a href="http://garethrushgrove.com">work for myself as a freelancer</a>) and I have a sneaking suspicion I&#8217;ll want to get along to <a href="http://www.future-of-mobile.com/">Future of Mobile</a> in a couple of months too.</p>
 <p>My plan for next year is to try and get out of the country and hopefully to some of the events in the US and Europe that offer something different. <a href="sxsw.com/"><span class="caps">SXSW</span></a> is an obvious choice, but I&#8217;d be interested in any other ideas on top of Ben&#8217;s list. I&#8217;d also like to think in a year of so I might even end up talking at some nice event or other &#8211; but I need to pick a topic and stick to it I reckon instead of flitting between whatever I feel like that afternoon. Oh and probably practice.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/07/18/nabaztag-rest-api/">Nabaztag REST API</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-07-18T00:00:00+01:00" pubdate data-updated="true">Jul 18<span>th</span>, 2007</time>
-        
-         | <a href="/2007/07/18/nabaztag-rest-api/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;m having quite a bit of fun with my rabbit, <em>cambridge</em>, at the moment. Their were a number of projects at <a href="http://hackday.org">Hackday</a> involving the ever so cute <a href="http://nabaztag.com">Nabaztag</a> and I had a feeling I&#8217;d probably go home and adopt one. The idea of a rabbit with APIs was simple too much fun.</p>
-<p><img src="http://morethanseven.net/_assets/media/imgNabaztag.jpg" title="Nabaztag" alt="Nabaztag" /></p>
-<p>The Nabaztag <span class="caps">API</span> docs can be found in two places (the rest of the site unfortunately has a number of issues when it comes to finding information easily); in the <a href="http://help.nabaztag.com/fiche.php?langue=3&amp;fiche=29#none">help section</a> and on the <a href="http://api.nabaztag.com/docs/home.html"><span class="caps">API</span> site</a>. The latter are much better than the former by the way.</p>
-<p>Lots of people have already been hacking on the wireless rabbit. Their are some good tools over on the <a href="http://nabaztools.sourceforge.net/">Nabaztag Sourceforge project</a>, a handy <a href="http://rubyforge.org/projects/nabaztag/">Ruby module</a> and a <a href="http://pear.php.net/pepr/pepr-proposal-show.php?id=463">prospective</a> <a href="http://tmp.lfms.nl/nabaztag/"><span class="caps">PEAR</span> module</a> for <span class="caps">PHP</span>.</p>
-<p>I&#8217;ve been getting more and more into the ideas behind <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer"><span class="caps">REST</span></a> recently and one thing that disappointed me a litte was the <span class="caps">HTTP</span> <span class="caps">RPC</span> style Nabaztag <span class="caps">API</span> (note to anyone thinking <span class="caps">REST</span> simply means using a <span class="caps">GET</span> request rather than something like <span class="caps">SOAP</span> or <span class="caps">XML</span>-<span class="caps">RPC</span>, it doesn&#8217;t). I couldn&#8217;t help seeing PUTs to ears and POSTs to the mouth.</p>
-<p>Inspired a little by <a href="http://www.aralbalkan.com/">Arals</a> <a href="http://aralbalkan.com/994">Bunny Talk</a> I&#8217;ve started implementing parts of the <span class="caps">API</span> in a RESTful manner, and used my <span class="caps">API</span> abstraction layer to build a similar application.</p>
-<p>Head over to <a href="http://morethanseven.net/presents/nabaztag/">morethanseven.net/presents/nabaztag/</a> and send me a message (via my rabbit obviously) or, er, play with <em>cambridges</em> ears (he likes that). At the moment the <span class="caps">API</span> is configured only for my rabbit, although you can download the source code and run it yourself if you like. It requires PHP5 at the moment as one of the required modules is PHP5 only. But you are using <a href="http://gophp5.org/">PHP5 now</a> aren&#8217;t you?</p>
-<p>If you don&#8217;t want to use the form you can access the <span class="caps">API</span> directly. Here are a couple of examples using curl:</p>
-<pre><code>curl http://morethanseven.net/presents/nabaztag/ears/left</code></pre>
-
-<pre><code>curl -X 'PUT' http://morethanseven.net/presents/nabaztag/ears/left/13</code></pre>
-
-<pre><code>curl -X 'POST' -d "message" http://morethanseven.net/presents/nabaztag/mouth</code></pre>
-<p>Their&#8217;s a litte documentation in the source. I&#8217;ll add more methods, more documentation and maybe make an <span class="caps">API</span> anyone with a Nabaztag can use by authenticating either as I need it or if people actually want it. Let me know what you think (via the rabbit obviously!)</p></div>
   
   
 

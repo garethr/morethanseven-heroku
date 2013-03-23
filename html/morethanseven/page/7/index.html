@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="Logging useful information from running systems for monitoring purposes is pretty important if you want to see how your software is behaving in the &hellip;">
+  <meta name="description" content="The videos from the DIBI conference are now up on Vimeo. Lots of good stuff and more to come. The one disadvantage of a a two track conference is &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,44 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/06/19/Dibi-video/">Dibi Video</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-19T00:00:00+01:00" pubdate data-updated="true">Jun 19<span>th</span>, 2010</time>
+        
+         | <a href="/2010/06/19/Dibi-video/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><object width="400" height="225"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=12613643&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=0&amp;show_portrait=0&amp;color=&amp;fullscreen=1" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=12613643&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=0&amp;show_portrait=0&amp;color=&amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="400" height="225"></embed></object></p>
+<p>The videos from the <a href="http://www.dibiconference.com/"><span class="caps">DIBI</span></a> conference are now up on <a href="http://vimeo.com/groups/48480/videos">Vimeo</a>. Lots of good stuff and more to come. The one disadvantage of a a two track conference is you miss half the talks so when I get a chance I&#8217;ll be catching up with those talks I didn&#8217;t get chance to see.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -567,64 +605,6 @@ hive &#8211;service hwi
 
   <div class="entry-content"><p>I&#8217;m a huge fan of virtualenv for Python. It&#8217;s a simple tool that lets you have an isolated python environment into which you can install libraries via setup tools. It makes experimenting with different versions of code easier and avoids lots of problems with hard to find bugs caused by unknown third party conflicts.</p>
 <p><a href="http://github.com/nkryptic/sandbox">Sandbox</a> aims to do exactly the same for Ruby. It isolates your gem installation from the system libraries and providesa script to activate the named environment. The GitHub repo has been around since 2008, yet only has 37 followers. I&#8217;m not sure whether that is because another more popular and feature rich solution exists or because Ruby people haven&#8217;t yet found this technique useful. For me finding tools that work the same way as those I already like in other languages makes me happy.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010/03/19/Static-generator-for-web-services/">Static Generator for Web Services</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-03-19T00:00:00+00:00" pubdate data-updated="true">Mar 19<span>th</span>, 2010</time>
-        
-         | <a href="/2010/03/19/Static-generator-for-web-services/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>My latest <em>on a train</em> project is <a href="http://github.com/garethr/Dumper">Dumper</a>, a static generator for web services. I&#8217;m a huge fan of <a href="http://nanoc.stoneship.org/">Nanoc</a> and tools like <a href="http://github.com/mojombo/jekyl">Jekyl</a> for building websites. But I spend at least as much time building small webservicds. I wanted something super simple that would let me expose data I had access to as a read only web service.</p>
-<p>At the moment that means using a mysql database, specifying a <span class="caps">SQL</span> query and running a python script. Hey presto you have lots and lots of <span class="caps">XML</span> and <span class="caps">JSON</span> files representing your data. Dumper provides hooks for you to customise the ourput or even overide the database layer. It should be possible if you were so inclined to replace the mysql backend with another database, or other type of data store. Hopefully some of these might end up in my branch at a later date.</p>
-<p>At a basic level all you need is a config file which looks a little like:</p>
-<% syntax_colorize :ini, type=:coderay do %>
-[Dumper]
-path: people
-index: id
-backend: mysql
-
-[Database]
-sql: SELECT id, name FROM people
-host: localhost
-username: root
-password:
-database: dumper
-<% end %>
-<p>And then run a command line application against that file:</p>
-<% syntax_colorize :bash, type=:coderay do %>
-dumper -c people.ini dump
-<% end %>
-<p>The application supports a number of flags for specifying where you want the files to be generated, what your config file is called and to clean up any generated files if you want to try again. The output will let you know which files have been updated, which deleted and which added too. If you&#8217;d rather have a single file but with all your records in then that&#8217;s easy too &#8211; just add something to the config file.</p>
-<p>It&#8217;s somewhat early days for Dumper, and I&#8217;ve not seen anything similar so their are definately some rough edges that could do with some work. All of that will really come down to how much use it gets. I&#8217;d appreciate any feedback from anyone with a similar itch to scratch too.</p></div>
   
   
 

@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I&#8217;ve been playing with automating Django deployments again, this time using Fabric. I found a number of examples on the web but non of them &hellip;">
+  <meta name="description" content="So one of the problems with using pip or easy_install as part of an automated deployment process is they rely on an internet connection. More than &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,50 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/08/15/your-own-pypi-server/">Your Own PyPi Server</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-08-15T00:00:00+01:00" pubdate data-updated="true">Aug 15<span>th</span>, 2009</time>
+        
+         | <a href="/2009/08/15/your-own-pypi-server/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So one of the problems with using pip or easy_install as part of an automated deployment process is they rely on an internet connection. More than that, they rely on PyPi being up as it&#8217;s a centralised system, unlike all the apt package mirrors.</p>
+<p>The best solution seems to be to host your own PyPi compliant server. Not only can you load all the third party modules you use onto it, but you could also upload any internal applications or libraries that you like. By running this on your local network you ensure your not dependent on pypi or an internet connection.</p>
+<p>At the moment I&#8217;m playing with <a href="http://github.com/ask/chishop/tree/master">Chishop</a> which is a django application for maintaining a PyPi compatible server. Another alternative if that doesn&#8217;t work out is <a href="http://pypi.python.org/pypi/EggBasket/">EggBasket</a></p>
+<p>To install from your own PyPi server you can specify the location of your Chishop instance with the -i flag.</p>
+<pre>easy_install -i http://localhost:8000/ PACKAGE_NAME</pre>
+<p>This will fall back to the PyPi server if it doesn&#8217;t find the relevant package. If you want to stop that behaviour and make sure you have a local package then you can limit the hosts with the -H flag like so.</p>
+<pre>easy_install -H localhost:8000 -i http::/localhost:8000/ PACKAGE_NAME</pre>
+<p>I&#8217;m not yet sure how to do this with pip, if someone wants to enlighten me in the comments then I&#8217;d be most grateful.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -740,60 +784,6 @@ python setup.py bdist_egg upload</pre>
     &lt;scp file="${username}@${host}:/etc/apache2/apache2.conf" todir="." password="${password}"/&gt;
 &lt;/target&gt;
 &lt;/project&gt;</pre></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/06/17/less-css/">Less CSS</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-06-17T00:00:00+01:00" pubdate data-updated="true">Jun 17<span>th</span>, 2009</time>
-        
-         | <a href="/2009/06/17/less-css/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Ruby people <em>really</em> don&#8217;t like <span class="caps">CSS</span> do they? But <a href="http://lesscss.org/">Less</a> is actually pretty cool. It&#8217;s basically an attempt to bootstrap features, specifically Variables, Mixins, Operations and Nested Rules, into <span class="caps">CSS</span>. The best part about this is it uses <span class="caps">CSS</span> syntax and a simple one step compiler. I&#8217;d be interested to know what the folks at the W3C think about this.</p>
-<p>So for instance you can do:</p>
-<pre>/* LESS */
-@brand_color: #4D926F;
-#header {
-  color: @brand_color;
-}
-h2 {
-  color: @brand_color;
-}</pre>
-<p>and compile it down to:</p>
-<pre>/* CSS */
-#header {
-  color: #4D926F;
-}
-h2 {
-  color: #4D926F;
-}</pre></div>
   
   
 

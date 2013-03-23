@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I&#8217;m a big fan of Piston, the django app for creating RESTful web services. As part of a project at work I ended up looking through the source &hellip;">
+  <meta name="description" content="My latest on a train project is Dumper, a static generator for web services. I&#8217;m a huge fan of Nanoc and tools like Jekyl for building websites &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,64 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/03/19/Static-generator-for-web-services/">Static Generator for Web Services</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-19T00:00:00+00:00" pubdate data-updated="true">Mar 19<span>th</span>, 2010</time>
+        
+         | <a href="/2010/03/19/Static-generator-for-web-services/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>My latest <em>on a train</em> project is <a href="http://github.com/garethr/Dumper">Dumper</a>, a static generator for web services. I&#8217;m a huge fan of <a href="http://nanoc.stoneship.org/">Nanoc</a> and tools like <a href="http://github.com/mojombo/jekyl">Jekyl</a> for building websites. But I spend at least as much time building small webservicds. I wanted something super simple that would let me expose data I had access to as a read only web service.</p>
+<p>At the moment that means using a mysql database, specifying a <span class="caps">SQL</span> query and running a python script. Hey presto you have lots and lots of <span class="caps">XML</span> and <span class="caps">JSON</span> files representing your data. Dumper provides hooks for you to customise the ourput or even overide the database layer. It should be possible if you were so inclined to replace the mysql backend with another database, or other type of data store. Hopefully some of these might end up in my branch at a later date.</p>
+<p>At a basic level all you need is a config file which looks a little like:</p>
+<% syntax_colorize :ini, type=:coderay do %>
+[Dumper]
+path: people
+index: id
+backend: mysql
+
+[Database]
+sql: SELECT id, name FROM people
+host: localhost
+username: root
+password:
+database: dumper
+<% end %>
+<p>And then run a command line application against that file:</p>
+<% syntax_colorize :bash, type=:coderay do %>
+dumper -c people.ini dump
+<% end %>
+<p>The application supports a number of flags for specifying where you want the files to be generated, what your config file is called and to clean up any generated files if you want to try again. The output will let you know which files have been updated, which deleted and which added too. If you&#8217;d rather have a single file but with all your records in then that&#8217;s easy too &#8211; just add something to the config file.</p>
+<p>It&#8217;s somewhat early days for Dumper, and I&#8217;ve not seen anything similar so their are definately some rough edges that could do with some work. All of that will really come down to how much use it gets. I&#8217;d appreciate any feedback from anyone with a similar itch to scratch too.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -491,53 +549,6 @@ Feature: localhost
 </blockquote>
 <p>I&#8217;m not a big fan of making a point of dividing frontend and backend work. You nearly always end up with javascript dominated horribleness (because we only had a front end person available) or a so called content management system that means all sites have to look the same except for the colour palette. So I&#8217;m hoping lots of cross over stuff happens and interesting conversations abound.</p>
 <p>Oh, and if you&#8217;re wondering what I&#8217;ll be speaking about it&#8217;s probably going to be something about all the cool tools you could and should be using when building or looking after web applications. I&#8217;ll probably be doing my best to convince people to look outside the comfort of the <span class="caps">LAMP</span> or C#/<span class="caps">MSSQL</span> stacks and realise the future for lots of web developers might just be more devops.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/11/28/dreque/">Dreque</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-11-28T00:00:00+00:00" pubdate data-updated="true">Nov 28<span>th</span>, 2009</time>
-        
-         | <a href="/2009/11/28/dreque/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;ve just found <a href="http://github.com/samuel/dreque">Dreque</a> from <a href="http://samuelks.com/">Samuel Stauffer</a> on GitHub. It&#8217;s yet another take on the whole messaging things which is definitely seeing a lot of activity at the back end of this year. It&#8217;s using <a href="http://code.google.com/p/redis/">Redis</a> on the backend and looks really rather nice:</p>
-<p>Submitting jobs:</p>
-<pre><code>from dreque import Dreque
-def some_job(argument):
-    pass
-dreque = Dreque("127.0.0.1")
-dreque.enqueue("queue", some_job, argument="foo")</code></pre>
-<p>Worker:</p>
-<pre><code>from dreque import DrequeWorker
-worker = DrequeWorker(["queue"], "127.0.0.1")
-worker.work()</code></pre></div>
   
   
 
