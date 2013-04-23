@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I&#8217;ve not been writing many blog posts lately, but I have been doing quite a bit of writing elsewhere. One of the things I&#8217;ve had a hand &hellip;">
+  <meta name="description" content="I&#8217;ve become increasingly interested in web application security issues over the last year or so. Working in Government will do that to you. And &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,68 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/04/23/web-application-security-tools/">Web Application Security Tools</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-23T07:57:00+01:00" pubdate data-updated="true">Apr 23<span>rd</span>, 2013</time>
+        
+         | <a href="/2013/04/23/web-application-security-tools/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve become increasingly interested in web application security issues over the last year or so. Working in Government will do that to you. And I&#8217;ve come to the conclusion that a) there are lots of good open source security tools, b) many of them are terribly packaged and c) most developers don&#8217;t use any of them.</p>
+<p>I&#8217;ve been having related conversations at recent events I&#8217;ve made it along to, including Devopsdays London which featured some good open spaces discussions on the subject. Security is one of those areas that, for many organisations, is basically outsourced to third party penetration testing firms or consultants. Specialists definitely have a role to play, but with a move towards increasingly rapid releases I think in-house security testing and monitoring is going to get more and more important.</p>
+<h2>A collection of security tools</h2>
+<p>I&#8217;ve started to build a <a href="https://github.com/garethr/pentesting-playground">collection of tools on GitHub</a>, along with a vagrant setup to test them out. Full instructions are available on that repository but the short version is you can run one command and have one virtual machine filled with security testing tools and, if useful, another machine running a vulnerable web application with which to test. The current list of tools runs to:</p>
+<ul>
+	<li><a href="http://code.google.com/p/skipfish/">skipfish</a></li>
+	<li><a href="http://nmap.org/">nmap</a></li>
+	<li><a href="http://www.cirt.net/nikto2">nikto</a></li>
+	<li><a href="http://w3af.org/">w3af</a></li>
+	<li><a href="https://github.com/mozilla/Garmr">garmr</a></li>
+	<li><a href="https://github.com/iSECPartners/sslyze">sslyze</a></li>
+	<li><a href="https://github.com/metachris/wpscanner">wpscanner</a></li>
+	<li><a href="https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project">owasp zap</a></li>
+	<li><a href="http://arachni-scanner.com/">arachni</a></li>
+	<li><a href="https://github.com/gauntlt/gauntlt">gauntlt</a></li>
+	<li><a href="http://sqlmap.org/">sqlmap</a></li>
+	<li><a href="http://wpscan.org/">wpscan</a></li>
+	<li><a href="http://sourceforge.net/projects/sslscan/">sslscan</a></li>
+	<li><a href="http://blog.taddong.com/2013/02/tlssled-v13.html">TLSSLed</a></li>
+</ul>
+<p>But I&#8217;ll add more tools as I discover them or as people file issues or pull requests.</p>
+<h2>What about Backtrack?</h2>
+<p>When I started investigating tools for security and penetration testing most roads led to <a href="http://www.backtrack-linux.org/">Backtrack</a>. This is a complete Linux distribution packed with a huge number of security tools, including many if not all of the above. Why then did I write puppet code rather than create a Vagrant box from Backtrack? Firstly, Backtrack is probably great if you&#8217;re a professional penetration tester, but the barrier to entry to installing a new distibution for most developers is too high in my view. And with a view to using some of these tools as part of monitoring systems I don&#8217;t always want a separate virtual machine. I want to be able to install the tools wherever I want. A good configuration management tool gives you that portability, and Vagrant gives you all the benefits of a local virtual machine.</p>
+<h2>Future plans</h2>
+<p>As mentioned I&#8217;d like to expand how some of these tools are used to include automated monitoring of applications, maybe look at ways of extracting data for metrics or possibily writing a Sensu plugin or two. The first step to that is probably breaking down the monolithic puppet manifest into separate modules for each tool. Along the way I can add support for more operating systems as required. I&#8217;ve already done that for the <a href="http://forge.puppetlabs.com/garethr/wackopicko">wackopicko module which is up on the Forge</a>.</p>
+<p>I&#8217;m also soliciting any and all feedback, especially from developers who don&#8217;t do any security related testing but feel like they should.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -508,48 +570,6 @@ Finished in 0.01472 seconds
 </pre>
 <p>The <a href="https://github.com/garethr/logstash-patterns/blob/master/spec/lograge_spec.rb">tests themselves</a> are just basic Rspec with most of the work done in the <a href="https://github.com/garethr/logstash-patterns/blob/master/spec/spec_helper.rb">custom matcher</a>. This not only means I can be a bit more confident that my grok pattern works, it also provides a much nicer framework for writing more patterns for other log formats. Parsing rules like this are one area where test driven development is a huge boon in my experience. And with tests comes continuous integration, in this case via <a href="http://travis-ci.org/#!/garethr/logstash-patterns">Travis</a>.</p>
 <p>I&#8217;ll hopefully find myself writing more patterns and tests for them, and if anyone wants to send pull requests and to start collecting working grok patterns together so much the better.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/08/11/Riemann-puppet-module/">Riemann Puppet Module</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-11T00:00:00+01:00" pubdate data-updated="true">Aug 11<span>th</span>, 2012</time>
-        
-         | <a href="/2012/08/11/Riemann-puppet-module/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Thanks to an <a href="https://twitter.com/bitprophet/status/233626675307479040">errant tweet</a> I started playing with <a href="http://aphyr.github.com/riemann/">Riemann</a> again. It ticks lots of boxes for me, from the clojure to configuration as code and the overloadable dashboard application. What started as using Puppet and Vagrant to investigate Riemann turned into a full blown tool and module writing exercise, resulting in two related projects on GitHub.</p>
-<ul>
-	<li><a href="https://github.com/garethr/garethr-riemann/">garethr-riemann</a> is a Puppet module for installing and configuring Riemann. It allows for easily specifying your own server configuration and dashboard views.</li>
-	<li><a href="https://github.com/garethr/riemann-vagrant">riemann-vagrant</a> is a Vagrantfile and other code which uses above puppet module to setup a local testing environment.</li>
-</ul>
-<p>I like this combination, a separate Puppet module along with a vagrant powered test bed. I&#8217;ve written a reasonable rspec based test suite to check the module but it&#8217;s always easier to be able to run <em>vagrant provision</em> as well to check everything is working. This also turned out to be the perfect opportunity to use <a href="https://github.com/rodjek/librarian-puppet">Librarian-Puppet</a> to manage the dependencies and eventually to ship the module to the <a href="https://forge.puppetlabs.com/garethr/riemann">Puppet Forge</a>.</p></div>
   
   
 

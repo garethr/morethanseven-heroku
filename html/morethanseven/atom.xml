@@ -4,7 +4,7 @@
   <title><![CDATA[Morethanseven]]></title>
   <link href="http://www.morethanseven.net/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2013-03-23T17:19:35+00:00</updated>
+  <updated>2013-04-23T08:25:31+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -12,6 +12,39 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Web application security tools]]></title>
+    <link href="http://www.morethanseven.net/2013/04/23/web-application-security-tools/"/>
+    <updated>2013-04-23T07:57:00+01:00</updated>
+    <id>http://www.morethanseven.net/2013/04/23/web-application-security-tools</id>
+    <content type="html"><![CDATA[<p>I&#8217;ve become increasingly interested in web application security issues over the last year or so. Working in Government will do that to you. And I&#8217;ve come to the conclusion that a) there are lots of good open source security tools, b) many of them are terribly packaged and c) most developers don&#8217;t use any of them.</p>
+<p>I&#8217;ve been having related conversations at recent events I&#8217;ve made it along to, including Devopsdays London which featured some good open spaces discussions on the subject. Security is one of those areas that, for many organisations, is basically outsourced to third party penetration testing firms or consultants. Specialists definitely have a role to play, but with a move towards increasingly rapid releases I think in-house security testing and monitoring is going to get more and more important.</p>
+<h2>A collection of security tools</h2>
+<p>I&#8217;ve started to build a <a href="https://github.com/garethr/pentesting-playground">collection of tools on GitHub</a>, along with a vagrant setup to test them out. Full instructions are available on that repository but the short version is you can run one command and have one virtual machine filled with security testing tools and, if useful, another machine running a vulnerable web application with which to test. The current list of tools runs to:</p>
+<ul>
+	<li><a href="http://code.google.com/p/skipfish/">skipfish</a></li>
+	<li><a href="http://nmap.org/">nmap</a></li>
+	<li><a href="http://www.cirt.net/nikto2">nikto</a></li>
+	<li><a href="http://w3af.org/">w3af</a></li>
+	<li><a href="https://github.com/mozilla/Garmr">garmr</a></li>
+	<li><a href="https://github.com/iSECPartners/sslyze">sslyze</a></li>
+	<li><a href="https://github.com/metachris/wpscanner">wpscanner</a></li>
+	<li><a href="https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project">owasp zap</a></li>
+	<li><a href="http://arachni-scanner.com/">arachni</a></li>
+	<li><a href="https://github.com/gauntlt/gauntlt">gauntlt</a></li>
+	<li><a href="http://sqlmap.org/">sqlmap</a></li>
+	<li><a href="http://wpscan.org/">wpscan</a></li>
+	<li><a href="http://sourceforge.net/projects/sslscan/">sslscan</a></li>
+	<li><a href="http://blog.taddong.com/2013/02/tlssled-v13.html">TLSSLed</a></li>
+</ul>
+<p>But I&#8217;ll add more tools as I discover them or as people file issues or pull requests.</p>
+<h2>What about Backtrack?</h2>
+<p>When I started investigating tools for security and penetration testing most roads led to <a href="http://www.backtrack-linux.org/">Backtrack</a>. This is a complete Linux distribution packed with a huge number of security tools, including many if not all of the above. Why then did I write puppet code rather than create a Vagrant box from Backtrack? Firstly, Backtrack is probably great if you&#8217;re a professional penetration tester, but the barrier to entry to installing a new distibution for most developers is too high in my view. And with a view to using some of these tools as part of monitoring systems I don&#8217;t always want a separate virtual machine. I want to be able to install the tools wherever I want. A good configuration management tool gives you that portability, and Vagrant gives you all the benefits of a local virtual machine.</p>
+<h2>Future plans</h2>
+<p>As mentioned I&#8217;d like to expand how some of these tools are used to include automated monitoring of applications, maybe look at ways of extracting data for metrics or possibily writing a Sensu plugin or two. The first step to that is probably breaking down the monolithic puppet manifest into separate modules for each tool. Along the way I can add support for more operating systems as required. I&#8217;ve already done that for the <a href="http://forge.puppetlabs.com/garethr/wackopicko">wackopicko module which is up on the Forge</a>.</p>
+<p>I&#8217;m also soliciting any and all feedback, especially from developers who don&#8217;t do any security related testing but feel like they should.</p>]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Government Service Design Manual]]></title>
@@ -453,30 +486,6 @@ Puppet has the concept of an external node classifier which can be used to solve
 3. Install puppet on instance and so the ssl certificate signing dance<br />
 4. Run puppet</p>
 <p>Much easier to automate. And if you&#8217;re looking at a box and want to know what it&#8217;s role is you can check the relevant environment variable.</p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Jenkins Parameterized Builds]]></title>
-    <link href="http://www.morethanseven.net/2011/11/16/Jenkins-parameterized-builds/"/>
-    <updated>2011-11-16T00:00:00+00:00</updated>
-    <id>http://www.morethanseven.net/2011/11/16/Jenkins-parameterized-builds</id>
-    <content type="html"><![CDATA[<p>I&#8217;m a huge Jenkins fan now, but that wasn&#8217;t always the case. I started (and still have a soft spot for) Cruise Control, mainly building .<span class="caps">NET</span> and <span class="caps">PHP</span> applications. I then jumped to much simpler projects like <a href="http://integrityapp.com/">Integrity</a> mainly for Python and Ruby projects. I reasoned I didn&#8217;t need the complexity of Cruise or Hudson, I just wanted to be able to run my tests on a remote machine and have something go green or red. I then worked out that wasn&#8217;t quite the case, and ended up committing webhook like functionality to Integrity so I could chain builds together. And then I eventually tried Jenkins and found it&#8217;s power mixed with flexibility won me over. That&#8217;s really all just context, but hopefully explains a little about why I like a few Jenkins features in particular, one of which is <a href="https://wiki.jenkins-ci.org/display/JENKINS/Parameterized+Build">Parameterized builds</a>.</p>
-<p>The Jenkins wiki describes this by saying:</p>
-<blockquote>
-<p>Sometimes, it is useful/necessary to have your builds take several &#8220;parameters.&#8221;</p>
-</blockquote>
-<p>But then goes onto a usecase that probably won&#8217;t mean much to dynamic language folk. This is one failing of much of the documentation around Jenkins, it often feels geared towards developers of certain languages when in reality the tool is useful everywhere. The important take away here is that builds can take arguments, which can have default values. Here&#8217;s an example:</p>
-<p>Imagine we have a build which runs a set of simple tests against a live system . And further imagine that said system is composed of a number of different web services. Oh, and we&#8217;re running a few different parrallel versions of the entire system for testing and staging purposes. We could have one Jenkins job per application/environment combination. Or we could have one parameterized build.</p>
-<p>Lets first specify our parameters from the Configure build screen of our Job.</p>
-<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjZsAIM"/></p>
-<p>Here we&#8217;re specifying a TARGET_APPLICATION and TARGET_PLATFORM parameter. These are going to turn into environment variables we can use in our build steps. We can specify default values for these if we like too. I&#8217;m just using strings here, but I could also use a select box or file dialog, or other options provided by various plugins.</p>
-<p>Now when we hit the build button, instead of the build just starting, we&#8217;re propted for these values.</p>
-<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjxqAIM"/></p>
-<p>So with our new build if we want it to run against the staging environment and just for the foobar application we enter those values and hit build. That on it&#8217;s own can be used to drastically cut down on the number of individual builds you have to manage in Jenkins. And we&#8217;re not just restricted to text inputs, we can use boolean values or even prompt for file uploads at build time. But throw in a few plugins and things get even more interesting.</p>
-<p>Jenkins has an overwhelming number of plugin available. If you haven&#8217;t spent the good half hour it takes to go down the list I&#8217;d highly recommend it. One of Jenkins best features is the ability to trigger a build after the successful run of another job. It allows you to chain things like test runs to integration deployments to smoke tests to production deploys. Basically your modern continuous deployment/delivery pipeline. The <a href="https://wiki.jenkins-ci.org/display/JENKINS/Build+Pipeline+Plugin">Build Pipeline</a> plugin is excellent for visuallising this and introducing human gates if needed. Another useful plugin in this context is the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Parameterized+Trigger+Plugin">Parameterized Trigger</a> plugin. A limitation of Jenkins is that downstream builds can&#8217;t pass parameters, but this plugin works around that. Instead of ticking the <em>Build other projects</em> option you go for the <em>Trigger parameterized build on other projects</em> box. This allows you to select the project and to specify parameters to pass. This could be hard coded values, paramaters already passed into the pipeline, or things from other plugins like the git sha1 hash or subversion version number.</p>
-<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjyqAIM"/></p>
-<p>Combine all this together and it&#8217;s simple to have a per project continuous integration build running a test suite, kicking off a standard set of downsteam jobs for deploying to a test environment (by passing th relevant parameters), running some basic smoke tests and allowing someone to click a button to deploy to production. Or going the whole continuous deployment, I trust my test suite route, and deploying automatically. All within Jenkins. Getting this working requires a bit of planning. You want all of your projects to be deployed the same way but you probably want this to be the case anyway.</p>
-<p>Providing flexible push button builds/deploys and reducing the number of nearly identical jobs in Jenkins are just two advantages to using parameterized builds. Most of the tricks come from thinking about Jenkins as much more than a continuous integration tool and more of an automation framework &#8211; I know at least one large organisation who have pretty much replaced cron for many tasks with Jenkins for instance. Running tests automatically, and in a central environment as close to production as possible, is important. But it&#8217;s just a sanity check if you&#8217;re doing everything right already. Centralising activity on a build pipeline requires you to be doing all that anyway, but in my opinion gives way more useful and rapid feedback about the state of the code your team is writing.</p>]]></content>
   </entry>
   
 </feed>

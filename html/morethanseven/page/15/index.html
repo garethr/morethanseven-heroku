@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="The Python core developers are currently discussing whether to move away from SVN to a distributed version control system. It&#8217;s a worthwhile &hellip;">
+  <meta name="description" content="I like adding images to the occasional blog post but don&#8217;t do it as often as I want to. The reason being I can hardly ever be bothered to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,51 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/05/hosting-images-app-engine/">Hosting Images on App Engine</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-05T00:00:00+00:00" pubdate data-updated="true">Feb 5<span>th</span>, 2009</time>
+        
+         | <a href="/2009/02/05/hosting-images-app-engine/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I like adding images to the occasional blog post but don&#8217;t do it as often as I want to. The reason being I can hardly ever be bothered to resize images. It means opening up a memory hogging application, fiddling around for a few minutes and then saving it out somewhere, then uploading said image to my server. All of those things bore me.</p>
+<p>Appengine to the rescue. As an excuse to play around with the <a href="http://code.google.com/appengine/docs/python/images/overview.html">image <span class="caps">API</span></a> as well as add more pictures to this here blog I decided to build myself a small image hosting application. I really only care about the two things noted above; resizing and uploading. If I can do that in one go I&#8217;m happy.</p>
+<p>A couple of train rides (all the best code gets written on train journeys, fact) later and I&#8217;ve deployed the first version of Image Host which looks a little something like this:</p>
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRjtBww" alt="Image Hosting interface on Google App Engine"/></p>
+<p>(And yes that image is an image of image-host hosted on image-host. If you&#8217;re thinking <em>what image?</em> then it means this experiment isn&#8217;t working at the moment.)</p>
+<p>The application is designed in such a way as you could have as many people uploading and managing their own set of images as you want, all within one instance. The only reason I don&#8217;t just open it up to any google user account is that it would eat into my quotas if it got popular and I have no interest in policing whatever dubious images anyone might upload.</p>
+<p>I&#8217;ve been playing with App Engine quite extensively of late. I really appreciate the <span class="caps">SDK</span> and the limited, but well designed and thought out APIs and testing stubs. At the moment I&#8217;m happy with where it&#8217;s at. It&#8217;s obviously early days but in my mind all I really want are APIs for offline processing, some sort of message queuing facility, <span class="caps">XMPP</span> support and a payment model for raising the limitations. And several of those are already slated for the near future.</p>
+<p>If anyone wants to host their own version you can grab the code from <a href="http://github.com/garethr/appengine-image-host/tree/master">GtHub</a>. You&#8217;ll need your own App Engine account and your own snappy name but that&#8217;s all. If you really don&#8217;t want to do that, have a good reason to needing image hosting and ask nicely I might add more people to my version as well.</p>
+<p>Their are a few bugs I&#8217;m going to fix when I get a moment,  a few documented limitations I know about and I&#8217;m still fleshing out the test suite to cover all the functionality. But all in all a worthwhile few hours spent hacking. I&#8217;ll probably get round to writing up some pointers for testing App Engine code as well as their are a host of gotchas and the only real documentation at present is comments in the code.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -529,51 +574,6 @@ next: get details about the next track in the list</pre>
 <p>It&#8217;s all pretty simple Python really and is hopefully reasonably commented and tested so if you&#8217;re interested you can follow along with <a href="http://github.com/garethr/localbuilder/tree/master">the code</a>. If you just want to use the damn thing then:</p>
 <pre><code>./localbuilder --path /path/to/watch --command /command/to/execute</code></pre>
 <p>It turns out Ruby has a much nicer tool to do this and more in autotest, part of the <a href="http://www.zenspider.com/ZSS/Products/ZenTest/">ZenTest</a> suite of testing tools. I&#8217;m finding more and more very nice bits of code written in Ruby of late, but that&#8217;s probably a whole different blog post.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/01/11/speaking-bamboo-juice/">Speaking at Bamboo Juice</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-01-11T00:00:00+00:00" pubdate data-updated="true">Jan 11<span>th</span>, 2009</time>
-        
-         | <a href="/2009/01/11/speaking-bamboo-juice/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>It&#8217;s the start of another year so that means it&#8217;s time to start thinking about conferences.</p>
-<p>I just found out at the end of last week (<a href="http://twitter.com/binarytales/status/1106721057">via Twitter no less</a>) that I&#8217;ve been confirmed as one of the speakers for <a href="http://bamboojuice.co.uk">Bamboo Juice</a>. Thanks to <a href="http://twitter.com/binarytales">Jon</a> and <a href="http://twitter.com/richquick">Rich</a> for having me. I&#8217;m really looking forward to that as it&#8217;s a new event outside London (at the rather fabulous looking Eden project in Cornwall), which should hopefully mean a chance for a new set of people to go along to what looks like a decent event. I&#8217;ll have more information about what I&#8217;m going to be talking about some time between then and now I would imagine, but the emphasis is on practical learnings for working developers and designers.</p>
-<p>Apart from that the only other conference I&#8217;ve confirmed I&#8217;l be attending so far is <a href="http://www.thinkingdigital.co.uk/">Thinking Digital</a> in May. It was great last year even if I spent the majority of the time running round organising barcamp, moving house or leaving Newcastle. This time I&#8217;m not involved in any organising (<a href="http://twitter.com/andybudd/status/1095746624">sorry Andy</a>)  so I plan on making the most of the talks and general experience. Rumour has it that their will be another barcamp as well so I&#8217;ll look forward to that too. It will be good to get back up to Newcastle and see people again.</p>
-<p>I&#8217;m also looking forward to <a href="http://twitter.com/ptg/status/1096802734">what Patrick is up to for @media</a>. It was the conference that started this whole thing rolling in the UK back in the day and now it appears it might be set for a change.</p>
-<blockquote>
-<p>Time to finalise the line-up and web site for a very different (and lower price!) @media &#8217;09</p>
-</blockquote>
-<p>As well as these three I&#8217;ll be keeping my eye out for any news about Xtech, The Highland Fling and any other new upcoming conferences. If you know of anything else leave a comment. I didn&#8217;t find out about <a href="http://www.thinkvisibility.com/">Think Visibility</a> until it had sold out but I like the idea of smaller, specialised events.</p>
-<p>Overall it already looks like being a good year for conference goers in the UK. I&#8217;ll be on the lookout for barcamp style events as well but I do like a good formal conference as well. Hopefully see a few people at some of these events?</p></div>
   
   
 

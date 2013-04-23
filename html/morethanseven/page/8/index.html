@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="My latest on a train project is Dumper, a static generator for web services. I&#8217;m a huge fan of Nanoc and tools like Jekyl for building websites &hellip;">
+  <meta name="description" content="I&#8217;m a huge fan of virtualenv for Python. It&#8217;s a simple tool that lets you have an isolated python environment into which you can install &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,44 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/03/21/Sandbox-your-ruby-gems/">Sandbox Your Ruby Gems</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-21T00:00:00+00:00" pubdate data-updated="true">Mar 21<span>st</span>, 2010</time>
+        
+         | <a href="/2010/03/21/Sandbox-your-ruby-gems/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m a huge fan of virtualenv for Python. It&#8217;s a simple tool that lets you have an isolated python environment into which you can install libraries via setup tools. It makes experimenting with different versions of code easier and avoids lots of problems with hard to find bugs caused by unknown third party conflicts.</p>
+<p><a href="http://github.com/nkryptic/sandbox">Sandbox</a> aims to do exactly the same for Ruby. It isolates your gem installation from the system libraries and providesa script to activate the named environment. The GitHub repo has been around since 2008, yet only has 37 followers. I&#8217;m not sure whether that is because another more popular and feature rich solution exists or because Ruby people haven&#8217;t yet found this technique useful. For me finding tools that work the same way as those I already like in other languages makes me happy.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -507,48 +545,6 @@ Feature: localhost
 <p>I could then run my script with the input from new.txt and not have to reprocess the deleted lines. My next problem came when the network connection between the box running the script and the database dropped out. The script printed out the contents of the last line successfully processed, so what I wanted was a new file with the all contents of the old file past the last line. The following awk command does just that, assuming the last line processed was f251f9ee0b39beb5b5c4675ed4802113.</p>
 <pre>awk '/^f251f9ee0b39beb5b5c4675ed4802113/{f=1;next}f' original.txt &gt; new.txt</pre>
 <p>Now I could have made the script that did the work more complicated and ensure it dealt with these cases. But it would have involved much more code and the original scripts where only a handful of throw away code. For one off jobs like this a quick dive into the command line seemed more prudent.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010/01/07/speaking-dibi/">Speaking at DIBI</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-01-07T00:00:00+00:00" pubdate data-updated="true">Jan 7<span>th</span>, 2010</time>
-        
-         | <a href="/2010/01/07/speaking-dibi/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;ll be heading back up to Newcastle in April to give a talk at what&#8217;s shaping up to be a good looking conference to kick off the year with. <a href="http://www.whatisdibi.com/"><span class="caps">DIBI</span></a> is trying to please everyone, with both front and backend focused streams.</p>
-<blockquote>
-<p>Created for both sides of the web coin, <span class="caps">DIBI</span> brings together designers and developers for an unusual two-track web conference. World renowned speakers leading in their fields of work will talk about all things web. Taking place in Newcastle upon Tyne, (it&#8217;s oop north) at The Sage Gateshead on the 28th April 2010, we&#8217;re bringing both sides of the web world together with some awesome speakers.</p>
-</blockquote>
-<p>I&#8217;m not a big fan of making a point of dividing frontend and backend work. You nearly always end up with javascript dominated horribleness (because we only had a front end person available) or a so called content management system that means all sites have to look the same except for the colour palette. So I&#8217;m hoping lots of cross over stuff happens and interesting conversations abound.</p>
-<p>Oh, and if you&#8217;re wondering what I&#8217;ll be speaking about it&#8217;s probably going to be something about all the cool tools you could and should be using when building or looking after web applications. I&#8217;ll probably be doing my best to convince people to look outside the comfort of the <span class="caps">LAMP</span> or C#/<span class="caps">MSSQL</span> stacks and realise the future for lots of web developers might just be more devops.</p></div>
   
   
 

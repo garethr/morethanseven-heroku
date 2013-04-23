@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I often end up pondering URL design given a moment and something that keeps coming up is hackable search queries. But first a very quick primer on &hellip;">
+  <meta name="description" content="Build scripts. I think I&#8217;ve probably mentioned before; everyone knows they should but not many actually do. I&#8217;m not talking about your &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,63 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/04/26/a-really-simple-capistrano-recipe/">A Really Simple Capistrano Recipe</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-26T00:00:00+01:00" pubdate data-updated="true">Apr 26<span>th</span>, 2008</time>
+        
+         | <a href="/2008/04/26/a-really-simple-capistrano-recipe/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Build scripts. I think I&#8217;ve probably mentioned before; everyone knows they should but not many actually do. I&#8217;m not talking about your large in-house development teams or your sexy web startups; both probably have a good-enough build process for different reasons. But smaller teams, web design agencies or freelancers often rely on <span class="caps">FTP</span> and a prayer. One of the problems is definitely finding <em>suitable</em> documentation. It&#8217;s not that their isn&#8217;t a lot of good quality documentation &#8211; it&#8217;s the suitability of it for those with only a passing interest and a limited systems administration experience.</p>
+<p><a href="http://capify.org/">Capistrano</a> is a tool for automating tasks on remote servers. It can be used for all sorts of useful things but we&#8217;ll concentrate on it&#8217;s utility for web site deployment. It&#8217;s been popular with the <a href="http://rubyonrails.com/">Rails</a> crowd for a while and is written in Ruby, but it can be used for deploying sites in Python, <span class="caps">PHP</span>, Django, whatever you happen to be using at the time.</p>
+<p>You&#8217;ll first need to install Ruby and Capistrano. The Capistrano site has <a href="http://capify.org/install">installation instructions</a> which should get you up and running. You&#8217;ll need to be able to use a console on your machine and have a passing acquaintance with your webserver. I&#8217;ve also assumed that you&#8217;re using source control, mainly because if you&#8217;re not you should start their. Automation becomes much more useful and practical on the back of a good source control system.</p>
+<p>Right, lets get started. Create a file called <em>capfile</em> somewhere on your local machine. The following two code snippets should go in that file.</p>
+<pre><code>set :username, "&lt;username&gt;"
+set :host, "&lt;host&gt;"
+set :path, "&lt;path&gt;"
+set :restart, "/etc/init.d/apache2 restart"
+set :checkout, "svn export --force"
+set :repo, "&lt;repository address&gt;"</code></pre>
+<p>Just replace the variables (marked with angle brackets) with your own values. The path is the full path on the remote server where you want to deploy your files to. Note that I&#8217;ve abstracted out the webserver restart command and the source control checkout command. The above example values assume you&#8217;re using apache and subversion (and want to do a subversion export). It should be easy enough to change these for your preferred combination of source control system and webserver.</p>
+<pre><code>desc "Remote checkout and restart of webserver"
+task :deploy, :hosts =&gt; "#{username}@#{host}" do
+  run "#{checkout} #{repo} #{path}; #{restart}"
+end</code></pre>
+<p>If your platform of choice doesn&#8217;t require a server restart (say <span class="caps">PHP</span>) you can always remove the <em>; #{restart}</em> portion of the command.</p>
+<p>Now we&#8217;re all set up just bring up a console in the folder containing the <em>capfile</em> and run the following command:</p>
+<pre><code>cap deploy</code></pre>
+<p>After prompting for a password to access the remote machine this should display the output from the commands being run. Depending on the size of the repository you&#8217;re checking out</p>
+<p>Of course for most projects you would want to expand this basic recipe. Maybe you have database updates to run or need to deploy to multiple machines at once? You&#8217;ll might have machine specific configuration files which aren&#8217;t in the source control system. You will also probably want to be able to revert back if something goes wrong and you might want to only change files that have been altered. Capistrano has lots of powerful features built in that will let you do just that, and once you get started with this sort of build scripting you&#8217;ll find lots of areas to improve. And you&#8217;ll find lots of good tutorials online that will take you further.</p>
+<p>The difficult part with project automation and build scripts is often the <em>getting started</em> in the first place; especially if you&#8217;re not the server admin type. Unfortunately the documentation and articles written on the subject tend to be somewhat arcane and aimed at the more hardcore developer. Hopefully this simple, usable, example convinces someone else to give it a try.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -560,58 +617,6 @@
 <p>With all these social networks we&#8217;re starting to have pieces of us scattered all over the place. I&#8217;ve joked previously about the utility of domain names over real names for interpersonal communication but this breaks down a little when not all the urls that represent me are owned by me. I control morethanseven.net/photos but I only have some influence over <a href="http://flickr.com/photos/garethr">flickr.com/photos/garethr</a>. With external hosts you also need to be aware of cybersquatting. I own morethanseven.net so no one else can use it. However with services that give you your own <span class="caps">URL</span> as part of registration everywhere people can cybersquat in hundreds of new domains that you might not even know about.</p>
 <p>It&#8217;s not just web pages you have to worry about. Feeds are another example of URLs you just might want to keep control over. This last one is also something I see lots of people handing off to others &#8211; specifically <a href="http://feedburner.com">Feedburner</a>. Now I&#8217;m a big fan of feedburner and use it for the feeds on this site. But I don&#8217;t use the feedburner <span class="caps">URL</span>, anyone subscribing to the feeds here does so using morethanseven.net/feed/. If I decide to stop using feedburner I can, without having to upset the few people who subscribe to it by moving my feed address. It&#8217;s the same with email addresses; I love gmail but rarely actually give my gmail email address out.</p>
 <p>So, start looking after your domain names a little more carefully. They are pieces of you scattered around the internet, and losing control of them is going to become increasingly socially painful.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/03/14/accepted-for-xtech/">Accepted for Xtech</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-03-14T00:00:00+00:00" pubdate data-updated="true">Mar 14<span>th</span>, 2008</time>
-        
-         | <a href="/2008/03/14/accepted-for-xtech/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>So, while sat with a few people at the WaSP panel at <span class="caps">SXSW</span> (of which more later when I&#8217;m fully caught up) I got a nice email from the folks at <a href="http://2008.xtech.org">Xtech</a> accepting my presentation idea. The abstract is below. If any of that sounds interesting or up your street I&#8217;d love to hear other peoples experiences or ideas on the subject.</p>
-<h2>Design Strategies for a Distributed Web</h2>
-<h3>From language frameworks to APIs</h3>
-<p>Everyone is making use of mature and stable web application or javascript frameworks these days. That means weâ€™ve stopped reinventing things such as routing and object relational mapping, but weâ€™re all still building very similar components again and again. Frameworks might allow us to solve lots of fine grained problems but APIs could let us solve common course grained problems quicker.</p>
-<h3>Building blocks for your applications</h3>
-<p>Their are already a few examples in the wild of APIs designed to be used as part of your application development process. Amazon has been leading the way in providing remote services such as S3, EC2 and SimpleDB. Their are also options when it comes to hosting these services yourself, the mint analytics software and the CouchDb database service are both good examples.</p>
-<h3>Quality engineering for free</h3>
-<p>The real value of outsourcing a discreet portion of your application to a third party <span class="caps">API</span> lies in quality. You could always use local storage and your programming language of choice to deal with a large volume of file read and write operations. But do you really think youâ€™ll beat Amazon for reliability, scalability and speed?</p>
-<h3>Functionality vs Data</h3>
-<p>Itâ€™s not just high quality functionality that we could leverage from other providers. Weâ€™re all fed up with entering and re-entering our personal data into each new service. With advancements like OAuth and Microformats and lots of focus on data portability at the moment we might just be able to share data too.</p>
-<h3>Change the client as well as the server</h3>
-<p>Sometimes itâ€™s not enough to just change the server. The rise of specialised browsers such as Joost and Songbird allows for functionality that would be impossible otherwise. Site specific browser, along with advancements such as local storage, may prove<br />
-Problems</p>
-<p>Itâ€™s not all in place just yet. The reliability of your application is likely to be important, and making use of a distributed set of APIs could leave you in the unenviable position of being less stable than your least stable partner. The issue of lock-in could also raise itâ€™s head, without a vibrant ecosystem of different providers that is.</p>
-<h3>The Future</h3>
-<p>The use of third party commercial APIs has the potential to change the development landscape â€“ bringing high quality middleware to the web. It could be the original web services dream realised. But without critical mass and an active market it could also be a new achilles heel for successful startups.</p></div>
   
   
 

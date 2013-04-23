@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I&#8217;m doing a lot more IA stuff of late and being in a Microsoft shop that meant getting to play with Visio. And I have to say it&#8217;s a great &hellip;">
+  <meta name="description" content="Lots of talk around at the moment about unobtrusive javascript on the usual websites and discussion lists. However alot of people, maybe outside the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,108 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/08/13/unobtrusive-javascript/">Unobtrusive Javascript</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-08-13T00:00:00+01:00" pubdate data-updated="true">Aug 13<span>th</span>, 2005</time>
+        
+         | <a href="/2005/08/13/unobtrusive-javascript/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Lots of talk around at the moment about <a href="http://adactio.com/atmedia2005/">unobtrusive</a>  <a href="http://www.bobbyvandersluis.com/articles/goodpractices.php">javascript</a> on the usual websites and <a href="http://designersinhouse.com">discussion</a> <a href="http://www.quirksmode.org/dom/list.html ">lists</a>. However alot of people, maybe outside the inner circles, are still finding old school examples of inline code on out of date pages.</p>
+ <p>So here&#8217;s my tuppence. I guess the more websites that post new, up to date, examples and reasoning the better?</p>
+ <p>The premise is pretty simple. In the same way as controlling formating with tables and having everything being mixed up in one .htm file is frowned upon as simply being too much work &#8211; dealing with lots of inline snippets of javascript raises the same problems. Namely being time consuming to update and maintain.</p>
+ <p>The solution is to keep <span class="caps">ALL</span> your javascript in separate .js files, and that includes removing things like <code>href="javascript:"</code> or <code>onclick=</code>. The first question is therefor how &#8211; when I started looking down this route I found a simple answer hard to come by, having to look at more complex examples and reverse engineer them.</p>
+ <p>The following is the method I&#8217;m using at the moment. It may have issues I&#8217;m unaware &#8211; if your a javascript guru let me know. The examples are from the fluidflash page on this site, see it in action at <a href="http://www.morethanseven.net/fluidflash">www.morethanseven.net/fluidflash</a></p>
+ <p>We first I set up an initialisation function:</p>
+
+
+<pre><code>
+function init() {
+    if (!document.getElementById) return false;
+
+    liquid = document.getElementById("iNavLiquid");
+
+    liquid.onclick = liquidChangeClass;
+}
+</code></pre>
+ <p>This sets the onclick event on the element with the id <code>iNavLiquid</code> that will trigger the function <code>liquidChangeClass</code>. Next we define that function:</p>
+
+
+<pre><code>
+function changeClass( targetId, newClass ) {
+    if (document.getElementById){
+        target = document.getElementById( targetId );
+        target.className = newClass;
+    }
+}
+
+function liquidChangeClass() {
+    changeClass("iBody","liquid");
+}
+</code></pre>
+ <p>The specifics aren&#8217;t too important to this example but you can see the <code>liquidChangeClass</code> function which is triggered by the onclick event handler.</p>
+ <p>And finally we need to trigger the <code>init</code> function when the page loads. Their are lots of ways of doing this which is probably a conversation for another time &#8211; I used a <code>schedule</code> function from <a href="http://themaninblue.com">themaninblue.com</a> which you can find below:</p>
+
+
+<pre><code>
+function schedule(objectID, functionCall, iteration) {
+   if (iteration == null){
+   iteration = 0;
+   }
+
+   if (objectID == "window") {
+   var oldonload = window.onload;
+
+   if (typeof window.onload != "function") {
+   window.onload = functionCall;
+   } else {
+   window.onload = function() {
+   oldonload();
+   functionCall();
+   }
+   }
+   } else if (document.getElementById(objectID)) {
+   functionCall();
+   } else if (iteration &amp;lt; 300) {
+   setTimeout(function(){schedule(objectID, 
+           functionCall, iteration + 1)}, 10);
+   }
+
+   return true;
+}  
+
+schedule("window", init);
+</code></pre>
+ <p>So their we have it, hopefully a simple enough example of how to move to unobtrusive javascript. As most of this is generic and used all the time it&#8217;s far simpler that it first appears.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -453,51 +555,6 @@
 
   <div class="entry-content"><p>I now have an <span class="caps">ASP</span>.<span class="caps">NET</span> environment setup and ready to go and the will to use it. Depending on how it goes I&#8217;ll try and post any thoughts as I go. In particularly related to how I get on with good standards markup.</p>
  <p>I can knock together whatever I want in <span class="caps">PHP</span> reasonably well and with my new job focusing on <span class="caps">CSS</span> and <span class="caps">XHTML</span> amongst other related bits, and working at .<span class="caps">NET</span> shop I thought I now have a reason to play.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2005/06/26/more-from-media/">More From @media</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-06-26T00:00:00+01:00" pubdate data-updated="true">Jun 26<span>th</span>, 2005</time>
-        
-         | <a href="/2005/06/26/more-from-media/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>With all the goings on off the back of @media its pretty hard to keep up. Many of the ideas that where discussed seem to be taking hold and coming into the world and lots of sites have had some recdent <span class="caps">TLC</span>. Anyway, here goes with a few observations.</p>
- <p><strong>Simplified Standards</strong><br />
-Simplifiedstandards (<a href="http://www.simplifiedstandards.com/">simplifiedstandards.com</a>) looks like a great idea. A few people where discussing a central repository for concensus on issues of web standards application in the real world and this aims to be just that. Simon Collison of <a href="http://www.collylogic.com">www.collylogic.com</a> is bringing everything together as far as I can see.</p>
- <p><strong>Everyones thoughts</strong><br />
-Faruk AteÃ…Å¸ appears to have spent every day since getting back compiling a list of what anyone anywhere said about the event. Its a great idea and makes finding peoples thoughts easier but I wonder if their would be an easy way of doing this (like pinging a web service with any new articles?) without one guy doing all the work?<br />
-Look for everyones comments at <a href="http://www.kurafire.net/log/archive/2005/06/11/atmedia-2005-report">kurafire.net</a></p>
- <p><strong>Designersinhouse</strong><br />
-One guy I did meet at the conference was Matt Patterson who has set up a small (but radidly growing) mainling list over at <a href="http://www.designersinhouse.com">www.designersinhouse.com</a> aimed at designers working within larger organisations. One thing I took away from the conference was the large number of people working outside service or agency environments.</p>
- <p>And that is just some of the goings on. A good amount of discussion going on around the level of legislation needed to govern accessibility doing the rounds, the <span class="caps">ATF</span> (Accessibility TaskForce) from WaSP just starting up with several of the speakers on board and god knows what else. Oh, and I still haven&#8217;t done a zoom layout but I did add some word completion to the search box!</p></div>
   
   
 

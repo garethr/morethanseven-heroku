@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="If you visited the site previously since the Radiant move you might notice a new colour scheme. Come to mention it if you visit tomorrow, or the day &hellip;">
+  <meta name="description" content="Please note that Twitter no-longer support Basic Auth via the API so the following code no longer works. Please see the official docs for more info &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,77 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/01/20/posting-to-twitter-using-php/">Posting to Twitter Using PHP</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-01-20T00:00:00+00:00" pubdate data-updated="true">Jan 20<span>th</span>, 2007</time>
+        
+         | <a href="/2007/01/20/posting-to-twitter-using-php/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em>Please note that Twitter no-longer support Basic Auth via the <span class="caps">API</span> so the following code no longer works. Please see the <a href="http://dev.twitter.com/pages/oauth_faq">official docs</a> for more info</em></p>
+<p>Like others I&#8217;ve found myself becoming something of a fan of <a href="http://twitter.com">Twitter</a>, the impossible to explain social networking site. If you&#8217;re reading this, have a twitter account and not already my <em>friend</em> then <a href="http://twitter.com/garethr">add me</a> if you like.</p>
+<p>Apart from the interesting social aspects I&#8217;m also interested in Twitter as an <span class="caps">API</span> for all sorts of communications, remember Twitter already deals nicely with <span class="caps">SMS</span> messaging, Instant Messaging, subscription and the like and has a <a href="http://twitter.com/help/api">nice <span class="caps">XML</span> and <span class="caps">JSON</span> based <span class="caps">API</span></a>. I&#8217;ve been using the <a href="http://www.zamano.com/">Zamano</a> <span class="caps">SMS</span> gateway at work for a few projects and Twitter actually lets me some more and doesn&#8217;t come with a price tag.</p>
+<p>I started out playing with <a href="http://curl.haxx.se/">curl</a> to send updates like so (obviously with a real username and password):</p>
+<p><code>curl -u username:password -d status="twittering from curl" http://twitter.com/statuses/update.xml</code></p>
+<p>I then used the <span class="caps">PHP</span> curl features to do the same thing from <span class="caps">PHP</span>:</p>
+<pre><code>&amp;lt;?php
+// Set username and password
+$username = 'username';
+$password = 'password';
+// The message you want to send
+$message = 'is twittering from php using curl';
+// The twitter API address
+$url = 'http://twitter.com/statuses/update.xml';
+// Alternative JSON version
+// $url = 'http://twitter.com/statuses/update.json';
+// Set up and execute the curl process
+$curl_handle = curl_init();
+curl_setopt($curl_handle, CURLOPT_URL, "$url");
+curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
+curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($curl_handle, CURLOPT_POST, 1);
+curl_setopt($curl_handle, CURLOPT_POSTFIELDS, "status=$message");
+curl_setopt($curl_handle, CURLOPT_USERPWD, "$username:$password");
+$buffer = curl_exec($curl_handle);
+curl_close($curl_handle);
+// check for success or failure
+if (empty($buffer)) {
+    echo 'message';
+} else {
+    echo 'success';
+}
+?&amp;gt;</code></pre>
+<p>Obviously you could do more with the return than print out a success or failure message. The $buffer variable has the returned <span class="caps">XML</span> or <span class="caps">JSON</span> for you&#8217;re parsing pleasure.</p>
+<p>I&#8217;m going to try out some of the other <span class="caps">API</span> methods too, probably play more with <span class="caps">XSL</span> or look more closely at the <a href="http://pear.php.net/pepr/pepr-proposal-show.php?id=198"><span class="caps">PEAR</span> <span class="caps">JSON</span> module</a> in building up a simple library as a quick search didn&#8217;t throw up much of interest and the <span class="caps">API</span> is nice and simple; making it fun to hack on.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -525,47 +596,6 @@ web::run($urls);
 
   <div class="entry-content"><p>I&#8217;m a fan of <a href="http://backpackit.com">Backpack</a> from <a href="http://37signals.com">37signals</a>. Although you <em>can</em> make pages public their is currently no way to style those differently, or to add content from outside Backpack. That&#8217;s where Backgarden comes in. It&#8217;s a simple <span class="caps">PHP</span> (4 and 5, the <span class="caps">XML</span>/<span class="caps">XSL</span> implementations are slighly different) application that builds a page via the Backpack <span class="caps">API</span> and some <span class="caps">XSL</span> magic that you can put on your site. You just enter the page address and your <span class="caps">API</span> key.</p>
 <p><a href="/_assets/downloads/backgarden/backgarden.zip">Download Zip</a></p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2006/12/23/cms-on-rails/">CMS on Rails</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2006-12-23T00:00:00+00:00" pubdate data-updated="true">Dec 23<span>rd</span>, 2006</time>
-        
-         | <a href="/2006/12/23/cms-on-rails/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Content management is one of those subjects I often get involved in at work, and something I find pretty interesting as a whole &#8211; even if I keep having to reiterate most of the problems with content management are people problems rather than technological ones.</p>
- <p>I&#8217;ve been using <a href="http://textpattern.com">Textpattern</a> for this site and a few others for a couple of years. I&#8217;ve spoken before about the recent move to more hand rolled solutions, and the flexibility that gives people to innovate. As well as occasionally threatening to really kick the tyres on <a href="http://www.djangoproject.com/">Django</a>, <a href="http://rubyonrails.com">Rails</a> or similar (<a href="www.seaside.st">Seaside</a>, <a href="http://webpy.org/">Web.py</a>, &#8230;). I&#8217;ve been wandering the halls of the web development frameworks all year it seems &#8211; playing with <a href="http://www.python.org/">Python</a> and <a href="http://www.ruby-lang.org">Ruby</a> along the way.</p>
- <p>To a point however these seemed more developer focused that something I could see being used by a web designer or small company (some intentionally so in fairness) or in education. However I&#8217;m back playing with Rails and started looking at existing apps to see how they are put together (I love open source) and a quick recce of Rails based <span class="caps">CMS</span> products turned up (amongst others that didn&#8217;t interest) <a href="http://radiantcms.org/">Radiant</a>. It <a href="http://www.ruby-lang.org/en/news/2006/09/12/site-launch-at-last/">appears</a> to have been developed along side the <a href="http://www.ruby-lang.org">new Ruby site</a> launched in September and boy is it a nice piece of kit.</p>
- <p>Assuming you have Rails installed, installation of Radiant is as simple as one command (It&#8217;s available as a <a href="http://rubygems.org/">Gem</a>) and then another to get a site up and running (Ok, plus a couple of other simple commands to configure a database). First impressions it looks well put together, with a strong concept well executed and a lovely Interface. It&#8217;s chunky without being cliched and simple without being simplistic. I&#8217;m in the process of making plans for next year and this is hopefully going to feature somewhere. I love looking for a problem where I might just already have the solution.</p>
- <p>Oh, and a only vaguely related note (well, <a href="http://wordpress.com">Wordpress</a> is a content management system of sorts) a couple of friends have started blogging over on <a href="http://breadlinedesign.com">breadlinedesign.com</a> and <a href="http://anotherblog.com">anotherblog.com</a>. Consider this a shameless plug.</p></div>
   
   
 

@@ -9,7 +9,7 @@
   <meta name="author" content="Gareth Rushgrove">
 
   
-  <meta name="description" content="I don&#8217;t appear to have been in a writing mood recently but I&#8217;ve been getting back into hacking on a couple of pet projects. The first &hellip;">
+  <meta name="description" content="I&#8217;m a huge Jenkins fan now, but that wasn&#8217;t always the case. I started (and still have a soft spot for) Cruise Control, mainly building . &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,59 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/16/Jenkins-parameterized-builds/">Jenkins Parameterized Builds</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-16T00:00:00+00:00" pubdate data-updated="true">Nov 16<span>th</span>, 2011</time>
+        
+         | <a href="/2011/11/16/Jenkins-parameterized-builds/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m a huge Jenkins fan now, but that wasn&#8217;t always the case. I started (and still have a soft spot for) Cruise Control, mainly building .<span class="caps">NET</span> and <span class="caps">PHP</span> applications. I then jumped to much simpler projects like <a href="http://integrityapp.com/">Integrity</a> mainly for Python and Ruby projects. I reasoned I didn&#8217;t need the complexity of Cruise or Hudson, I just wanted to be able to run my tests on a remote machine and have something go green or red. I then worked out that wasn&#8217;t quite the case, and ended up committing webhook like functionality to Integrity so I could chain builds together. And then I eventually tried Jenkins and found it&#8217;s power mixed with flexibility won me over. That&#8217;s really all just context, but hopefully explains a little about why I like a few Jenkins features in particular, one of which is <a href="https://wiki.jenkins-ci.org/display/JENKINS/Parameterized+Build">Parameterized builds</a>.</p>
+<p>The Jenkins wiki describes this by saying:</p>
+<blockquote>
+<p>Sometimes, it is useful/necessary to have your builds take several &#8220;parameters.&#8221;</p>
+</blockquote>
+<p>But then goes onto a usecase that probably won&#8217;t mean much to dynamic language folk. This is one failing of much of the documentation around Jenkins, it often feels geared towards developers of certain languages when in reality the tool is useful everywhere. The important take away here is that builds can take arguments, which can have default values. Here&#8217;s an example:</p>
+<p>Imagine we have a build which runs a set of simple tests against a live system . And further imagine that said system is composed of a number of different web services. Oh, and we&#8217;re running a few different parrallel versions of the entire system for testing and staging purposes. We could have one Jenkins job per application/environment combination. Or we could have one parameterized build.</p>
+<p>Lets first specify our parameters from the Configure build screen of our Job.</p>
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjZsAIM"/></p>
+<p>Here we&#8217;re specifying a TARGET_APPLICATION and TARGET_PLATFORM parameter. These are going to turn into environment variables we can use in our build steps. We can specify default values for these if we like too. I&#8217;m just using strings here, but I could also use a select box or file dialog, or other options provided by various plugins.</p>
+<p>Now when we hit the build button, instead of the build just starting, we&#8217;re propted for these values.</p>
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjxqAIM"/></p>
+<p>So with our new build if we want it to run against the staging environment and just for the foobar application we enter those values and hit build. That on it&#8217;s own can be used to drastically cut down on the number of individual builds you have to manage in Jenkins. And we&#8217;re not just restricted to text inputs, we can use boolean values or even prompt for file uploads at build time. But throw in a few plugins and things get even more interesting.</p>
+<p>Jenkins has an overwhelming number of plugin available. If you haven&#8217;t spent the good half hour it takes to go down the list I&#8217;d highly recommend it. One of Jenkins best features is the ability to trigger a build after the successful run of another job. It allows you to chain things like test runs to integration deployments to smoke tests to production deploys. Basically your modern continuous deployment/delivery pipeline. The <a href="https://wiki.jenkins-ci.org/display/JENKINS/Build+Pipeline+Plugin">Build Pipeline</a> plugin is excellent for visuallising this and introducing human gates if needed. Another useful plugin in this context is the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Parameterized+Trigger+Plugin">Parameterized Trigger</a> plugin. A limitation of Jenkins is that downstream builds can&#8217;t pass parameters, but this plugin works around that. Instead of ticking the <em>Build other projects</em> option you go for the <em>Trigger parameterized build on other projects</em> box. This allows you to select the project and to specify parameters to pass. This could be hard coded values, paramaters already passed into the pipeline, or things from other plugins like the git sha1 hash or subversion version number.</p>
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjyqAIM"/></p>
+<p>Combine all this together and it&#8217;s simple to have a per project continuous integration build running a test suite, kicking off a standard set of downsteam jobs for deploying to a test environment (by passing th relevant parameters), running some basic smoke tests and allowing someone to click a button to deploy to production. Or going the whole continuous deployment, I trust my test suite route, and deploying automatically. All within Jenkins. Getting this working requires a bit of planning. You want all of your projects to be deployed the same way but you probably want this to be the case anyway.</p>
+<p>Providing flexible push button builds/deploys and reducing the number of nearly identical jobs in Jenkins are just two advantages to using parameterized builds. Most of the tricks come from thinking about Jenkins as much more than a continuous integration tool and more of an automation framework &#8211; I know at least one large organisation who have pretty much replaced cron for many tasks with Jenkins for instance. Running tests automatically, and in a central environment as close to production as possible, is important. But it&#8217;s just a sanity check if you&#8217;re doing everything right already. Centralising activity on a build pipeline requires you to be doing all that anyway, but in my opinion gives way more useful and rapid feedback about the state of the code your team is writing.</p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -563,58 +616,6 @@ Transfer rate:          161.82 [Kbytes/sec] received</pre>
 <p>If you&#8217;re working on a larger project hopefully you&#8217;ll have the time to investigate other approaches too. I&#8217;m quite a fan of using production logs to replay requests for instance, and of using <a href="http://funkload.nuxeo.org/">Funkload</a> for running scenarios under load. I&#8217;ll hopefully write more about those later. I&#8217;ve heard good things about <a href="http://tsung.erlang-projects.org/">Tsung</a> as well, <a href="http://www.hpl.hp.com/research/linux/httperf/">HTTPerf</a> is excellent and <a href="http://jakarta.apache.org/jmeter/">JMeter</a> has many fans. I&#8217;m using ab for examples because it&#8217;s point and shoot and you probably already have it installed without knowing.</p>
 
 <p>Hopefully that&#8217;s a useful list of tools to get a baseline of where you&#8217;re at with performance. The rest of the articles in this series will show approaches to improve performance, and come back to one or more of these tools to confirm we&#8217;re heading in the right direction.</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2011/06/26/New-ganglia-web-interface-improvements/">New Ganglia Web Interface Improvements</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-26T00:00:00+01:00" pubdate data-updated="true">Jun 26<span>th</span>, 2011</time>
-        
-         | <a href="/2011/06/26/New-ganglia-web-interface-improvements/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>So I&#8217;m a huge <a href="http://ganglia.sourceforge.net/">Ganglia</a> fan. It&#8217;s my go-to tool for standard low level metrics and for more ad-hoc higher level stuff as well. So I&#8217;m very happy to see the <a href="http://ganglia.info/?p=393">newly released</a> version of the Ganglia Web interface.</p>
-<p>Here&#8217;s the old look and feel:</p>
-<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRiZ8gEM" alt="Old Ganglia UI"/></p>
-<p>And here&#8217;s the new version:</p>
-<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRix6gEM" alt="New Ganglia UI"/></p>
-<p>The first thing that stands out to me is the wide range of new options. We have a navigation bar with items like search, views, agregate graphs, events and mobile. And we have dynamic date ranges, and filtering and sorting options for metrics.</p>
-<ul>
-	<li>Search is what you&#8217;d expect. A search as you type facility for hosts and metrics, great if you have a large cluster and want to find something quickly.</li>
-	<li>Views are interesting. Basically a way of putting together a specific set of metrics on one screen and linking to them, rather than always having to go via the node or grid overview.</li>
-	<li>You could always create agregate graphs in Ganglia, but you had to delve into writing some <span class="caps">PHP</span> to get what you wanted. Not you can do certain types of graph on the fly, simply by specifying what you want.</li>
-	<li>I&#8217;m cheating slightly here and using the very latest code rather than the 2.0.0 release. But it&#8217;s worth it for the Events feature. Events gives you the ability to record events like a deploy or a daily backup onto your graphs, immediately making some types of diagnosis easier. More about how I&#8217;m using this when I finish automating it.</li>
-	<li>Gnaglia always worked OK on a mobile device mainly because all you really wanted was the graphs. The new mobile UI however just makes navigating much easier. It&#8217;s not yet doing device detection and automatically redirecting my iphone to that view which would be nice but it&#8217;s definately a good addition.</li>
-	<li>Combined with views, automatic rotation shows a series of graphs, one every 30 seconds. Particularly useful for big screen dashboards, in fact I&#8217;ve built this exact feature before more than once before.</li>
-</ul>
-<p>I&#8217;ve concentrated here on the new visual features, but the new UI also contains <span class="caps">CSV</span> and <span class="caps">JSON</span> output for all metrics as well as a much easier <span class="caps">JSON</span> based approach to defining custom metrics. The amount of stuff in this release is huge. Massive thanks to the folks behind all the new features, in particular <a href="http://vuksan.com/">Vladimir Vuksan</a>.</p>
-<p>Ganglia is such a staple that I&#8217;m used to just using whatever is in the latest distro provided packages. When it comes to the web UI however I&#8217;m going to make an exception from now on. Not only can you run the new UI in parallel with the old, deployment is simply copying a directory into place (It&#8217;s easy to forget just how simple <span class="caps">PHP</span> deployment is sometimes). If you&#8217;re already using Ganglia spend a few minutes installing the new UI. If you&#8217;ve rejected Ganglia previously because it didn&#8217;t have one feature or another then now is the time to look again.</p></div>
   
   
 
