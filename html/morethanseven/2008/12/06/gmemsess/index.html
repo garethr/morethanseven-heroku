@@ -19,20 +19,16 @@
 
   
   <link rel="canonical" href="http://www.morethanseven.net/2008/12/06/gmemsess">
-  <link href="/favicon.ico" rel="icon">
-  
+  <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-<meta content="etkmKMftqAyYJM6-DP_TTKJjV0EHM5vbVcaOloSo8Z8" name="google-site-verification">
-<link href="http://www.myopenid.com/server" rel="openid.server">
-<link href="http://garethr.myopenid.com/" rel="openid.delegate">
 
   
   <script type="text/javascript">
@@ -50,32 +46,32 @@
 
 </head>
 
-<body   class="no-sidebar"  >
-  <header>
-<hgroup>
-<h1><a href="/">Morethanseven</a></h1>
-<p>The blog of Gareth Rushgrove</p>
-
-<div id='carbonads-container'>
-  <div class='carbonad'>
-    <div id='carbon'></div>
-    <script type='text/javascript'>
-      //<![CDATA[
-        var z = document.createElement("script");
-        z.type = "text/javascript";
-        z.async = true;
-        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(z, s);
-      //]]>
-    </script>
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
   </div>
-</div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
 
 </hgroup>
+
 </header>
-
-
   <div id="main">
     <div id="content">
       <div>
@@ -119,7 +115,7 @@
       
   
 
-<span class="byline author vcard">Posted by <span class="fn"><a href="/about" title="About the author (Gareth Rushgrove)" rel="author">Gareth Rushgrove</a></span></span>
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
 
       
 
@@ -159,7 +155,7 @@
         <a class="basic-alignment left" href="/2008/11/30/where-will-all-web-developers-go/" title="Previous Post: Where will all the web developers go?">&laquo; Where will all the web developers go?</a>
       
       
-        <a class="basic-alignment right" href="/2008/12/13/search-genres-spotify/" title="next Post: Search for Genres on Spotify">Search for Genres on Spotify &raquo;</a>
+        <a class="basic-alignment right" href="/2008/12/13/search-genres-spotify/" title="Next Post: Search for Genres on Spotify">Search for Genres on Spotify &raquo;</a>
       
     </p>
   </footer>
@@ -173,10 +169,85 @@
 
 </div>
 
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
 
     </div>
   </div>
-  <footer role="contentinfo">
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
 </footer>
   
 
@@ -211,6 +282,7 @@
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>
+
 
 
 
